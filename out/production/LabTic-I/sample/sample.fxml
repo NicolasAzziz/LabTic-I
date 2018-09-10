@@ -82,7 +82,7 @@
                                                     <children>
                                                         <ImageView fitHeight="414.0" fitWidth="402.0" layoutX="-51.0" layoutY="-9.0" pickOnBounds="true" preserveRatio="true">
                                                             <image>
-                                                                <Image url="C:\Users\pia\Documents\SEMESTRE IV\TIC I\LabTic-I\Imagenes\26332041_181852159080270_239102465750859776_n.jpg" />
+                                                                <Image url="@Imagenes/26332041_181852159080270_239102465750859776_n.jpg" />
                                                             </image>
                                                         </ImageView>
                                                     </children>
