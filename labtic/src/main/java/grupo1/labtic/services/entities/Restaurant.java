@@ -13,7 +13,7 @@ import java.util.List;
 public class Restaurant extends Usuario {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
     private String nombre;
     private String direccion;
@@ -24,9 +24,11 @@ public class Restaurant extends Usuario {
     private String formasDePago;
     private String cocinas;
     private String descripcion;
-    private List<Mesa> mesa;
+    private List<Mesa> mesas;
 
-    public Restaurant(int login, int password, String nombre, String direccion, int horarioCierre, int horarioApertura, String barrio, String telefono, String formasDePago, String cocinas, String descripcion, List<Mesa> mesa) {
+    public Restaurant(int login, int password, String nombre, String direccion, int horarioCierre,
+                      int horarioApertura, String barrio, String telefono, String formasDePago, String cocinas,
+                      String descripcion, List<Mesa> mesas) {
         super(login, password);
         this.nombre = nombre;
         this.direccion = direccion;
@@ -37,7 +39,7 @@ public class Restaurant extends Usuario {
         this.formasDePago = formasDePago;
         this.cocinas = cocinas;
         this.descripcion = descripcion;
-        this.mesa = mesa;
+        this.mesas = mesas;
     }
 
     public Restaurant() {
@@ -115,11 +117,19 @@ public class Restaurant extends Usuario {
         this.descripcion = descripcion;
     }
 
-    public List<Mesa> getMesa() {
-        return mesa;
+    public List<Mesa> getMesas() {
+        return mesas;
     }
 
-    public void setMesa(List<Mesa> mesa) {
-        this.mesa = mesa;
+    public void setMesas(List<Mesa> mesas) {
+        this.mesas = mesas;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }
