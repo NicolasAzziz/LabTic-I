@@ -1,9 +1,20 @@
 package grupo1.labtic.services.entities;
 
+import org.hibernate.annotations.Table;
+import org.springframework.data.annotation.Id;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import java.util.List;
 
+
+@Entity
 public class Restaurant extends Usuario {
 
+    @Id
+    @GeneratedValue(strategy= GenerationType.SEQUENCE)
+    private Long id;
     private String nombre;
     private String direccion;
     private int horarioCierre;
