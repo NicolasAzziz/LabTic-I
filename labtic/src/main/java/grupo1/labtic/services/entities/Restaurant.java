@@ -7,7 +7,7 @@ public class Restaurant extends Usuario {
     private int horarioCierre;
     private int horarioApertura;
     private String barrio;
-    
+
 
 
 }
