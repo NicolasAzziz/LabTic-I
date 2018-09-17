@@ -1,1 +1,0 @@
-# LabTic-I
