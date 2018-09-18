@@ -1,6 +1,5 @@
 package grupo1.labtic.services.entities;
 
-import org.hibernate.annotations.Table;
 import org.springframework.data.annotation.Id;
 
 import javax.persistence.Entity;

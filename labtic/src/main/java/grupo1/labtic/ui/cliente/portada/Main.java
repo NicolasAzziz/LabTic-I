@@ -7,11 +7,13 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.util.Objects;
+
 public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("grupo1.labtic.ui.cliente.portada.portada.fxml"));
+        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("portada.fxml"));
         primaryStage.setTitle("Portada");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
