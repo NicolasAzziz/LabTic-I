@@ -29,4 +29,6 @@ dependencies {
 	compile('org.springframework.boot:spring-boot-starter-web')
 	runtime('mysql:mysql-connector-java')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
+	// https://mvnrepository.com/artifact/mysql/mysql-connector-java
+	compile group: 'mysql', name: 'mysql-connector-java', version: '8.0.12'
 }
