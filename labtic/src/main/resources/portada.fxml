@@ -116,7 +116,7 @@
                                        <children>
                                                         <ImageView fitWidth="400.0" pickOnBounds="true" preserveRatio="true" GridPane.columnSpan="2147483647" GridPane.halignment="LEFT" GridPane.rowSpan="2147483647" GridPane.valignment="BOTTOM">
                                                             <image>
-                                                                <Image url="@../../Imagenes/portadac.jpg" />
+                                                                <Image url="@grupo1/labtic/ui/Imagenes/portadac.jpg" />
                                                             </image>
                                                         </ImageView>
                                        </children>
@@ -188,7 +188,7 @@
                                                    <children>
                                                                           <ImageView fitHeight="137.0" fitWidth="128.0" pickOnBounds="true" preserveRatio="true" GridPane.columnSpan="2147483647" GridPane.halignment="LEFT" GridPane.rowSpan="2147483647" GridPane.valignment="TOP">
                                                                               <image>
-                                                                                  <Image url="@../../Imagenes/chef.png" />
+                                                                                  <Image url="@grupo1/labtic/ui/Imagenes/chef.png" />
                                                                               </image>
                                                                           </ImageView>
                                                                         <Button fx:id="unirse" mnemonicParsing="false" text="Unirse" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="CENTER" />

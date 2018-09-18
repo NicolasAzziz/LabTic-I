@@ -7,10 +7,10 @@ import javafx.scene.input.MouseEvent;
 public class solicitarDatos {
     public void desplegarMetodosDePago(MouseEvent mouseEvent) {
         ChoiceBox metodosPago = (ChoiceBox) mouseEvent.getSource();
-        metodosPago.getItems().add(new CheckMenuItem("Tarjeta de crédito"));
-        metodosPago.getItems().add(new CheckMenuItem("Tarjeta de débito"));
-        metodosPago.getItems().add(new CheckMenuItem("Efectivo"));
-        metodosPago.getItems().add(new CheckMenuItem("Ticket de alimentación"));
-        metodosPago.getItems().add(new CheckMenuItem("Ticket Restaurante"));
+        metodosPago.getItems().add("tarjeta");
+        metodosPago.getItems().add("Tarjeta de débito");
+        metodosPago.getItems().add("Efectivo");
+        metodosPago.getItems().add("Ticket de alimentación");
+        metodosPago.getItems().add("Ticket Restaurante");
     }
 }
