@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class Main extends Application {
+    SolicitarDatos sd = new SolicitarDatos();
 
     @Override
     public void start(Stage primaryStage) throws Exception{
