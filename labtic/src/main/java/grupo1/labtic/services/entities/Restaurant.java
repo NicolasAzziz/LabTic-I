@@ -15,6 +15,7 @@ public class Restaurant extends Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
+
     private String nombre;
     private String direccion;
     private int horarioCierre;
