@@ -7,8 +7,8 @@
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-
 <?import javafx.collections.FXCollections?>
+
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="grupo1.labtic.ui.restaurants.SolicitarDatos">
    <children>
       <SplitPane dividerPositions="0.23" orientation="VERTICAL" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -35,11 +35,10 @@
                     </columnConstraints>
                     <rowConstraints>
                       <RowConstraints maxHeight="96.0" minHeight="0.0" prefHeight="48.0" vgrow="SOMETIMES" />
-                      <RowConstraints maxHeight="202.0" minHeight="10.0" prefHeight="34.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="202.0" minHeight="10.0" prefHeight="34.0" />
                       <RowConstraints maxHeight="253.0" minHeight="10.0" prefHeight="41.0" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="253.0" minHeight="0.0" prefHeight="45.0" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="253.0" minHeight="10.0" prefHeight="103.0" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="253.0" minHeight="10.0" prefHeight="54.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="253.0" minHeight="0.0" prefHeight="49.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="253.0" minHeight="10.0" prefHeight="115.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Datos" GridPane.valignment="TOP" />
@@ -92,7 +91,23 @@
                            </children>
                         </HBox>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Métodos de pago aceptados*:" textAlignment="CENTER" wrappingWidth="98.744140625" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
-                        <ChoiceBox fx:id="metodosPago" onDragDetected="#desplegarMetodosDePago" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                        <MenuButton alignment="CENTER" contentDisplay="BOTTOM" mnemonicParsing="false" prefHeight="25.0" prefWidth="157.0" text="Seleccione" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+                           <items>
+                              <CheckMenuItem mnemonicParsing="false" text="Tarjeta de débito" />
+                              <CheckMenuItem mnemonicParsing="false" text="Tarjeta de crédito" />
+                              <CheckMenuItem mnemonicParsing="false" text="Efectivo" />
+                              <CheckMenuItem mnemonicParsing="false" text="Ticket alimentación" />
+                              <CheckMenuItem mnemonicParsing="false" text="Ticket restaurante" />
+                           </items>
+                        </MenuButton>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Comidas" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+                        <MenuButton alignment="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="146.0" text="Seleccione" GridPane.columnIndex="5" GridPane.rowIndex="3">
+                          <items>
+                              <CheckMenuItem mnemonicParsing="false" text="Sushi" />
+                              <CheckMenuItem mnemonicParsing="false" text="Hamburguesas" />
+                              <CheckMenuItem mnemonicParsing="false" text="Ensaladas" />
+                          </items>
+                        </MenuButton>
                      </children>
                   </GridPane>
                </children></AnchorPane>
