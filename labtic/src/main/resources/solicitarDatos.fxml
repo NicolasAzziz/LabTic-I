@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.web.*?>
+<?import javafx.scene.media.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.text.*?>
 <?import java.lang.*?>
@@ -34,11 +36,12 @@
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="411.0" minWidth="10.0" prefWidth="34.0" />
                     </columnConstraints>
                     <rowConstraints>
-                      <RowConstraints maxHeight="96.0" minHeight="0.0" prefHeight="48.0" vgrow="SOMETIMES" />
-                      <RowConstraints maxHeight="202.0" minHeight="10.0" prefHeight="34.0" />
-                      <RowConstraints maxHeight="253.0" minHeight="10.0" prefHeight="41.0" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="253.0" minHeight="0.0" prefHeight="49.0" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="253.0" minHeight="10.0" prefHeight="115.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="96.0" minHeight="0.0" prefHeight="51.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="202.0" minHeight="10.0" prefHeight="49.0" />
+                      <RowConstraints maxHeight="253.0" minHeight="10.0" prefHeight="45.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="253.0" minHeight="0.0" prefHeight="45.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="253.0" minHeight="8.0" prefHeight="55.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="253.0" minHeight="10.0" prefHeight="66.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Datos" GridPane.valignment="TOP" />
@@ -106,6 +109,7 @@
                               <CheckMenuItem mnemonicParsing="false" text="Sushi" />
                               <CheckMenuItem mnemonicParsing="false" text="Hamburguesas" />
                               <CheckMenuItem mnemonicParsing="false" text="Ensaladas" />
+                              <CheckMenuItem mnemonicParsing="false" />
                           </items>
                         </MenuButton>
                      </children>
