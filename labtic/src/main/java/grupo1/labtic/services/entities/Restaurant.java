@@ -1,30 +1,40 @@
 package grupo1.labtic.services.entities;
 
+import org.hibernate.annotations.GenericGenerator;
 import org.springframework.data.annotation.Id;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import javax.persistence.*;
 import java.util.List;
-import javax.persistence.Table;
 
 @Entity
-@Table(name = "restaurants")
+@Table(name = "RESTAURANTES")
 public class Restaurant extends Usuario {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(generator = "restaurantes_ids")
+    @GenericGenerator( name = "restaurantes_ids", strategy = "increment")
     private Long id;
 
+    @Column( name = "nombre")
     private String nombre;
+
+    @Column( name = "direccion", unique = true)
     private String direccion;
+    @Column( name = "horarioCierre")
     private int horarioCierre;
+    @Column( name = "horarioApertura")
     private int horarioApertura;
+    @Column(name = "barrio")
     private String barrio;
+    @Column(name = "telefono")
     private String telefono;
+    @Column(name = "formaDePago")
     private String formasDePago;
+    @Column(name = "cocinas")
     private String cocinas;
+    @Column(name = "descripcion")
     private String descripcion;
+    @Column(name = "mesas")
     private List<Mesa> mesas;
 
     public Restaurant(int login, int password, String nombre, String direccion, int horarioCierre,

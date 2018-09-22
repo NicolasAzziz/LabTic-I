@@ -36,9 +36,9 @@ public class RestaurantService {
             throw new RestaurantAlreadyExists();
         }
 
-        Restaurant oRestaurant = new Restaurant();
+        Restaurant oRestaurant = new Restaurant(login, password, nombre, direccion, horarioCierre, horarioApertura, barrio, telefono, formasDePago, cocinas, descripcion, mesas);
 
-        restaurantRepository.save(oRestaurant);
+        Restaurant save = restaurantRepository.save(oRestaurant);
 
     }
 }
