@@ -49,10 +49,25 @@ public class SolicitarDatos {
     private CheckMenuItem ticketR;
 
     @FXML
-    public void registrar(ActionEvent event){
-        System.out.print("hola");
+    public void registrar (ActionEvent event){
+        if (nombreRestaurante.getText()==null||nombreRestaurante.equals("")||telefonoRestaurante.getText()==null||
+        telefonoRestaurante.equals("")||direccionRestaurante.getText()==null||direccionRestaurante.equals("")||
+        barrioRestaurante.getText()==null||barrioRestaurante.equals("")||hAperturaRestaurante.getText()==null){
+            showAlert("Datos faltantes!",
+                    "No se ingresaron los datos necesarios para completar el ingreso.");
+        }
+        else{
+
+        }
     }
 
-    public void desplegarMetodosDePago(MouseEvent mouseEvent) {
+    private void showAlert(String title, String contextText) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(contextText);
+        alert.showAndWait();
     }
+
+
 }

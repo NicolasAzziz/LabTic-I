@@ -124,7 +124,7 @@
                         <TextArea fx:id="descR" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="4" />
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Sitio web:" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
                         <TextField fx:id="webRestaurante" GridPane.columnIndex="5" GridPane.rowIndex="4" />
-                        <Button fx:id="registroRestaurante" mnemonicParsing="false" onAction="#registrar" text="Registrarse" GridPane.columnIndex="5" GridPane.rowIndex="5" GridPane.valignment="CENTER" />
+                        <Button fx:id="registroRestaurante" onAction="#registrar" text="Registrarse" GridPane.columnIndex="5" GridPane.rowIndex="5" GridPane.valignment="CENTER" />
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="* Campos Obligatorios" GridPane.columnIndex="2" GridPane.rowIndex="6" GridPane.valignment="TOP" />
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="D" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                            <font>
