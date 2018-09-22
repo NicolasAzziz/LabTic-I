@@ -2,6 +2,7 @@ package grupo1.labtic.services.entities;
 
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Reference;
 
 import javax.persistence.*;
 import java.util.List;
@@ -35,11 +36,12 @@ public class Restaurant extends Usuario {
     @Column(name = "descripcion")
     private String descripcion;
     @Column(name = "mesas")
-    private List<Mesa> mesas;
+    //MESA CON INT PORQUE NO DETECTABA EL TYPO MESA.JAVA
+    private int mesa;
 
     public Restaurant(int login, int password, String nombre, String direccion, int horarioCierre,
                       int horarioApertura, String barrio, String telefono, String formasDePago, String cocinas,
-                      String descripcion, List<Mesa> mesas) {
+                      String descripcion, int mesa) {
         super(login, password);
         this.nombre = nombre;
         this.direccion = direccion;
@@ -50,7 +52,7 @@ public class Restaurant extends Usuario {
         this.formasDePago = formasDePago;
         this.cocinas = cocinas;
         this.descripcion = descripcion;
-        this.mesas = mesas;
+        this.mesa = mesa;
     }
 
     public Restaurant() {
@@ -128,12 +130,12 @@ public class Restaurant extends Usuario {
         this.descripcion = descripcion;
     }
 
-    public List<Mesa> getMesas() {
-        return mesas;
+    public int getMesas() {
+        return mesa;
     }
 
-    public void setMesas(List<Mesa> mesas) {
-        this.mesas = mesas;
+    public void setMesas(int mesa) {
+        this.mesa = mesa;
     }
 
     public Long getId() {

@@ -18,7 +18,7 @@ public class RestaurantService {
 
     public void addClient(int login, int password, String nombre, String direccion, int horarioCierre,
                           int horarioApertura, String barrio, String telefono, String formasDePago, String cocinas,
-                          String descripcion, List<Mesa> mesas)
+                          String descripcion, int mesa)
             throws InvalidRestaurantInformation, RestaurantAlreadyExists {
 
         if (nombre == null || "".equals(nombre) || direccion == null || "".equals(direccion)
@@ -36,7 +36,7 @@ public class RestaurantService {
             throw new RestaurantAlreadyExists();
         }
 
-        Restaurant oRestaurant = new Restaurant(login, password, nombre, direccion, horarioCierre, horarioApertura, barrio, telefono, formasDePago, cocinas, descripcion, mesas);
+        Restaurant oRestaurant = new Restaurant(login, password, nombre, direccion, horarioCierre, horarioApertura, barrio, telefono, formasDePago, cocinas, descripcion, mesa);
 
         Restaurant save = restaurantRepository.save(oRestaurant);
 
