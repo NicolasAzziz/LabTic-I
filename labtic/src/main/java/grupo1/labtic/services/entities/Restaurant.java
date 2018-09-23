@@ -1,23 +1,26 @@
 package grupo1.labtic.services.entities;
 
 import org.hibernate.annotations.GenericGenerator;
-import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Reference;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
 @Table(name = "RESTAURANTES")
-public class Restaurant extends Usuario {
+public class Restaurant {
 
     @Id
-    @GeneratedValue(generator = "restaurantes_ids")
-    @GenericGenerator( name = "restaurantes_ids", strategy = "increment")
+    @Column( name = "restaurante_id")
     private Long id;
 
     @Column( name = "nombre")
     private String nombre;
+
+    //@Column( name = "usuarioResponsable")
+    @OneToOne(mappedBy = "restaurante")
+    private Usuario usuarioResponsable;
 
     @Column( name = "direccion", unique = true)
     private String direccion;
@@ -39,10 +42,10 @@ public class Restaurant extends Usuario {
     //MESA CON INT PORQUE NO DETECTABA EL TYPO MESA.JAVA
     private int mesa;
 
-    public Restaurant(int login, int password, String nombre, String direccion, int horarioCierre,
+    public Restaurant(Usuario usuarioResponsable, String nombre, String direccion, int horarioCierre,
                       int horarioApertura, String barrio, String telefono, String formasDePago, String cocinas,
                       String descripcion, int mesa) {
-        super(login, password);
+        this.usuarioResponsable = usuarioResponsable;
         this.nombre = nombre;
         this.direccion = direccion;
         this.horarioCierre = horarioCierre;
@@ -142,7 +145,21 @@ public class Restaurant extends Usuario {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public int getMesa() {
+        return mesa;
     }
+
+    public void setMesa(int mesa) {
+        this.mesa = mesa;
+    }
+
+    public Usuario getUsuarioResponsable() {
+        return usuarioResponsable;
+    }
+
+    public void setUsuarioResponsable(Usuario usuarioResponsable) {
+        this.usuarioResponsable = usuarioResponsable;
+    }
+
+
 }

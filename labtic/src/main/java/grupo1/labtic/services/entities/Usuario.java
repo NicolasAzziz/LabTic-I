@@ -9,9 +9,14 @@ import javax.persistence.*;
 public class Usuario {
 
     @Id
-    @GeneratedValue( generator = "usuarios_ids")
-    @GenericGenerator( name = "usuarios_ids", strategy = "increment")
+    @GeneratedValue( generator = "usuario_id")
+    @GenericGenerator( name = "usuario_id", strategy = "increment")
     private long id;
+
+    //@Column
+    @OneToOne( cascade = CascadeType.ALL)
+    @JoinColumn(name = "restaurante_id")
+    private Restaurant restaurante;
 
     @Column( name = "login", unique = true)
     private int login;

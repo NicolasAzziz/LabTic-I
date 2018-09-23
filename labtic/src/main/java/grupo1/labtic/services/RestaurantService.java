@@ -2,6 +2,7 @@ package grupo1.labtic.services;
 
 import grupo1.labtic.services.entities.Mesa;
 import grupo1.labtic.services.entities.Restaurant;
+import grupo1.labtic.services.entities.Usuario;
 import grupo1.labtic.services.exceptions.InvalidRestaurantInformation;
 import grupo1.labtic.services.exceptions.RestaurantAlreadyExists;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,8 +36,8 @@ public class RestaurantService {
 
             throw new RestaurantAlreadyExists();
         }
-
-        Restaurant oRestaurant = new Restaurant(login, password, nombre, direccion, horarioCierre, horarioApertura, barrio, telefono, formasDePago, cocinas, descripcion, mesa);
+        Usuario usuario = new Usuario(login, password);
+        Restaurant oRestaurant = new Restaurant(usuario, nombre, direccion, horarioCierre, horarioApertura, barrio, telefono, formasDePago, cocinas, descripcion, mesa);
 
         Restaurant save = restaurantRepository.save(oRestaurant);
 
