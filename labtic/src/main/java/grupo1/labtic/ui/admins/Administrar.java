@@ -1,6 +1,9 @@
 package grupo1.labtic.ui.admins;
 
+import grupo1.labtic.services.RestaurantService;
 import grupo1.labtic.services.entities.Admin;
+import grupo1.labtic.services.exceptions.InvalidRestaurantInformation;
+import grupo1.labtic.services.exceptions.RestaurantAlreadyExists;
 import grupo1.labtic.ui.restaurants.SolicitarDatos;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -14,7 +17,7 @@ import java.awt.*;
 @Component
 public class Administrar {
     @Autowired
-    private Admin administrador;
+    private RestaurantService administrador;
     @FXML
     private TextField usuarioAAgregar;
     @FXML
@@ -26,9 +29,22 @@ public class Administrar {
                 passAAgregar.getText()==null){
             showAlert("Datos erroneos", "No se ingresaron los datos necesarios para completar el registro");
         }
-        else{
-            administrador.crearRestaurant(usuarioAAgregar.getText().toString(), passAAgregar.getText().toString());
+        else {
+            try {
+                administrador.crearRestaurant(usuarioAAgregar.getText().toString(), passAAgregar.getText().toString());
+                showAlert("Usuario agregado.", "Se agrego con exito el usuario.");
+                clean();
+            }catch(InvalidRestaurantInformation e){
+                showAlert("Informacion invalida!","Se encontro un error en los datos ingresados."                        );
+            }catch(RestaurantAlreadyExists e){
+                showAlert("Usuario ya registrado", "El nombre de usuario ya a sido registrado en el sistema");
+            }
         }
+    }
+
+    private void clean() {
+        usuarioAAgregar.setText(null);
+        passAAgregar.setText(null);
     }
 
     public void showAlert(String title, String contextText) {

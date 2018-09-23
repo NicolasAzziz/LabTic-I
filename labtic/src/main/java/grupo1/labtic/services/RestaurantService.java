@@ -37,7 +37,27 @@ public class RestaurantService {
 
         Restaurant save = restaurantRepository.save(oRestaurant);
 
+    }
+
+    public void crearRestaurant(String login, String password)
+            throws InvalidRestaurantInformation, RestaurantAlreadyExists {
+
+        if (login == null || "".equals(login) || password == null || "".equals(password)) {
+
+            throw new InvalidRestaurantInformation("Alguno de los datos ingresados no es correcto");
+
+        }
+
+        // Verifico si el cliente no existe
+
+        if (restaurantRepository.findOneByLogin(login) != null) {
+
+            throw new RestaurantAlreadyExists();
+        }
+        Restaurant oRestaurant = new Restaurant(login, password);
+
+        Restaurant save = restaurantRepository.save(oRestaurant);
 
 
     }
-}
+    }
