@@ -9,7 +9,6 @@ import org.springframework.stereotype.Component;
 
 import java.awt.event.ActionEvent;
 
-@Component
 public class SolicitarDatos {
     @FXML
     private TextField nombreRestaurante;
@@ -68,6 +67,4 @@ public class SolicitarDatos {
         alert.setContentText(contextText);
         alert.showAndWait();
     }
-
-
 }
