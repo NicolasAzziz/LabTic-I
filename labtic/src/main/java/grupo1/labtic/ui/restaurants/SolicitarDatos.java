@@ -1,15 +1,22 @@
 package grupo1.labtic.ui.restaurants;
 
+import grupo1.labtic.LabticApplication;
+import grupo1.labtic.services.RestaurantService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.awt.event.ActionEvent;
 
 public class SolicitarDatos {
+    @Autowired
+    private LabticApplication main;
+    @Autowired
+    private RestaurantService restauranteService;
     @FXML
     private TextField nombreRestaurante;
     @FXML
@@ -60,7 +67,7 @@ public class SolicitarDatos {
         }
     }
 
-    private void showAlert(String title, String contextText) {
+    public void showAlert(String title, String contextText) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(title);
         alert.setHeaderText(null);
