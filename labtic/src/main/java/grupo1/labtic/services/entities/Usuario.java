@@ -3,28 +3,34 @@ package grupo1.labtic.services.entities;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 
 @Entity
 @Table( name = "USUARIOS")
-public class Usuario {
+public abstract class Usuario {
 
     @Id
     @GeneratedValue( generator = "usuario_id")
     @GenericGenerator( name = "usuario_id", strategy = "increment")
     private long id;
 
-    //@Column
-    @OneToOne( cascade = CascadeType.ALL)
-    @JoinColumn(name = "restaurante_id")
-    private Restaurant restaurante;
-
     @Column( name = "login", unique = true)
-    private int login;
+    private String login;
 
     @Column( name = "password")
-    private int password;
+    private String password;
 
-    public Usuario(int login, int password) {
+    @Column(name = "email")
+    @Email
+    private String email;
+
+    public Usuario(String login, String password,String email) {
+        this.login = login;
+        this.password = password;
+        this.email = email;
+    }
+
+    public Usuario(String login, String password) {
         this.login = login;
         this.password = password;
     }
@@ -32,19 +38,31 @@ public class Usuario {
     public Usuario() {
     }
 
-    public int getLogin() {
+    public long getId() {
+        return id;
+    }
+
+    public String getLogin() {
         return login;
     }
 
-    public void setLogin(int login) {
+    public void setLogin(String login) {
         this.login = login;
     }
 
-    public int getPassword() {
+    public String getPassword() {
         return password;
     }
 
-    public void setPassword(int password) {
+    public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

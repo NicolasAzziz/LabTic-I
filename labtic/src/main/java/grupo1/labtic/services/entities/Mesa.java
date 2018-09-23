@@ -8,18 +8,19 @@ import javax.validation.constraints.NotNull;
 public class Mesa {
 
 
-    @Id
-    //RESTAURANTE EN STRING PORQUE NO SABE QUE ES EL TYPO RESTAURANTE.JAVA a la hora ode crear la bd
-    private String restaurante;
 
-    @Column(name = "numeroReferencia", unique =  true)
-    @NotNull
+
+    @Id
+    @Column(name = "numeroReferencia")
     private int numeroReferencia;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "usuario_id")
+    private Usuario restaurante;
     @Column(name = "cantidadDeLugares")
     @NotNull
     private int cantLugares;
 
-    public Mesa(int numeroReferencia, int cantLugares, String restaurante) {
+    public Mesa(int numeroReferencia, int cantLugares, Restaurant restaurante) {
         this.restaurante = restaurante;
         this.numeroReferencia = numeroReferencia;
         this.cantLugares = cantLugares;
@@ -43,11 +44,11 @@ public class Mesa {
     public void setCantLugares(int cantLugares) {
         this.cantLugares = cantLugares;
     }
-    public String getRestaurante() {
+    public Usuario getRestaurante() {
         return restaurante;
     }
 
-    public void setRestaurante(String restaurante) {
+    public void setRestaurante(Restaurant restaurante) {
         this.restaurante = restaurante;
     }
 }
