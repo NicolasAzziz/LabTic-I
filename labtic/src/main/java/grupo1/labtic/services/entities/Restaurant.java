@@ -46,6 +46,10 @@ public class Restaurant extends Usuario {
         super(login, password, email);
     }
 
+    public Restaurant(String login, String password) {
+        super(login, password);
+    }
+
 
     public Restaurant() {
         super();

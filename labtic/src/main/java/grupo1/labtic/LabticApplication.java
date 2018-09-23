@@ -1,5 +1,7 @@
 package grupo1.labtic;
 
+import grupo1.labtic.services.RestaurantService;
+import grupo1.labtic.services.entities.Restaurant;
 import grupo1.labtic.ui.restaurants.Main;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -15,9 +17,9 @@ import org.springframework.context.annotation.Configuration;
 @SpringBootApplication
 public class LabticApplication extends Application {
 
+
     public static void main(String[] args) {
         SpringApplication.run(LabticApplication.class, args);
-
     }
 
     private AnnotationConfigApplicationContext context;

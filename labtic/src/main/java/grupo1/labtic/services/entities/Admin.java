@@ -16,7 +16,10 @@ public class Admin extends Usuario {
         Usuario restaurante = new Restaurant(nombre, password, email);
         return restaurante;
     }
-
+    public Usuario crearRestaurant(String nombre, String password){
+        Usuario restaurante = new Restaurant(nombre, password);
+        return restaurante;
+    }
     public void facturacion(){
 
     }
