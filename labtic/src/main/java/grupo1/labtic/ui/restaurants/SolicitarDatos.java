@@ -55,6 +55,10 @@ public class SolicitarDatos {
     private CheckMenuItem ticketA;
     @FXML
     private CheckMenuItem ticketR;
+    @FXML
+    private PasswordField passActual;
+    @FXML
+    private PasswordField passNueva;
 
     @FXML
     public void registrar (javafx.event.ActionEvent event){
@@ -70,6 +74,17 @@ public class SolicitarDatos {
         else{
             try{
                 Usuario restaurante =  repo.findOneByLogin(usuario.getText());
+                if(restaurante.getPassword().equals(passActual.getText())){
+                    try{
+                        String nombre = nombreRestaurante.getText();
+                        Long telefono = Long.valueOf(telefonoRestaurante.getText());
+                        //todo esto
+                    }
+                    catch(Exception e){
+
+                    }
+                }
+
 
             }
             catch (Exception e){
