@@ -32,8 +32,8 @@ public class LabticApplication extends Application {
         primaryStage.show();
     }
 
-    @Override
-    public void stop() {
-        context.close();
-    }
+//    @Override
+//    public void stop() {
+//        context.close();
+//    }
 }

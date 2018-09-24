@@ -45,11 +45,11 @@
                               <Insets top="20.0" />
                            </HBox.margin>
                         </Text>
-                        <TextField fx:id="passAAgregar">
+                        <PasswordField fx:id="passAAgregar">
                            <HBox.margin>
                               <Insets left="10.0" top="20.0" />
                            </HBox.margin>
-                        </TextField>
+                        </PasswordField>
                      </children>
                   </HBox>
                   <HBox prefHeight="100.0" prefWidth="200.0">

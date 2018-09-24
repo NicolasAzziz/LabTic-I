@@ -55,8 +55,8 @@
                      <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre del restaurante*:" wrappingWidth="78.580078125" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
                         <TextField fx:id="nombreRestaurante" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.valignment="CENTER" />
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Teléfono*:" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                        <TextField fx:id="telefonoRestaurante" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Teléfono*:" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
+                        <TextField fx:id="telefonoRestaurante" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
                         <TextField fx:id="direccionRestaurante" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Dirección*:" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Barrio*:" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
@@ -120,11 +120,11 @@
                               <CheckMenuItem mnemonicParsing="false" />
                           </items>
                         </MenuButton>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Breve descripción del servicio ofrecido:" textAlignment="CENTER" wrappingWidth="108.18359375" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
-                        <TextArea fx:id="descR" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Sitio web:" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
-                        <TextField fx:id="webRestaurante" GridPane.columnIndex="5" GridPane.rowIndex="4" />
-                        <Button fx:id="registroRestaurante" onAction="#registrar" text="Registrarse" GridPane.columnIndex="5" GridPane.rowIndex="5" GridPane.valignment="CENTER" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Breve descripción del servicio ofrecido:" textAlignment="CENTER" wrappingWidth="108.18359375" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
+                        <TextArea fx:id="descR" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="4" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Sitio web:" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER" />
+                        <TextField fx:id="webRestaurante" GridPane.columnIndex="5" GridPane.rowIndex="5" />
+                        <Button fx:id="registroRestaurante" onAction="#registrar" text="Registrarse" GridPane.columnIndex="5" GridPane.rowIndex="6" GridPane.valignment="CENTER" />
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="* Campos Obligatorios" GridPane.columnIndex="2" GridPane.rowIndex="6" GridPane.valignment="TOP" />
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="D" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                            <font>
@@ -153,6 +153,8 @@
                         </Text>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Cantidad de mesas*:" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER" />
                         <TextField fx:id="nMesasRestaurante" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre de Usuario*:" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                        <TextField fx:id="usuario" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
                      </children>
                   </GridPane>
                </children></AnchorPane>

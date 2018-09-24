@@ -1,7 +1,9 @@
 package grupo1.labtic.ui.restaurants;
 
 import grupo1.labtic.LabticApplication;
+import grupo1.labtic.persistence.RestaurantRepository;
 import grupo1.labtic.services.RestaurantService;
+import grupo1.labtic.services.entities.Usuario;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +15,10 @@ public class SolicitarDatos {
     private LabticApplication main;
     @Autowired
     private RestaurantService restauranteService;
+    @Autowired
+    private RestaurantRepository repo;
+    @FXML
+    private TextField usuario;
     @FXML
     private TextField nombreRestaurante;
     @FXML
@@ -52,13 +58,23 @@ public class SolicitarDatos {
 
     @FXML
     public void registrar (javafx.event.ActionEvent event){
-        if (nombreRestaurante.getText()==null||nombreRestaurante.equals("")||telefonoRestaurante.getText()==null||
-        telefonoRestaurante.equals("")||direccionRestaurante.getText()==null||direccionRestaurante.equals("")||
-        barrioRestaurante.getText()==null||barrioRestaurante.equals("")||hAperturaRestaurante.getText()==null){
+        if (nombreRestaurante.getText()==null||nombreRestaurante.getText().equals("")||telefonoRestaurante.getText()==null||
+        telefonoRestaurante.getText().equals("")||direccionRestaurante.getText()==null||direccionRestaurante.getText().equals("")||
+        barrioRestaurante.getText()==null||barrioRestaurante.getText().equals("")||hAperturaRestaurante.getText()==null||
+        mAperturaRestaurante.getText()==null||mAperturaRestaurante.getText().equals("")||hCierreRestaurante.getText()==null||
+        "".equals(hCierreRestaurante.getText())||mCierreRestaurante.getText()==null||mCierreRestaurante.getText().equals("")||
+        nMesasRestaurante.getText()==null||nMesasRestaurante.getText().equals("")||usuario.getText()==null||usuario.getText().equals("")){
             showAlert("Datos faltantes!",
                     "No se ingresaron los datos necesarios para completar el ingreso.");
         }
         else{
+            try{
+                Usuario restaurante =  repo.findOneByLogin(usuario.getText());
+
+            }
+            catch (Exception e){
+                showAlert("usuario no encontrado", "El nombre de usuario ingresado no existe en el sistema");
+            }
 
         }
     }

@@ -9,6 +9,7 @@ import grupo1.labtic.ui.restaurants.SolicitarDatos;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.PasswordField;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import javafx.scene.control.TextField;
@@ -18,15 +19,19 @@ import java.awt.*;
 @Component
 public class Administrar {
     @Autowired
-    private LabticApplication main;
+    private RestaurantService restaurantService;
+    @Autowired
+    private LabticApplication app;
+    @Autowired
+    private Main main;
     @Autowired
     private RestaurantService administrador;
     @FXML
     private TextField usuarioAAgregar;
     @FXML
-    private TextField passAAgregar;
+    private PasswordField passAAgregar;
 
-
+    @FXML
     public void agregar(ActionEvent actionEvent) {
         if(usuarioAAgregar.getText()==null||"".equals(usuarioAAgregar.getText())||"".equals(passAAgregar.getText())||
                 passAAgregar.getText()==null){
@@ -34,13 +39,15 @@ public class Administrar {
         }
         else {
             try {
-                administrador.crearRestaurant(usuarioAAgregar.getText().toString(), passAAgregar.getText().toString());
+                String usuario = usuarioAAgregar.getText();
+                String pass = passAAgregar.getText();
+                restaurantService.crearRestaurant(usuario, pass);
                 showAlert("Usuario agregado.", "Se agrego con exito el usuario.");
                 clean();
             }catch(InvalidRestaurantInformation e){
                 showAlert("Informacion invalida!","Se encontro un error en los datos ingresados."                        );
             }catch(RestaurantAlreadyExists e){
-                showAlert("Usuario ya registrado", "El nombre de usuario ya a sido registrado en el sistema");
+                showAlert("Usuario ya registrado", "El nombre de usuario ya ha sido registrado en el sistema");
             }
         }
     }
