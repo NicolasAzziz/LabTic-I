@@ -20,12 +20,6 @@ import java.awt.*;
 public class Administrar {
     @Autowired
     private RestaurantService restaurantService ;
-    @Autowired
-    private LabticApplication app;
-    @Autowired
-    private Main main;
-    @Autowired
-    private RestaurantService administrador;
     @FXML
     private TextField usuarioAAgregar;
     @FXML

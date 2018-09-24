@@ -7,6 +7,7 @@ import javax.validation.constraints.Email;
 
 @Entity
 @Table( name = "USUARIOS")
+
 public abstract class Usuario {
 
     @Id
