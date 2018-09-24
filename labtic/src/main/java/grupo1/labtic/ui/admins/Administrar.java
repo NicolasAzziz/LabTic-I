@@ -19,7 +19,7 @@ import java.awt.*;
 @Component
 public class Administrar {
     @Autowired
-    private RestaurantService restaurantService;
+    private RestaurantService restaurantService ;
     @Autowired
     private LabticApplication app;
     @Autowired
@@ -39,6 +39,7 @@ public class Administrar {
         }
         else {
             try {
+
                 String usuario = usuarioAAgregar.getText();
                 String pass = passAAgregar.getText();
                 restaurantService.crearRestaurant(usuario, pass);

@@ -1,11 +1,12 @@
 package grupo1.labtic;
 
-import grupo1.labtic.ui.restaurants.SolicitarDatos;
+import grupo1.labtic.ui.admins.Administrar;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
@@ -24,7 +25,7 @@ public class LabticApplication extends Application {
     public void start(Stage primaryStage) throws Exception {
         context = new AnnotationConfigApplicationContext(LabticApplication.class);
 
-        FXMLLoader loader = new FXMLLoader(SolicitarDatos.class.getResource("solicitarDatos.fxml"));
+        FXMLLoader loader = new FXMLLoader(Administrar.class.getResource("admin.fxml"));
         loader.setControllerFactory(context::getBean);
 
         root = loader.load();
