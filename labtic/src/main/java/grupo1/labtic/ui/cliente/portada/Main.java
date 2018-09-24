@@ -11,7 +11,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("../../../../../../resources/portada.fxml"));
+        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("../../../../../../resources/grupo1/labtic/ui/cliente/portada.fxml"));
         primaryStage.setTitle("Portada");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
