@@ -2,16 +2,12 @@ package grupo1.labtic.ui.restaurants;
 
 import grupo1.labtic.LabticApplication;
 import grupo1.labtic.services.RestaurantService;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.input.MouseEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.awt.event.ActionEvent;
-
+@Component
 public class SolicitarDatos {
     @Autowired
     private LabticApplication main;
@@ -55,7 +51,7 @@ public class SolicitarDatos {
     private CheckMenuItem ticketR;
 
     @FXML
-    public void registrar (ActionEvent event){
+    public void registrar (javafx.event.ActionEvent event){
         if (nombreRestaurante.getText()==null||nombreRestaurante.equals("")||telefonoRestaurante.getText()==null||
         telefonoRestaurante.equals("")||direccionRestaurante.getText()==null||direccionRestaurante.equals("")||
         barrioRestaurante.getText()==null||barrioRestaurante.equals("")||hAperturaRestaurante.getText()==null){
