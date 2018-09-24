@@ -1,5 +1,6 @@
 package grupo1.labtic.ui.admins;
 
+import grupo1.labtic.LabticApplication;
 import grupo1.labtic.services.RestaurantService;
 import grupo1.labtic.services.entities.Admin;
 import grupo1.labtic.services.exceptions.InvalidRestaurantInformation;
@@ -16,6 +17,8 @@ import java.awt.*;
 
 @Component
 public class Administrar {
+    @Autowired
+    private LabticApplication main;
     @Autowired
     private RestaurantService administrador;
     @FXML
