@@ -1,6 +1,5 @@
 package grupo1.labtic.ui.restaurants;
 
-import grupo1.labtic.LabticApplication;
 import grupo1.labtic.persistence.RestaurantRepository;
 import grupo1.labtic.services.RestaurantService;
 import grupo1.labtic.services.entities.Usuario;
@@ -11,10 +10,6 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class SolicitarDatos {
-    @Autowired
-    private LabticApplication main;
-    @Autowired
-    private RestaurantService restauranteService;
     @Autowired
     private RestaurantRepository repo;
     @FXML

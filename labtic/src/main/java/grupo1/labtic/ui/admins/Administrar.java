@@ -1,11 +1,8 @@
 package grupo1.labtic.ui.admins;
 
-import grupo1.labtic.LabticApplication;
 import grupo1.labtic.services.RestaurantService;
-import grupo1.labtic.services.entities.Admin;
 import grupo1.labtic.services.exceptions.InvalidRestaurantInformation;
 import grupo1.labtic.services.exceptions.RestaurantAlreadyExists;
-import grupo1.labtic.ui.restaurants.SolicitarDatos;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -13,8 +10,6 @@ import javafx.scene.control.PasswordField;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import javafx.scene.control.TextField;
-
-import java.awt.*;
 
 @Component
 public class Administrar {
