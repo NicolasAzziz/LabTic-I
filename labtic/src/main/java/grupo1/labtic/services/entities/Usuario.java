@@ -5,14 +5,16 @@ import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 
-@Entity
-@Table( name = "USUARIOS")
+@Entity(name = "USUARIO")
+@Inheritance( strategy = InheritanceType.JOINED)
 
 public abstract class Usuario {
+
 
     @Id
     @GeneratedValue( generator = "usuario_id")
     @GenericGenerator( name = "usuario_id", strategy = "increment")
+    @Column( name = "id", updatable = false, nullable = false)
     private long id;
 
     @Column( name = "login", unique = true)

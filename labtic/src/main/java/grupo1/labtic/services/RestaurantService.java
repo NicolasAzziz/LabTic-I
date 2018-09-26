@@ -1,11 +1,10 @@
 package grupo1.labtic.services;
 
 import grupo1.labtic.persistence.RestaurantRepository;
-import grupo1.labtic.services.entities.Restaurant;
+import grupo1.labtic.services.entities.restaurant.Restaurant;
 import grupo1.labtic.services.entities.Usuario;
 import grupo1.labtic.services.exceptions.InvalidRestaurantInformation;
 import grupo1.labtic.services.exceptions.RestaurantAlreadyExists;
-import grupo1.labtic.ui.admins.Administrar;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,12 +1,11 @@
-package grupo1.labtic.services.entities;
+package grupo1.labtic.services.entities.restaurant;
 
-import org.hibernate.annotations.GenericGenerator;
+import grupo1.labtic.services.entities.Usuario;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
-@Entity(name = "restaurant")
-//@Table(name = "restaurantes")
+@Entity(name = "RESTAURANT")
 public class Restaurant extends Usuario {
 
     @Column( name = "direccion", unique = true)
