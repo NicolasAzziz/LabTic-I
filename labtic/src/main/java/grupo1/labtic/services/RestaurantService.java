@@ -57,9 +57,9 @@ public class RestaurantService {
             throw new RestaurantAlreadyExists();
         }
 
-        Restaurant oRestaurant = new Restaurant(login, password);
+        Usuario oRestaurant = new Restaurant(login, password);
 
-        Restaurant save = restaurantRepository.save(oRestaurant);
+        Usuario save = restaurantRepository.save(oRestaurant);
 
 
     }

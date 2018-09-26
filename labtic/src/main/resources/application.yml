@@ -3,7 +3,7 @@ spring:
     name: labtic
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://vbclocalhost:3306/labtic?useSSL=false
+    url: jdbc:mysql://localhost:3306/labtic?useSSL=false&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
     username: root
     password: julio1998
   jpa:
