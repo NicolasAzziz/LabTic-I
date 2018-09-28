@@ -1,6 +1,7 @@
 package grupo1.labtic.services.entities.restaurant;
 
 import grupo1.labtic.services.entities.Usuario;
+import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -24,8 +25,9 @@ public class Restaurant extends Usuario {
     protected String cocinas;
     @Column(name = "descripcion")
     protected String descripcion;
-    @OneToMany(mappedBy = "restaurante")
-    protected List<Mesa> mesa;
+
+ /*   @OneToMany(cascade = CascadeType.ALL)
+    protected List<Mesa> mesas;*/
 
 
     public Restaurant(String login, String password, String email, String direccion, int horarioApertura, int horarioCierre, String barrio, String telefono, String formasDePago, String cocinas, String descripcion) {
@@ -38,7 +40,7 @@ public class Restaurant extends Usuario {
         this.formasDePago = formasDePago;
         this.cocinas = cocinas;
         this.descripcion = descripcion;
-        this.mesa = new ArrayList<>();
+//        this.mesas = new ArrayList<>();
     }
 
     public Restaurant(String login, String password, String email) {
@@ -52,7 +54,7 @@ public class Restaurant extends Usuario {
 
     public Restaurant() {
         super();
-        this.mesa = new ArrayList<Mesa>();
+//        this.mesas = new ArrayList<Mesa>();
     }
 
     public String getDireccion() {
@@ -87,9 +89,9 @@ public class Restaurant extends Usuario {
         return descripcion;
     }
 
-    public List<Mesa> getMesa() {
-        return mesa;
-    }
+//    public List<Mesa> getMesa() {
+//        return mesas;
+//    }
 
     public void setDireccion(String direccion) {
         this.direccion = direccion;
@@ -123,7 +125,7 @@ public class Restaurant extends Usuario {
         this.descripcion = descripcion;
     }
 
-    public void addMesa(Mesa mesa) {
-        this.mesa.add(mesa);
-    }
+//    public void addMesa(Mesa mesa) {
+//        this.mesas.add(mesa);
+//    }
 }
