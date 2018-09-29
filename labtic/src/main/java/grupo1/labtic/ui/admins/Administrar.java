@@ -28,7 +28,6 @@ public class Administrar {
         }
         else {
             try {
-
                 String usuario = usuarioAAgregar.getText();
                 String pass = passAAgregar.getText();
                 restaurantService.crearRestaurant(usuario, pass);

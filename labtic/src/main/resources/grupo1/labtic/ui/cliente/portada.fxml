@@ -155,15 +155,15 @@
                                                                                 <Font name="Bauhaus 93" size="28.0" />
                                                                             </font>
                                                                         </Label>
-                                                                        <Button mnemonicParsing="false" text="Sign in" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
-                                                                        <TextField promptText="example@correo.com" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-                                                                        <PasswordField GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+                                                                        <Button fx:id="signIn" mnemonicParsing="false" onAction="#signIn" text="Sign in" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+                                                                        <TextField fx:id="usuario" promptText="example@correo.com" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                                                                        <PasswordField fx:id="pass" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
                                                                         <Label text="contraseña" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                                                                             <font>
                                                                                 <Font name="Comic Sans MS" size="15.0" />
                                                                             </font>
                                                                         </Label>
-                                                                        <Label text="e-mail" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                                                                        <Label text="usuario" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                                                                             <font>
                                                                                 <Font name="Comic Sans MS" size="15.0" />
                                                                             </font>

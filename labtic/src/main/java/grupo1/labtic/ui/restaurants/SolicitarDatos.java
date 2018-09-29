@@ -3,6 +3,7 @@ package grupo1.labtic.ui.restaurants;
 import grupo1.labtic.persistence.RestaurantRepository;
 import grupo1.labtic.services.RestaurantService;
 import grupo1.labtic.services.entities.Usuario;
+import grupo1.labtic.services.entities.restaurant.Restaurant;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,8 @@ import org.springframework.stereotype.Component;
 public class SolicitarDatos {
     @Autowired
     private RestaurantRepository repo;
+    @Autowired
+    RestaurantService service;
     @FXML
     private TextField usuario;
     @FXML
@@ -73,14 +76,28 @@ public class SolicitarDatos {
                     try{
                         String nombre = nombreRestaurante.getText();
                         Long telefono = Long.valueOf(telefonoRestaurante.getText());
-                        //todo esto
-                    }
-                    catch(Exception e){
+                        String direccion = direccionRestaurante.getText();
+                        String barrio = barrioRestaurante.getText();
+                        Integer hAbre = Integer.valueOf(hAperturaRestaurante.getText());
+                        Integer mAbre = Integer.valueOf(mAperturaRestaurante.getText());
+                        Integer hCierra = Integer.valueOf(hCierreRestaurante.getText());
+                        Integer mCierra = Integer.valueOf(mCierreRestaurante.getText());
+                        String descripcion = descR.getText();
+                        String web = webRestaurante.getText();
+                        String pass = passNueva.getText();
 
+                        long id = restaurante.getId();
+                        Restaurant resto = repo.findOneById(id);
+
+
+                    }
+                    catch(NumberFormatException e){
+                        showAlert("Informacion Invalida", "Se encontró un error en los dtos ingresados");
                     }
                 }
-
-
+                else{
+                    showAlert("Contraseña incorrecta", "La contraseña ingresada es incorrecta");
+                }
             }
             catch (Exception e){
                 showAlert("usuario no encontrado", "El nombre de usuario ingresado no existe en el sistema");

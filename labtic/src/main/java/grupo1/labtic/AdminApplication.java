@@ -30,7 +30,6 @@ public class AdminApplication extends Application  {
     @Override
     public void start(Stage primaryStage) throws Exception{
         fxmlLoader.setLocation(Administrar.class.getResource("Admin.fxml"));
-
         root = fxmlLoader.load();
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
