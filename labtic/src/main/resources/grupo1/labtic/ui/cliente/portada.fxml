@@ -59,7 +59,7 @@
                                     <RowConstraints maxHeight="60.0" minHeight="8.0" prefHeight="46.0" vgrow="SOMETIMES" />
                                 </rowConstraints>
                                  <children>
-                                              <Circle fx:id="circle1" fill="TRANSPARENT" radius="27.0" stroke="#90bf5a" strokeType="INSIDE" strokeWidth="2.5" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="TOP" />
+                                              <Circle fx:metodoDePagoPK="circle1" fill="TRANSPARENT" radius="27.0" stroke="#90bf5a" strokeType="INSIDE" strokeWidth="2.5" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="TOP" />
                                               <Text fill="#90bf5a" strokeType="OUTSIDE" strokeWidth="0.0" text="1" wrappingWidth="26.46875" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="TOP">
                                                   <font>
                                                       <Font name="Bauhaus 93" size="46.0" />
@@ -70,7 +70,7 @@
                                                       <Font name="Comic Sans MS" size="13.0" />
                                                   </font>
                                               </Text>
-                                              <Circle fx:id="circle2" fill="#1f93ff00" radius="28.0" stroke="#90bf5a" strokeType="INSIDE" strokeWidth="2.5" GridPane.columnIndex="4" GridPane.halignment="LEFT" GridPane.rowIndex="3" GridPane.valignment="TOP" />
+                                              <Circle fx:metodoDePagoPK="circle2" fill="#1f93ff00" radius="28.0" stroke="#90bf5a" strokeType="INSIDE" strokeWidth="2.5" GridPane.columnIndex="4" GridPane.halignment="LEFT" GridPane.rowIndex="3" GridPane.valignment="TOP" />
                                               <Text fill="#90bf5a" strokeType="OUTSIDE" strokeWidth="0.0" text="2" GridPane.columnIndex="5" GridPane.halignment="LEFT" GridPane.rowIndex="4" GridPane.valignment="TOP">
                                                   <font>
                                                       <Font name="Bauhaus 93" size="46.0" />
@@ -81,7 +81,7 @@
                                                       <Font name="Comic Sans MS" size="13.0" />
                                                   </font>
                                               </Text>
-                                              <Circle fx:id="circle3" fill="#1f93ff00" radius="28.0" stroke="#90bf5a" strokeType="INSIDE" strokeWidth="2.5" GridPane.columnIndex="7" GridPane.halignment="LEFT" GridPane.rowIndex="5" GridPane.valignment="TOP" />
+                                              <Circle fx:metodoDePagoPK="circle3" fill="#1f93ff00" radius="28.0" stroke="#90bf5a" strokeType="INSIDE" strokeWidth="2.5" GridPane.columnIndex="7" GridPane.halignment="LEFT" GridPane.rowIndex="5" GridPane.valignment="TOP" />
                                               <Text fill="#90bf5a" strokeType="OUTSIDE" strokeWidth="0.0" text="3" GridPane.columnIndex="8" GridPane.halignment="LEFT" GridPane.rowIndex="5" GridPane.valignment="TOP">
                                                   <font>
                                                       <Font name="Bauhaus 93" size="46.0" />
@@ -155,9 +155,9 @@
                                                                                 <Font name="Bauhaus 93" size="28.0" />
                                                                             </font>
                                                                         </Label>
-                                                                        <Button fx:id="signIn" mnemonicParsing="false" onAction="#signIn" text="Sign in" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
-                                                                        <TextField fx:id="usuario" promptText="example@correo.com" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-                                                                        <PasswordField fx:id="pass" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+                                                                        <Button fx:metodoDePagoPK="signIn" mnemonicParsing="false" onAction="#signIn" text="Sign in" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+                                                                        <TextField fx:metodoDePagoPK="usuario" promptText="example@correo.com" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                                                                        <PasswordField fx:metodoDePagoPK="pass" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
                                                                         <Label text="contraseña" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                                                                             <font>
                                                                                 <Font name="Comic Sans MS" size="15.0" />
@@ -191,7 +191,7 @@
                                                                                   <Image url="@../../../../../java/grupo1/labtic/ui/Imagenes/chef.png" />
                                                                               </image>
                                                                           </ImageView>
-                                                                        <Button fx:id="unirse" mnemonicParsing="false" text="Unirse" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                                                                        <Button fx:metodoDePagoPK="unirse" mnemonicParsing="false" text="Unirse" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
                                                                         <Label text="¡Unite a Yendo!" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                                                                             <font>
                                                                                 <Font name="Comic Sans MS" size="15.0" />

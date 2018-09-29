@@ -2,30 +2,50 @@ package grupo1.labtic.services.entities.restaurant.pago;
 
 import grupo1.labtic.services.entities.restaurant.Restaurant;
 
-import javax.persistence.EmbeddedId;
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
 public class MetodoDePago {
     @EmbeddedId
-    private MetodoDePagoPK id;
+    private MetodoDePagoPK metodoDePagoPK;
 
-    public MetodoDePagoPK getId() {
-        return id;
+    public MetodoDePago() {
+        metodoDePagoPK = new MetodoDePagoPK();
     }
 
-    public void setId(MetodoDePagoPK id) {
-        this.id = id;
+    public MetodoDePago(Restaurant rest, long metodoDePagoPK) {
+        this.metodoDePagoPK = new MetodoDePagoPK();
+        this.metodoDePagoPK.setMetodoDePagoRestaurant(rest);
+        this.metodoDePagoPK.setId(metodoDePagoPK);
+    }
+
+    public void setRestauranteMetodoDePago(Restaurant rest){
+        metodoDePagoPK.setMetodoDePagoRestaurant(rest);
+    }
+    public void setId(long id){
+        metodoDePagoPK.setId(id);
+    }
+    public Restaurant getRestauranteMetodoDePago(){
+        return metodoDePagoPK.getMetodoDePagoRestaurant();
+    }
+    public long getId(){
+        return  metodoDePagoPK.getId();
+    }
+
+    public MetodoDePagoPK getMetodoDePagoPK() {
+        return metodoDePagoPK;
+    }
+
+    public void setMetodoDePagoPK(MetodoDePagoPK metodoDePagoPK) {
+        this.metodoDePagoPK = metodoDePagoPK;
     }
 }
 
 class MetodoDePagoPK implements Serializable {
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "restaurantId")
     private Restaurant MetodoDePagoRestaurant;
     private long id;
@@ -46,6 +66,14 @@ class MetodoDePagoPK implements Serializable {
 
     public Restaurant getMetodoDePagoRestaurant() {
         return MetodoDePagoRestaurant;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public void setMetodoDePagoRestaurant(Restaurant metodoDePagoRestaurant) {

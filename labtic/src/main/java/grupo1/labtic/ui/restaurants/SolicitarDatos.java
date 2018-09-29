@@ -2,12 +2,20 @@ package grupo1.labtic.ui.restaurants;
 
 import grupo1.labtic.persistence.RestaurantRepository;
 import grupo1.labtic.services.RestaurantService;
-import grupo1.labtic.services.entities.Usuario;
 import grupo1.labtic.services.entities.restaurant.Restaurant;
+import grupo1.labtic.services.entities.restaurant.comida.Cocina;
+import grupo1.labtic.services.entities.restaurant.comida.Ensaladas;
+import grupo1.labtic.services.entities.restaurant.comida.Hamburgesas;
+import grupo1.labtic.services.entities.restaurant.comida.Sushi;
+import grupo1.labtic.services.entities.restaurant.pago.*;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Component
 public class SolicitarDatos {
@@ -54,6 +62,12 @@ public class SolicitarDatos {
     @FXML
     private CheckMenuItem ticketR;
     @FXML
+    private CheckMenuItem sushi;
+    @FXML
+    private CheckMenuItem hamburgesas;
+    @FXML
+    private CheckMenuItem ensaladas;
+    @FXML
     private PasswordField passActual;
     @FXML
     private PasswordField passNueva;
@@ -89,8 +103,36 @@ public class SolicitarDatos {
                         String nuevaPass = passNueva.getText();
                         int nMesas = Integer.valueOf(nMesasRestaurante.getText());
 
-                        service.registrarDatosRestaurant(restaurante, nombre, telefono, direccion,barrio,habre,hcierra,descripcion,web,nuevaPass,nMesas);
-//                        long id = restaurante.getId();
+                        List<MetodoDePago> metodoDePagoList = new ArrayList<>();
+                        if(tarjetaD.isSelected()){
+                            metodoDePagoList.add(new TarjetaDebito());
+                        }
+                        if(tarjetaC.isSelected()){
+                            metodoDePagoList.add(new TarjetaCredito());
+                        }
+                        if(ticketA.isSelected()){
+                            metodoDePagoList.add(new TicketAlimentacion());
+                        }
+                        if(ticketR.isSelected()){
+                            metodoDePagoList.add(new TicketRestaurant());
+                        }
+                        if(efectivo.isSelected()){
+                            metodoDePagoList.add(new Efectivo());
+                        }
+
+                        List<Cocina> cocinaList = new ArrayList<>();
+                        if(sushi.isSelected()){
+                            cocinaList.add(new Sushi());
+                        }
+                        if(hamburgesas.isSelected()){
+                            cocinaList.add(new Hamburgesas());
+                        }
+                        if(ensaladas.isSelected()){
+                            cocinaList.add(new Ensaladas());
+                        }
+
+                        service.registrarDatosRestaurant(restaurante, nombre, telefono, direccion,barrio,habre,hcierra,descripcion,web,nuevaPass,nMesas,metodoDePagoList,cocinaList);
+//                        long id = restaurante.getMetodoDePagoPK();
 //                        Restaurant resto = repo.findOneById(id);
 
 

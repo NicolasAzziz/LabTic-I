@@ -1,6 +1,10 @@
 package grupo1.labtic.services.entities.restaurant;
 
 import grupo1.labtic.services.entities.Usuario;
+import grupo1.labtic.services.entities.restaurant.comida.Cocina;
+import grupo1.labtic.services.entities.restaurant.comida.Hamburgesas;
+import grupo1.labtic.services.entities.restaurant.pago.MetodoDePago;
+import grupo1.labtic.services.entities.restaurant.pago.TarjetaCredito;
 
 import javax.persistence.*;
 import java.util.Objects;
@@ -51,6 +55,7 @@ public class Restaurant extends Usuario {
         super();
 //        this.mesas = new ArrayList<Mesa>();
     }
+
 
     @Override
     public boolean equals(Object o) {

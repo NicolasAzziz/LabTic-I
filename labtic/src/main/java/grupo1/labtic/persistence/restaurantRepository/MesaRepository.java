@@ -1,4 +1,4 @@
-package grupo1.labtic.persistence;
+package grupo1.labtic.persistence.restaurantRepository;
 
 import grupo1.labtic.services.entities.restaurant.Mesa;
 //import grupo1.labtic.services.entities.restaurant.MesaPK;

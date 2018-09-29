@@ -11,32 +11,41 @@ import java.util.Objects;
 public class Cocina {
 
     @EmbeddedId
-    private CocinaPK id;
+    private CocinaPK cocinaPK;
 
-    public CocinaPK getId() {
-        return id;
+    public Cocina() {
+        cocinaPK = new CocinaPK();
     }
 
-    public void setId(CocinaPK id) {
-        this.id = id;
+    public Cocina(Restaurant rest, long id) {
+        cocinaPK = new CocinaPK();
+        cocinaPK.setCocina_Restaurant(rest);
+        cocinaPK.setId(id);
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Cocina cocina = (Cocina) o;
-        return Objects.equals(id, cocina.id);
+    public void setRestaurantCocina(Restaurant restaurante){
+        this.cocinaPK.setCocina_Restaurant(restaurante);
+    }
+    public void setId( long id){
+        this.cocinaPK.setId(id);
+    }
+    public Restaurant getRestaurantCocina(){
+        return this.cocinaPK.getCocina_Restaurant();
+    }
+    public long getId( ){
+       return this.cocinaPK.getId();
+    }
+    public CocinaPK getCocinaPK() {
+        return cocinaPK;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
+    public void setCocinaPK(CocinaPK cocinaPK) {
+        this.cocinaPK = cocinaPK;
     }
 }
 class CocinaPK implements Serializable {
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "restaurantId")
     private Restaurant Cocina_Restaurant;
     private long id;
@@ -57,6 +66,14 @@ class CocinaPK implements Serializable {
 
     public Restaurant getCocina_Restaurant() {
         return Cocina_Restaurant;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public void setCocina_Restaurant(Restaurant cocina_Restaurant) {

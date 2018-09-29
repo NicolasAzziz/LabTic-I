@@ -99,7 +99,7 @@ public class Mesa {
 
 
 class MesaPK implements Serializable{
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "restaurantId")
     private Restaurant MesaRestaurant;
     private int nroReferencia;

@@ -8,7 +8,7 @@ import javax.validation.constraints.Email;
 import java.util.Objects;
 
 @Entity(name = "USUARIO")
-@Inheritance( strategy = InheritanceType.JOINED)
+@Inheritance( strategy = InheritanceType.JOINED )
 public abstract class Usuario {
 
 
