@@ -71,23 +71,27 @@ public class SolicitarDatos {
         }
         else{
             try{
-                Usuario restaurante =  repo.findOneByLogin(usuario.getText());
+                Restaurant restaurante =  repo.findOneByLogin(usuario.getText());
                 if(restaurante.getPassword().equals(passActual.getText())){
                     try{
                         String nombre = nombreRestaurante.getText();
-                        Long telefono = Long.valueOf(telefonoRestaurante.getText());
+                        String telefono = (telefonoRestaurante.getText());
                         String direccion = direccionRestaurante.getText();
                         String barrio = barrioRestaurante.getText();
                         Integer hAbre = Integer.valueOf(hAperturaRestaurante.getText());
                         Integer mAbre = Integer.valueOf(mAperturaRestaurante.getText());
+                        String habre = hAbre.toString() + ":" + mAbre.toString();
                         Integer hCierra = Integer.valueOf(hCierreRestaurante.getText());
                         Integer mCierra = Integer.valueOf(mCierreRestaurante.getText());
+                        String hcierra = hCierra.toString() + ":" + mCierra.toString();
                         String descripcion = descR.getText();
                         String web = webRestaurante.getText();
-                        String pass = passNueva.getText();
+                        String nuevaPass = passNueva.getText();
+                        int nMesas = Integer.valueOf(nMesasRestaurante.getText());
 
-                        long id = restaurante.getId();
-                        Restaurant resto = repo.findOneById(id);
+                        service.registrarDatosRestaurant(restaurante, nombre, telefono, direccion,barrio,habre,hcierra,descripcion,web,nuevaPass,nMesas);
+//                        long id = restaurante.getId();
+//                        Restaurant resto = repo.findOneById(id);
 
 
                     }

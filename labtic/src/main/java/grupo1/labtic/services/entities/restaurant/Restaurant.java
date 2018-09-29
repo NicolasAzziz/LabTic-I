@@ -1,28 +1,25 @@
 package grupo1.labtic.services.entities.restaurant;
 
 import grupo1.labtic.services.entities.Usuario;
-import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Objects;
+
 @Entity(name = "RESTAURANT")
 public class Restaurant extends Usuario {
 
+    @Column(name = "NombreRestaurant")
+    private String nombreRestaurant;
     @Column( name = "direccion", unique = true)
     protected String direccion;
     @Column( name = "horarioApertura")
-    protected int horarioApertura;
+    protected String horarioApertura;
     @Column( name = "horarioCierre")
-    protected int horarioCierre;
+    protected String horarioCierre;
     @Column(name = "barrio")
     protected String barrio;
     @Column(name = "telefono")
     protected String telefono;
-    @Column(name = "formaDePago")
-    protected String formasDePago;
-    @Column(name = "cocinas")
-    protected String cocinas;
     @Column(name = "descripcion")
     protected String descripcion;
 
@@ -30,15 +27,13 @@ public class Restaurant extends Usuario {
     protected List<Mesa> mesas;*/
 
 
-    public Restaurant(String login, String password, String email, String direccion, int horarioApertura, int horarioCierre, String barrio, String telefono, String formasDePago, String cocinas, String descripcion) {
+    public Restaurant(String login, String password, String email, String direccion, String horarioApertura, String horarioCierre, String barrio, String telefono, String descripcion) {
         super(login, password, email);
         this.direccion = direccion;
         this.horarioApertura = horarioApertura;
         this.horarioCierre = horarioCierre;
         this.barrio = barrio;
         this.telefono = telefono;
-        this.formasDePago = formasDePago;
-        this.cocinas = cocinas;
         this.descripcion = descripcion;
 //        this.mesas = new ArrayList<>();
     }
@@ -57,15 +52,41 @@ public class Restaurant extends Usuario {
 //        this.mesas = new ArrayList<Mesa>();
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Restaurant that = (Restaurant) o;
+        return horarioApertura == that.horarioApertura &&
+                horarioCierre == that.horarioCierre &&
+                Objects.equals(direccion, that.direccion) &&
+                Objects.equals(barrio, that.barrio) &&
+                Objects.equals(telefono, that.telefono) &&
+                Objects.equals(descripcion, that.descripcion);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(direccion, horarioApertura, horarioCierre, barrio, telefono, descripcion);
+    }
+
+    public String getNombreRestaurant() {
+        return nombreRestaurant;
+    }
+
+    public void setNombreRestaurant(String nombreRestaurant) {
+        this.nombreRestaurant = nombreRestaurant;
+    }
+
     public String getDireccion() {
         return direccion;
     }
 
-    public int getHorarioApertura() {
+    public String getHorarioApertura() {
         return horarioApertura;
     }
 
-    public int getHorarioCierre() {
+    public String getHorarioCierre() {
         return horarioCierre;
     }
 
@@ -75,14 +96,6 @@ public class Restaurant extends Usuario {
 
     public String getTelefono() {
         return telefono;
-    }
-
-    public String getFormasDePago() {
-        return formasDePago;
-    }
-
-    public String getCocinas() {
-        return cocinas;
     }
 
     public String getDescripcion() {
@@ -97,11 +110,11 @@ public class Restaurant extends Usuario {
         this.direccion = direccion;
     }
 
-    public void setHorarioApertura(int horarioApertura) {
+    public void setHorarioApertura(String horarioApertura) {
         this.horarioApertura = horarioApertura;
     }
 
-    public void setHorarioCierre(int horarioCierre) {
+    public void setHorarioCierre(String horarioCierre) {
         this.horarioCierre = horarioCierre;
     }
 
@@ -113,19 +126,11 @@ public class Restaurant extends Usuario {
         this.telefono = telefono;
     }
 
-    public void setFormasDePago(String formasDePago) {
-        this.formasDePago = formasDePago;
-    }
-
-    public void setCocinas(String cocinas) {
-        this.cocinas = cocinas;
-    }
-
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
 
 //    public void addMesa(Mesa mesa) {
-//        this.mesas.add(mesa);
+//
 //    }
 }

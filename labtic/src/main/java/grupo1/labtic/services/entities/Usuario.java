@@ -1,13 +1,14 @@
 package grupo1.labtic.services.entities;
 
+import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
+import java.util.Objects;
 
 @Entity(name = "USUARIO")
 @Inheritance( strategy = InheritanceType.JOINED)
-
 public abstract class Usuario {
 
 
@@ -39,6 +40,22 @@ public abstract class Usuario {
     }
 
     public Usuario() {
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Usuario usuario = (Usuario) o;
+        return id == usuario.id &&
+                Objects.equals(login, usuario.login) &&
+                Objects.equals(password, usuario.password) &&
+                Objects.equals(email, usuario.email);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, login, password, email);
     }
 
     public long getId() {

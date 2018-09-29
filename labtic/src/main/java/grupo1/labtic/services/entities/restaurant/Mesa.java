@@ -18,10 +18,48 @@ public class Mesa {
     @Column(name = "libre")
     private boolean mesaLibre;
 
-    public Mesa(int numeroReferencia, int cantLugares) {
+    public Mesa() {
+    }
+
+    public Mesa(Restaurant rest, int numeroReferencia, int cantLugares) {
+        mesaPK = new MesaPK();
+        this.mesaPK.setMesaRestaurant(rest);
         this.mesaPK.setNroReferencia( numeroReferencia );
         this.cantLugares = cantLugares;
         mesaLibre = true;
+
+        //cantLugares= 1;
+    }
+
+    public MesaPK getMesaPK() {
+        return mesaPK;
+    }
+
+    public void setMesaPK(MesaPK mesaPK) {
+        this.mesaPK = mesaPK;
+    }
+
+    public boolean isMesaLibre() {
+        return mesaLibre;
+    }
+
+    public void setMesaLibre(boolean mesaLibre) {
+        this.mesaLibre = mesaLibre;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Mesa mesa = (Mesa) o;
+        return cantLugares == mesa.cantLugares &&
+                mesaLibre == mesa.mesaLibre &&
+                Objects.equals(mesaPK, mesa.mesaPK);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(mesaPK, cantLugares, mesaLibre);
     }
 
     public int getNumeroReferencia() {
@@ -51,8 +89,11 @@ public class Mesa {
         this.cantLugares = cantLugares;
     }
 
-    public long getRestaurantId() {
-        return this.mesaPK.getMesaRestaurant().getId();
+    public Restaurant getRestaurant() {
+        return this.mesaPK.getMesaRestaurant();
+    }
+    public void setRestaurant(Restaurant res){
+        this.mesaPK.setMesaRestaurant(res);
     }
 }
 
