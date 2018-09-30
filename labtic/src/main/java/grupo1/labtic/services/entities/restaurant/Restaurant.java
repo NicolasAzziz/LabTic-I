@@ -56,6 +56,9 @@ public class Restaurant extends Usuario {
 //        this.mesas = new ArrayList<Mesa>();
     }
 
+    public Restaurant(String login) {
+        super(login);
+    }
 
     @Override
     public boolean equals(Object o) {

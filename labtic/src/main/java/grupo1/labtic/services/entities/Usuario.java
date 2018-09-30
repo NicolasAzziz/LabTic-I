@@ -34,6 +34,10 @@ public abstract class Usuario {
         this.email = email;
     }
 
+    public Usuario(String login) {
+        this.login = login;
+    }
+
     public Usuario(String login, String password) {
         this.login = login;
         this.password = password;

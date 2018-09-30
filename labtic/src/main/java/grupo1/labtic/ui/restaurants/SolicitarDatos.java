@@ -4,10 +4,7 @@ import grupo1.labtic.persistence.RestaurantRepository;
 import grupo1.labtic.services.RestaurantService;
 import grupo1.labtic.services.entities.Usuario;
 import grupo1.labtic.services.entities.restaurant.Restaurant;
-import grupo1.labtic.services.entities.restaurant.comida.Cocina;
-import grupo1.labtic.services.entities.restaurant.comida.Ensaladas;
-import grupo1.labtic.services.entities.restaurant.comida.Hamburgesas;
-import grupo1.labtic.services.entities.restaurant.comida.Sushi;
+import grupo1.labtic.services.entities.restaurant.comida.*;
 import grupo1.labtic.services.entities.restaurant.pago.*;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -72,6 +69,39 @@ public class SolicitarDatos {
     private PasswordField passActual;
     @FXML
     private PasswordField passNueva;
+    @FXML
+    private CheckMenuItem cafeteria;
+    @FXML
+    private CheckMenuItem parrilla;
+    @FXML
+    private CheckMenuItem celiacos;
+    @FXML
+    private CheckMenuItem chivitos;
+    @FXML
+    private CheckMenuItem comidaChina;
+    @FXML
+    private CheckMenuItem comidaMexicana;
+    @FXML
+    private CheckMenuItem comidaVegetariana;
+    @FXML
+    private CheckMenuItem comidaVegana;
+    @FXML
+    private CheckMenuItem milanesas;
+    @FXML
+    private CheckMenuItem pescadoMariscos;
+    @FXML
+    private CheckMenuItem pizza;
+    @FXML
+    private CheckMenuItem sandwiches;
+    @FXML
+    private CheckMenuItem tartas;
+    @FXML
+    private CheckMenuItem wrap;
+    @FXML
+    private CheckMenuItem wok;
+
+
+
 
     @FXML
     public void registrar (javafx.event.ActionEvent event){
@@ -86,9 +116,9 @@ public class SolicitarDatos {
         }
         else{
             try{
-                Usuario restaurante =  repo.findOneByLogin(usuario.getText());
+                String login = usuario.getText();
+                Usuario restaurante =  repo.findOneByLogin(login);
                 long id = restaurante.getId();
-                Restaurant resto = repo.findOneById(id);
                 if(restaurante.getPassword().equals(passActual.getText())){
                     try{
                         String nombre = nombreRestaurante.getText();
@@ -97,14 +127,92 @@ public class SolicitarDatos {
                         String barrio = barrioRestaurante.getText();
                         Integer hAbre = Integer.valueOf(hAperturaRestaurante.getText());
                         Integer mAbre = Integer.valueOf(mAperturaRestaurante.getText());
-                        String habre = hAbre.toString() + ":" + mAbre.toString();
+                        String habre = hAperturaRestaurante.getText()+ ":" + mAperturaRestaurante.getText();
                         Integer hCierra = Integer.valueOf(hCierreRestaurante.getText());
                         Integer mCierra = Integer.valueOf(mCierreRestaurante.getText());
-                        String hcierra = hCierra.toString() + ":" + mCierra.toString();
+                        String hcierra = hCierreRestaurante.getText() + ":" + mCierreRestaurante.getText();
                         String descripcion = descR.getText();
                         String web = webRestaurante.getText();
                         String nuevaPass = passNueva.getText();
                         int nMesas = Integer.valueOf(nMesasRestaurante.getText());
+                        boolean setSushi = false;
+                        boolean setHamburguesas=false;
+                        boolean setEnsaladas= false;
+                        boolean setCafe = false;
+                        boolean setParrilla = false;
+                        boolean setCeliacos = false;
+                        boolean setChivitos = false;
+                        boolean setChina = false;
+                        boolean setMex = false;
+                        boolean setVegetariana = false;
+                        boolean setVegana = false;
+                        boolean setMilanesas = false;
+                        boolean setPM = false;
+                        boolean setPizza = false;
+                        boolean setSandwiches = false;
+                        boolean setTartas = false;
+                        boolean setWraps = false;
+                        boolean setWok = false;
+
+
+                        if(sushi.isSelected()){
+                           setSushi = true;
+                        }
+                        if(hamburgesas.isSelected()){
+                            setHamburguesas = true;
+                        }
+                        if(ensaladas.isSelected()){
+                            setEnsaladas= true;
+                        }
+                        if(cafeteria.isSelected()){
+                            setCafe = true;
+                        }
+                        if(parrilla.isSelected()){
+                            setParrilla = true;
+                        }
+                        if(celiacos.isSelected()){
+                            setCeliacos = true;
+                        }
+                        if(chivitos.isSelected()){
+                            setChivitos = true;
+                        }
+                        if(comidaChina.isSelected()){
+                            setChina = true;
+                        }
+                        if(comidaMexicana.isSelected()){
+                            setMex = true;
+                        }
+                        if(comidaVegetariana.isSelected()){
+                            setVegetariana = true;
+                        }
+                        if(comidaVegana.isSelected()){
+                            setVegana = true;
+                        }
+                        if(milanesas.isSelected()){
+                            setMilanesas= true;
+                        }
+                        if(pescadoMariscos.isSelected()){
+                            setPM = true;
+                        }
+                        if(pizza.isSelected()){
+                            setPizza = true;
+                        }
+                        if(sandwiches.isSelected()){
+                            setSandwiches = true;
+                        }
+                        if(tartas.isSelected()){
+                            setTartas= true;
+                        }
+                        if(wrap.isSelected()){
+                            setWraps = true;
+                        }
+                        if(wok.isSelected()){
+
+                            setWok = true;
+                        }
+                        Comida comida = new Comida(login, setSushi, setHamburguesas, setEnsaladas, setCafe, setParrilla, setCeliacos, setChivitos,
+                                setChina, setMex, setVegetariana, setVegana, setMilanesas, setPM, setPizza, setSandwiches, setTartas,
+                                setWraps, setWok);
 
                         List<MetodoDePago> metodoDePagoList = new ArrayList<>();
                         if(tarjetaD.isSelected()){
@@ -122,7 +230,6 @@ public class SolicitarDatos {
                         if(efectivo.isSelected()){
                             metodoDePagoList.add(new Efectivo());
                         }
-
                         List<Cocina> cocinaList = new ArrayList<>();
                         if(sushi.isSelected()){
                             cocinaList.add(new Sushi());
@@ -133,12 +240,10 @@ public class SolicitarDatos {
                         if(ensaladas.isSelected()){
                             cocinaList.add(new Ensaladas());
                         }
-
-                        service.registrarDatosRestaurant(resto, nombre, telefono, direccion,barrio,habre,hcierra,descripcion,web,nuevaPass,nMesas,metodoDePagoList,cocinaList);
-//                        long id = restaurante.getMetodoDePagoPK();
-//                        Restaurant resto = repo.findOneById(id);
-
-
+                        service.registrarDatosRestaurant(id, nombre, telefono, direccion,barrio,habre,hcierra,descripcion,web,
+                                nuevaPass,nMesas,metodoDePagoList,cocinaList, comida);
+                        showAlert("Datos guardados", "Se guardaron con éxito los datos de su restaurante");
+                        clean();
                     }
                     catch(NumberFormatException e){
                         showAlert("Informacion Invalida", "Se encontró un error en los dtos ingresados");
@@ -148,11 +253,34 @@ public class SolicitarDatos {
                     showAlert("Contraseña incorrecta", "La contraseña ingresada es incorrecta");
                 }
             }
-            catch (Exception e){
+            catch (NullPointerException e){
                 showAlert("usuario no encontrado", "El nombre de usuario ingresado no existe en el sistema");
             }
 
         }
+    }
+
+    public void clean(){
+        usuario.setText(null);
+        nombreRestaurante.setText(null);
+        telefonoRestaurante.setText(null);
+        descR.setText(null);
+        webRestaurante.setText(null);
+        direccionRestaurante.setText(null);
+        barrioRestaurante.setText(null);
+        hAperturaRestaurante.setText(null);
+        mAperturaRestaurante.setText(null);
+        hCierreRestaurante.setText(null);
+        mCierreRestaurante.setText(null);
+        nMesasRestaurante.setText(null);
+        tarjetaD.setSelected(false);
+        tarjetaC.setSelected(false);
+        efectivo.setSelected(false);
+        ticketA.setSelected(false);
+        ticketR.setSelected(false);
+        sushi.setSelected(false);
+        hamburgesas.setSelected(false);
+        ensaladas.setSelected(false);
     }
 
     public void showAlert(String title, String contextText) {

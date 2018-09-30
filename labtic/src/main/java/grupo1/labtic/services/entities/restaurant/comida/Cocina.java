@@ -50,6 +50,7 @@ class CocinaPK implements Serializable {
     private Restaurant Cocina_Restaurant;
     private long id;
 
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

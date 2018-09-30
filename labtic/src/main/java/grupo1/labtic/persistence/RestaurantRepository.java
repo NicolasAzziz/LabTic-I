@@ -6,7 +6,8 @@ import org.springframework.data.repository.CrudRepository;
 
 
 public interface RestaurantRepository extends CrudRepository<Restaurant, String> {
-    Restaurant findOneByLogin(String login);
+    Usuario findOneByLogin(String login);
+    Usuario getOneByLogin(String login);
     Restaurant getRestaurantById(long id);
     Restaurant findOneById(long id);
 }

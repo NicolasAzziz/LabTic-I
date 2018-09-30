@@ -118,12 +118,26 @@
                                         <CheckMenuItem fx:id="sushi" mnemonicParsing="false" text="Sushi" />
                                         <CheckMenuItem fx:id="hamburgesas" mnemonicParsing="false" text="Hamburguesas" />
                                         <CheckMenuItem fx:id="ensaladas" mnemonicParsing="false" text="Ensaladas" />
-                                        <CheckMenuItem mnemonicParsing="false" />
+                                        <CheckMenuItem fx:id="cafeteria" mnemonicParsing="false" text="Cafetería" />
+                              <CheckMenuItem fx:id="parrilla" mnemonicParsing="false" text="Parrilla" />
+                              <CheckMenuItem fx:id="celiacos" mnemonicParsing="false" text="Celíacos" />
+                              <CheckMenuItem fx:id="chivitos" mnemonicParsing="false" text="Chivitos" />
+                              <CheckMenuItem fx:id="comidaChina" mnemonicParsing="false" text="Comida China" />
+                              <CheckMenuItem fx:id="comidaMexicana" mnemonicParsing="false" text="Comida Mexicana" />
+                              <CheckMenuItem fx:id="comidaVegetariana" mnemonicParsing="false" text="Comida Vegetariana" />
+                              <CheckMenuItem fx:id="comidaVegana" mnemonicParsing="false" text="Comida Vegana" />
+                              <CheckMenuItem fx:id="milanesas" mnemonicParsing="false" text="Milanesas" />
+                              <CheckMenuItem fx:id="pescadoMariscos" mnemonicParsing="false" text="Pescado y Mariscos" />
+                              <CheckMenuItem fx:id="pizza" mnemonicParsing="false" text="Pizza" />
+                              <CheckMenuItem fx:id="sandwiches" mnemonicParsing="false" text="Sandwiches" />
+                              <CheckMenuItem fx:id="tartas" mnemonicParsing="false" text="Tartas" />
+                              <CheckMenuItem fx:id="wrap" mnemonicParsing="false" text="Wraps" />
+                              <CheckMenuItem fx:id="wok" mnemonicParsing="false" text="Wok" />
                                     </items>
                                 </MenuButton>
                                 <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Breve descripción del servicio ofrecido:" textAlignment="CENTER" wrappingWidth="108.18359375" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER" />
                                 <TextArea fx:id="descR" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="5" />
-                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Sitio web:" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER" />
+                                <Text fx:id="celiacos" strokeType="OUTSIDE" strokeWidth="0.0" text="Sitio web:" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER" />
                                 <TextField fx:id="webRestaurante" GridPane.columnIndex="5" GridPane.rowIndex="6" />
                                 <Button fx:id="registroRestaurante" onAction="#registrar" text="Registrarse" GridPane.columnIndex="5" GridPane.rowIndex="7" GridPane.valignment="CENTER" />
                                 <Text strokeType="OUTSIDE" strokeWidth="0.0" text="* Campos Obligatorios" GridPane.columnIndex="2" GridPane.rowIndex="7" GridPane.valignment="CENTER" />
