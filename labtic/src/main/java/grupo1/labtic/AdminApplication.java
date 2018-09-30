@@ -35,7 +35,6 @@ public class AdminApplication extends Application  {
         primaryStage.show();
     }
 
-
     @Override
     public void stop() {
         context.close();

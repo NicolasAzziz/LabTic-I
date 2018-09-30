@@ -2,6 +2,7 @@ package grupo1.labtic.ui.restaurants;
 
 import grupo1.labtic.persistence.RestaurantRepository;
 import grupo1.labtic.services.RestaurantService;
+import grupo1.labtic.services.entities.Usuario;
 import grupo1.labtic.services.entities.restaurant.Restaurant;
 import grupo1.labtic.services.entities.restaurant.comida.Cocina;
 import grupo1.labtic.services.entities.restaurant.comida.Ensaladas;
@@ -85,7 +86,9 @@ public class SolicitarDatos {
         }
         else{
             try{
-                Restaurant restaurante =  repo.findOneByLogin(usuario.getText());
+                Usuario restaurante =  repo.findOneByLogin(usuario.getText());
+                long id = restaurante.getId();
+                Restaurant resto = repo.findOneById(id);
                 if(restaurante.getPassword().equals(passActual.getText())){
                     try{
                         String nombre = nombreRestaurante.getText();
@@ -131,7 +134,7 @@ public class SolicitarDatos {
                             cocinaList.add(new Ensaladas());
                         }
 
-                        service.registrarDatosRestaurant(restaurante, nombre, telefono, direccion,barrio,habre,hcierra,descripcion,web,nuevaPass,nMesas,metodoDePagoList,cocinaList);
+                        service.registrarDatosRestaurant(resto, nombre, telefono, direccion,barrio,habre,hcierra,descripcion,web,nuevaPass,nMesas,metodoDePagoList,cocinaList);
 //                        long id = restaurante.getMetodoDePagoPK();
 //                        Restaurant resto = repo.findOneById(id);
 
