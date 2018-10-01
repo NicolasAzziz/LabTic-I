@@ -28,7 +28,9 @@ public class Portada {
                 String login = usuario.getText();
                 String password = pass.getText();
                 Usuario u = repo.findOneByLogin(login);
-                //cambiar la escena
+                if (u.getPassword().equals(password)){
+                    //cambiar la escena
+                }
             }
             catch (Exception e){
                 showAlert("Usuario no econtrado", "El usuario ingresado no existe");
