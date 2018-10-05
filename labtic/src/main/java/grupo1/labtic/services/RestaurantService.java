@@ -1,15 +1,14 @@
 package grupo1.labtic.services;
 
-import grupo1.labtic.persistence.restaurantRepository.CocinaRepository;
-import grupo1.labtic.persistence.restaurantRepository.ComidaRepository;
-import grupo1.labtic.persistence.restaurantRepository.MesaRepository;
+import grupo1.labtic.persistence.GrupoDeComidaRepository;
 import grupo1.labtic.persistence.RestaurantRepository;
+import grupo1.labtic.persistence.TipoDePagoRepository;
+import grupo1.labtic.persistence.restaurantRepository.MesaRepository;
 import grupo1.labtic.persistence.restaurantRepository.MetodoDePagoRepository;
+import grupo1.labtic.services.entities.Restaurant;
+import grupo1.labtic.services.entities.restaurant.GrupoDeComida;
 import grupo1.labtic.services.entities.restaurant.Mesa;
-import grupo1.labtic.services.entities.restaurant.Restaurant;
-import grupo1.labtic.services.entities.restaurant.comida.Cocina;
-import grupo1.labtic.services.entities.restaurant.comida.Comida;
-import grupo1.labtic.services.entities.restaurant.pago.MetodoDePago;
+import grupo1.labtic.services.entities.restaurant.TipoDePago;
 import grupo1.labtic.services.exceptions.InvalidRestaurantInformation;
 import grupo1.labtic.services.exceptions.RestaurantAlreadyExists;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,9 +20,9 @@ import java.util.List;
 @Service
 public class RestaurantService {
     @Autowired
-    private ComidaRepository comidaRepository;
+    private GrupoDeComidaRepository grupoDeComidaRepository;
     @Autowired
-    private CocinaRepository cocinaRepository;
+    private TipoDePagoRepository tipoDePagoRepository;
     @Autowired
     private MetodoDePagoRepository metodoDePagoRepository;
     @Autowired
@@ -57,60 +56,86 @@ public class RestaurantService {
 
     public void registrarDatosRestaurant(long id, String nombre, String telefono, String direccion,
                                          String barrio, String habre, String hcierra, String descripcion, String web,
-                                         String nuevaPass, int nMesas, List<MetodoDePago> metodoDePagoList, List<Cocina> cocinaList, Comida comida){
+                                         String nuevaPass, int nMesas, int cantLugares){
 
         Restaurant restaurante = restaurantRepository.getRestaurantById(id);
-        Comida c = comidaRepository.getComidaById(id);
-        c.setCafeteria(comida.isCafeteria());
-        c.setCeliacos(comida.isCeliacos());
-        c.setChivitos(comida.isChivitos());
-        c.setComidaChina(comida.isComidaChina());
-        c.setComidaMexicana(comida.isComidaMexicana());
-        c.setComidaVegana(comida.isComidaVegana());
-        c.setComidaVegetariana(comida.isComidaVegetariana());
-        c.setEnsaladas(comida.isEnsaladas());
-        c.setHamburguesas(comida.isHamburguesas());
-        c.setMilanesas(comida.isMilanesas());
-        c.setParrilla(comida.isParrilla());
-        c.setPescadoMariscos(comida.isPescadoMariscos());
-        c.setPizza(comida.isPizza());
-        c.setSandwiches(comida.isSandwiches());
-        c.setSushi(comida.isSushi());
-        c.setTartas(comida.isTartas());
-        c.setWok(comida.isWok());
-        c.setWraps(comida.isWraps());
-
         restaurante.setNombreRestaurant(nombre);
         restaurante.setTelefono(telefono);
         restaurante.setDireccion(direccion);
         restaurante.setBarrio(barrio);
         restaurante.setHorarioApertura(habre);
         restaurante.setHorarioCierre(hcierra);
-        if ( descripcion !=null )
-            restaurante.setDescripcion(descripcion);
+        restaurante.setDescripcion(descripcion);
         restaurante.setPassword(nuevaPass);
-        if( web != null )
-            restaurante.setEmail(web);
+        restaurante.setEmail(web);
         restaurantRepository.save(restaurante);
 
-        //TEMPORAL
         Mesa mesa = null;
         for(int i = 0; i<nMesas; i++){
-            mesa = new Mesa(restaurante,i,1);
+            mesa = new Mesa(restaurante,i,cantLugares);
             mesaRepository.save(mesa);
         }
+    }
+/*    public void save(Restaurant restaurant){
+        restaurantRepository.save(restaurant);
+    }*/
 
-        for( int i = 0; i<cocinaList.size(); i++){
-             cocinaList.get(i).setRestaurantCocina(restaurante);
-             cocinaList.get(i).setId(i);
-             cocinaRepository.save(cocinaList.get(i));
-        }
+    public void setGrupoDeComida( String login, String grupoDeComida ){
+        Restaurant restaurant = restaurantRepository.getRestaurantByLogin(login);
+        GrupoDeComida grupoDeComida1 = grupoDeComidaRepository.getGrupoDeComidaByGrupo(grupoDeComida);
+        restaurant.addGrupoDeComida(grupoDeComida1);
+        restaurantRepository.save(restaurant);
+    }
 
-        for( int i = 0; i<metodoDePagoList.size(); i++){
-            metodoDePagoList.get(i).setRestauranteMetodoDePago(restaurante);
-            metodoDePagoList.get(i).setId(i);
-            metodoDePagoRepository.save(metodoDePagoList.get(i));
+    public void setGrupoDeComidaList( String login, List<String> grupoDeComidaList ){
+        Restaurant restaurant = restaurantRepository.getRestaurantByLogin(login);
+        List<GrupoDeComida> grupoDeComida1 = grupoDeComidaRepository.getGrupoDeComidaByGrupo(grupoDeComidaList);
+        restaurant.setGrupoDeComidaList(grupoDeComida1);
+        restaurantRepository.save(restaurant);
+    }
+    public void setTipoDePago( String login, String nombreTipoDePago ){
+        Restaurant restaurant = restaurantRepository.getRestaurantByLogin(login);
+        TipoDePago nombreTipoDePago1 = tipoDePagoRepository.getByNombre(nombreTipoDePago);
+        restaurant.addTipoDePago(nombreTipoDePago1);
+        restaurantRepository.save(restaurant);
+    }
+
+    public void setTipoDePagoList( String login, List<String> nombreTipoDePagoList ){
+        Restaurant restaurant = restaurantRepository.getRestaurantByLogin(login);
+        List<TipoDePago> nombreTipoDePagoList1 = tipoDePagoRepository.getListByNombre(nombreTipoDePagoList);
+        restaurant.setTipoDePagoList(nombreTipoDePagoList1);
+        restaurantRepository.save(restaurant);
+    }
+
+    public void insertarGrupoDeComidas(){
+        if (grupoDeComidaRepository.existsByGrupo("Wok") == false) {
+            grupoDeComidaRepository.save(new GrupoDeComida("Hamburguesas"));
+            grupoDeComidaRepository.save(new GrupoDeComida("Ensaladas"));
+            grupoDeComidaRepository.save(new GrupoDeComida("Cafetería"));
+            grupoDeComidaRepository.save(new GrupoDeComida("Parrilla"));
+            grupoDeComidaRepository.save(new GrupoDeComida("Celíacos"));
+            grupoDeComidaRepository.save(new GrupoDeComida("Chivitos"));
+            grupoDeComidaRepository.save(new GrupoDeComida("Comida China"));
+            grupoDeComidaRepository.save(new GrupoDeComida("Comida Mexicana"));
+            grupoDeComidaRepository.save(new GrupoDeComida("Comida Vegetariana"));
+            grupoDeComidaRepository.save(new GrupoDeComida("Comida Vegana"));
+            grupoDeComidaRepository.save(new GrupoDeComida("Milanesas"));
+            grupoDeComidaRepository.save(new GrupoDeComida("Pescado y Mariscos"));
+            grupoDeComidaRepository.save(new GrupoDeComida("Pizza"));
+            grupoDeComidaRepository.save(new GrupoDeComida("Sandwiches"));
+            grupoDeComidaRepository.save(new GrupoDeComida("Tartas"));
+            grupoDeComidaRepository.save(new GrupoDeComida("Wraps"));
+            grupoDeComidaRepository.save(new GrupoDeComida("Wok"));
         }
-        comidaRepository.save(c);
+    }
+
+    public void insertarTiposDePagos(){
+        if (tipoDePagoRepository.existsByNombre("Ticket Restaurante") == false) {
+            tipoDePagoRepository.save(new TipoDePago("Tarjeta de Crédito"));
+            tipoDePagoRepository.save(new TipoDePago("Tarjeta de Débito"));
+            tipoDePagoRepository.save(new TipoDePago("Efectivo"));
+            tipoDePagoRepository.save(new TipoDePago("Ticket Alimentación"));
+            tipoDePagoRepository.save(new TipoDePago("Ticket Restaurante"));
+        }
     }
 }

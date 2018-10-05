@@ -1,9 +1,5 @@
 package grupo1.labtic.services.entities;
 
-import grupo1.labtic.services.entities.restaurant.Restaurant;
-import org.hibernate.annotations.Cascade;
-import org.hibernate.annotations.CascadeType;
-
 import javax.persistence.Entity;
 
 @Entity (name = "ADMIN")

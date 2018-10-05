@@ -1,5 +1,7 @@
 package grupo1.labtic.services.entities.restaurant;
 
+import grupo1.labtic.services.entities.Restaurant;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;

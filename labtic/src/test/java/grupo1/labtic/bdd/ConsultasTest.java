@@ -1,7 +1,7 @@
 package grupo1.labtic.bdd;
 
 import grupo1.labtic.persistence.RestaurantRepository;
-import grupo1.labtic.services.entities.restaurant.Restaurant;
+import grupo1.labtic.services.entities.Restaurant;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 

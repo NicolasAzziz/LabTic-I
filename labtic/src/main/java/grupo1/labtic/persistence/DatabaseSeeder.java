@@ -1,6 +1,6 @@
 package grupo1.labtic.persistence;
 
-import grupo1.labtic.services.entities.restaurant.Restaurant;
+import grupo1.labtic.services.entities.Restaurant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 

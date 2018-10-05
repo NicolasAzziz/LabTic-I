@@ -1,12 +1,11 @@
-package grupo1.labtic.services.entities.restaurant;
+package grupo1.labtic.services.entities;
 
-import grupo1.labtic.services.entities.Usuario;
-import grupo1.labtic.services.entities.restaurant.comida.Cocina;
-import grupo1.labtic.services.entities.restaurant.comida.Hamburgesas;
-import grupo1.labtic.services.entities.restaurant.pago.MetodoDePago;
-import grupo1.labtic.services.entities.restaurant.pago.TarjetaCredito;
+import grupo1.labtic.services.entities.restaurant.GrupoDeComida;
+import grupo1.labtic.services.entities.restaurant.TipoDePago;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity(name = "RESTAURANT")
@@ -26,10 +25,12 @@ public class Restaurant extends Usuario {
     protected String telefono;
     @Column(name = "descripcion")
     protected String descripcion;
-
- /*   @OneToMany(cascade = CascadeType.ALL)
-    protected List<Mesa> mesas;*/
-
+    @Column
+    @ManyToMany(fetch = FetchType.EAGER)
+    protected List<GrupoDeComida> grupoDeComidaList;
+    @Column
+    @ManyToMany(fetch = FetchType.LAZY)
+    protected List<TipoDePago> tipoDePagoList;
 
     public Restaurant(String login, String password, String email, String direccion, String horarioApertura, String horarioCierre, String barrio, String telefono, String descripcion) {
         super(login, password, email);
@@ -39,38 +40,43 @@ public class Restaurant extends Usuario {
         this.barrio = barrio;
         this.telefono = telefono;
         this.descripcion = descripcion;
-//        this.mesas = new ArrayList<>();
+        grupoDeComidaList = new ArrayList<>();
+        tipoDePagoList = new ArrayList<>();
     }
 
     public Restaurant(String login, String password, String email) {
         super(login, password, email);
+        grupoDeComidaList = new ArrayList<>();
+        tipoDePagoList = new ArrayList<>();
     }
 
     public Restaurant(String login, String password) {
         super(login, password);
+        grupoDeComidaList = new ArrayList<>();
+        tipoDePagoList = new ArrayList<>();
     }
 
 
     public Restaurant() {
         super();
-//        this.mesas = new ArrayList<Mesa>();
-    }
-
-    public Restaurant(String login) {
-        super(login);
+        grupoDeComidaList = new ArrayList<>();
+        tipoDePagoList = new ArrayList<>();
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
         Restaurant that = (Restaurant) o;
-        return horarioApertura == that.horarioApertura &&
-                horarioCierre == that.horarioCierre &&
+        return Objects.equals(nombreRestaurant, that.nombreRestaurant) &&
                 Objects.equals(direccion, that.direccion) &&
+                Objects.equals(horarioApertura, that.horarioApertura) &&
+                Objects.equals(horarioCierre, that.horarioCierre) &&
                 Objects.equals(barrio, that.barrio) &&
                 Objects.equals(telefono, that.telefono) &&
-                Objects.equals(descripcion, that.descripcion);
+                Objects.equals(descripcion, that.descripcion) &&
+                Objects.equals(grupoDeComidaList, that.grupoDeComidaList);
     }
 
     @Override
@@ -110,10 +116,6 @@ public class Restaurant extends Usuario {
         return descripcion;
     }
 
-//    public List<Mesa> getMesa() {
-//        return mesas;
-//    }
-
     public void setDireccion(String direccion) {
         this.direccion = direccion;
     }
@@ -138,7 +140,25 @@ public class Restaurant extends Usuario {
         this.descripcion = descripcion;
     }
 
-//    public void addMesa(Mesa mesa) {
-//
-//    }
+    public List<GrupoDeComida> getGrupoDeComidaList() {
+        return grupoDeComidaList;
+    }
+
+    public void setGrupoDeComidaList(List<GrupoDeComida> grupoDeComidaList) {
+        this.grupoDeComidaList.addAll( grupoDeComidaList );
+    }
+    public void addGrupoDeComida(GrupoDeComida grupoDeComida){
+        this.grupoDeComidaList.add( grupoDeComida );
+    }
+
+    public List<TipoDePago> getTipoDePagoList() {
+        return tipoDePagoList;
+    }
+
+    public void setTipoDePagoList(List<TipoDePago> tipoDePagoList) {
+        this.tipoDePagoList = tipoDePagoList;
+    }
+    public void addTipoDePago(TipoDePago tipoDePagoList) {
+        this.tipoDePagoList.add(tipoDePagoList);
+    }
 }

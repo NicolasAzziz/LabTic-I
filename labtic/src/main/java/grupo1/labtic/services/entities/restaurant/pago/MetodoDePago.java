@@ -1,6 +1,6 @@
 package grupo1.labtic.services.entities.restaurant.pago;
 
-import grupo1.labtic.services.entities.restaurant.Restaurant;
+import grupo1.labtic.services.entities.Restaurant;
 
 import javax.persistence.*;
 import java.io.Serializable;

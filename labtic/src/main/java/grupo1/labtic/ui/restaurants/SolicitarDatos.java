@@ -3,17 +3,17 @@ package grupo1.labtic.ui.restaurants;
 import grupo1.labtic.persistence.RestaurantRepository;
 import grupo1.labtic.services.RestaurantService;
 import grupo1.labtic.services.entities.Usuario;
-import grupo1.labtic.services.entities.restaurant.Restaurant;
 import grupo1.labtic.services.entities.restaurant.comida.*;
 import grupo1.labtic.services.entities.restaurant.pago.*;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.condition.ConditionMessage;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 public class SolicitarDatos {
@@ -134,114 +134,31 @@ public class SolicitarDatos {
                         String descripcion = descR.getText();
                         String web = webRestaurante.getText();
                         String nuevaPass = passNueva.getText();
+
                         int nMesas = Integer.valueOf(nMesasRestaurante.getText());
-                        boolean setSushi = false;
-                        boolean setHamburguesas=false;
-                        boolean setEnsaladas= false;
-                        boolean setCafe = false;
-                        boolean setParrilla = false;
-                        boolean setCeliacos = false;
-                        boolean setChivitos = false;
-                        boolean setChina = false;
-                        boolean setMex = false;
-                        boolean setVegetariana = false;
-                        boolean setVegana = false;
-                        boolean setMilanesas = false;
-                        boolean setPM = false;
-                        boolean setPizza = false;
-                        boolean setSandwiches = false;
-                        boolean setTartas = false;
-                        boolean setWraps = false;
-                        boolean setWok = false;
+                        int cantLugares = 1;
+
+                        //
 
 
-                        if(sushi.isSelected()){
-                           setSushi = true;
-                        }
-                        if(hamburgesas.isSelected()){
-                            setHamburguesas = true;
-                        }
-                        if(ensaladas.isSelected()){
-                            setEnsaladas= true;
-                        }
-                        if(cafeteria.isSelected()){
-                            setCafe = true;
-                        }
-                        if(parrilla.isSelected()){
-                            setParrilla = true;
-                        }
-                        if(celiacos.isSelected()){
-                            setCeliacos = true;
-                        }
-                        if(chivitos.isSelected()){
-                            setChivitos = true;
-                        }
-                        if(comidaChina.isSelected()){
-                            setChina = true;
-                        }
-                        if(comidaMexicana.isSelected()){
-                            setMex = true;
-                        }
-                        if(comidaVegetariana.isSelected()){
-                            setVegetariana = true;
-                        }
-                        if(comidaVegana.isSelected()){
-                            setVegana = true;
-                        }
-                        if(milanesas.isSelected()){
-                            setMilanesas= true;
-                        }
-                        if(pescadoMariscos.isSelected()){
-                            setPM = true;
-                        }
-                        if(pizza.isSelected()){
-                            setPizza = true;
-                        }
-                        if(sandwiches.isSelected()){
-                            setSandwiches = true;
-                        }
-                        if(tartas.isSelected()){
-                            setTartas= true;
-                        }
-                        if(wrap.isSelected()){
-                            setWraps = true;
-                        }
-                        if(wok.isSelected()){
+                        //
+//                        List<CheckMenuItem> itemsComidas = comidasMenu.getItems();
+                        List<String> selectedItemsComidas = comidasMenu.getItems().stream().filter(item ->
+                                CheckMenuItem.class.isInstance(item) && CheckMenuItem.class.cast(item).isSelected())
+                                .map(MenuItem::getText).collect(Collectors.toList());
 
-                            setWok = true;
-                        }
-                        Comida comida = new Comida(login, setSushi, setHamburguesas, setEnsaladas, setCafe, setParrilla, setCeliacos, setChivitos,
-                                setChina, setMex, setVegetariana, setVegana, setMilanesas, setPM, setPizza, setSandwiches, setTartas,
-                                setWraps, setWok);
+                        List<String> selectedItemsTipoDePagoMenu = metodosPagoMenu.getItems().stream().filter(item ->
+                                CheckMenuItem.class.isInstance(item) && CheckMenuItem.class.cast(item).isSelected())
+                                .map(MenuItem::getText).collect(Collectors.toList());
 
-                        List<MetodoDePago> metodoDePagoList = new ArrayList<>();
-                        if(tarjetaD.isSelected()){
-                            metodoDePagoList.add(new TarjetaDebito());
-                        }
-                        if(tarjetaC.isSelected()){
-                            metodoDePagoList.add(new TarjetaCredito());
-                        }
-                        if(ticketA.isSelected()){
-                            metodoDePagoList.add(new TicketAlimentacion());
-                        }
-                        if(ticketR.isSelected()){
-                            metodoDePagoList.add(new TicketRestaurant());
-                        }
-                        if(efectivo.isSelected()){
-                            metodoDePagoList.add(new Efectivo());
-                        }
-                        List<Cocina> cocinaList = new ArrayList<>();
-                        if(sushi.isSelected()){
-                            cocinaList.add(new Sushi());
-                        }
-                        if(hamburgesas.isSelected()){
-                            cocinaList.add(new Hamburgesas());
-                        }
-                        if(ensaladas.isSelected()){
-                            cocinaList.add(new Ensaladas());
-                        }
+
+                        service.setTipoDePagoList(login, selectedItemsTipoDePagoMenu);
+
+                        service.setGrupoDeComidaList(login, selectedItemsComidas);
+
                         service.registrarDatosRestaurant(id, nombre, telefono, direccion,barrio,habre,hcierra,descripcion,web,
-                                nuevaPass,nMesas,metodoDePagoList,cocinaList, comida);
+                                nuevaPass,nMesas, cantLugares);
+
                         showAlert("Datos guardados", "Se guardaron con éxito los datos de su restaurante");
                         clean();
                     }

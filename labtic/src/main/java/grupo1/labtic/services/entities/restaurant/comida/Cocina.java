@@ -1,7 +1,6 @@
 package grupo1.labtic.services.entities.restaurant.comida;
 
-import grupo1.labtic.services.entities.restaurant.Restaurant;
-import org.hibernate.annotations.GenericGenerator;
+import grupo1.labtic.services.entities.Restaurant;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -12,6 +11,7 @@ public class Cocina {
 
     @EmbeddedId
     private CocinaPK cocinaPK;
+
 
     public Cocina() {
         cocinaPK = new CocinaPK();
