@@ -113,8 +113,8 @@ public class SolicitarDatos {
         telefonoRestaurante.getText().equals("")||direccionRestaurante.getText()==null||direccionRestaurante.getText().equals("")||
         barrioRestaurante.getText()==null||barrioRestaurante.getText().equals("")||hAperturaRestaurante.getText()==null||
         mAperturaRestaurante.getText()==null||mAperturaRestaurante.getText().equals("")||hCierreRestaurante.getText()==null||
-        "".equals(hCierreRestaurante.getText())||mCierreRestaurante.getText()==null||mCierreRestaurante.getText().equals("")||
-        nMesasRestaurante.getText()==null||nMesasRestaurante.getText().equals("")||usuario.getText()==null||usuario.getText().equals("")){
+        "".equals(hCierreRestaurante.getText())||mCierreRestaurante.getText()==null||mCierreRestaurante.getText().equals("")
+        ||usuario.getText()==null||usuario.getText().equals("")){
             showAlert("Datos faltantes!",
                     "No se ingresaron los datos necesarios para completar el ingreso.");
         }
@@ -138,7 +138,7 @@ public class SolicitarDatos {
                         String descripcion = descR.getText();
                         String web = webRestaurante.getText();
                         String nuevaPass = passNueva.getText();
-                        int nMesas = Integer.valueOf(nMesasRestaurante.getText());
+                        int mesas = Integer.valueOf(nMesas.getText());
                         boolean setSushi = false;
                         boolean setHamburguesas=false;
                         boolean setEnsaladas= false;
@@ -245,7 +245,7 @@ public class SolicitarDatos {
                             cocinaList.add(new Ensaladas());
                         }
                         service.registrarDatosRestaurant(id, nombre, telefono, direccion,barrio,habre,hcierra,descripcion,web,
-                                nuevaPass,nMesas,metodoDePagoList,cocinaList, comida);
+                                nuevaPass,mesas,metodoDePagoList,cocinaList, comida);
                         showAlert("Datos guardados", "Se guardaron con éxito los datos de su restaurante");
                         clean();
                     }
