@@ -25,12 +25,16 @@ public class Restaurant extends Usuario {
     protected String telefono;
     @Column(name = "descripcion")
     protected String descripcion;
+    @Column(name = "SitioWeb")
+    private String sitioWeb;
     @Column
     @ManyToMany(fetch = FetchType.EAGER)
     protected List<GrupoDeComida> grupoDeComidaList;
     @Column
     @ManyToMany(fetch = FetchType.LAZY)
     protected List<TipoDePago> tipoDePagoList;
+
+
 
     public Restaurant(String login, String password, String email, String direccion, String horarioApertura, String horarioCierre, String barrio, String telefono, String descripcion) {
         super(login, password, email);
@@ -43,6 +47,8 @@ public class Restaurant extends Usuario {
         grupoDeComidaList = new ArrayList<>();
         tipoDePagoList = new ArrayList<>();
     }
+
+
 
     public Restaurant(String login, String password, String email) {
         super(login, password, email);
@@ -160,5 +166,13 @@ public class Restaurant extends Usuario {
     }
     public void addTipoDePago(TipoDePago tipoDePagoList) {
         this.tipoDePagoList.add(tipoDePagoList);
+    }
+
+    public String getSitioWeb() {
+        return sitioWeb;
+    }
+
+    public void setSitioWeb(String sitioWeb) {
+        this.sitioWeb = sitioWeb;
     }
 }

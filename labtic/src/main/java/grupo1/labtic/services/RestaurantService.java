@@ -67,7 +67,7 @@ public class RestaurantService {
         restaurante.setHorarioCierre(hcierra);
         restaurante.setDescripcion(descripcion);
         restaurante.setPassword(nuevaPass);
-        restaurante.setEmail(web);
+        restaurante.setSitioWeb(web);
         restaurantRepository.save(restaurante);
 
         Mesa mesa = null;
@@ -76,9 +76,34 @@ public class RestaurantService {
             mesaRepository.save(mesa);
         }
     }
+
+    public void registrarDatosRestaurant(long id, String nombre, String telefono, String direccion,
+                                         String barrio, String habre, String hcierra, String descripcion, String web,
+                                         String nuevaPass){
+
+        Restaurant restaurante = restaurantRepository.getRestaurantById(id);
+        restaurante.setNombreRestaurant(nombre);
+        restaurante.setTelefono(telefono);
+        restaurante.setDireccion(direccion);
+        restaurante.setBarrio(barrio);
+        restaurante.setHorarioApertura(habre);
+        restaurante.setHorarioCierre(hcierra);
+        restaurante.setDescripcion(descripcion);
+        restaurante.setPassword(nuevaPass);
+        restaurante.setSitioWeb(web);
+        restaurantRepository.save(restaurante);
+    }
 /*    public void save(Restaurant restaurant){
         restaurantRepository.save(restaurant);
     }*/
+
+    public void setListaMesasRestaurante(String login, List<Mesa> mesasList){
+        Restaurant restaurante = restaurantRepository.getRestaurantByLogin(login);
+        long id = restaurante.getId();
+
+        mesaRepository.saveAll(mesasList);
+
+    }
 
     public void setGrupoDeComida( String login, String grupoDeComida ){
         Restaurant restaurant = restaurantRepository.getRestaurantByLogin(login);

@@ -1,16 +1,22 @@
-package grupo1.labtic.ui.cliente.portada;
+package grupo1.labtic.ui.cliente;
 
 
+import grupo1.labtic.ClienteApplication;
 import grupo1.labtic.persistence.RestaurantRepository;
 import grupo1.labtic.services.entities.Usuario;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
-
+@Component
 public class Portada {
     @Autowired
     private RestaurantRepository repo;
@@ -28,7 +34,14 @@ public class Portada {
                 String login = usuario.getText();
                 String password = pass.getText();
                 Usuario u = repo.findOneByLogin(login);
-                //cambiar la escena
+                if (u.getPassword().equals(password)){
+                    FXMLLoader loader = new FXMLLoader();
+                    loader.setControllerFactory(ClienteApplication.getContext()::getBean);
+                    Parent root = loader.load(Probando.class.getResourceAsStream("Probando.fxml"));
+                    Stage stage = new Stage();
+                    stage.setScene(new Scene(root));
+                    stage.show();
+                }
             }
             catch (Exception e){
                 showAlert("Usuario no econtrado", "El usuario ingresado no existe");

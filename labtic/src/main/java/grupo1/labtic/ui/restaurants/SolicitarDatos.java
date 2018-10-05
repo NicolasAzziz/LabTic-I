@@ -2,13 +2,15 @@ package grupo1.labtic.ui.restaurants;
 
 import grupo1.labtic.persistence.RestaurantRepository;
 import grupo1.labtic.services.RestaurantService;
+import grupo1.labtic.services.entities.Restaurant;
 import grupo1.labtic.services.entities.Usuario;
-import grupo1.labtic.services.entities.restaurant.comida.*;
-import grupo1.labtic.services.entities.restaurant.pago.*;
+import grupo1.labtic.services.entities.restaurant.Mesa;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.condition.ConditionMessage;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -43,8 +45,6 @@ public class SolicitarDatos {
     private TextArea descR;
     @FXML
     private TextField webRestaurante;
-    @FXML
-    private TextField nMesasRestaurante;
     @FXML
     private MenuButton metodosPagoMenu;
     @FXML
@@ -99,9 +99,13 @@ public class SolicitarDatos {
     private CheckMenuItem wrap;
     @FXML
     private CheckMenuItem wok;
+    @FXML
+    private TextField nMesas;
+    @FXML
+    private  TextField nSillas;
 
-
-
+    @FXML
+    private ListView<String> data;
 
     @FXML
     public void registrar (javafx.event.ActionEvent event){
@@ -109,8 +113,8 @@ public class SolicitarDatos {
         telefonoRestaurante.getText().equals("")||direccionRestaurante.getText()==null||direccionRestaurante.getText().equals("")||
         barrioRestaurante.getText()==null||barrioRestaurante.getText().equals("")||hAperturaRestaurante.getText()==null||
         mAperturaRestaurante.getText()==null||mAperturaRestaurante.getText().equals("")||hCierreRestaurante.getText()==null||
-        "".equals(hCierreRestaurante.getText())||mCierreRestaurante.getText()==null||mCierreRestaurante.getText().equals("")||
-        nMesasRestaurante.getText()==null||nMesasRestaurante.getText().equals("")||usuario.getText()==null||usuario.getText().equals("")){
+        "".equals(hCierreRestaurante.getText())||mCierreRestaurante.getText()==null||mCierreRestaurante.getText().equals("")
+        ||usuario.getText()==null||usuario.getText().equals("")){
             showAlert("Datos faltantes!",
                     "No se ingresaron los datos necesarios para completar el ingreso.");
         }
@@ -135,10 +139,6 @@ public class SolicitarDatos {
                         String web = webRestaurante.getText();
                         String nuevaPass = passNueva.getText();
 
-                        int nMesas = Integer.valueOf(nMesasRestaurante.getText());
-                        int cantLugares = 1;
-
-                        //
 
 
                         //
@@ -156,8 +156,17 @@ public class SolicitarDatos {
 
                         service.setGrupoDeComidaList(login, selectedItemsComidas);
 
+                        List<Mesa> mesaList = new ArrayList<>();
+                        //---------------> AGREGAR LAS MESAS A ESTA LISTA <-------------------------------------------------
+
+                        mesaList.add(new Mesa((Restaurant) restaurante,3,5));
+
+
+                        service.setListaMesasRestaurante(login, mesaList);
+
+
                         service.registrarDatosRestaurant(id, nombre, telefono, direccion,barrio,habre,hcierra,descripcion,web,
-                                nuevaPass,nMesas, cantLugares);
+                                nuevaPass);
 
                         showAlert("Datos guardados", "Se guardaron con éxito los datos de su restaurante");
                         clean();
@@ -177,6 +186,29 @@ public class SolicitarDatos {
         }
     }
 
+    public void agregarMesa(ActionEvent actionEvent) {
+        ObservableList<String> datos = FXCollections.observableArrayList();
+        if(nMesas.getText()==null||nMesas.getText().equals("")||nSillas.getText()==null||nSillas.getText().equals("")){
+            try{
+                Integer numeroDeMesa = Integer.valueOf(nMesas.getText());
+                Integer cantidadDeSillas = Integer.valueOf(nSillas.getText());
+                String agregar = nMesas.getText()+" -> "+nSillas.getText();
+                datos.add(agregar);
+                data.setItems(datos);
+                cleanMesas();
+            }
+            catch (NumberFormatException e){
+                showAlert("No se pudo agregar la mesa",
+                        "El número o la cantidad de lugares disponibles en la mesa son inválidos");
+            }
+        }
+    }
+
+    public void cleanMesas(){
+        nMesas.setText(null);
+        nSillas.setText(null);
+    }
+
     public void clean(){
         usuario.setText(null);
         nombreRestaurante.setText(null);
@@ -189,7 +221,6 @@ public class SolicitarDatos {
         mAperturaRestaurante.setText(null);
         hCierreRestaurante.setText(null);
         mCierreRestaurante.setText(null);
-        nMesasRestaurante.setText(null);
         tarjetaD.setSelected(false);
         tarjetaC.setSelected(false);
         efectivo.setSelected(false);

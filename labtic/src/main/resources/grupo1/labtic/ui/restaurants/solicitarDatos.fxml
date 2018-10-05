@@ -35,12 +35,12 @@
                     <children>
                         <GridPane prefHeight="303.0" prefWidth="598.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                             <columnConstraints>
-                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="267.0" minWidth="10.0" prefWidth="91.0" />
-                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="309.0" minWidth="10.0" prefWidth="130.0" />
-                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="411.0" minWidth="10.0" prefWidth="160.0" />
-                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="411.0" minWidth="10.0" prefWidth="30.0" />
-                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="411.0" minWidth="10.0" prefWidth="130.0" />
-                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="411.0" minWidth="10.0" prefWidth="160.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="267.0" minWidth="10.0" prefWidth="80.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="309.0" minWidth="10.0" prefWidth="184.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="411.0" minWidth="10.0" prefWidth="197.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="411.0" minWidth="10.0" prefWidth="52.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="411.0" minWidth="10.0" prefWidth="124.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="411.0" minWidth="10.0" prefWidth="176.0" />
                                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="411.0" minWidth="10.0" prefWidth="34.0" />
                             </columnConstraints>
                             <rowConstraints>
@@ -49,20 +49,20 @@
                                 <RowConstraints maxHeight="202.0" minHeight="10.0" prefHeight="76.0" />
                                 <RowConstraints maxHeight="253.0" minHeight="10.0" prefHeight="76.0" vgrow="SOMETIMES" />
                                 <RowConstraints maxHeight="253.0" minHeight="0.0" prefHeight="65.0" vgrow="SOMETIMES" />
-                                <RowConstraints maxHeight="253.0" minHeight="8.0" prefHeight="61.0" vgrow="SOMETIMES" />
-                                <RowConstraints maxHeight="253.0" minHeight="10.0" prefHeight="58.0" vgrow="SOMETIMES" />
-                                <RowConstraints maxHeight="253.0" minHeight="10.0" prefHeight="49.0" vgrow="SOMETIMES" />
+                                <RowConstraints maxHeight="253.0" minHeight="8.0" prefHeight="53.0" vgrow="SOMETIMES" />
+                                <RowConstraints maxHeight="253.0" minHeight="10.0" prefHeight="75.0" vgrow="SOMETIMES" />
+                                <RowConstraints maxHeight="253.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
                             </rowConstraints>
                             <children>
-                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre del restaurante*:" wrappingWidth="78.580078125" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="*Nombre del restaurante:" wrappingWidth="78.580078125" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
                                 <TextField fx:id="nombreRestaurante" GridPane.columnIndex="5" GridPane.halignment="RIGHT" GridPane.valignment="CENTER" />
-                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Teléfono*:" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER" />
+                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="*Teléfono:" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER" />
                                 <TextField fx:id="telefonoRestaurante" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER" />
                                 <TextField fx:id="direccionRestaurante" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
-                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Dirección*:" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
-                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Barrio*:" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="*Dirección:" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="*Barrio:" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
                                 <TextField fx:id="barrioRestaurante" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
-                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Horario de apertura*:" textAlignment="CENTER" wrappingWidth="65.595703125" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="*Horario de apertura:" textAlignment="CENTER" wrappingWidth="65.595703125" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
                                 <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                                     <children>
                                         <TextField fx:id="hAperturaRestaurante" alignment="CENTER_RIGHT">
@@ -82,7 +82,7 @@
                                         </TextField>
                                     </children>
                                 </HBox>
-                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Horario de cierre*:" textAlignment="CENTER" wrappingWidth="59.802734375" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="*Horario de cierre:" textAlignment="CENTER" wrappingWidth="59.802734375" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
                                 <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="3">
                                     <children>
                                         <TextField fx:id="hCierreRestaurante" alignment="CENTER_RIGHT">
@@ -102,7 +102,7 @@
                                         </TextField>
                                     </children>
                                 </HBox>
-                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Métodos de pago aceptados*:" textAlignment="CENTER" wrappingWidth="98.744140625" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
+                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="*Métodos de pago aceptados:" textAlignment="CENTER" wrappingWidth="98.744140625" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
                                 <MenuButton fx:id="metodosPagoMenu" alignment="CENTER" contentDisplay="BOTTOM" mnemonicParsing="false" prefHeight="25.0" prefWidth="157.0" text="Seleccione" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
                                     <items>
                                         <CheckMenuItem fx:id="tarjetaD" mnemonicParsing="false" text="Tarjeta de Débito" />
@@ -112,7 +112,7 @@
                                         <CheckMenuItem fx:id="ticketR" mnemonicParsing="false" text="Ticket Restaurante" />
                                     </items>
                                 </MenuButton>
-                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Comidas*:" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
+                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="*Comidas:" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
                                 <MenuButton fx:id="comidasMenu" alignment="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="146.0" text="Seleccione" GridPane.columnIndex="5" GridPane.rowIndex="4">
                                     <items>
                                         <CheckMenuItem fx:id="sushi" mnemonicParsing="false" text="Sushi" />
@@ -166,14 +166,53 @@
                                         <Font name="Bauhaus 93" size="50.0" />
                                     </font>
                                 </Text>
-                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Cantidad de mesas*:" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER" />
-                                <TextField fx:id="nMesasRestaurante" GridPane.columnIndex="2" GridPane.rowIndex="6" />
-                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre de Usuario*:" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="*Nombre de Usuario:" wrappingWidth="112.708984375" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
                                 <TextField fx:id="usuario" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Contraseña actual*:" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="*Contraseña actual:" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
                                 <PasswordField fx:id="passActual" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
                                 <PasswordField fx:id="passNueva" GridPane.columnIndex="5" GridPane.rowIndex="1" />
-                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Contraseña nueva*:" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="*Contraseña nueva:" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                        <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                           <children>
+                              <VBox prefHeight="200.0" prefWidth="100.0">
+                                 <children>
+                                    <Text fx:id="nMesa" strokeType="OUTSIDE" strokeWidth="0.0" text="*Número de mesa:" wrappingWidth="62.912109375">
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                    </Text>
+                                    <TextField fx:id="nMesas" maxHeight="25.0" maxWidth="50.0" minWidth="50.0" prefHeight="25.0" prefWidth="50.0">
+                                       <VBox.margin>
+                                          <Insets right="10.0" top="11.0" />
+                                       </VBox.margin>
+                                    </TextField>
+                                 </children>
+                              </VBox>
+                              <VBox prefHeight="200.0" prefWidth="100.0">
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="*Capacidad de la mesa" wrappingWidth="76.41015625">
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                    </Text>
+                                    <TextField fx:id="nSillas" maxWidth="50.0" minWidth="50.0" prefHeight="25.0" prefWidth="50.0">
+                                       <VBox.margin>
+                                          <Insets right="10.0" top="10.0" />
+                                       </VBox.margin>
+                                    </TextField>
+                                 </children>
+                              </VBox>
+                              <Button mnemonicParsing="false" onAction="#agregarMesa" prefHeight="28.0" prefWidth="49.0" text="+">
+                                 <HBox.margin>
+                                    <Insets top="42.0" />
+                                 </HBox.margin>
+                                 <font>
+                                    <Font name="Arial Rounded MT Bold" size="13.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </HBox>
+                        <ListView fx:id="data" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="6" />
                             </children>
                         </GridPane>
                     </children></AnchorPane>
