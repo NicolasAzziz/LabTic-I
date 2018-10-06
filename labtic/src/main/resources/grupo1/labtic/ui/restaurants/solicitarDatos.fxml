@@ -202,7 +202,7 @@
                                     </TextField>
                                  </children>
                               </VBox>
-                              <Button mnemonicParsing="false" onAction="#agregarMesa" prefHeight="28.0" prefWidth="49.0" text="+">
+                              <Button fx:id="mas" mnemonicParsing="false" onAction="#agregarMesa" prefHeight="28.0" prefWidth="49.0" text="+">
                                  <HBox.margin>
                                     <Insets top="42.0" />
                                  </HBox.margin>
@@ -212,7 +212,11 @@
                               </Button>
                            </children>
                         </HBox>
-                        <ListView fx:id="data" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="6" />
+                        <VBox fx:id="vBox" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="6">
+                           <children>
+                              <ListView fx:id="lista" prefHeight="200.0" prefWidth="200.0" />
+                           </children>
+                        </VBox>
                             </children>
                         </GridPane>
                     </children></AnchorPane>

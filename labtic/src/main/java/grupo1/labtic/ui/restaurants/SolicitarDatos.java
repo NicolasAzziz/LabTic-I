@@ -6,11 +6,14 @@ import grupo1.labtic.services.entities.Restaurant;
 import grupo1.labtic.services.entities.Usuario;
 import grupo1.labtic.services.entities.restaurant.Mesa;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableArray;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -104,9 +107,13 @@ public class SolicitarDatos {
     private TextField nMesas;
     @FXML
     private  TextField nSillas;
-
     @FXML
-    private ListView<String> data;
+    private Button mas;
+    @FXML
+    private VBox vBox;
+    @FXML
+    private ListView lista;
+
 
     @FXML
     public void registrar (javafx.event.ActionEvent event){
@@ -187,18 +194,16 @@ public class SolicitarDatos {
         }
     }
 
+    @FXML
     public void agregarMesa(ActionEvent actionEvent) {
-        ObservableList<String> datos = FXCollections.observableArrayList();
+        ObservableList<String> list = FXCollections.observableArrayList();
         if(nMesas.getText()==null||nMesas.getText().equals("")||nSillas.getText()==null||nSillas.getText().equals("")){
             try{
                 Integer numeroDeMesa = Integer.valueOf(nMesas.getText());
                 Integer cantidadDeSillas = Integer.valueOf(nSillas.getText());
                 String agregar = nMesas.getText()+" -> "+nSillas.getText();
-                datos.add(agregar);
-                data.setItems(datos);
-
-                VBox vBox = new VBox();
-                vBox.getChildren().addAll(data);
+                list.add(agregar);
+                lista.setItems(list);
                 cleanMesas();
             }
             catch (NumberFormatException e){
