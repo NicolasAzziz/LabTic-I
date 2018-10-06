@@ -10,6 +10,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.layout.VBox;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -195,6 +196,9 @@ public class SolicitarDatos {
                 String agregar = nMesas.getText()+" -> "+nSillas.getText();
                 datos.add(agregar);
                 data.setItems(datos);
+
+                VBox vBox = new VBox();
+                vBox.getChildren().addAll(data);
                 cleanMesas();
             }
             catch (NumberFormatException e){
