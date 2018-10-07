@@ -33,6 +33,11 @@ public class Mesa {
         //cantLugares= 1;
     }
 
+    public Mesa(MesaPK mesaPK, @NotNull int cantLugares) {
+        this.mesaPK = mesaPK;
+        this.cantLugares = cantLugares;
+    }
+
     public MesaPK getMesaPK() {
         return mesaPK;
     }

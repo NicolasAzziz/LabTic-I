@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -110,9 +111,14 @@ public class SolicitarDatos {
     @FXML
     private Button mas;
     @FXML
-    private VBox vBox;
+    private TableView<Mesa> tabla;
     @FXML
-    private ListView lista;
+    private TableColumn column1;
+    @FXML
+    private TableColumn column2;
+    ObservableList<Mesa> mesas;
+
+
 
 
     @FXML
@@ -146,8 +152,6 @@ public class SolicitarDatos {
                         String descripcion = descR.getText();
                         String web = webRestaurante.getText();
                         String nuevaPass = passNueva.getText();
-
-
 
                         //
 //                        List<CheckMenuItem> itemsComidas = comidasMenu.getItems();
@@ -198,10 +202,23 @@ public class SolicitarDatos {
     public void agregarMesa(ActionEvent actionEvent) {
         if(nMesas.getText()==null||nMesas.getText().equals("")||nSillas.getText()==null||nSillas.getText().equals("")){
             try{
+                tabla.setEditable(true);
                 Integer numeroDeMesa = Integer.valueOf(nMesas.getText());
                 Integer cantidadDeSillas = Integer.valueOf(nSillas.getText());
-                String agregar = nMesas.getText()+" -> "+nSillas.getText();
-                lista.getItems().add(agregar);
+                Usuario u = repo.findOneByLogin(usuario.getText());
+                long id = u.getId();
+                Restaurant r = repo.findOneById(id);
+                Mesa mesa = new Mesa();
+                mesa.setNumeroReferencia(numeroDeMesa);
+                mesa.setCantLugares(cantidadDeSillas);
+                mesa.setRestaurant(r);
+                mesas = FXCollections.observableArrayList();
+                mesas.add(mesa);
+                column1.setCellFactory(new PropertyValueFactory<Mesa, Integer>("nroReferencia"));
+                column2.setCellFactory(new PropertyValueFactory<Mesa, Integer>("cantLugares"));
+                tabla = new TableView<>();
+                tabla.setItems(mesas);
+                tabla.getColumns().addAll(column1, column2);
                 cleanMesas();
             }
             catch (NumberFormatException e){
