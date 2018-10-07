@@ -196,14 +196,12 @@ public class SolicitarDatos {
 
     @FXML
     public void agregarMesa(ActionEvent actionEvent) {
-        ObservableList<String> list = FXCollections.observableArrayList();
         if(nMesas.getText()==null||nMesas.getText().equals("")||nSillas.getText()==null||nSillas.getText().equals("")){
             try{
                 Integer numeroDeMesa = Integer.valueOf(nMesas.getText());
                 Integer cantidadDeSillas = Integer.valueOf(nSillas.getText());
                 String agregar = nMesas.getText()+" -> "+nSillas.getText();
-                list.add(agregar);
-                lista.setItems(list);
+                lista.getItems().add(agregar);
                 cleanMesas();
             }
             catch (NumberFormatException e){
