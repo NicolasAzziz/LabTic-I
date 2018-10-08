@@ -35,13 +35,14 @@ public class Portada {
                 String password = pass.getText();
                 Usuario u = repo.findOneByLogin(login);
                 if (u.getPassword().equals(password)){
+//                if (u.getPassword().equals(password)){
                     FXMLLoader loader = new FXMLLoader();
                     loader.setControllerFactory(ClienteApplication.getContext()::getBean);
                     Parent root = loader.load(Probando.class.getResourceAsStream("Probando.fxml"));
+                    Parent root = loader.load(Probando.class.getResourceAsStream("Principal.fxml"));
                     Stage stage = new Stage();
                     stage.setScene(new Scene(root));
                     stage.show();
-                }
             }
             catch (Exception e){
                 showAlert("Usuario no econtrado", "El usuario ingresado no existe");

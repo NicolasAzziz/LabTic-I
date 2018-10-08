@@ -129,6 +129,9 @@ public class SolicitarDatos {
         mAperturaRestaurante.getText()==null||mAperturaRestaurante.getText().equals("")||hCierreRestaurante.getText()==null||
         "".equals(hCierreRestaurante.getText())||mCierreRestaurante.getText()==null||mCierreRestaurante.getText().equals("")
         ||usuario.getText()==null||usuario.getText().equals("")){
+        hAperturaRestaurante.getText().equals("")||mAperturaRestaurante.getText()==null||mAperturaRestaurante.getText().equals("")||
+        hCierreRestaurante.getText()==null||hCierreRestaurante.getText().equals("")||mCierreRestaurante.getText()==null||
+        mCierreRestaurante.getText().equals("")||usuario.getText()==null||usuario.getText().equals("")){
             showAlert("Datos faltantes!",
                     "No se ingresaron los datos necesarios para completar el ingreso.");
         }
@@ -185,6 +188,7 @@ public class SolicitarDatos {
                     }
                     catch(NumberFormatException e){
                         showAlert("Informacion Invalida", "Se encontró un error en los dtos ingresados");
+                        showAlert("Informacion Invalida", "Se encontró un error en los datos ingresados");
                     }
                 }
                 else{
