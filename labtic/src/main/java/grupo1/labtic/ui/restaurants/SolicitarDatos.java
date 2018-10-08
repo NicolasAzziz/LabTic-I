@@ -1,30 +1,33 @@
 package grupo1.labtic.ui.restaurants;
 
+
 import grupo1.labtic.persistence.RestaurantRepository;
 import grupo1.labtic.services.RestaurantService;
 import grupo1.labtic.services.entities.Restaurant;
 import grupo1.labtic.services.entities.Usuario;
 import grupo1.labtic.services.entities.restaurant.Mesa;
+import javafx.beans.InvalidationListener;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableArray;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Group;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
-import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Component
 public class SolicitarDatos {
-    @Autowired
+
     private RestaurantRepository repo;
     @Autowired
     RestaurantService service;
@@ -113,9 +116,10 @@ public class SolicitarDatos {
     @FXML
     private TableView<Mesa> tabla;
     @FXML
-    private TableColumn column1;
+    private TableColumn<Mesa,Integer> column1;
     @FXML
-    private TableColumn column2;
+    private TableColumn<Mesa, Integer> column2;
+
     ObservableList<Mesa> mesas;
 
 
@@ -202,9 +206,10 @@ public class SolicitarDatos {
     public void agregarMesa(ActionEvent actionEvent) {
         if(nMesas.getText()==null||nMesas.getText().equals("")||nSillas.getText()==null||nSillas.getText().equals("")){
             try{
-                tabla.setEditable(true);
+
                 Integer numeroDeMesa = Integer.valueOf(nMesas.getText());
                 Integer cantidadDeSillas = Integer.valueOf(nSillas.getText());
+
                 Usuario u = repo.findOneByLogin(usuario.getText());
                 long id = u.getId();
                 Restaurant r = repo.findOneById(id);
@@ -212,15 +217,16 @@ public class SolicitarDatos {
                 mesa.setNumeroReferencia(numeroDeMesa);
                 mesa.setCantLugares(cantidadDeSillas);
                 mesa.setRestaurant(r);
-                column1.setText(numeroDeMesa);
-                column2.setText(cantidadDeSillas);
-//                mesas = FXCollections.observableArrayList();
-//                mesas.add(mesa);
-//                column1.setCellFactory(new PropertyValueFactory<Mesa, Integer>("nroReferencia"));
-//                column2.setCellFactory(new PropertyValueFactory<Mesa, Integer>("cantLugares"));
-//                tabla = new TableView<>();
-//                tabla.setItems(mesas);
-//                tabla.getColumns().addAll(column1, column2);
+                mesas = FXCollections.observableArrayList();
+                mesas.add(mesa);
+
+               // column1.setCellValueFactory(new PropertyValueFactory("nroReferencia"));
+                column2.setCellValueFactory(new PropertyValueFactory("cantLugares"));
+
+               // tabla.setEditable(true);
+                //tabla.getItems().
+                tabla.getItems().addAll(new Mesa((Restaurant) u,numeroDeMesa,cantidadDeSillas));
+
                 cleanMesas();
             }
             catch (NumberFormatException e){

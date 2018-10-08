@@ -1,6 +1,8 @@
 package grupo1.labtic.services.entities.restaurant;
 
 import grupo1.labtic.services.entities.Restaurant;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.Property;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
