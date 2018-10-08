@@ -212,13 +212,15 @@ public class SolicitarDatos {
                 mesa.setNumeroReferencia(numeroDeMesa);
                 mesa.setCantLugares(cantidadDeSillas);
                 mesa.setRestaurant(r);
-                mesas = FXCollections.observableArrayList();
-                mesas.add(mesa);
-                column1.setCellFactory(new PropertyValueFactory<Mesa, Integer>("nroReferencia"));
-                column2.setCellFactory(new PropertyValueFactory<Mesa, Integer>("cantLugares"));
-                tabla = new TableView<>();
-                tabla.setItems(mesas);
-                tabla.getColumns().addAll(column1, column2);
+                column1.setText(numeroDeMesa);
+                column2.setText(cantidadDeSillas);
+//                mesas = FXCollections.observableArrayList();
+//                mesas.add(mesa);
+//                column1.setCellFactory(new PropertyValueFactory<Mesa, Integer>("nroReferencia"));
+//                column2.setCellFactory(new PropertyValueFactory<Mesa, Integer>("cantLugares"));
+//                tabla = new TableView<>();
+//                tabla.setItems(mesas);
+//                tabla.getColumns().addAll(column1, column2);
                 cleanMesas();
             }
             catch (NumberFormatException e){
