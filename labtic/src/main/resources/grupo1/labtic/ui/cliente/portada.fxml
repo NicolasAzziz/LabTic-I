@@ -116,7 +116,6 @@
                                                     <children>
                                                         <ImageView fitWidth="400.0" pickOnBounds="true" preserveRatio="true" GridPane.columnSpan="2147483647" GridPane.halignment="LEFT" GridPane.rowSpan="2147483647" GridPane.valignment="BOTTOM">
                                                             <image>
-                                                                <Image url="@../../../../../java/grupo1/labtic/ui/Imagenes/portadac.jpg" />
                                                                 <Image url="@../Imagenes/portadac.jpg" />
                                                             </image>
                                                         </ImageView>
@@ -189,7 +188,6 @@
                                                                     <children>
                                                                         <ImageView fitHeight="137.0" fitWidth="128.0" pickOnBounds="true" preserveRatio="true" GridPane.columnSpan="2147483647" GridPane.halignment="LEFT" GridPane.rowSpan="2147483647" GridPane.valignment="TOP">
                                                                             <image>
-                                                                                <Image url="@../../../../../java/grupo1/labtic/ui/Imagenes/chef.png" />
                                                                                 <Image url="@../Imagenes/chef.png" />
                                                                             </image>
                                                                         </ImageView>

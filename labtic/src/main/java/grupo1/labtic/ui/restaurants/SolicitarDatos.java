@@ -126,9 +126,6 @@ public class SolicitarDatos {
         if (nombreRestaurante.getText()==null||nombreRestaurante.getText().equals("")||telefonoRestaurante.getText()==null||
         telefonoRestaurante.getText().equals("")||direccionRestaurante.getText()==null||direccionRestaurante.getText().equals("")||
         barrioRestaurante.getText()==null||barrioRestaurante.getText().equals("")||hAperturaRestaurante.getText()==null||
-        mAperturaRestaurante.getText()==null||mAperturaRestaurante.getText().equals("")||hCierreRestaurante.getText()==null||
-        "".equals(hCierreRestaurante.getText())||mCierreRestaurante.getText()==null||mCierreRestaurante.getText().equals("")
-        ||usuario.getText()==null||usuario.getText().equals("")){
         hAperturaRestaurante.getText().equals("")||mAperturaRestaurante.getText()==null||mAperturaRestaurante.getText().equals("")||
         hCierreRestaurante.getText()==null||hCierreRestaurante.getText().equals("")||mCierreRestaurante.getText()==null||
         mCierreRestaurante.getText().equals("")||usuario.getText()==null||usuario.getText().equals("")){
@@ -187,7 +184,6 @@ public class SolicitarDatos {
                         clean();
                     }
                     catch(NumberFormatException e){
-                        showAlert("Informacion Invalida", "Se encontró un error en los dtos ingresados");
                         showAlert("Informacion Invalida", "Se encontró un error en los datos ingresados");
                     }
                 }
