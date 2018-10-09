@@ -33,7 +33,7 @@
                                 </Text>
                                 <TextField fx:id="usuarioAAgregar">
                                     <HBox.margin>
-                                        <Insets left="30.0" top="20.0" />
+                                        <Insets left="35.0" top="20.0" />
                                     </HBox.margin>
                                 </TextField>
                             </children>
@@ -47,16 +47,30 @@
                                 </Text>
                                 <PasswordField fx:id="passAAgregar">
                                     <HBox.margin>
-                                        <Insets left="10.0" top="20.0" />
+                                        <Insets left="17.0" top="20.0" />
                                     </HBox.margin>
                                 </PasswordField>
                             </children>
                         </HBox>
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="RUT">
+                           <HBox.margin>
+                              <Insets top="20.0" />
+                           </HBox.margin>
+                        </Text>
+                        <TextField fx:id="rut">
+                           <HBox.margin>
+                              <Insets left="54.0" top="20.0" />
+                           </HBox.margin>
+                        </TextField>
+                     </children>
+                  </HBox>
                         <HBox prefHeight="100.0" prefWidth="200.0">
                             <children>
                                 <Button fx:id="agregarRestaurante" mnemonicParsing="false" onAction="#agregar" text="Agregar">
                                     <HBox.margin>
-                                        <Insets left="160.0" />
+                                        <Insets left="160.0" top="20.0" />
                                     </HBox.margin>
                                 </Button>
                             </children>

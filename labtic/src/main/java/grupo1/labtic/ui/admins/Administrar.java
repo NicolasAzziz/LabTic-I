@@ -19,7 +19,8 @@ public class Administrar {
     private TextField usuarioAAgregar;
     @FXML
     private PasswordField passAAgregar;
-
+    @FXML
+    private TextField rut;
     @FXML
     public void agregar(ActionEvent actionEvent) {
         if(usuarioAAgregar.getText()==null||"".equals(usuarioAAgregar.getText())||"".equals(passAAgregar.getText())||
@@ -30,7 +31,8 @@ public class Administrar {
             try {
                 String usuario = usuarioAAgregar.getText();
                 String pass = passAAgregar.getText();
-                restaurantService.crearRestaurant(usuario, pass);
+                long rut1 = Long.valueOf(rut.getText());
+                restaurantService.crearRestaurant(usuario, pass, rut1);
                 showAlert("Usuario agregado.", "Se agrego con exito el usuario.");
                 clean();
             }catch(InvalidRestaurantInformation e){

@@ -17,7 +17,7 @@ public class Mesa {
 
     @Column(name = "cantidadDeLugares")
     @NotNull
-    private int cantLugares;
+    private Integer cantLugares;
 
     @Column(name = "libre")
     private boolean mesaLibre;
@@ -25,7 +25,7 @@ public class Mesa {
     public Mesa() {
     }
 
-    public Mesa(Restaurant rest, int numeroReferencia, int cantLugares) {
+    public Mesa(Restaurant rest, Integer numeroReferencia, Integer cantLugares) {
         mesaPK = new MesaPK();
         this.mesaPK.setMesaRestaurant(rest);
         this.mesaPK.setNroReferencia( numeroReferencia );
@@ -71,11 +71,11 @@ public class Mesa {
         return Objects.hash(mesaPK, cantLugares, mesaLibre);
     }
 
-    public int getNumeroReferencia() {
+    public Integer getNumeroReferencia() {
         return this.mesaPK.getNroReferencia();
     }
 
-    public int getCantLugares() {
+    public Integer getCantLugares() {
         return cantLugares;
     }
 
@@ -111,7 +111,7 @@ class MesaPK implements Serializable{
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "restaurantId")
     private Restaurant MesaRestaurant;
-    private int nroReferencia;
+    private Integer nroReferencia;
 
     @Override
     public boolean equals(Object o) {
@@ -135,7 +135,7 @@ class MesaPK implements Serializable{
         this.MesaRestaurant = mesaRestaurant;
     }
 
-    public int getNroReferencia() {
+    public Integer getNroReferencia() {
         return nroReferencia;
     }
 

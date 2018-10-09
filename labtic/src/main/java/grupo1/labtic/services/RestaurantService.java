@@ -31,7 +31,7 @@ public class RestaurantService {
     @Autowired
     private MesaRepository mesaRepository;
 
-    public void crearRestaurant(String login, String password)
+    public void crearRestaurant(String login, String password, long rut)
             throws InvalidRestaurantInformation, RestaurantAlreadyExists {
 
         if (login == null || "".equals(login) || password == null || "".equals(password)) {
@@ -47,7 +47,7 @@ public class RestaurantService {
             throw new RestaurantAlreadyExists();
         }
 
-        Restaurant oRestaurant = new Restaurant(login, password);
+        Restaurant oRestaurant = new Restaurant(login, password, rut);
 
         Restaurant save = restaurantRepository.save(oRestaurant);
 

@@ -11,6 +11,7 @@ import javafx.beans.property.IntegerProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -121,8 +122,7 @@ public class SolicitarDatos {
     private TableColumn<Mesa, Integer> column2;
 
     ObservableList<Mesa> mesas;
-
-
+    private int pos;
 
 
     @FXML
@@ -206,27 +206,21 @@ public class SolicitarDatos {
     public void agregarMesa(ActionEvent actionEvent) {
         if(nMesas.getText()==null||nMesas.getText().equals("")||nSillas.getText()==null||nSillas.getText().equals("")){
             try{
+                init();
 
-                Integer numeroDeMesa = Integer.valueOf(nMesas.getText());
-                Integer cantidadDeSillas = Integer.valueOf(nSillas.getText());
-
+                Integer referencia = Integer.valueOf(nMesas.getText());
+                Integer capacidad = Integer.valueOf(nSillas.getText());
                 Usuario u = repo.findOneByLogin(usuario.getText());
                 long id = u.getId();
                 Restaurant r = repo.findOneById(id);
+
                 Mesa mesa = new Mesa();
-                mesa.setNumeroReferencia(numeroDeMesa);
-                mesa.setCantLugares(cantidadDeSillas);
                 mesa.setRestaurant(r);
-                mesas = FXCollections.observableArrayList();
+                mesa.setNumeroReferencia(referencia);
+                mesa.setCantLugares(capacidad);
+
                 mesas.add(mesa);
-
-               // column1.setCellValueFactory(new PropertyValueFactory("nroReferencia"));
-                column2.setCellValueFactory(new PropertyValueFactory("cantLugares"));
-
-               // tabla.setEditable(true);
-                //tabla.getItems().
-                tabla.getItems().addAll(new Mesa((Restaurant) u,numeroDeMesa,cantidadDeSillas));
-
+                tabla.setItems(mesas);
                 cleanMesas();
             }
             catch (NumberFormatException e){
@@ -235,6 +229,42 @@ public class SolicitarDatos {
             }
         }
     }
+
+    private final ListChangeListener<Mesa> selectorTabla = new ListChangeListener<Mesa>() {
+        @Override
+        public void onChanged (ListChangeListener.Change<? extends Mesa> c) {
+            ponerMesaSeleccionada();
+        }
+    };
+
+    private void ponerMesaSeleccionada() {
+        final Mesa mesa = getTablaMesaSeleccionada();
+        pos = mesas.indexOf(mesa);
+        if (mesa!= null){
+            nMesas.setText(String.valueOf(mesa.getNumeroReferencia()));
+            nSillas.setText(String.valueOf(mesa.getCantLugares()));
+            mas.setDisable(false);
+        }
+    }
+
+    private void init (){
+        column1.setCellValueFactory(new PropertyValueFactory<Mesa, Integer>("nroReferencia"));
+        column2.setCellValueFactory(new PropertyValueFactory<Mesa, Integer>("cantLugares"));
+
+        mesas = FXCollections.observableArrayList();
+    }
+
+    public Mesa getTablaMesaSeleccionada(){
+        if(tabla != null){
+            List <Mesa> tablaMesas = tabla.getSelectionModel().getSelectedItems();
+            if(tablaMesas.size()==1){
+                final Mesa competicionSeleccionada = tablaMesas.get(0);
+                return competicionSeleccionada;
+            }
+        }
+        return null;
+    }
+
 
     public void cleanMesas(){
         nMesas.setText(null);

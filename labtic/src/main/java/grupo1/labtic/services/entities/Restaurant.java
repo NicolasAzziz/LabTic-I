@@ -11,6 +11,8 @@ import java.util.Objects;
 @Entity(name = "RESTAURANT")
 public class Restaurant extends Usuario {
 
+    @Column (name="RUT", unique = true)
+    private long rut;
     @Column(name = "NombreRestaurant")
     private String nombreRestaurant;
     @Column( name = "direccion", unique = true)
@@ -56,8 +58,9 @@ public class Restaurant extends Usuario {
         tipoDePagoList = new ArrayList<>();
     }
 
-    public Restaurant(String login, String password) {
+    public Restaurant(String login, String password, long rut) {
         super(login, password);
+        this.rut= rut;
         grupoDeComidaList = new ArrayList<>();
         tipoDePagoList = new ArrayList<>();
     }
