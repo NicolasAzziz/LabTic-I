@@ -21,8 +21,8 @@ public class Admin extends Usuario {
         Usuario restaurante = new Restaurant(nombre, password, email);
         return restaurante;
     }
-    public Usuario crearRestaurant(String nombre, String password){
-        Usuario restaurante = new Restaurant(nombre, password);
+    public Usuario crearRestaurant(String login, String password, long rut){
+        Usuario restaurante = new Restaurant(login, password, rut);
         return restaurante;
     }
     public void facturacion(){

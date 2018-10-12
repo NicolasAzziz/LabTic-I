@@ -17,7 +17,7 @@ import java.io.IOException;
 @SpringBootApplication
 public class AdminApplication extends Application  {
 
-    private ConfigurableApplicationContext context;
+    private static ConfigurableApplicationContext context;
 
     private FXMLLoader fxmlLoader;
 
@@ -40,7 +40,7 @@ public class AdminApplication extends Application  {
     @Override
     public void start(Stage primaryStage) throws IOException {
 //        restaurantService.insertarGrupoDeComidas();
-        fxmlLoader.setLocation(Administrar.class.getResource("Admin.fxml"));
+        fxmlLoader.setLocation(Administrar.class.getResource("AdminPortada.fxml"));
         root = fxmlLoader.load();
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
@@ -49,6 +49,10 @@ public class AdminApplication extends Application  {
     @Override
     public void stop() {
         context.close();
+    }
+
+    public static ConfigurableApplicationContext getContext() {
+        return context;
     }
 
     public static void main(String[] args) {

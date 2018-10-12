@@ -17,7 +17,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="grupo1.labtic.ui.admins.AdminPortada">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="grupo1.labtic.ui.admins.PortadaAdmin">
    <children>
       <SplitPane dividerPositions="0.2" orientation="VERTICAL" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
@@ -38,25 +38,18 @@
                </children></AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                <children>
-                  <SplitPane dividerPositions="0.7" prefHeight="313.0" prefWidth="598.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <SplitPane dividerPositions="0.8" prefHeight="313.0" prefWidth="598.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <items>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                            <children>
                               <ListView layoutX="125.0" layoutY="26.0" prefHeight="311.0" prefWidth="412.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                            </children>
                         </AnchorPane>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" style="-fx-background-color: d5f7b0;">
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="311.0" prefWidth="136.0" style="-fx-background-color: d5f7b0;">
                            <children>
-                              <Button layoutX="43.0" layoutY="100.0" mnemonicParsing="false" text="Agregar" />
-                              <Button layoutX="43.0" layoutY="258.0" mnemonicParsing="false" text="Agregar" />
-                              <Circle fx:id="circle2" fill="#1f93ff00" layoutX="87.0" layoutY="56.0" radius="44.0" stroke="#90bf5a" strokeType="INSIDE" strokeWidth="2.5" />
-                              <Circle fx:id="circle21" fill="#1f93ff00" layoutX="87.0" layoutY="214.0" radius="44.0" stroke="#90bf5a" strokeType="INSIDE" strokeWidth="2.5" />
-                              <Text fill="#90bf5a" layoutX="55.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Resto">
-                                 <font>
-                                    <Font size="26.0" />
-                                 </font>
-                              </Text>
-                              <Text fill="#90bf5a" layoutX="47.0" layoutY="223.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cliente">
+                              <Button fx:id="agregarRestaurant" layoutX="13.0" layoutY="174.0" mnemonicParsing="false" onAction="#agregarRestaurant" text="Agregar" />
+                              <Circle fx:id="circle2" fill="#1f93ff00" layoutX="57.0" layoutY="129.0" radius="44.0" stroke="#90bf5a" strokeType="INSIDE" strokeWidth="2.5" />
+                              <Text fill="#90bf5a" layoutX="25.0" layoutY="139.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Resto">
                                  <font>
                                     <Font size="26.0" />
                                  </font>
