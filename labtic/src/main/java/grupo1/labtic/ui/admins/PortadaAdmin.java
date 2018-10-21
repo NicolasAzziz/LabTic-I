@@ -1,6 +1,8 @@
 package grupo1.labtic.ui.admins;
 
+import grupo1.labtic.AdminApplication;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -12,14 +14,16 @@ import java.io.IOException;
 @Component
 public class PortadaAdmin {
 
+    @FXML
     public void agregarRestaurant(ActionEvent actionEvent) {
 
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Admin.fxml"));
-            Parent root1 = null;
-            root1 = (Parent) fxmlLoader.load();
+            FXMLLoader loader = new FXMLLoader();
+            loader.setControllerFactory(AdminApplication.getContext()::getBean);
+            Parent root = loader.load(Administrar.class.getResourceAsStream("Admin.fxml"));
             Stage stage = new Stage();
-            stage.setScene(new Scene(root1)); stage.show();
+            stage.setScene(new Scene(root));
+            stage.show();
         } catch (IOException e) {
             e.printStackTrace();
         }

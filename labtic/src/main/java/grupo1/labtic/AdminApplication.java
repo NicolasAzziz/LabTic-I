@@ -7,7 +7,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -15,7 +14,7 @@ import org.springframework.context.ConfigurableApplicationContext;
 import java.io.IOException;
 
 @SpringBootApplication
-public class AdminApplication extends Application  {
+public class AdminApplication extends Application {
 
     private static ConfigurableApplicationContext context;
 
@@ -23,8 +22,15 @@ public class AdminApplication extends Application  {
 
     private Parent root;
 
-    @Autowired
     private RestaurantService restaurantService;
+
+    public static ConfigurableApplicationContext getContext() {
+        return context;
+    }
+
+    public static void main(String[] args) {
+        launch(args);
+    }
 
     @Override
     public void init() {
@@ -35,7 +41,6 @@ public class AdminApplication extends Application  {
         restaurantService.insertarGrupoDeComidas();
         restaurantService.insertarTiposDePagos();
     }
-
 
     @Override
     public void start(Stage primaryStage) throws IOException {
@@ -49,13 +54,5 @@ public class AdminApplication extends Application  {
     @Override
     public void stop() {
         context.close();
-    }
-
-    public static ConfigurableApplicationContext getContext() {
-        return context;
-    }
-
-    public static void main(String[] args) {
-        launch(args);
     }
 }

@@ -2,7 +2,10 @@ package grupo1.labtic.ui.cliente;
 
 
 import grupo1.labtic.ClienteApplication;
+import grupo1.labtic.persistence.ClienteRepository;
 import grupo1.labtic.persistence.RestaurantRepository;
+import grupo1.labtic.services.entities.Cliente;
+import grupo1.labtic.services.entities.Restaurant;
 import grupo1.labtic.services.entities.Usuario;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -19,31 +22,29 @@ import org.springframework.stereotype.Component;
 @Component
 public class Portada {
     @Autowired
-    private RestaurantRepository repo;
+    private ClienteRepository clienteRepository;
     @FXML
     private TextField usuario;
     @FXML
     private PasswordField pass;
 
     public void signIn(ActionEvent actionEvent) {
-        if(usuario.getText()==null|| usuario.getText().equals("")||pass.getText()==null||pass.getText().equals("")){
+        if (usuario.getText() == null || usuario.getText().equals("") || pass.getText() == null || pass.getText().equals("")) {
             showAlert("Falta información", "No se ingresaron los datos requeridos");
-        }
-        else{
-            try{
+        } else {
+            try {
                 String login = usuario.getText();
                 String password = pass.getText();
-                Usuario u = repo.findOneByLogin(login);
-                if (u.getPassword().equals(password)){
+                Cliente u = clienteRepository.findByEmail(login);
+                if (u.getPassword().equals(password)) {
                     FXMLLoader loader = new FXMLLoader();
                     loader.setControllerFactory(ClienteApplication.getContext()::getBean);
-                    Parent root = loader.load(Probando.class.getResourceAsStream("Principal.fxml"));
+                    Parent root = loader.load(Portada.class.getResourceAsStream("Principal.fxml"));
                     Stage stage = new Stage();
                     stage.setScene(new Scene(root));
                     stage.show();
                 }
-            }
-            catch (Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
                 showAlert("Usuario no econtrado", "El usuario ingresado no existe");
             }

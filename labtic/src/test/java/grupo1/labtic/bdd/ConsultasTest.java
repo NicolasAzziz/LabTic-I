@@ -10,11 +10,11 @@ public class ConsultasTest {
     RestaurantRepository restaurantRepository;
 
     @Autowired
-    public ConsultasTest(RestaurantRepository restaurantRepository){
+    public ConsultasTest(RestaurantRepository restaurantRepository) {
         this.restaurantRepository = restaurantRepository;
     }
 
-    public Iterable<Restaurant> getAll(){
+    public Iterable<Restaurant> getAll() {
         return restaurantRepository.findAll();
     }
 

@@ -1,8 +1,6 @@
 package grupo1.labtic.services.entities.restaurant;
 
 import grupo1.labtic.services.entities.Restaurant;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.Property;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -28,7 +26,7 @@ public class Mesa {
     public Mesa(Restaurant rest, Integer numeroReferencia, Integer cantLugares) {
         mesaPK = new MesaPK();
         this.mesaPK.setMesaRestaurant(rest);
-        this.mesaPK.setNroReferencia( numeroReferencia );
+        this.mesaPK.setNroReferencia(numeroReferencia);
         this.cantLugares = cantLugares;
         mesaLibre = true;
 
@@ -75,39 +73,41 @@ public class Mesa {
         return this.mesaPK.getNroReferencia();
     }
 
-    public Integer getCantLugares() {
-        return cantLugares;
-    }
-
     public void setNumeroReferencia(int numeroReferencia) {
         this.mesaPK.setNroReferencia(numeroReferencia);
     }
 
-    public boolean getEstaLibre (){
-        return mesaLibre;
-    }
-
-    public void setLibre(){
-        mesaLibre = true;
-    }
-    public void setOcupada(){
-        mesaLibre = false;
+    public Integer getCantLugares() {
+        return cantLugares;
     }
 
     public void setCantLugares(int cantLugares) {
         this.cantLugares = cantLugares;
     }
 
+    public boolean getEstaLibre() {
+        return mesaLibre;
+    }
+
+    public void setLibre() {
+        mesaLibre = true;
+    }
+
+    public void setOcupada() {
+        mesaLibre = false;
+    }
+
     public Restaurant getRestaurant() {
         return this.mesaPK.getMesaRestaurant();
     }
-    public void setRestaurant(Restaurant res){
+
+    public void setRestaurant(Restaurant res) {
         this.mesaPK.setMesaRestaurant(res);
     }
 }
 
 
-class MesaPK implements Serializable{
+class MesaPK implements Serializable {
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "restaurantId")
     private Restaurant MesaRestaurant;

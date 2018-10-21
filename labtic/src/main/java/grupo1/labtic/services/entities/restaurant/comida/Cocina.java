@@ -23,18 +23,22 @@ public class Cocina {
         cocinaPK.setId(id);
     }
 
-    public void setRestaurantCocina(Restaurant restaurante){
-        this.cocinaPK.setCocina_Restaurant(restaurante);
-    }
-    public void setId( long id){
-        this.cocinaPK.setId(id);
-    }
-    public Restaurant getRestaurantCocina(){
+    public Restaurant getRestaurantCocina() {
         return this.cocinaPK.getCocina_Restaurant();
     }
-    public long getId( ){
-       return this.cocinaPK.getId();
+
+    public void setRestaurantCocina(Restaurant restaurante) {
+        this.cocinaPK.setCocina_Restaurant(restaurante);
     }
+
+    public long getId() {
+        return this.cocinaPK.getId();
+    }
+
+    public void setId(long id) {
+        this.cocinaPK.setId(id);
+    }
+
     public CocinaPK getCocinaPK() {
         return cocinaPK;
     }
@@ -43,6 +47,7 @@ public class Cocina {
         this.cocinaPK = cocinaPK;
     }
 }
+
 class CocinaPK implements Serializable {
 
     @ManyToOne(cascade = CascadeType.ALL)
@@ -69,15 +74,15 @@ class CocinaPK implements Serializable {
         return Cocina_Restaurant;
     }
 
+    public void setCocina_Restaurant(Restaurant cocina_Restaurant) {
+        Cocina_Restaurant = cocina_Restaurant;
+    }
+
     public long getId() {
         return id;
     }
 
     public void setId(long id) {
         this.id = id;
-    }
-
-    public void setCocina_Restaurant(Restaurant cocina_Restaurant) {
-        Cocina_Restaurant = cocina_Restaurant;
     }
 }

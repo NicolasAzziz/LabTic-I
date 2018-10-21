@@ -28,9 +28,9 @@ public class RestaurantServiceTest {
     RestaurantRepository repository;
 
     @Test
-    public void main(){
+    public void main() {
         try {
-            restaurantService.crearRestaurant("TEST","V1");
+            restaurantService.crearRestaurant("TEST", "V1");
         } catch (InvalidRestaurantInformation invalidRestaurantInformation) {
             invalidRestaurantInformation.printStackTrace();
         } catch (RestaurantAlreadyExists restaurantAlreadyExists) {
@@ -44,7 +44,7 @@ public class RestaurantServiceTest {
         metodoDePagoList.add(new TarjetaCredito());
         metodoDePagoList.add(new Efectivo());
 
-        restaurantService.registrarDatosRestaurant(repository.findOneByLogin("TEST"),"res","tel","TESTDIRECCION", "barrio","horarioa","hcierre","des","web@correo.com","NuevaPass",3, metodoDePagoList, cocinas);
+        restaurantService.registrarDatosRestaurant(repository.findOneByLogin("TEST"), "res", "tel", "TESTDIRECCION", "barrio", "horarioa", "hcierre", "des", "web@correo.com", "NuevaPass", 3, metodoDePagoList, cocinas);
 
     }
 }

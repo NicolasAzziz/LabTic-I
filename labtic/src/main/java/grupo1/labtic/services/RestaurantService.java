@@ -27,14 +27,13 @@ public class RestaurantService {
     private MetodoDePagoRepository metodoDePagoRepository;
     @Autowired
     private RestaurantRepository restaurantRepository;
-
     @Autowired
     private MesaRepository mesaRepository;
 
-    public void crearRestaurant(String login, String password, long rut)
+    public void crearRestaurant(String email, String password, long rut)
             throws InvalidRestaurantInformation, RestaurantAlreadyExists {
 
-        if (login == null || "".equals(login) || password == null || "".equals(password)) {
+        if (email == null || "".equals(email) || password == null || "".equals(password)) {
 
             throw new InvalidRestaurantInformation("Alguno de los datos ingresados no es correcto");
 
@@ -42,44 +41,49 @@ public class RestaurantService {
 
         // Verifico si el cliente no existe
 
-        if (restaurantRepository.findOneByLogin(login) != null) {
+        if (restaurantRepository.findOneByEmail(email) != null) {
 
             throw new RestaurantAlreadyExists();
         }
 
-        Restaurant oRestaurant = new Restaurant(login, password, rut);
+        if (restaurantRepository.findByRut(rut) != null) {
+
+            throw new RestaurantAlreadyExists();
+        }
+
+        Restaurant oRestaurant = new Restaurant(email, password, rut);
 
         Restaurant save = restaurantRepository.save(oRestaurant);
 
 
     }
 
+//    public void registrarDatosRestaurant(long id, String nombre, String telefono, String direccion,
+//                                         String barrio, String habre, String hcierra, String descripcion, String web,
+//                                         String nuevaPass, int nMesas, int cantLugares){
+//
+//        Restaurant restaurante = restaurantRepository.getRestaurantById(id);
+//        restaurante.setNombreRestaurant(nombre);
+//        restaurante.setTelefono(telefono);
+//        restaurante.setDireccion(direccion);
+//        restaurante.setBarrio(barrio);
+//        restaurante.setHorarioApertura(habre);
+//        restaurante.setHorarioCierre(hcierra);
+//        restaurante.setDescripcion(descripcion);
+//        restaurante.setPassword(nuevaPass);
+//        restaurante.setSitioWeb(web);
+//        restaurantRepository.save(restaurante);
+//
+//        Mesa mesa = null;
+//        for(int i = 0; i<nMesas; i++){
+//            mesa = new Mesa(restaurante,i,cantLugares);
+//            mesaRepository.save(mesa);
+//        }
+//    }
+
     public void registrarDatosRestaurant(long id, String nombre, String telefono, String direccion,
                                          String barrio, String habre, String hcierra, String descripcion, String web,
-                                         String nuevaPass, int nMesas, int cantLugares){
-
-        Restaurant restaurante = restaurantRepository.getRestaurantById(id);
-        restaurante.setNombreRestaurant(nombre);
-        restaurante.setTelefono(telefono);
-        restaurante.setDireccion(direccion);
-        restaurante.setBarrio(barrio);
-        restaurante.setHorarioApertura(habre);
-        restaurante.setHorarioCierre(hcierra);
-        restaurante.setDescripcion(descripcion);
-        restaurante.setPassword(nuevaPass);
-        restaurante.setSitioWeb(web);
-        restaurantRepository.save(restaurante);
-
-        Mesa mesa = null;
-        for(int i = 0; i<nMesas; i++){
-            mesa = new Mesa(restaurante,i,cantLugares);
-            mesaRepository.save(mesa);
-        }
-    }
-
-    public void registrarDatosRestaurant(long id, String nombre, String telefono, String direccion,
-                                         String barrio, String habre, String hcierra, String descripcion, String web,
-                                         String nuevaPass){
+                                         String nuevaPass) {
 
         Restaurant restaurante = restaurantRepository.getRestaurantById(id);
         restaurante.setNombreRestaurant(nombre);
@@ -97,42 +101,43 @@ public class RestaurantService {
         restaurantRepository.save(restaurant);
     }*/
 
-    public void setListaMesasRestaurante(String login, List<Mesa> mesasList){
-        Restaurant restaurante = restaurantRepository.getRestaurantByLogin(login);
+    public void setListaMesasRestaurante(String email, List<Mesa> mesasList) {
+        Restaurant restaurante = restaurantRepository.getRestaurantByEmail(email);
         long id = restaurante.getId();
 
         mesaRepository.saveAll(mesasList);
 
     }
 
-    public void setGrupoDeComida( String login, String grupoDeComida ){
-        Restaurant restaurant = restaurantRepository.getRestaurantByLogin(login);
+    public void setGrupoDeComida(String email, String grupoDeComida) {
+        Restaurant restaurant = restaurantRepository.getRestaurantByEmail(email);
         GrupoDeComida grupoDeComida1 = grupoDeComidaRepository.getGrupoDeComidaByGrupo(grupoDeComida);
         restaurant.addGrupoDeComida(grupoDeComida1);
         restaurantRepository.save(restaurant);
     }
 
-    public void setGrupoDeComidaList( String login, List<String> grupoDeComidaList ){
-        Restaurant restaurant = restaurantRepository.getRestaurantByLogin(login);
+    public void setGrupoDeComidaList(String email, List<String> grupoDeComidaList) {
+        Restaurant restaurant = restaurantRepository.getRestaurantByEmail(email);
         List<GrupoDeComida> grupoDeComida1 = grupoDeComidaRepository.getGrupoDeComidaByGrupo(grupoDeComidaList);
         restaurant.setGrupoDeComidaList(grupoDeComida1);
         restaurantRepository.save(restaurant);
     }
-    public void setTipoDePago( String login, String nombreTipoDePago ){
-        Restaurant restaurant = restaurantRepository.getRestaurantByLogin(login);
+
+    public void setTipoDePago(String email, String nombreTipoDePago) {
+        Restaurant restaurant = restaurantRepository.getRestaurantByEmail(email);
         TipoDePago nombreTipoDePago1 = tipoDePagoRepository.getByNombre(nombreTipoDePago);
         restaurant.addTipoDePago(nombreTipoDePago1);
         restaurantRepository.save(restaurant);
     }
 
-    public void setTipoDePagoList( String login, List<String> nombreTipoDePagoList ){
-        Restaurant restaurant = restaurantRepository.getRestaurantByLogin(login);
+    public void setTipoDePagoList(String email, List<String> nombreTipoDePagoList) {
+        Restaurant restaurant = restaurantRepository.getRestaurantByEmail(email);
         List<TipoDePago> nombreTipoDePagoList1 = tipoDePagoRepository.getListByNombre(nombreTipoDePagoList);
         restaurant.setTipoDePagoList(nombreTipoDePagoList1);
         restaurantRepository.save(restaurant);
     }
 
-    public void insertarGrupoDeComidas(){
+    public void insertarGrupoDeComidas() {
         if (grupoDeComidaRepository.existsByGrupo("Wok") == false) {
             grupoDeComidaRepository.save(new GrupoDeComida("Hamburguesas"));
             grupoDeComidaRepository.save(new GrupoDeComida("Ensaladas"));
@@ -154,7 +159,7 @@ public class RestaurantService {
         }
     }
 
-    public void insertarTiposDePagos(){
+    public void insertarTiposDePagos() {
         if (tipoDePagoRepository.existsByNombre("Ticket Restaurante") == false) {
             tipoDePagoRepository.save(new TipoDePago("Tarjeta de Crédito"));
             tipoDePagoRepository.save(new TipoDePago("Tarjeta de Débito"));

@@ -11,9 +11,9 @@ import java.util.Objects;
 @Entity(name = "TipoDePago")
 public class TipoDePago {
     @Id
-    @GeneratedValue( generator = "tipoDePago_id")
-    @GenericGenerator( name = "tipoDePago_id", strategy = "increment")
-    @Column( name = "id", updatable = false, nullable = false)
+    @GeneratedValue(generator = "tipoDePago_id")
+    @GenericGenerator(name = "tipoDePago_id", strategy = "increment")
+    @Column(name = "id", updatable = false, nullable = false)
     private long id;
 
     @Column(name = "Nombre_TipoDePago", unique = true)

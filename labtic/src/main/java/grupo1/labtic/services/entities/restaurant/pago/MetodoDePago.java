@@ -21,17 +21,20 @@ public class MetodoDePago {
         this.metodoDePagoPK.setId(metodoDePagoPK);
     }
 
-    public void setRestauranteMetodoDePago(Restaurant rest){
-        metodoDePagoPK.setMetodoDePagoRestaurant(rest);
-    }
-    public void setId(long id){
-        metodoDePagoPK.setId(id);
-    }
-    public Restaurant getRestauranteMetodoDePago(){
+    public Restaurant getRestauranteMetodoDePago() {
         return metodoDePagoPK.getMetodoDePagoRestaurant();
     }
-    public long getId(){
-        return  metodoDePagoPK.getId();
+
+    public void setRestauranteMetodoDePago(Restaurant rest) {
+        metodoDePagoPK.setMetodoDePagoRestaurant(rest);
+    }
+
+    public long getId() {
+        return metodoDePagoPK.getId();
+    }
+
+    public void setId(long id) {
+        metodoDePagoPK.setId(id);
     }
 
     public MetodoDePagoPK getMetodoDePagoPK() {
@@ -68,15 +71,15 @@ class MetodoDePagoPK implements Serializable {
         return MetodoDePagoRestaurant;
     }
 
+    public void setMetodoDePagoRestaurant(Restaurant metodoDePagoRestaurant) {
+        MetodoDePagoRestaurant = metodoDePagoRestaurant;
+    }
+
     public long getId() {
         return id;
     }
 
     public void setId(long id) {
         this.id = id;
-    }
-
-    public void setMetodoDePagoRestaurant(Restaurant metodoDePagoRestaurant) {
-        MetodoDePagoRestaurant = metodoDePagoRestaurant;
     }
 }

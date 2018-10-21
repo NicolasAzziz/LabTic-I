@@ -2,30 +2,24 @@ package grupo1.labtic.services.entities;
 
 import javax.persistence.Entity;
 
-@Entity (name = "ADMIN")
+@Entity(name = "ADMIN")
 public class Admin extends Usuario {
 
-    public Admin(String login, String password, String email) {
-        super(login, password, email);
-    }
-
-    public Admin(String login, String password) {
-        super(login, password);
+    public Admin(String email, String password) {
+        super(email, password);
     }
 
     public Admin() {
         super();
 
     }
-    public Usuario crearRestaurant(String nombre, String password, String email){
-        Usuario restaurante = new Restaurant(nombre, password, email);
+
+    public Restaurant crearRestaurant(String email, String password, long rut) {
+        Restaurant restaurante = new Restaurant(email, password, rut);
         return restaurante;
     }
-    public Usuario crearRestaurant(String login, String password, long rut){
-        Usuario restaurante = new Restaurant(login, password, rut);
-        return restaurante;
-    }
-    public void facturacion(){
+
+    public void facturacion() {
 
     }
 

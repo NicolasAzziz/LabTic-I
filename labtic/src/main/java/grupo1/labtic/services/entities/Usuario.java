@@ -1,6 +1,5 @@
 package grupo1.labtic.services.entities;
 
-import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -8,38 +7,25 @@ import javax.validation.constraints.Email;
 import java.util.Objects;
 
 @Entity(name = "USUARIO")
-@Inheritance( strategy = InheritanceType.JOINED )
+@Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Usuario {
 
 
     @Id
-    @GeneratedValue( generator = "usuario_id")
-    @GenericGenerator( name = "usuario_id", strategy = "increment")
-    @Column( name = "id", updatable = false, nullable = false)
+    @GeneratedValue(generator = "usuario_id")
+    @GenericGenerator(name = "usuario_id", strategy = "increment")
+    @Column(name = "id", updatable = false, nullable = false)
     private long id;
-
-    @Column( name = "login", unique = true)
-    private String login;
-
-    @Column( name = "password")
-    private String password;
 
     @Column(name = "email")
     @Email
     private String email;
 
-    public Usuario(String login, String password,String email) {
-        this.login = login;
-        this.password = password;
+    @Column(name = "password")
+    private String password;
+
+    public Usuario(String email, String password) {
         this.email = email;
-    }
-
-    public Usuario(String login) {
-        this.login = login;
-    }
-
-    public Usuario(String login, String password) {
-        this.login = login;
         this.password = password;
     }
 
@@ -52,26 +38,17 @@ public abstract class Usuario {
         if (o == null || getClass() != o.getClass()) return false;
         Usuario usuario = (Usuario) o;
         return id == usuario.id &&
-                Objects.equals(login, usuario.login) &&
-                Objects.equals(password, usuario.password) &&
-                Objects.equals(email, usuario.email);
+                Objects.equals(email, usuario.email) &&
+                Objects.equals(password, usuario.password);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, login, password, email);
+        return Objects.hash(id, email, password);
     }
 
     public long getId() {
         return id;
-    }
-
-    public String getLogin() {
-        return login;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
     }
 
     public String getPassword() {

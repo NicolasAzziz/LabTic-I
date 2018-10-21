@@ -6,22 +6,16 @@ import grupo1.labtic.services.RestaurantService;
 import grupo1.labtic.services.entities.Restaurant;
 import grupo1.labtic.services.entities.Usuario;
 import grupo1.labtic.services.entities.restaurant.Mesa;
-import javafx.beans.InvalidationListener;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Group;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import javax.persistence.criteria.CriteriaBuilder;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -29,9 +23,11 @@ import java.util.stream.Collectors;
 @Component
 public class SolicitarDatos {
 
-    private RestaurantRepository repo;
     @Autowired
     RestaurantService service;
+    ObservableList<Mesa> mesas;
+    @Autowired
+    private RestaurantRepository repo;
     @FXML
     private TextField usuario;
     @FXML
@@ -79,77 +75,49 @@ public class SolicitarDatos {
     @FXML
     private PasswordField passNueva;
     @FXML
-    private CheckMenuItem cafeteria;
-    @FXML
-    private CheckMenuItem parrilla;
-    @FXML
-    private CheckMenuItem celiacos;
-    @FXML
-    private CheckMenuItem chivitos;
-    @FXML
-    private CheckMenuItem comidaChina;
-    @FXML
-    private CheckMenuItem comidaMexicana;
-    @FXML
-    private CheckMenuItem comidaVegetariana;
-    @FXML
-    private CheckMenuItem comidaVegana;
-    @FXML
-    private CheckMenuItem milanesas;
-    @FXML
-    private CheckMenuItem pescadoMariscos;
-    @FXML
-    private CheckMenuItem pizza;
-    @FXML
-    private CheckMenuItem sandwiches;
-    @FXML
-    private CheckMenuItem tartas;
-    @FXML
-    private CheckMenuItem wrap;
-    @FXML
-    private CheckMenuItem wok;
-    @FXML
     private TextField nMesas;
     @FXML
-    private  TextField nSillas;
+    private TextField nSillas;
     @FXML
     private Button mas;
     @FXML
     private TableView<Mesa> tabla;
     @FXML
-    private TableColumn<Mesa,Integer> column1;
+    private TableColumn<Mesa, Integer> column1;
     @FXML
     private TableColumn<Mesa, Integer> column2;
-
-    ObservableList<Mesa> mesas;
     private int pos;
-
+    private final ListChangeListener<Mesa> selectorTabla = new ListChangeListener<Mesa>() {
+        @Override
+        public void onChanged(ListChangeListener.Change<? extends Mesa> c) {
+            ponerMesaSeleccionada();
+        }
+    };
 
     @FXML
-    public void registrar (javafx.event.ActionEvent event){
-        if (nombreRestaurante.getText()==null||nombreRestaurante.getText().equals("")||telefonoRestaurante.getText()==null||
-        telefonoRestaurante.getText().equals("")||direccionRestaurante.getText()==null||direccionRestaurante.getText().equals("")||
-        barrioRestaurante.getText()==null||barrioRestaurante.getText().equals("")||hAperturaRestaurante.getText()==null||
-        hAperturaRestaurante.getText().equals("")||mAperturaRestaurante.getText()==null||mAperturaRestaurante.getText().equals("")||
-        hCierreRestaurante.getText()==null||hCierreRestaurante.getText().equals("")||mCierreRestaurante.getText()==null||
-        mCierreRestaurante.getText().equals("")||usuario.getText()==null||usuario.getText().equals("")){
+    public void registrar(ActionEvent event) {
+        if (nombreRestaurante.getText() == null || nombreRestaurante.getText().equals("") || telefonoRestaurante.getText() == null ||
+                telefonoRestaurante.getText().equals("") || direccionRestaurante.getText() == null || direccionRestaurante.getText().equals("") ||
+                barrioRestaurante.getText() == null || barrioRestaurante.getText().equals("") || hAperturaRestaurante.getText() == null ||
+                hAperturaRestaurante.getText().equals("") || mAperturaRestaurante.getText() == null || mAperturaRestaurante.getText().equals("") ||
+                hCierreRestaurante.getText() == null || hCierreRestaurante.getText().equals("") || mCierreRestaurante.getText() == null ||
+                mCierreRestaurante.getText().equals("") || usuario.getText() == null || usuario.getText().equals("")) {
             showAlert("Datos faltantes!",
                     "No se ingresaron los datos necesarios para completar el ingreso.");
-        }
-        else{
-            try{
-                String login = usuario.getText();
-                Usuario restaurante =  repo.findOneByLogin(login);
+        } else {
+            try {
+                String email = usuario.getText();
+                Restaurant restaurante = repo.findOneByEmail(email);
                 long id = restaurante.getId();
-                if(restaurante.getPassword().equals(passActual.getText())){
-                    try{
+                if (restaurante.getPassword().equals(passActual.getText())) {
+                    try {
                         String nombre = nombreRestaurante.getText();
                         String telefono = (telefonoRestaurante.getText());
                         String direccion = direccionRestaurante.getText();
                         String barrio = barrioRestaurante.getText();
                         Integer hAbre = Integer.valueOf(hAperturaRestaurante.getText());
                         Integer mAbre = Integer.valueOf(mAperturaRestaurante.getText());
-                        String habre = hAperturaRestaurante.getText()+ ":" + mAperturaRestaurante.getText();
+                        String habre = hAperturaRestaurante.getText() + ":" + mAperturaRestaurante.getText();
                         Integer hCierra = Integer.valueOf(hCierreRestaurante.getText());
                         Integer mCierra = Integer.valueOf(mCierreRestaurante.getText());
                         String hcierra = hCierreRestaurante.getText() + ":" + mCierreRestaurante.getText();
@@ -168,35 +136,32 @@ public class SolicitarDatos {
                                 .map(MenuItem::getText).collect(Collectors.toList());
 
 
-                        service.setTipoDePagoList(login, selectedItemsTipoDePagoMenu);
+                        service.setTipoDePagoList(email, selectedItemsTipoDePagoMenu);
 
-                        service.setGrupoDeComidaList(login, selectedItemsComidas);
+                        service.setGrupoDeComidaList(email, selectedItemsComidas);
 
                         List<Mesa> mesaList = new ArrayList<>();
                         //---------------> AGREGAR LAS MESAS A ESTA LISTA <-------------------------------------------------
 
-                        mesaList.add(new Mesa((Restaurant) restaurante,3,5));
+                        mesaList.add(new Mesa((Restaurant) restaurante, 3, 5));
 
 
-                        service.setListaMesasRestaurante(login, mesaList);
+                        service.setListaMesasRestaurante(email, mesaList);
 
 
-                        service.registrarDatosRestaurant(id, nombre, telefono, direccion,barrio,habre,hcierra,descripcion,web,
+                        service.registrarDatosRestaurant(id, nombre, telefono, direccion, barrio, habre, hcierra, descripcion, web,
                                 nuevaPass);
 
                         showAlert("Datos guardados", "Se guardaron con éxito los datos de su restaurante");
                         clean();
-                    }
-                    catch(NumberFormatException e){
+                    } catch (NumberFormatException e) {
                         showAlert("Informacion Invalida", "Se encontró un error en los datos ingresados");
                     }
-                }
-                else{
+                } else {
                     showAlert("Contraseña incorrecta", "La contraseña ingresada es incorrecta");
                 }
-            }
-            catch (NullPointerException e){
-                showAlert("usuario no encontrado", "El nombre de usuario ingresado no existe en el sistema");
+            } catch (NullPointerException e) {
+                showAlert("Usuario no encontrado", "El nombre de usuario ingresado no existe en el sistema");
             }
 
         }
@@ -204,13 +169,13 @@ public class SolicitarDatos {
 
     @FXML
     public void agregarMesa(ActionEvent actionEvent) {
-        if(nMesas.getText()==null||nMesas.getText().equals("")||nSillas.getText()==null||nSillas.getText().equals("")){
-            try{
+        if (nMesas.getText() == null || nMesas.getText().equals("") || nSillas.getText() == null || nSillas.getText().equals("")) {
+            try {
                 init();
 
                 Integer referencia = Integer.valueOf(nMesas.getText());
                 Integer capacidad = Integer.valueOf(nSillas.getText());
-                Usuario u = repo.findOneByLogin(usuario.getText());
+                Usuario u = repo.findOneByEmail(usuario.getText());
                 long id = u.getId();
                 Restaurant r = repo.findOneById(id);
 
@@ -222,42 +187,34 @@ public class SolicitarDatos {
                 mesas.add(mesa);
                 tabla.setItems(mesas);
                 cleanMesas();
-            }
-            catch (NumberFormatException e){
+            } catch (NumberFormatException e) {
                 showAlert("No se pudo agregar la mesa",
                         "El número o la cantidad de lugares disponibles en la mesa son inválidos");
             }
         }
     }
 
-    private final ListChangeListener<Mesa> selectorTabla = new ListChangeListener<Mesa>() {
-        @Override
-        public void onChanged (ListChangeListener.Change<? extends Mesa> c) {
-            ponerMesaSeleccionada();
-        }
-    };
-
     private void ponerMesaSeleccionada() {
         final Mesa mesa = getTablaMesaSeleccionada();
         pos = mesas.indexOf(mesa);
-        if (mesa!= null){
+        if (mesa != null) {
             nMesas.setText(String.valueOf(mesa.getNumeroReferencia()));
             nSillas.setText(String.valueOf(mesa.getCantLugares()));
             mas.setDisable(false);
         }
     }
 
-    private void init (){
+    private void init() {
         column1.setCellValueFactory(new PropertyValueFactory<Mesa, Integer>("nroReferencia"));
         column2.setCellValueFactory(new PropertyValueFactory<Mesa, Integer>("cantLugares"));
 
         mesas = FXCollections.observableArrayList();
     }
 
-    public Mesa getTablaMesaSeleccionada(){
-        if(tabla != null){
-            List <Mesa> tablaMesas = tabla.getSelectionModel().getSelectedItems();
-            if(tablaMesas.size()==1){
+    public Mesa getTablaMesaSeleccionada() {
+        if (tabla != null) {
+            List<Mesa> tablaMesas = tabla.getSelectionModel().getSelectedItems();
+            if (tablaMesas.size() == 1) {
                 final Mesa competicionSeleccionada = tablaMesas.get(0);
                 return competicionSeleccionada;
             }
@@ -266,14 +223,16 @@ public class SolicitarDatos {
     }
 
 
-    public void cleanMesas(){
+    public void cleanMesas() {
         nMesas.setText(null);
         nSillas.setText(null);
     }
 
-    public void clean(){
+    public void clean() {
         usuario.setText(null);
         nombreRestaurante.setText(null);
+        passActual.setText(null);
+        passNueva.setText(null);
         telefonoRestaurante.setText(null);
         descR.setText(null);
         webRestaurante.setText(null);

@@ -11,13 +11,17 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 
 @SpringBootApplication
-public class RestaurantApplication extends Application  {
+public class RestaurantApplication extends Application {
 
     private ConfigurableApplicationContext context;
 
     private FXMLLoader fxmlLoader;
 
     private Parent root;
+
+    public static void main(String[] args) {
+        launch(args);
+    }
 
     @Override
     public void init() throws Exception {
@@ -26,9 +30,8 @@ public class RestaurantApplication extends Application  {
         fxmlLoader.setControllerFactory(context::getBean);
     }
 
-
     @Override
-    public void start(Stage primaryStage) throws Exception{
+    public void start(Stage primaryStage) throws Exception {
         fxmlLoader.setLocation(SolicitarDatos.class.getResource("solicitarDatos.fxml"));
 
         root = fxmlLoader.load();
@@ -36,13 +39,8 @@ public class RestaurantApplication extends Application  {
         primaryStage.show();
     }
 
-
     @Override
     public void stop() {
         context.close();
-    }
-
-    public static void main(String[] args) {
-        launch(args);
     }
 }

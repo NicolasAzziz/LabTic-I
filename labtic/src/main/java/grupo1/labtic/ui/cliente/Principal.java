@@ -4,10 +4,9 @@ import grupo1.labtic.persistence.RestaurantRepository;
 import grupo1.labtic.services.entities.Restaurant;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.event.ActionEvent;
-import javafx.scene.layout.VBox;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -117,30 +116,28 @@ public class Principal {
                 CheckMenuItem.class.isInstance(item) && CheckMenuItem.class.cast(item).isSelected())
                 .map(MenuItem::getText).collect(Collectors.toList());
 
-        if(restaurantToFind.getText() == null || restaurantToFind.getText().equals("")){
-            if(selectedBarrios.isEmpty() == true && selectedItemsComidas.isEmpty() == true){
+        if (restaurantToFind.getText() == null || restaurantToFind.getText().equals("")) {
+            if (selectedBarrios.isEmpty() == true && selectedItemsComidas.isEmpty() == true) {
 
 
-            }
-            else if(selectedBarrios.isEmpty() == true && selectedItemsComidas.isEmpty() == false){
+            } else if (selectedBarrios.isEmpty() == true && selectedItemsComidas.isEmpty() == false) {
 
-            }
-            else if(selectedBarrios.isEmpty() == false && selectedItemsComidas.isEmpty() == true){
+            } else if (selectedBarrios.isEmpty() == false && selectedItemsComidas.isEmpty() == true) {
 
-            }else{
+            } else {
 
             }
 
-        }else{
+        } else {
             Restaurant rest = repository.findByNombreRestaurant(restaurantToFind.getText());
-            if(rest != null){
+            if (rest != null) {
 
                 Restaurant resto = repository.findByNombreRestaurant(restaurantToFind.getText());
 
                 nombre.setText(resto.getNombreRestaurant());
                 horario.setText(resto.getHorarioApertura() + " - " + resto.getHorarioCierre());
                 String var = null;
-                for(int i = 0; i < resto.getGrupoDeComidaList().size() ; i ++){
+                for (int i = 0; i < resto.getGrupoDeComidaList().size(); i++) {
                     var = var + " " + resto.getGrupoDeComidaList().get(i);
                 }
                 comidas.setText(var);
@@ -150,7 +147,7 @@ public class Principal {
 
     }
 
-    public ObservableList<Restaurant> getRestaurants(){
+    public ObservableList<Restaurant> getRestaurants() {
         ObservableList<Restaurant> restaurants = FXCollections.observableArrayList();
         restaurants.add(repository.findByNombreRestaurant(restaurantToFind.getText()));
         return restaurants;
