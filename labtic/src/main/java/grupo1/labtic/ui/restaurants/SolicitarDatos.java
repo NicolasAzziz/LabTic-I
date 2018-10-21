@@ -6,6 +6,8 @@ import grupo1.labtic.services.RestaurantService;
 import grupo1.labtic.services.entities.Restaurant;
 import grupo1.labtic.services.entities.Usuario;
 import grupo1.labtic.services.entities.restaurant.Mesa;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
@@ -25,7 +27,7 @@ public class SolicitarDatos {
 
     @Autowired
     RestaurantService service;
-    ObservableList<Mesa> mesas;
+    ObservableList<SimpleStringProperty> mesas = FXCollections.observableArrayList();
     @Autowired
     private RestaurantRepository repo;
     @FXML
@@ -81,18 +83,7 @@ public class SolicitarDatos {
     @FXML
     private Button mas;
     @FXML
-    private TableView<Mesa> tabla;
-    @FXML
-    private TableColumn<Mesa, Integer> column1;
-    @FXML
-    private TableColumn<Mesa, Integer> column2;
-    private int pos;
-    private final ListChangeListener<Mesa> selectorTabla = new ListChangeListener<Mesa>() {
-        @Override
-        public void onChanged(ListChangeListener.Change<? extends Mesa> c) {
-            ponerMesaSeleccionada();
-        }
-    };
+    private ListView<SimpleStringProperty> list;
 
     @FXML
     public void registrar(ActionEvent event) {
@@ -171,11 +162,15 @@ public class SolicitarDatos {
     public void agregarMesa(ActionEvent actionEvent) {
         if (nMesas.getText() == null || nMesas.getText().equals("") || nSillas.getText() == null || nSillas.getText().equals("")) {
             try {
-                init();
 
                 Integer referencia = Integer.valueOf(nMesas.getText());
                 Integer capacidad = Integer.valueOf(nSillas.getText());
+                SimpleStringProperty nM = new SimpleStringProperty();
+                SimpleStringProperty nS = new SimpleStringProperty();
                 Usuario u = repo.findOneByEmail(usuario.getText());
+                nM.set(nMesas.getText());
+                nS.set(nSillas.getText());
+
                 long id = u.getId();
                 Restaurant r = repo.findOneById(id);
 
@@ -184,42 +179,17 @@ public class SolicitarDatos {
                 mesa.setNumeroReferencia(referencia);
                 mesa.setCantLugares(capacidad);
 
-                mesas.add(mesa);
-                tabla.setItems(mesas);
+                SimpleStringProperty mesaAgregar = new SimpleStringProperty();
+                mesaAgregar.set(nM + "->" + nS);
+
+                //mesas.add(mesa);
+                list.getItems().add(mesaAgregar);
                 cleanMesas();
             } catch (NumberFormatException e) {
                 showAlert("No se pudo agregar la mesa",
                         "El número o la cantidad de lugares disponibles en la mesa son inválidos");
             }
         }
-    }
-
-    private void ponerMesaSeleccionada() {
-        final Mesa mesa = getTablaMesaSeleccionada();
-        pos = mesas.indexOf(mesa);
-        if (mesa != null) {
-            nMesas.setText(String.valueOf(mesa.getNumeroReferencia()));
-            nSillas.setText(String.valueOf(mesa.getCantLugares()));
-            mas.setDisable(false);
-        }
-    }
-
-    private void init() {
-        column1.setCellValueFactory(new PropertyValueFactory<Mesa, Integer>("nroReferencia"));
-        column2.setCellValueFactory(new PropertyValueFactory<Mesa, Integer>("cantLugares"));
-
-        mesas = FXCollections.observableArrayList();
-    }
-
-    public Mesa getTablaMesaSeleccionada() {
-        if (tabla != null) {
-            List<Mesa> tablaMesas = tabla.getSelectionModel().getSelectedItems();
-            if (tablaMesas.size() == 1) {
-                final Mesa competicionSeleccionada = tablaMesas.get(0);
-                return competicionSeleccionada;
-            }
-        }
-        return null;
     }
 
 
