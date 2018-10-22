@@ -4,17 +4,14 @@ package grupo1.labtic.ui.restaurants;
 import grupo1.labtic.persistence.RestaurantRepository;
 import grupo1.labtic.services.RestaurantService;
 import grupo1.labtic.services.entities.Restaurant;
-import grupo1.labtic.services.entities.Usuario;
 import grupo1.labtic.services.entities.restaurant.Mesa;
+import grupo1.labtic.ui.restaurants.Exception.NroReferenciaException;
 import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -27,11 +24,10 @@ public class SolicitarDatos {
 
     @Autowired
     RestaurantService service;
-    ObservableList<SimpleStringProperty> mesas = FXCollections.observableArrayList();
     @Autowired
-    private RestaurantRepository repo;
+    private RestaurantRepository restaurantRepository;
     @FXML
-    private TextField usuario;
+    private TextField emailRestaurant;
     @FXML
     private TextField nombreRestaurante;
     @FXML
@@ -83,8 +79,49 @@ public class SolicitarDatos {
     @FXML
     private Button mas;
     @FXML
-    private ListView<SimpleStringProperty> list;
+    private ListView<Mesa> listMesas;
+    ObservableList<Mesa> mesaList;
 
+    @FXML
+    public void agregarMesa(ActionEvent actionEvent) {
+        String n = nMesas.getText();
+        String g = nSillas.getText().toString();
+
+        if (!(nMesas.getText() == null || nMesas.getText().equals("") || nSillas.getText() == null && nSillas.getText().equals(""))) {
+            try {
+                mesaList = mesaList == null ? FXCollections.<Mesa>observableArrayList() : mesaList;
+
+                Integer referencia = Integer.valueOf(nMesas.getText());
+                Integer capacidad = Integer.valueOf(nSillas.getText());
+                Mesa mesa = new Mesa( referencia, capacidad);
+
+                verificacionMesas(mesa);
+
+                mesaList.add(mesa);
+
+                listMesas.setItems(mesaList);
+
+            } catch (NumberFormatException e) {
+                showAlert("No se pudo agregar la mesa",
+                        "El número o la cantidad de lugares disponibles en la mesa son inválidos");
+            } catch (NroReferenciaException e){
+                showAlert("No se puedo agregar la mesa",
+                        e.getMessage());
+            }
+        }
+    }
+    private boolean verificacionMesas(Mesa mesa) throws NroReferenciaException {
+        boolean bExit = false;
+        if(mesaList == null || mesaList.size() == 0){
+            bExit = true;
+        }else{
+            for(int i = 0; i<mesaList.size(); i++){
+                if(mesa.getNumeroReferencia() == mesaList.get(i).getNumeroReferencia())
+                    throw new NroReferenciaException("Ya agregó una mesa con ese numero de referencia.");
+            }
+        }
+        return bExit;
+    }
     @FXML
     public void registrar(ActionEvent event) {
         if (nombreRestaurante.getText() == null || nombreRestaurante.getText().equals("") || telefonoRestaurante.getText() == null ||
@@ -92,13 +129,13 @@ public class SolicitarDatos {
                 barrioRestaurante.getText() == null || barrioRestaurante.getText().equals("") || hAperturaRestaurante.getText() == null ||
                 hAperturaRestaurante.getText().equals("") || mAperturaRestaurante.getText() == null || mAperturaRestaurante.getText().equals("") ||
                 hCierreRestaurante.getText() == null || hCierreRestaurante.getText().equals("") || mCierreRestaurante.getText() == null ||
-                mCierreRestaurante.getText().equals("") || usuario.getText() == null || usuario.getText().equals("")) {
+                mCierreRestaurante.getText().equals("") || emailRestaurant.getText() == null || emailRestaurant.getText().equals("")) {
             showAlert("Datos faltantes!",
                     "No se ingresaron los datos necesarios para completar el ingreso.");
         } else {
             try {
-                String email = usuario.getText();
-                Restaurant restaurante = repo.findOneByEmail(email);
+                String email = emailRestaurant.getText();
+                Restaurant restaurante = restaurantRepository.findOneByEmail(email);
                 long id = restaurante.getId();
                 if (restaurante.getPassword().equals(passActual.getText())) {
                     try {
@@ -152,45 +189,15 @@ public class SolicitarDatos {
                     showAlert("Contraseña incorrecta", "La contraseña ingresada es incorrecta");
                 }
             } catch (NullPointerException e) {
-                showAlert("Usuario no encontrado", "El nombre de usuario ingresado no existe en el sistema");
+                showAlert("Usuario no encontrado", "El nombre de emailRestaurant ingresado no existe en el sistema");
             }
 
         }
     }
 
-    @FXML
-    public void agregarMesa(ActionEvent actionEvent) {
-        if (nMesas.getText() == null || nMesas.getText().equals("") || nSillas.getText() == null || nSillas.getText().equals("")) {
-            try {
 
-                Integer referencia = Integer.valueOf(nMesas.getText());
-                Integer capacidad = Integer.valueOf(nSillas.getText());
-                SimpleStringProperty nM = new SimpleStringProperty();
-                SimpleStringProperty nS = new SimpleStringProperty();
-                Usuario u = repo.findOneByEmail(usuario.getText());
-                nM.set(nMesas.getText());
-                nS.set(nSillas.getText());
 
-                long id = u.getId();
-                Restaurant r = repo.findOneById(id);
 
-                Mesa mesa = new Mesa();
-                mesa.setRestaurant(r);
-                mesa.setNumeroReferencia(referencia);
-                mesa.setCantLugares(capacidad);
-
-                SimpleStringProperty mesaAgregar = new SimpleStringProperty();
-                mesaAgregar.set(nM + "->" + nS);
-
-                //mesas.add(mesa);
-                list.getItems().add(mesaAgregar);
-                cleanMesas();
-            } catch (NumberFormatException e) {
-                showAlert("No se pudo agregar la mesa",
-                        "El número o la cantidad de lugares disponibles en la mesa son inválidos");
-            }
-        }
-    }
 
 
     public void cleanMesas() {
@@ -199,7 +206,7 @@ public class SolicitarDatos {
     }
 
     public void clean() {
-        usuario.setText(null);
+        emailRestaurant.setText(null);
         nombreRestaurante.setText(null);
         passActual.setText(null);
         passNueva.setText(null);

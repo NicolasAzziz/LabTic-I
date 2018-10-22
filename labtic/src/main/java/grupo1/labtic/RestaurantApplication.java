@@ -35,6 +35,7 @@ public class RestaurantApplication extends Application {
         fxmlLoader.setLocation(SolicitarDatos.class.getResource("solicitarDatos.fxml"));
 
         root = fxmlLoader.load();
+        primaryStage.setTitle("Llene los datos del Restaurant");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
     }

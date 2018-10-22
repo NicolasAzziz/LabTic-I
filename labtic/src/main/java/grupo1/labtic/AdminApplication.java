@@ -47,6 +47,7 @@ public class AdminApplication extends Application {
 //        restaurantService.insertarGrupoDeComidas();
         fxmlLoader.setLocation(Administrar.class.getResource("AdminPortada.fxml"));
         root = fxmlLoader.load();
+        primaryStage.setTitle("Administrador");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
     }
