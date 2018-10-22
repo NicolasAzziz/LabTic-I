@@ -11,9 +11,18 @@ import grupo1.labtic.services.entities.restaurant.Mesa;
 import grupo1.labtic.services.entities.restaurant.TipoDePago;
 import grupo1.labtic.services.exceptions.InvalidRestaurantInformation;
 import grupo1.labtic.services.exceptions.RestaurantAlreadyExists;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.imageio.ImageIO;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.util.List;
 
 
@@ -56,6 +65,11 @@ public class RestaurantService {
         Restaurant save = restaurantRepository.save(oRestaurant);
 
 
+    }
+
+    public void setPrecioMedio(Restaurant restaurante , String precioMedio){
+        restaurante.setPrecioMedio(precioMedio);
+        restaurantRepository.save(restaurante);
     }
 
 //    public void registrarDatosRestaurant(long id, String nombre, String telefono, String direccion,
@@ -130,6 +144,18 @@ public class RestaurantService {
     public void setTipoDePagoList(Restaurant restaurant, List<String> nombreTipoDePagoList) {
         List<TipoDePago> nombreTipoDePagoList1 = tipoDePagoRepository.getListByNombre(nombreTipoDePagoList);
         restaurant.setTipoDePagoList(nombreTipoDePagoList1);
+        restaurantRepository.save(restaurant);
+    }
+
+    public void guardarImagen(Restaurant restaurant, File imgFile){
+        byte[] data = null;
+        try {
+            FileInputStream fis = new FileInputStream(imgFile);
+            data = Files.readAllBytes(imgFile.toPath());
+        }catch(IOException e){
+            e.getStackTrace();
+        }
+        restaurant.setImagen(data);
         restaurantRepository.save(restaurant);
     }
 

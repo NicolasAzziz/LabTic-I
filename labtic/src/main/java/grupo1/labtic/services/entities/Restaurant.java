@@ -2,11 +2,10 @@ package grupo1.labtic.services.entities;
 
 import grupo1.labtic.services.entities.restaurant.GrupoDeComida;
 import grupo1.labtic.services.entities.restaurant.TipoDePago;
+import javafx.scene.image.Image;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.ManyToMany;
+import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -38,6 +37,12 @@ public class Restaurant extends Usuario {
     private String nombreRestaurant;
     @Column(name = "SitioWeb")
     private String sitioWeb;
+    @Column
+    private String precioMedio;
+    @Column
+    @Lob
+    private byte[] imagen;
+
 
 
 
@@ -111,7 +116,6 @@ public class Restaurant extends Usuario {
     public String getHorarioApertura() {
         return horarioApertura;
     }
-
     public void setHorarioApertura(String horarioApertura) {
         this.horarioApertura = horarioApertura;
     }
@@ -146,6 +150,14 @@ public class Restaurant extends Usuario {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+
+    public String getPrecioMedio() {
+        return precioMedio;
+    }
+
+    public void setPrecioMedio(String precioMedio) {
+        this.precioMedio = precioMedio;
     }
 
     public List<GrupoDeComida> getGrupoDeComidaList() {
@@ -186,5 +198,13 @@ public class Restaurant extends Usuario {
 
     public void setRut(long rut) {
         this.rut = rut;
+    }
+
+    public byte[] getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(byte[] imagen) {
+        this.imagen = imagen;
     }
 }

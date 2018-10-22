@@ -11,9 +11,13 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -34,7 +38,7 @@ public class SolicitarDatos {
     @FXML
     private TextField direccionRestaurante;
     @FXML
-    private TextField barrioRestaurante;
+    private TextField precioMedio;
     @FXML
     private TextField hAperturaRestaurante;
     @FXML
@@ -83,34 +87,8 @@ public class SolicitarDatos {
     @FXML
     private MenuButton barriosMenu;
 
-    @FXML
-    private CheckMenuItem puntaCarretas;
-    @FXML
-    private CheckMenuItem palermo;
-    @FXML
-    private CheckMenuItem parqueRodo;
-    @FXML
-    private CheckMenuItem maronias;
-    @FXML
-    private CheckMenuItem cordon;
-    @FXML
-    private CheckMenuItem buceo;
-    @FXML
-    private CheckMenuItem malvin;
-    @FXML
-    private CheckMenuItem ciudadVieja;
-    @FXML
-    private CheckMenuItem centro;
-    @FXML
-    private CheckMenuItem pocitos;
-    @FXML
-    private CheckMenuItem barrioSur;
-    @FXML
-    private CheckMenuItem parqueBatlle;
-    @FXML
-    private CheckMenuItem puntaGorda;
-    @FXML
-    private CheckMenuItem carrasco;
+
+    private File imgFile;
 
     ObservableList<Mesa> mesaList;
 
@@ -158,90 +136,116 @@ public class SolicitarDatos {
     public void registrar(ActionEvent event) {
         if (nombreRestaurante.getText() == null || nombreRestaurante.getText().equals("") || telefonoRestaurante.getText() == null ||
                 telefonoRestaurante.getText().equals("") || direccionRestaurante.getText() == null || direccionRestaurante.getText().equals("") ||
-                barrioRestaurante.getText() == null || barrioRestaurante.getText().equals("") || hAperturaRestaurante.getText() == null ||
+                hAperturaRestaurante.getText() == null ||
                 hAperturaRestaurante.getText().equals("") || mAperturaRestaurante.getText() == null || mAperturaRestaurante.getText().equals("") ||
                 hCierreRestaurante.getText() == null || hCierreRestaurante.getText().equals("") || mCierreRestaurante.getText() == null ||
                 mCierreRestaurante.getText().equals("") || email.getText() == null || email.getText().equals("")) {
             showAlert("Datos faltantes!",
                     "No se ingresaron los datos necesarios para completar el ingreso.");
         } else {
-            try {
+
                 String email = this.email.getText();
                 Restaurant restaurante = restaurantRepository.getRestaurantByEmail(email);
-                if (restaurante.getPassword().equals(passActual.getText())) {
-                    try {
-                        String nombre = nombreRestaurante.getText();
-                        String telefono = (telefonoRestaurante.getText());
-                        String direccion = direccionRestaurante.getText();
-                        String barrio = null;
-                        Integer hAbre = Integer.valueOf(hAperturaRestaurante.getText());
-                        Integer mAbre = Integer.valueOf(mAperturaRestaurante.getText());
-                        String habre = hAperturaRestaurante.getText() + ":" + mAperturaRestaurante.getText();
-                        Integer hCierra = Integer.valueOf(hCierreRestaurante.getText());
-                        Integer mCierra = Integer.valueOf(mCierreRestaurante.getText());
-                        String hcierra = hCierreRestaurante.getText() + ":" + mCierreRestaurante.getText();
-                        String descripcion = descR.getText();
-                        String web = webRestaurante.getText();
-                        String nuevaPass = passNueva.getText();
-                        //
+                if(restaurante == null){
+                    showAlert("Usuario no encontrado", "El email: " + this.email.getText() +" no existe en el sistema");
+
+                }else {
+
+                    if (restaurante.getPassword().equals(passActual.getText())) {
+                        try {
+                            String nombre = nombreRestaurante.getText();
+                            String telefono = (telefonoRestaurante.getText());
+                            String direccion = direccionRestaurante.getText();
+                            String barrio = null;
+                            Integer hAbre = Integer.valueOf(hAperturaRestaurante.getText());
+                            Integer mAbre = Integer.valueOf(mAperturaRestaurante.getText());
+                            String habre = hAperturaRestaurante.getText() + ":" + mAperturaRestaurante.getText();
+                            Integer hCierra = Integer.valueOf(hCierreRestaurante.getText());
+                            Integer mCierra = Integer.valueOf(mCierreRestaurante.getText());
+                            String hcierra = hCierreRestaurante.getText() + ":" + mCierreRestaurante.getText();
+                            String descripcion = descR.getText();
+                            String web = webRestaurante.getText();
+                            String nuevaPass = passNueva.getText();
+                            //
 //                        List<CheckMenuItem> itemsComidas = comidasMenu.getItems();
-                        List<String> selectedItemsComidas = comidasMenu.getItems().stream().filter(item ->
-                                CheckMenuItem.class.isInstance(item) && CheckMenuItem.class.cast(item).isSelected())
-                                .map(MenuItem::getText).collect(Collectors.toList());
-
-                        List<String> selectedItemsTipoDePagoMenu = metodosPagoMenu.getItems().stream().filter(item ->
-                                CheckMenuItem.class.isInstance(item) && CheckMenuItem.class.cast(item).isSelected())
-                                .map(MenuItem::getText).collect(Collectors.toList());
-
-                        if(barriosMenu.getItems().size() == 1){
-                            List<String> selectedBarrio = metodosPagoMenu.getItems().stream().filter(item ->
+                            List<String> selectedItemsComidas = comidasMenu.getItems().stream().filter(item ->
                                     CheckMenuItem.class.isInstance(item) && CheckMenuItem.class.cast(item).isSelected())
                                     .map(MenuItem::getText).collect(Collectors.toList());
-                            barrio = selectedBarrio.get(0);
-                        }else{
-                            showAlert("Informacion Invalida", "Se encontró un error al registrar el Barrio");
+
+                            List<String> selectedItemsTipoDePagoMenu = metodosPagoMenu.getItems().stream().filter(item ->
+                                    CheckMenuItem.class.isInstance(item) && CheckMenuItem.class.cast(item).isSelected())
+                                    .map(MenuItem::getText).collect(Collectors.toList());
+
+
+                            List<String> selectedBarrio = barriosMenu.getItems().stream().filter(item ->
+                                    CheckMenuItem.class.isInstance(item) && CheckMenuItem.class.cast(item).isSelected())
+                                    .map(MenuItem::getText).collect(Collectors.toList());
+                            if (selectedBarrio.size() == 1) {
+                                barrio = selectedBarrio.get(0);
+                            } else {
+                                showAlert("Informacion Invalida", "Se encontró un error al registrar el Barrio");
+                            }
+
+                            serviceRestaurant.setTipoDePagoList(restaurante, selectedItemsTipoDePagoMenu);
+
+                            serviceRestaurant.setGrupoDeComidaList(restaurante, selectedItemsComidas);
+
+                            List<Mesa> mesas = new ArrayList<>(mesaList);
+
+                            serviceRestaurant.setListaMesasRestaurante(restaurante, mesas);
+
+                            serviceRestaurant.registrarDatosRestaurant(restaurante, nombre, telefono, direccion, barrio, habre, hcierra, descripcion, web,
+                                    nuevaPass);
+                            if(imgFile != null) {
+                                serviceRestaurant.guardarImagen(restaurante, imgFile);
+                            }
+
+                            if(precioMedio == null || precioMedio.getText().equals("")){
+
+                            }else{
+                                serviceRestaurant.setPrecioMedio(restaurante,precioMedio.getText());
+                            }
+                            showAlert("Datos guardados", "Se guardaron con éxito los datos de su restaurante");
+                            clean();
+                        } catch (NumberFormatException e) {
+                            showAlert("Informacion Invalida", "Se encontró un error en los datos ingresados");
                         }
-
-                        serviceRestaurant.setTipoDePagoList(restaurante, selectedItemsTipoDePagoMenu);
-
-                        serviceRestaurant.setGrupoDeComidaList(restaurante, selectedItemsComidas);
-
-                        List<Mesa> mesas = new ArrayList<>(mesaList);
-
-                        serviceRestaurant.setListaMesasRestaurante(restaurante, mesas);
-
-                        serviceRestaurant.registrarDatosRestaurant(restaurante, nombre, telefono, direccion, barrio, habre, hcierra, descripcion, web,
-                                nuevaPass);
-
-                        showAlert("Datos guardados", "Se guardaron con éxito los datos de su restaurante");
-                        clean();
-                    } catch (NumberFormatException e) {
-                        showAlert("Informacion Invalida", "Se encontró un error en los datos ingresados");
+                    } else {
+                        showAlert("Contraseña incorrecta", "La contraseña ingresada es incorrecta");
                     }
-                } else {
-                    showAlert("Contraseña incorrecta", "La contraseña ingresada es incorrecta");
                 }
-            } catch (NullPointerException e) {
-                showAlert("Usuario no encontrado", "El email: " + email.getText() +" no existe en el sistema");
-            }
-
         }
     }
 
+    @FXML
+    public void cargarImagen(ActionEvent event) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Buscar Imagen");
+
+        // Agregar filtros para facilitar la busqueda
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("All Images", "*.*"),
+                new FileChooser.ExtensionFilter("JPG", "*.jpg"),
+                new FileChooser.ExtensionFilter("PNG", "*.png")
+        );
+
+        // Obtener la imagen seleccionada
+        imgFile = fileChooser.showOpenDialog(null);
 
 
-
+    }
 
 
     private void cleanMesas() {
         nMesas.setText(null);
         nSillas.setText(null);
-        mesaList = null;
-        listMesas = null;
+        mesaList.clear();
+        listMesas.setItems(mesaList);
     }
 
     private void clean() {
         cleanMesas();
+        precioMedio.setText(null);
         email.setText(null);
         nombreRestaurante.setText(null);
         passActual.setText(null);
@@ -250,7 +254,6 @@ public class SolicitarDatos {
         descR.setText(null);
         webRestaurante.setText(null);
         direccionRestaurante.setText(null);
-        barrioRestaurante.setText(null);
         hAperturaRestaurante.setText(null);
         mAperturaRestaurante.setText(null);
         hCierreRestaurante.setText(null);
@@ -263,6 +266,10 @@ public class SolicitarDatos {
         sushi.setSelected(false);
         hamburgesas.setSelected(false);
         ensaladas.setSelected(false);
+
+        for(int i = 0; i< barriosMenu.getItems().size();i++){
+            ((CheckMenuItem)barriosMenu.getItems().get(i)).setSelected(false);
+        }
     }
 
     public void showAlert(String title, String contextText) {
