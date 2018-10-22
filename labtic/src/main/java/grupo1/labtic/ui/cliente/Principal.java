@@ -155,12 +155,7 @@ public class Principal {
 
 //                horario.setCellValueFactory(new PropertyValueFactory<Restaurant,String>("horarioApertura" + "-" + "horarioCierre"));
 
-//                String listaComidas = null;
-//                for (int i = 0; i < resto.getGrupoDeComidaList().size(); i++) {
-//                    listaComidas = listaComidas+ " " + resto.getGrupoDeComidaList().get(i);
-//                }
-
-                cocinas.setCellValueFactory(new PropertyValueFactory<Restaurant,List<GrupoDeComida>>("grupoDeComidaList"));
+                cocinas.setCellValueFactory(new PropertyValueFactory<Restaurant,String>("listaComida"));
 
                 tableViewRestaurantes.setItems(observableList);
 

@@ -38,7 +38,8 @@ public class Restaurant extends Usuario {
     private String nombreRestaurant;
     @Column(name = "SitioWeb")
     private String sitioWeb;
-
+    @Column(name = "listaComida")
+    private String listaComida;
 
 
     public Restaurant(String email, String password, long rut, String direccion, String horarioApertura, String horarioCierre, String barrio, String telefono, String descripcion) {
@@ -154,8 +155,8 @@ public class Restaurant extends Usuario {
 
     public void setGrupoDeComidaList(List<GrupoDeComida> grupoDeComidaList) {
         this.grupoDeComidaList.addAll(grupoDeComidaList);
+        this.setListaComida(grupoDeComidaList);
     }
-
     public void addGrupoDeComida(GrupoDeComida grupoDeComida) {
         this.grupoDeComidaList.add(grupoDeComida);
     }
@@ -186,5 +187,15 @@ public class Restaurant extends Usuario {
 
     public void setRut(long rut) {
         this.rut = rut;
+    }
+
+    public void setListaComida(List<GrupoDeComida> grupoDeComidaList){
+        for(int i = 0 ; i < grupoDeComidaList.size(); i++){
+            if(listaComida == null || listaComida.equals("")){
+                listaComida = grupoDeComidaList.get(0).getGrupo();
+            }else{
+                listaComida = listaComida + " " + grupoDeComidaList.get(i).getGrupo();
+            }
+        }
     }
 }

@@ -213,28 +213,6 @@
                                         <Font name="Bauhaus 93" size="50.0" />
                                     </font>
                                 </Text>
-                        <MenuButton fx:id="comidasMenu1" alignment="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="146.0" text="Seleccione">
-                           <items>
-                              <CheckMenuItem fx:id="sushi1" mnemonicParsing="false" text="Sushi" />
-                              <CheckMenuItem fx:id="hamburgesas1" mnemonicParsing="false" text="Hamburguesas" />
-                              <CheckMenuItem fx:id="ensaladas1" mnemonicParsing="false" text="Ensaladas" />
-                              <CheckMenuItem fx:id="cafeteria1" mnemonicParsing="false" text="Cafetería" />
-                              <CheckMenuItem fx:id="parrilla1" mnemonicParsing="false" text="Parrilla" />
-                              <CheckMenuItem fx:id="celiacos1" mnemonicParsing="false" text="Celíacos" />
-                              <CheckMenuItem fx:id="chivitos1" mnemonicParsing="false" text="Chivitos" />
-                              <CheckMenuItem fx:id="comidaChina1" mnemonicParsing="false" text="Comida China" />
-                              <CheckMenuItem fx:id="comidaMexicana1" mnemonicParsing="false" text="Comida Mexicana" />
-                              <CheckMenuItem fx:id="comidaVegetariana1" mnemonicParsing="false" text="Comida Vegetariana" />
-                              <CheckMenuItem fx:id="comidaVegana1" mnemonicParsing="false" text="Comida Vegana" />
-                              <CheckMenuItem fx:id="milanesas1" mnemonicParsing="false" text="Milanesas" />
-                              <CheckMenuItem fx:id="pescadoMariscos1" mnemonicParsing="false" text="Pescado y Mariscos" />
-                              <CheckMenuItem fx:id="pizza1" mnemonicParsing="false" text="Pizza" />
-                              <CheckMenuItem fx:id="sandwiches1" mnemonicParsing="false" text="Sandwiches" />
-                              <CheckMenuItem fx:id="tartas1" mnemonicParsing="false" text="Tartas" />
-                              <CheckMenuItem fx:id="wrap1" mnemonicParsing="false" text="Wraps" />
-                              <CheckMenuItem fx:id="wok1" mnemonicParsing="false" text="Wok" />
-                           </items>
-                        </MenuButton>
                         <MenuButton fx:id="barriosMenu" alignment="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="146.0" text="Seleccione" GridPane.columnIndex="5" GridPane.rowIndex="2">
                             <items>
                                 <CheckMenuItem fx:id="ciudadVieja" mnemonicParsing="false" text="Ciudad Vieja" />
