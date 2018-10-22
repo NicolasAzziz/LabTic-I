@@ -100,13 +100,18 @@ public class Principal {
     @FXML
     private TableView<Restaurant> tableViewRestaurantes;
     @FXML
-    private TableColumn nombre;
+    private TableColumn imagen;
     @FXML
-    private TableColumn horario;
+    private TableColumn nombreRestaurante;
     @FXML
-    private TableColumn comidas;
+    private TableColumn rating;
     @FXML
-    private TableColumn zona;
+    private TableColumn descripcion;
+    @FXML
+    private TableColumn barrio;
+    @FXML
+    private TableColumn cocinas;
+
 
     @FXML
     public void findTable(ActionEvent event) {
@@ -144,17 +149,18 @@ public class Principal {
                     observableList.add(restoFound.get(i));
                 }
 
-                nombre.setCellValueFactory(new PropertyValueFactory<Restaurant,String>("NombreRestaurant"));
-                zona.setCellValueFactory(new PropertyValueFactory<Restaurant,String>("barrio"));
+                nombreRestaurante.setCellValueFactory(new PropertyValueFactory<Restaurant,String>("NombreRestaurant"));
+                barrio.setCellValueFactory(new PropertyValueFactory<Restaurant,String>("barrio"));
+                descripcion.setCellValueFactory(new PropertyValueFactory<Restaurant,String>("descripcion"));
 
-                horario.setCellValueFactory(new PropertyValueFactory<Restaurant,String>("horarioApertura" + "-" + "horarioCierre"));
+//                horario.setCellValueFactory(new PropertyValueFactory<Restaurant,String>("horarioApertura" + "-" + "horarioCierre"));
 
 //                String listaComidas = null;
 //                for (int i = 0; i < resto.getGrupoDeComidaList().size(); i++) {
 //                    listaComidas = listaComidas+ " " + resto.getGrupoDeComidaList().get(i);
 //                }
 
-                comidas.setCellValueFactory(new PropertyValueFactory<Restaurant,List<GrupoDeComida>>("grupoDeComidaList"));
+                cocinas.setCellValueFactory(new PropertyValueFactory<Restaurant,List<GrupoDeComida>>("grupoDeComidaList"));
 
                 tableViewRestaurantes.setItems(observableList);
 

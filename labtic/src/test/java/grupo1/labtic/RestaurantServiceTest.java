@@ -29,22 +29,22 @@ public class RestaurantServiceTest {
 
     @Test
     public void main() {
-        try {
-            restaurantService.crearRestaurant("TEST", "V1");
-        } catch (InvalidRestaurantInformation invalidRestaurantInformation) {
-            invalidRestaurantInformation.printStackTrace();
-        } catch (RestaurantAlreadyExists restaurantAlreadyExists) {
-            restaurantAlreadyExists.printStackTrace();
-        }
-        List<Cocina> cocinas = new ArrayList<>();
-        cocinas.add(new Sushi());
-        cocinas.add(new Hamburgesas());
-
-        List<MetodoDePago> metodoDePagoList = new ArrayList<>();
-        metodoDePagoList.add(new TarjetaCredito());
-        metodoDePagoList.add(new Efectivo());
-
-        restaurantService.registrarDatosRestaurant(repository.findOneByLogin("TEST"), "res", "tel", "TESTDIRECCION", "barrio", "horarioa", "hcierre", "des", "web@correo.com", "NuevaPass", 3, metodoDePagoList, cocinas);
+//        try {
+//            restaurantService.crearRestaurant("TEST", "V1");
+//        } catch (InvalidRestaurantInformation invalidRestaurantInformation) {
+//            invalidRestaurantInformation.printStackTrace();
+//        } catch (RestaurantAlreadyExists restaurantAlreadyExists) {
+//            restaurantAlreadyExists.printStackTrace();
+//        }
+//        List<Cocina> cocinas = new ArrayList<>();
+//        cocinas.add(new Sushi());
+//        cocinas.add(new Hamburgesas());
+//
+//        List<MetodoDePago> metodoDePagoList = new ArrayList<>();
+//        metodoDePagoList.add(new TarjetaCredito());
+//        metodoDePagoList.add(new Efectivo());
+//
+//        restaurantService.registrarDatosRestaurant(repository.findOneByLogin("TEST"), "res", "tel", "TESTDIRECCION", "barrio", "horarioa", "hcierre", "des", "web@correo.com", "NuevaPass", 3, metodoDePagoList, cocinas);
 
     }
 }

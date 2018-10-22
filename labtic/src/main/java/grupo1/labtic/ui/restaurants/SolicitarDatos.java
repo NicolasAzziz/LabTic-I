@@ -80,6 +80,38 @@ public class SolicitarDatos {
     @FXML
     private ListView<Mesa> listMesas;
 
+    @FXML
+    private MenuButton barriosMenu;
+
+    @FXML
+    private CheckMenuItem puntaCarretas;
+    @FXML
+    private CheckMenuItem palermo;
+    @FXML
+    private CheckMenuItem parqueRodo;
+    @FXML
+    private CheckMenuItem maronias;
+    @FXML
+    private CheckMenuItem cordon;
+    @FXML
+    private CheckMenuItem buceo;
+    @FXML
+    private CheckMenuItem malvin;
+    @FXML
+    private CheckMenuItem ciudadVieja;
+    @FXML
+    private CheckMenuItem centro;
+    @FXML
+    private CheckMenuItem pocitos;
+    @FXML
+    private CheckMenuItem barrioSur;
+    @FXML
+    private CheckMenuItem parqueBatlle;
+    @FXML
+    private CheckMenuItem puntaGorda;
+    @FXML
+    private CheckMenuItem carrasco;
+
     ObservableList<Mesa> mesaList;
 
     @FXML
@@ -141,7 +173,7 @@ public class SolicitarDatos {
                         String nombre = nombreRestaurante.getText();
                         String telefono = (telefonoRestaurante.getText());
                         String direccion = direccionRestaurante.getText();
-                        String barrio = barrioRestaurante.getText();
+                        String barrio = null;
                         Integer hAbre = Integer.valueOf(hAperturaRestaurante.getText());
                         Integer mAbre = Integer.valueOf(mAperturaRestaurante.getText());
                         String habre = hAperturaRestaurante.getText() + ":" + mAperturaRestaurante.getText();
@@ -161,6 +193,14 @@ public class SolicitarDatos {
                                 CheckMenuItem.class.isInstance(item) && CheckMenuItem.class.cast(item).isSelected())
                                 .map(MenuItem::getText).collect(Collectors.toList());
 
+                        if(barriosMenu.getItems().size() == 1){
+                            List<String> selectedBarrio = metodosPagoMenu.getItems().stream().filter(item ->
+                                    CheckMenuItem.class.isInstance(item) && CheckMenuItem.class.cast(item).isSelected())
+                                    .map(MenuItem::getText).collect(Collectors.toList());
+                            barrio = selectedBarrio.get(0);
+                        }else{
+                            showAlert("Informacion Invalida", "Se encontró un error al registrar el Barrio");
+                        }
 
                         serviceRestaurant.setTipoDePagoList(restaurante, selectedItemsTipoDePagoMenu);
 

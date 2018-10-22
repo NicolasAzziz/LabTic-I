@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckMenuItem?>
@@ -19,7 +24,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="657.0" prefWidth="875.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="grupo1.labtic.ui.restaurants.SolicitarDatos">
+<AnchorPane prefHeight="657.0" prefWidth="875.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="grupo1.labtic.ui.restaurants.SolicitarDatos">
     <children>
         <SplitPane dividerPositions="0.2" orientation="VERTICAL" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <items>
@@ -73,7 +78,6 @@
                                 <Text strokeType="OUTSIDE" strokeWidth="0.0" text="*Dirección:" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
                                 <TextField fx:id="direccionRestaurante" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
                                 <Text strokeType="OUTSIDE" strokeWidth="0.0" text="*Barrio:" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
-                                <TextField fx:id="barrioRestaurante" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
                                 <Text strokeType="OUTSIDE" strokeWidth="0.0" text="*Horario de apertura:" textAlignment="CENTER" wrappingWidth="65.595703125" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
                                 <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                            <children>
@@ -179,7 +183,7 @@
                                         </Button>
                                     </children>
                                 </HBox>
-                        <ListView fx:id="listMesas" accessibleRole="LIST_ITEM" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="6" />
+                        <ListView fx:id="listMesas" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="6" />
                                 <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Sitio web:" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER" />
                                 <TextField fx:id="webRestaurante" GridPane.columnIndex="5" GridPane.rowIndex="6" />
                                 <Button onAction="#registrar" text="Registrarse" GridPane.columnIndex="5" GridPane.rowIndex="7" GridPane.valignment="CENTER" />
@@ -209,6 +213,46 @@
                                         <Font name="Bauhaus 93" size="50.0" />
                                     </font>
                                 </Text>
+                        <MenuButton fx:id="comidasMenu1" alignment="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="146.0" text="Seleccione">
+                           <items>
+                              <CheckMenuItem fx:id="sushi1" mnemonicParsing="false" text="Sushi" />
+                              <CheckMenuItem fx:id="hamburgesas1" mnemonicParsing="false" text="Hamburguesas" />
+                              <CheckMenuItem fx:id="ensaladas1" mnemonicParsing="false" text="Ensaladas" />
+                              <CheckMenuItem fx:id="cafeteria1" mnemonicParsing="false" text="Cafetería" />
+                              <CheckMenuItem fx:id="parrilla1" mnemonicParsing="false" text="Parrilla" />
+                              <CheckMenuItem fx:id="celiacos1" mnemonicParsing="false" text="Celíacos" />
+                              <CheckMenuItem fx:id="chivitos1" mnemonicParsing="false" text="Chivitos" />
+                              <CheckMenuItem fx:id="comidaChina1" mnemonicParsing="false" text="Comida China" />
+                              <CheckMenuItem fx:id="comidaMexicana1" mnemonicParsing="false" text="Comida Mexicana" />
+                              <CheckMenuItem fx:id="comidaVegetariana1" mnemonicParsing="false" text="Comida Vegetariana" />
+                              <CheckMenuItem fx:id="comidaVegana1" mnemonicParsing="false" text="Comida Vegana" />
+                              <CheckMenuItem fx:id="milanesas1" mnemonicParsing="false" text="Milanesas" />
+                              <CheckMenuItem fx:id="pescadoMariscos1" mnemonicParsing="false" text="Pescado y Mariscos" />
+                              <CheckMenuItem fx:id="pizza1" mnemonicParsing="false" text="Pizza" />
+                              <CheckMenuItem fx:id="sandwiches1" mnemonicParsing="false" text="Sandwiches" />
+                              <CheckMenuItem fx:id="tartas1" mnemonicParsing="false" text="Tartas" />
+                              <CheckMenuItem fx:id="wrap1" mnemonicParsing="false" text="Wraps" />
+                              <CheckMenuItem fx:id="wok1" mnemonicParsing="false" text="Wok" />
+                           </items>
+                        </MenuButton>
+                        <MenuButton fx:id="barriosMenu" alignment="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="146.0" text="Seleccione" GridPane.columnIndex="5" GridPane.rowIndex="2">
+                            <items>
+                                <CheckMenuItem fx:id="ciudadVieja" mnemonicParsing="false" text="Ciudad Vieja" />
+                                <CheckMenuItem fx:id="centro" mnemonicParsing="false" text="Centro" />
+                                <CheckMenuItem fx:id="barrioSur" mnemonicParsing="false" text="Barrio Sur" />
+                                <CheckMenuItem fx:id="cordon" mnemonicParsing="false" text="Cordón" />
+                                <CheckMenuItem fx:id="palermo" mnemonicParsing="false" text="Palermo" />
+                                <CheckMenuItem fx:id="parqueRodo" mnemonicParsing="false" text="Parque Rodó" />
+                                <CheckMenuItem fx:id="puntaCarretas" mnemonicParsing="false" text="Punta Carretas" />
+                                <CheckMenuItem fx:id="pocitos" mnemonicParsing="false" text="Pocitos" />
+                                <CheckMenuItem fx:id="buceo" mnemonicParsing="false" text="Buceo" />
+                                <CheckMenuItem fx:id="parqueBatlle" mnemonicParsing="false" text="Parque Batlle" />
+                                <CheckMenuItem fx:id="malvin" mnemonicParsing="false" text="Malvín" />
+                                <CheckMenuItem fx:id="puntaGorda" mnemonicParsing="false" text="Punta Gorda" />
+                                <CheckMenuItem fx:id="carrasco" mnemonicParsing="false" text="Carrasco" />
+                                <CheckMenuItem fx:id="maronias" mnemonicParsing="false" text="Maroñas" />
+                           </items>
+                        </MenuButton>
                             </children>
                         </GridPane>
                     </children>
