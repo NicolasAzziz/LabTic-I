@@ -1,6 +1,7 @@
 package grupo1.labtic.ui.admins;
 
 import grupo1.labtic.services.RestaurantService;
+import grupo1.labtic.services.entities.UsuarioService;
 import grupo1.labtic.services.exceptions.EmailInvalido;
 import grupo1.labtic.services.exceptions.InvalidRestaurantInformation;
 import grupo1.labtic.services.exceptions.RestaurantAlreadyExists;
@@ -19,6 +20,8 @@ import javax.validation.constraints.Email;
 public class Administrar {
     @Autowired
     RestaurantService restaurantService;
+    @Autowired
+    UsuarioService usuarioService;
     @FXML
     private TextField email;
     @FXML
@@ -33,9 +36,7 @@ public class Administrar {
             showAlert("Datos erroneos", "No se ingresaron los datos necesarios para completar el registro");
         } else try {
             String email = this.email.getText();
-            if(isValidEmailAddress(email)==false){
-                throw new EmailInvalido();
-            }
+            usuarioService.isValidEmailAddress(email);
             String pass = password.getText();
             long rut1 = Long.valueOf(rut.getText());
             restaurantService.crearRestaurant(email, pass, rut1);
@@ -52,11 +53,7 @@ public class Administrar {
         };
     }
 
-    private boolean isValidEmailAddress(String email) {
-            EmailValidator emailAddr = new EmailValidator();
-            return emailAddr.isValid(email,null);
 
-    }
 
     private void clean() {
         email.setText(null);

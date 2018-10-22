@@ -1,4 +1,4 @@
-package grupo1.labtic.ui.restaurants.Exception;
+package grupo1.labtic.services.exceptions;
 
 public class NroReferenciaException extends Exception {
     public NroReferenciaException() {

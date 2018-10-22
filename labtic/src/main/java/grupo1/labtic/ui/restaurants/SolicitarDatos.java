@@ -5,7 +5,7 @@ import grupo1.labtic.persistence.RestaurantRepository;
 import grupo1.labtic.services.RestaurantService;
 import grupo1.labtic.services.entities.Restaurant;
 import grupo1.labtic.services.entities.restaurant.Mesa;
-import grupo1.labtic.ui.restaurants.Exception.NroReferenciaException;
+import grupo1.labtic.services.exceptions.NroReferenciaException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -233,14 +233,14 @@ public class SolicitarDatos {
 
 
 
-    public void cleanMesas() {
+    private void cleanMesas() {
         nMesas.setText(null);
         nSillas.setText(null);
         mesaList = null;
         listMesas = null;
     }
 
-    public void clean() {
+    private void clean() {
         cleanMesas();
         email.setText(null);
         nombreRestaurante.setText(null);
