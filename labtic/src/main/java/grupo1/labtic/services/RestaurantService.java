@@ -81,57 +81,53 @@ public class RestaurantService {
 //        }
 //    }
 
-    public void registrarDatosRestaurant(long id, String nombre, String telefono, String direccion,
+    public void registrarDatosRestaurant(Restaurant restaurant, String nombre, String telefono, String direccion,
                                          String barrio, String habre, String hcierra, String descripcion, String web,
                                          String nuevaPass) {
-
-        Restaurant restaurante = restaurantRepository.getRestaurantById(id);
-        restaurante.setNombreRestaurant(nombre);
-        restaurante.setTelefono(telefono);
-        restaurante.setDireccion(direccion);
-        restaurante.setBarrio(barrio);
-        restaurante.setHorarioApertura(habre);
-        restaurante.setHorarioCierre(hcierra);
-        restaurante.setDescripcion(descripcion);
-        restaurante.setPassword(nuevaPass);
-        restaurante.setSitioWeb(web);
-        restaurantRepository.save(restaurante);
+        restaurant.setNombreRestaurant(nombre);
+        restaurant.setTelefono(telefono);
+        restaurant.setDireccion(direccion);
+        restaurant.setBarrio(barrio);
+        restaurant.setHorarioApertura(habre);
+        restaurant.setHorarioCierre(hcierra);
+        restaurant.setDescripcion(descripcion);
+        restaurant.setPassword(nuevaPass);
+        restaurant.setSitioWeb(web);
+        restaurantRepository.save(restaurant);
     }
 /*    public void save(Restaurant restaurant){
         restaurantRepository.save(restaurant);
     }*/
 
-    public void setListaMesasRestaurante(String email, List<Mesa> mesasList) {
-        Restaurant restaurante = restaurantRepository.getRestaurantByEmail(email);
-        long id = restaurante.getId();
+    public void setListaMesasRestaurante(Restaurant restaurant, List<Mesa> mesasList) {
+
+        for (Mesa mesa:mesasList) {
+            mesa.setRestaurant(restaurant);
+        }
 
         mesaRepository.saveAll(mesasList);
 
     }
 
-    public void setGrupoDeComida(String email, String grupoDeComida) {
-        Restaurant restaurant = restaurantRepository.getRestaurantByEmail(email);
+    public void setGrupoDeComida(Restaurant restaurant, String grupoDeComida) {
         GrupoDeComida grupoDeComida1 = grupoDeComidaRepository.getGrupoDeComidaByGrupo(grupoDeComida);
         restaurant.addGrupoDeComida(grupoDeComida1);
         restaurantRepository.save(restaurant);
     }
 
-    public void setGrupoDeComidaList(String email, List<String> grupoDeComidaList) {
-        Restaurant restaurant = restaurantRepository.getRestaurantByEmail(email);
+    public void setGrupoDeComidaList(Restaurant restaurant, List<String> grupoDeComidaList) {
         List<GrupoDeComida> grupoDeComida1 = grupoDeComidaRepository.getGrupoDeComidaByGrupo(grupoDeComidaList);
         restaurant.setGrupoDeComidaList(grupoDeComida1);
         restaurantRepository.save(restaurant);
     }
 
-    public void setTipoDePago(String email, String nombreTipoDePago) {
-        Restaurant restaurant = restaurantRepository.getRestaurantByEmail(email);
+    public void setTipoDePago(Restaurant restaurant, String nombreTipoDePago) {
         TipoDePago nombreTipoDePago1 = tipoDePagoRepository.getByNombre(nombreTipoDePago);
         restaurant.addTipoDePago(nombreTipoDePago1);
         restaurantRepository.save(restaurant);
     }
 
-    public void setTipoDePagoList(String email, List<String> nombreTipoDePagoList) {
-        Restaurant restaurant = restaurantRepository.getRestaurantByEmail(email);
+    public void setTipoDePagoList(Restaurant restaurant, List<String> nombreTipoDePagoList) {
         List<TipoDePago> nombreTipoDePagoList1 = tipoDePagoRepository.getListByNombre(nombreTipoDePagoList);
         restaurant.setTipoDePagoList(nombreTipoDePagoList1);
         restaurantRepository.save(restaurant);

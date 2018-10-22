@@ -22,6 +22,7 @@ public class PortadaAdmin {
             loader.setControllerFactory(AdminApplication.getContext()::getBean);
             Parent root = loader.load(Administrar.class.getResourceAsStream("Admin.fxml"));
             Stage stage = new Stage();
+            stage.setTitle("Nuevo Restaurant");
             stage.setScene(new Scene(root));
             stage.show();
         } catch (IOException e) {
