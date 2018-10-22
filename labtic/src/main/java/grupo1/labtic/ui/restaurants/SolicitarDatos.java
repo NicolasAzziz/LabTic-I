@@ -132,6 +132,7 @@ public class SolicitarDatos {
                 mesaList.add(mesa);
 
                 listMesas.setItems(mesaList);
+                cleanMesas();
 
             } catch (NumberFormatException e) {
                 showAlert("No se pudo agregar la mesa",
@@ -236,8 +237,6 @@ public class SolicitarDatos {
     private void cleanMesas() {
         nMesas.setText(null);
         nSillas.setText(null);
-        mesaList = null;
-        listMesas = null;
     }
 
     private void clean() {
