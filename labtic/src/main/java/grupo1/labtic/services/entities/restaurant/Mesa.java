@@ -37,12 +37,14 @@ public class Mesa {
     public Mesa(MesaPK mesaPK, @NotNull int cantLugares) {
         this.mesaPK = mesaPK;
         this.cantLugares = cantLugares;
+        mesaLibre = true;
     }
 
     public Mesa(int nroReferencia, int cantLugares){
         mesaPK = new MesaPK();
         setNumeroReferencia(nroReferencia);
         setCantLugares(cantLugares);
+        mesaLibre = true;
     }
 
     public MesaPK getMesaPK() {
@@ -114,7 +116,7 @@ public class Mesa {
 
     @Override
     public String toString(){
-        return "No. de referencia: " + getNumeroReferencia()+".  No. lugares: "+getCantLugares()+".";
+        return "No. de mesa: " + getNumeroReferencia()+".  No. lugares: "+getCantLugares()+".";
     }
 }
 

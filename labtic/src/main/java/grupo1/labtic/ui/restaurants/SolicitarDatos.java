@@ -6,7 +6,6 @@ import grupo1.labtic.services.RestaurantService;
 import grupo1.labtic.services.entities.Restaurant;
 import grupo1.labtic.services.entities.restaurant.Mesa;
 import grupo1.labtic.ui.restaurants.Exception.NroReferenciaException;
-import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -23,11 +22,11 @@ import java.util.stream.Collectors;
 public class SolicitarDatos {
 
     @Autowired
-    RestaurantService service;
+    RestaurantService serviceRestaurant;
     @Autowired
     private RestaurantRepository restaurantRepository;
     @FXML
-    private TextField emailRestaurant;
+    private TextField email;
     @FXML
     private TextField nombreRestaurante;
     @FXML
@@ -80,6 +79,7 @@ public class SolicitarDatos {
     private Button mas;
     @FXML
     private ListView<Mesa> listMesas;
+
     ObservableList<Mesa> mesaList;
 
     @FXML
@@ -129,14 +129,13 @@ public class SolicitarDatos {
                 barrioRestaurante.getText() == null || barrioRestaurante.getText().equals("") || hAperturaRestaurante.getText() == null ||
                 hAperturaRestaurante.getText().equals("") || mAperturaRestaurante.getText() == null || mAperturaRestaurante.getText().equals("") ||
                 hCierreRestaurante.getText() == null || hCierreRestaurante.getText().equals("") || mCierreRestaurante.getText() == null ||
-                mCierreRestaurante.getText().equals("") || emailRestaurant.getText() == null || emailRestaurant.getText().equals("")) {
+                mCierreRestaurante.getText().equals("") || email.getText() == null || email.getText().equals("")) {
             showAlert("Datos faltantes!",
                     "No se ingresaron los datos necesarios para completar el ingreso.");
         } else {
             try {
-                String email = emailRestaurant.getText();
+                String email = this.email.getText();
                 Restaurant restaurante = restaurantRepository.findOneByEmail(email);
-                long id = restaurante.getId();
                 if (restaurante.getPassword().equals(passActual.getText())) {
                     try {
                         String nombre = nombreRestaurante.getText();
@@ -164,20 +163,15 @@ public class SolicitarDatos {
                                 .map(MenuItem::getText).collect(Collectors.toList());
 
 
-                        service.setTipoDePagoList(email, selectedItemsTipoDePagoMenu);
+                        serviceRestaurant.setTipoDePagoList(restaurante, selectedItemsTipoDePagoMenu);
 
-                        service.setGrupoDeComidaList(email, selectedItemsComidas);
+                        serviceRestaurant.setGrupoDeComidaList(restaurante, selectedItemsComidas);
 
-                        List<Mesa> mesaList = new ArrayList<>();
-                        //---------------> AGREGAR LAS MESAS A ESTA LISTA <-------------------------------------------------
+                        List<Mesa> mesas = new ArrayList<>(mesaList);
 
-                        mesaList.add(new Mesa((Restaurant) restaurante, 3, 5));
+                        serviceRestaurant.setListaMesasRestaurante(restaurante, mesas);
 
-
-                        service.setListaMesasRestaurante(email, mesaList);
-
-
-                        service.registrarDatosRestaurant(id, nombre, telefono, direccion, barrio, habre, hcierra, descripcion, web,
+                        serviceRestaurant.registrarDatosRestaurant(restaurante, nombre, telefono, direccion, barrio, habre, hcierra, descripcion, web,
                                 nuevaPass);
 
                         showAlert("Datos guardados", "Se guardaron con éxito los datos de su restaurante");
@@ -189,7 +183,7 @@ public class SolicitarDatos {
                     showAlert("Contraseña incorrecta", "La contraseña ingresada es incorrecta");
                 }
             } catch (NullPointerException e) {
-                showAlert("Usuario no encontrado", "El nombre de emailRestaurant ingresado no existe en el sistema");
+                showAlert("Usuario no encontrado", "El email: " + email.getText() +" no existe en el sistema");
             }
 
         }
@@ -203,10 +197,12 @@ public class SolicitarDatos {
     public void cleanMesas() {
         nMesas.setText(null);
         nSillas.setText(null);
+        mesaList = null;
     }
 
     public void clean() {
-        emailRestaurant.setText(null);
+        cleanMesas();
+        email.setText(null);
         nombreRestaurante.setText(null);
         passActual.setText(null);
         passNueva.setText(null);
