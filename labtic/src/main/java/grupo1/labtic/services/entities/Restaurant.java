@@ -40,6 +40,7 @@ public class Restaurant extends Usuario {
     private String sitioWeb;
 
 
+
     public Restaurant(String email, String password, long rut, String direccion, String horarioApertura, String horarioCierre, String barrio, String telefono, String descripcion) {
         super(email, password);
         this.direccion = direccion;

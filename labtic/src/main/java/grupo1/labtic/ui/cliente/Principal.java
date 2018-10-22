@@ -2,14 +2,17 @@ package grupo1.labtic.ui.cliente;
 
 import grupo1.labtic.persistence.RestaurantRepository;
 import grupo1.labtic.services.entities.Restaurant;
+import grupo1.labtic.services.entities.restaurant.GrupoDeComida;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -129,29 +132,37 @@ public class Principal {
             }
 
         } else {
-            Restaurant rest = repository.findByNombreRestaurant(restaurantToFind.getText());
-            if (rest != null) {
+            Restaurant resto = repository.findByNombreRestaurant(restaurantToFind.getText());
+            if (resto != null) {
 
-                Restaurant resto = repository.findByNombreRestaurant(restaurantToFind.getText());
+                ArrayList<Restaurant> restoFound = new ArrayList();
+                restoFound.add(resto);
 
-                nombre.setText(resto.getNombreRestaurant());
-                horario.setText(resto.getHorarioApertura() + " - " + resto.getHorarioCierre());
-                String var = null;
-                for (int i = 0; i < resto.getGrupoDeComidaList().size(); i++) {
-                    var = var + " " + resto.getGrupoDeComidaList().get(i);
+                ObservableList<Restaurant> observableList = FXCollections.observableArrayList();
+
+                for(int i = 0 ; i < restoFound.size(); i++){
+                    observableList.add(restoFound.get(i));
                 }
-                comidas.setText(var);
-                zona.setText(resto.getBarrio());
+
+                nombre.setCellValueFactory(new PropertyValueFactory<Restaurant,String>("NombreRestaurant"));
+                zona.setCellValueFactory(new PropertyValueFactory<Restaurant,String>("barrio"));
+
+                horario.setCellValueFactory(new PropertyValueFactory<Restaurant,String>("horarioApertura" + "-" + "horarioCierre"));
+
+//                String listaComidas = null;
+//                for (int i = 0; i < resto.getGrupoDeComidaList().size(); i++) {
+//                    listaComidas = listaComidas+ " " + resto.getGrupoDeComidaList().get(i);
+//                }
+
+                comidas.setCellValueFactory(new PropertyValueFactory<Restaurant,List<GrupoDeComida>>("grupoDeComidaList"));
+
+                tableViewRestaurantes.setItems(observableList);
+
             }
         }
 
     }
 
-    public ObservableList<Restaurant> getRestaurants() {
-        ObservableList<Restaurant> restaurants = FXCollections.observableArrayList();
-        restaurants.add(repository.findByNombreRestaurant(restaurantToFind.getText()));
-        return restaurants;
-    }
 
 }
 
