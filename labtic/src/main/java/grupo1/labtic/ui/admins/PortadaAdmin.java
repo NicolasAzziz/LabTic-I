@@ -20,7 +20,8 @@ public class PortadaAdmin {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setControllerFactory(AdminApplication.getContext()::getBean);
-            Parent root = loader.load(Administrar.class.getResourceAsStream("Admin.fxml"));
+            Parent root = loader.load(PortadaAdmin
+                    .class.getResourceAsStream("Admin.fxml"));
             Stage stage = new Stage();
             stage.setTitle("Nuevo Restaurant");
             stage.setScene(new Scene(root));
