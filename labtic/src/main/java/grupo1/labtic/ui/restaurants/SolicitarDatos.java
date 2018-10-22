@@ -135,7 +135,7 @@ public class SolicitarDatos {
         } else {
             try {
                 String email = this.email.getText();
-                Restaurant restaurante = restaurantRepository.findOneByEmail(email);
+                Restaurant restaurante = restaurantRepository.getRestaurantByEmail(email);
                 if (restaurante.getPassword().equals(passActual.getText())) {
                     try {
                         String nombre = nombreRestaurante.getText();
@@ -151,7 +151,6 @@ public class SolicitarDatos {
                         String descripcion = descR.getText();
                         String web = webRestaurante.getText();
                         String nuevaPass = passNueva.getText();
-
                         //
 //                        List<CheckMenuItem> itemsComidas = comidasMenu.getItems();
                         List<String> selectedItemsComidas = comidasMenu.getItems().stream().filter(item ->
@@ -198,6 +197,7 @@ public class SolicitarDatos {
         nMesas.setText(null);
         nSillas.setText(null);
         mesaList = null;
+        listMesas = null;
     }
 
     public void clean() {
