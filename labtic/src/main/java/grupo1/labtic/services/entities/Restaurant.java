@@ -49,24 +49,7 @@ public class Restaurant extends Usuario {
     @Lob
     private byte[] imagen;
 
-    public ImageView getImageView(){
-        javafx.scene.image.Image image = null;
-        ImageView imagenn = new ImageView();
-        try {
-            if(imagen !=null) {
-                BufferedImage img = ImageIO.read(new ByteArrayInputStream(imagen));
-                image = SwingFXUtils.toFXImage(img, null);
-                imagenn.setImage(image);
-                imagenn.setFitHeight(100);
-                imagenn.setFitWidth(100);
-                imagenn.setPreserveRatio(true);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
 
-        return imagenn;
-    }
 
 
     public Restaurant(String email, String password, long rut, String direccion, String horarioApertura, String horarioCierre, String barrio, String telefono, String descripcion) {
@@ -189,6 +172,25 @@ public class Restaurant extends Usuario {
 
     public void setGrupoDeComidaList(List<GrupoDeComida> grupoDeComidaList) {
         this.grupoDeComidaList.addAll(grupoDeComidaList);
+    }
+
+    public ImageView getImageView(){
+        javafx.scene.image.Image image = null;
+        ImageView imagenn = null;
+        try {
+            if(imagen !=null) {
+                BufferedImage img = ImageIO.read(new ByteArrayInputStream(imagen));
+                image = SwingFXUtils.toFXImage(img, null);
+                imagenn = new ImageView(image);
+                imagenn.setFitHeight(100);
+                imagenn.setFitWidth(100);
+                imagenn.setPreserveRatio(true);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return imagenn;
     }
 
     public void addGrupoDeComida(GrupoDeComida grupoDeComida) {
