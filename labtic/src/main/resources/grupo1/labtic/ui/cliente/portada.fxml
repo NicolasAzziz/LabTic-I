@@ -149,23 +149,9 @@
                                                                         <RowConstraints maxHeight="135.0" minHeight="10.0" prefHeight="56.0" vgrow="SOMETIMES" />
                                                                     </rowConstraints>
                                                                     <children>
-                                                                        <Label text="¿Aún no tienes una cuenta?" GridPane.columnIndex="1" GridPane.columnSpan="2147483647" GridPane.halignment="LEFT" GridPane.rowIndex="4" GridPane.rowSpan="2147483647" GridPane.valignment="CENTER">
-                                                                            <font>
-                                                                                <Font name="Comic Sans MS" size="14.0" />
-                                                                            </font>
-                                                                        </Label>
-                                                                        <Button fx:id="registrate" mnemonicParsing="false" onAction="#registrate" text="Registrate" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
                                                                         <Label text="Sign in" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                                                                             <font>
                                                                                 <Font name="Bauhaus 93" size="28.0" />
-                                                                            </font>
-                                                                        </Label>
-                                                                        <Button fx:id="signIn" mnemonicParsing="false" onAction="#signIn" text="Sign in" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
-                                                                        <TextField fx:id="usuario" promptText="example@correo.com" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-                                                                        <PasswordField fx:id="pass" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
-                                                                        <Label text="contraseña" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
-                                                                            <font>
-                                                                                <Font name="Comic Sans MS" size="15.0" />
                                                                             </font>
                                                                         </Label>
                                                                         <Label text="usuario" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
@@ -173,6 +159,20 @@
                                                                                 <Font name="Comic Sans MS" size="15.0" />
                                                                             </font>
                                                                         </Label>
+                                                                        <TextField fx:id="usuario" promptText="example@correo.com" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                                                                        <Label text="contraseña" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                                                                            <font>
+                                                                                <Font name="Comic Sans MS" size="15.0" />
+                                                                            </font>
+                                                                        </Label>
+                                                                        <PasswordField fx:id="pass" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+                                                                        <Button fx:id="signIn" mnemonicParsing="false" onAction="#signIn" text="Sign in" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+                                                                        <Label text="¿Aún no tienes una cuenta?" GridPane.columnIndex="1" GridPane.columnSpan="2147483647" GridPane.halignment="LEFT" GridPane.rowIndex="4" GridPane.rowSpan="2147483647" GridPane.valignment="CENTER">
+                                                                            <font>
+                                                                                <Font name="Comic Sans MS" size="14.0" />
+                                                                            </font>
+                                                                        </Label>
+                                                                        <Button fx:id="registrate" mnemonicParsing="false" onAction="#registrate" text="Registrate" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
                                                                     </children>
                                                                 </GridPane>
                                                             </children>

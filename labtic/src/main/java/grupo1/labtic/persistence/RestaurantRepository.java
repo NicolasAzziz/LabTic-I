@@ -22,11 +22,11 @@ public interface RestaurantRepository extends CrudRepository<Restaurant, String>
 
     Restaurant findByRut(long RUT);
 
-    List<Restaurant> findAllByGrupoDeComidaList(List<GrupoDeComida> comidaPorGrupo);
+    Iterable<Restaurant> findAllByGrupoDeComidaList(List<GrupoDeComida> comidaPorGrupo);
 
-    List<Restaurant> findAllByBarrio(List<String> restoPorZona);
+    Iterable<Restaurant> findAllByBarrio(List<String> restoPorZona);
 
-    List<Restaurant> findAllByGrupoDeComidaListAndBarrio(List<String> porZona, List<GrupoDeComida> porBarrio);
+    Iterable<Restaurant> findAllByGrupoDeComidaListAndBarrio(List<String> porZona, List<GrupoDeComida> porBarrio);
 
-    List<Restaurant> findAll();
+    Iterable<Restaurant> findAll();
 }

@@ -43,10 +43,14 @@ public class Portada {
                 if (u.getPassword().equals(password)) {
                     FXMLLoader loader = new FXMLLoader();
                     loader.setControllerFactory(ClienteApplication.getContext()::getBean);
-                    Parent root = loader.load(Portada.class.getResourceAsStream("Principal.fxml"));
+                    Parent root = loader.load(Principal.class.getResourceAsStream("Principal.fxml"));
                     Stage stage = new Stage();
+                    stage.setTitle("Donde quiere comer?");
                     stage.setScene(new Scene(root));
                     stage.show();
+                }else{
+                    showAlert("Contrasña incorrecta", "La contraseña ingresada no es correcta.");
+                    pass.setText(null);
                 }
             } catch (Exception e) {
                 e.printStackTrace();
