@@ -28,21 +28,21 @@
                     <items>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                            <children>
-                              <Text layoutX="23.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hace tu reserva">
+                              <Text layoutX="16.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hace tu reserva">
                                  <font>
                                     <Font size="20.0" />
                                  </font>
                               </Text>
-                              <Button layoutX="614.0" layoutY="57.0" mnemonicParsing="false" text="Reservar" />
-                              <ComboBox layoutX="23.0" layoutY="57.0" prefWidth="150.0" promptText="Personas" />
-                              <ComboBox layoutX="452.0" layoutY="57.0" prefWidth="150.0" promptText="Hora" />
-                              <DatePicker layoutX="182.0" layoutY="57.0" />
+                              <Button fx:id="reservar" layoutX="614.0" layoutY="57.0" mnemonicParsing="false" text="Reservar" />
+                              <ComboBox fx:id="cantPersonasReserva" layoutX="16.0" layoutY="57.0" prefWidth="150.0" promptText="Personas" />
+                              <ComboBox fx:id="horaReserva" layoutX="452.0" layoutY="57.0" prefWidth="150.0" promptText="Hora" />
+                              <DatePicker fx:id="fechaReserva" layoutX="178.0" layoutY="57.0" />
                            </children>
                         </AnchorPane>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="296.0" prefWidth="720.0">
                            <children>
                               <Text layoutX="14.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Descripción" />
-                              <TextArea layoutX="14.0" layoutY="42.0" prefHeight="200.0" prefWidth="200.0" />
+                              <TextArea fx:id="descripcion" layoutX="14.0" layoutY="42.0" prefHeight="200.0" prefWidth="356.0" />
                            </children>
                         </AnchorPane>
                     </items>
