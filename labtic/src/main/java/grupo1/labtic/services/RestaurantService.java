@@ -66,6 +66,29 @@ public class RestaurantService {
 
 
     }
+    public void crearRestaurant(String email, String password)
+            throws InvalidRestaurantInformation, RestaurantAlreadyExists {
+
+        if (email == null || "".equals(email) || password == null || "".equals(password)) {
+
+            throw new InvalidRestaurantInformation("Alguno de los datos ingresados no es correcto");
+
+        }
+
+        // Verifico si el cliente no existe
+
+        if (restaurantRepository.findOneByEmail(email) != null) {
+
+            throw new RestaurantAlreadyExists();
+        }
+
+
+        Restaurant oRestaurant = new Restaurant(email, password);
+
+        Restaurant save = restaurantRepository.save(oRestaurant);
+
+
+    }
 
     public void setPrecioMedio(Restaurant restaurante , String precioMedio){
         restaurante.setPrecioMedio(precioMedio);

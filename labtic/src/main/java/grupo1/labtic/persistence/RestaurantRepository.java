@@ -1,6 +1,7 @@
 package grupo1.labtic.persistence;
 
 import grupo1.labtic.services.entities.Restaurant;
+import grupo1.labtic.services.entities.Usuario;
 import grupo1.labtic.services.entities.restaurant.GrupoDeComida;
 import org.springframework.data.repository.CrudRepository;
 

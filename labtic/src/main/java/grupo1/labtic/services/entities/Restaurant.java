@@ -73,6 +73,10 @@ public class Restaurant extends Usuario {
         tipoDePagoList = new ArrayList<>();
     }
 
+    public Restaurant(String email, String password) {
+        super(email, password);
+    }
+
     public Restaurant() {
         super();
         grupoDeComidaList = new ArrayList<>();

@@ -32,10 +32,10 @@ public class RestaurantApplication extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        fxmlLoader.setLocation(SolicitarDatos.class.getResource("solicitarDatos.fxml"));
+        fxmlLoader.setLocation(SolicitarDatos.class.getResource("inicio.fxml"));
 
         root = fxmlLoader.load();
-        primaryStage.setTitle("Llene los datos del Restaurant");
+        primaryStage.setTitle("Yendo");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
     }
