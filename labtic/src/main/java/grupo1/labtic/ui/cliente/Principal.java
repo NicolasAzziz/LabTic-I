@@ -153,9 +153,7 @@ public class Principal {
                 barrio.setCellValueFactory(new PropertyValueFactory<Restaurant,String>("barrio"));
                 descripcion.setCellValueFactory(new PropertyValueFactory<Restaurant,String>("descripcion"));
 
-//                horario.setCellValueFactory(new PropertyValueFactory<Restaurant,String>("horarioApertura" + "-" + "horarioCierre"));
-
-                cocinas.setCellValueFactory(new PropertyValueFactory<Restaurant,String>("listaComida"));
+//                cocinas.setCellValueFactory(new PropertyValueFactory<Restaurant,String>("listaComida"));
 
                 tableViewRestaurantes.setItems(observableList);
 

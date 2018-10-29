@@ -9,6 +9,7 @@ import grupo1.labtic.services.exceptions.NroReferenciaException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,8 +34,6 @@ public class SolicitarDatos {
     private TextField telefonoRestaurante;
     @FXML
     private TextField direccionRestaurante;
-    @FXML
-    private TextField barrioRestaurante;
     @FXML
     private TextField hAperturaRestaurante;
     @FXML
@@ -84,33 +83,32 @@ public class SolicitarDatos {
     private MenuButton barriosMenu;
 
     @FXML
-    private CheckMenuItem puntaCarretas;
+    private RadioMenuItem ciudadVieja;
     @FXML
-    private CheckMenuItem palermo;
+    private RadioMenuItem centro;
     @FXML
-    private CheckMenuItem parqueRodo;
+    private RadioMenuItem barrioSur;
     @FXML
-    private CheckMenuItem maronias;
+    private RadioMenuItem palermo;
     @FXML
-    private CheckMenuItem cordon;
+    private RadioMenuItem puntaCarretas;
     @FXML
-    private CheckMenuItem buceo;
+    private RadioMenuItem maronias;
     @FXML
-    private CheckMenuItem malvin;
+    private RadioMenuItem cordon;
     @FXML
-    private CheckMenuItem ciudadVieja;
+    private RadioMenuItem buceo;
     @FXML
-    private CheckMenuItem centro;
+    private RadioMenuItem malvin;
     @FXML
-    private CheckMenuItem pocitos;
+    private RadioMenuItem pocitos;
     @FXML
-    private CheckMenuItem barrioSur;
+    private RadioMenuItem parqueBatlle;
     @FXML
-    private CheckMenuItem parqueBatlle;
+    private RadioMenuItem puntaGorda;
     @FXML
-    private CheckMenuItem puntaGorda;
-    @FXML
-    private CheckMenuItem carrasco;
+    private RadioMenuItem carrasco;
+
 
     ObservableList<Mesa> mesaList;
 
@@ -158,10 +156,9 @@ public class SolicitarDatos {
     public void registrar(ActionEvent event) {
         if (nombreRestaurante.getText() == null || nombreRestaurante.getText().equals("") || telefonoRestaurante.getText() == null ||
                 telefonoRestaurante.getText().equals("") || direccionRestaurante.getText() == null || direccionRestaurante.getText().equals("") ||
-                barrioRestaurante.getText() == null || barrioRestaurante.getText().equals("") || hAperturaRestaurante.getText() == null ||
-                hAperturaRestaurante.getText().equals("") || mAperturaRestaurante.getText() == null || mAperturaRestaurante.getText().equals("") ||
-                hCierreRestaurante.getText() == null || hCierreRestaurante.getText().equals("") || mCierreRestaurante.getText() == null ||
-                mCierreRestaurante.getText().equals("") || email.getText() == null || email.getText().equals("")) {
+                hAperturaRestaurante.getText() == null || hAperturaRestaurante.getText().equals("") || mAperturaRestaurante.getText() == null ||
+                mAperturaRestaurante.getText().equals("") || hCierreRestaurante.getText() == null || hCierreRestaurante.getText().equals("") ||
+                mCierreRestaurante.getText() == null || mCierreRestaurante.getText().equals("") || email.getText() == null || email.getText().equals("")){
             showAlert("Datos faltantes!",
                     "No se ingresaron los datos necesarios para completar el ingreso.");
         } else {
@@ -173,7 +170,6 @@ public class SolicitarDatos {
                         String nombre = nombreRestaurante.getText();
                         String telefono = (telefonoRestaurante.getText());
                         String direccion = direccionRestaurante.getText();
-                        String barrio = null;
                         Integer hAbre = Integer.valueOf(hAperturaRestaurante.getText());
                         Integer mAbre = Integer.valueOf(mAperturaRestaurante.getText());
                         String habre = hAperturaRestaurante.getText() + ":" + mAperturaRestaurante.getText();
@@ -183,7 +179,14 @@ public class SolicitarDatos {
                         String descripcion = descR.getText();
                         String web = webRestaurante.getText();
                         String nuevaPass = passNueva.getText();
-                        //
+
+                        List<String> barrioSelected = barriosMenu.getItems().stream().filter(item ->
+                                CheckMenuItem.class.isInstance(item) && CheckMenuItem.class.cast(item).isSelected())
+                                .map(MenuItem::getText).collect(Collectors.toList());
+
+                        String barrio = barrioSelected.get(0);
+
+
 //                        List<CheckMenuItem> itemsComidas = comidasMenu.getItems();
                         List<String> selectedItemsComidas = comidasMenu.getItems().stream().filter(item ->
                                 CheckMenuItem.class.isInstance(item) && CheckMenuItem.class.cast(item).isSelected())
@@ -192,15 +195,6 @@ public class SolicitarDatos {
                         List<String> selectedItemsTipoDePagoMenu = metodosPagoMenu.getItems().stream().filter(item ->
                                 CheckMenuItem.class.isInstance(item) && CheckMenuItem.class.cast(item).isSelected())
                                 .map(MenuItem::getText).collect(Collectors.toList());
-
-                        if(barriosMenu.getItems().size() == 1){
-                            List<String> selectedBarrio = metodosPagoMenu.getItems().stream().filter(item ->
-                                    CheckMenuItem.class.isInstance(item) && CheckMenuItem.class.cast(item).isSelected())
-                                    .map(MenuItem::getText).collect(Collectors.toList());
-                            barrio = selectedBarrio.get(0);
-                        }else{
-                            showAlert("Informacion Invalida", "Se encontró un error al registrar el Barrio");
-                        }
 
                         serviceRestaurant.setTipoDePagoList(restaurante, selectedItemsTipoDePagoMenu);
 
@@ -228,10 +222,25 @@ public class SolicitarDatos {
         }
     }
 
+    @FXML
+    public void selectedBarrio(ActionEvent actionEvent) {
 
+        ToggleGroup toggleGroup = new ToggleGroup();
 
-
-
+        ciudadVieja.setToggleGroup(toggleGroup);
+        centro.setToggleGroup(toggleGroup);
+        barrioSur.setToggleGroup(toggleGroup);
+        palermo.setToggleGroup(toggleGroup);
+        puntaCarretas.setToggleGroup(toggleGroup);
+        maronias.setToggleGroup(toggleGroup);
+        cordon.setToggleGroup(toggleGroup);
+        buceo.setToggleGroup(toggleGroup);
+        malvin.setToggleGroup(toggleGroup);
+        pocitos.setToggleGroup(toggleGroup);
+        parqueBatlle.setToggleGroup(toggleGroup);
+        puntaGorda.setToggleGroup(toggleGroup);
+        carrasco.setToggleGroup(toggleGroup);
+    }
 
     private void cleanMesas() {
         nMesas.setText(null);
@@ -250,7 +259,6 @@ public class SolicitarDatos {
         descR.setText(null);
         webRestaurante.setText(null);
         direccionRestaurante.setText(null);
-        barrioRestaurante.setText(null);
         hAperturaRestaurante.setText(null);
         mAperturaRestaurante.setText(null);
         hCierreRestaurante.setText(null);
@@ -272,4 +280,6 @@ public class SolicitarDatos {
         alert.setContentText(contextText);
         alert.showAndWait();
     }
+
+
 }

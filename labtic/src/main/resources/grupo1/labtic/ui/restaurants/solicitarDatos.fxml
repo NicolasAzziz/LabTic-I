@@ -44,9 +44,9 @@
                         </BorderPane>
                     </children>
                 </AnchorPane>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="120.0" prefWidth="160.0">
                     <children>
-                        <GridPane layoutY="14.0" prefHeight="303.0" prefWidth="598.0" AnchorPane.bottomAnchor="-14.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="14.0">
+                        <GridPane layoutX="2.0" prefHeight="521.0" prefWidth="873.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="-2.0" AnchorPane.topAnchor="0.0">
                             <columnConstraints>
                                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="267.0" minWidth="10.0" prefWidth="80.0" />
                                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="309.0" minWidth="10.0" prefWidth="184.0" />
@@ -59,12 +59,12 @@
                             <rowConstraints>
                                 <RowConstraints maxHeight="96.0" minHeight="0.0" prefHeight="68.0" vgrow="SOMETIMES" />
                                 <RowConstraints maxHeight="96.0" minHeight="10.0" prefHeight="64.0" vgrow="SOMETIMES" />
-                                <RowConstraints maxHeight="202.0" minHeight="10.0" prefHeight="76.0" />
-                                <RowConstraints maxHeight="253.0" minHeight="10.0" prefHeight="76.0" vgrow="SOMETIMES" />
-                                <RowConstraints maxHeight="253.0" minHeight="0.0" prefHeight="65.0" vgrow="SOMETIMES" />
-                                <RowConstraints maxHeight="253.0" minHeight="8.0" prefHeight="53.0" vgrow="SOMETIMES" />
-                                <RowConstraints maxHeight="253.0" minHeight="10.0" prefHeight="75.0" vgrow="SOMETIMES" />
-                                <RowConstraints maxHeight="253.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                                <RowConstraints maxHeight="202.0" minHeight="10.0" prefHeight="68.0" />
+                                <RowConstraints maxHeight="253.0" minHeight="10.0" prefHeight="68.0" vgrow="SOMETIMES" />
+                                <RowConstraints maxHeight="253.0" minHeight="0.0" prefHeight="63.0" vgrow="SOMETIMES" />
+                                <RowConstraints maxHeight="253.0" minHeight="8.0" prefHeight="59.0" vgrow="SOMETIMES" />
+                                <RowConstraints maxHeight="253.0" minHeight="10.0" prefHeight="71.0" vgrow="SOMETIMES" />
+                                <RowConstraints maxHeight="253.0" minHeight="10.0" prefHeight="58.0" vgrow="SOMETIMES" />
                             </rowConstraints>
                             <children>
                                 <Text strokeType="OUTSIDE" strokeWidth="0.0" text="*Usuario:" textAlignment="CENTER" wrappingWidth="112.708984375" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
@@ -117,7 +117,7 @@
                            </items>
                                 </MenuButton>
                                 <Text strokeType="OUTSIDE" strokeWidth="0.0" text="*Comidas:" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
-                                <MenuButton fx:id="comidasMenu" alignment="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="146.0" text="Seleccione" GridPane.columnIndex="5" GridPane.rowIndex="4">
+                                <MenuButton fx:id="comidasMenu" alignment="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="146.0" text="Seleccione" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
                                     <items>
                                         <CheckMenuItem fx:id="sushi" mnemonicParsing="false" text="Sushi" />
                                         <CheckMenuItem fx:id="hamburgesas" mnemonicParsing="false" text="Hamburguesas" />
@@ -186,7 +186,7 @@
                         <ListView fx:id="listMesas" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="6" />
                                 <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Sitio web:" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER" />
                                 <TextField fx:id="webRestaurante" GridPane.columnIndex="5" GridPane.rowIndex="6" />
-                                <Button onAction="#registrar" text="Registrarse" GridPane.columnIndex="5" GridPane.rowIndex="7" GridPane.valignment="CENTER" />
+                                <Button onAction="#registrar" text="Registrarse" textAlignment="CENTER" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER" />
                                 <Text strokeType="OUTSIDE" strokeWidth="0.0" text="* Campos Obligatorios" GridPane.columnIndex="2" GridPane.rowIndex="7" GridPane.valignment="CENTER" />
                                 <Text strokeType="OUTSIDE" strokeWidth="0.0" text="D" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                                     <font>
@@ -213,22 +213,21 @@
                                         <Font name="Bauhaus 93" size="50.0" />
                                     </font>
                                 </Text>
-                        <MenuButton fx:id="barriosMenu" alignment="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="146.0" text="Seleccione" GridPane.columnIndex="5" GridPane.rowIndex="2">
+                        <MenuButton fx:id="barriosMenu" alignment="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="146.0" text="Seleccione" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                             <items>
-                                <CheckMenuItem fx:id="ciudadVieja" mnemonicParsing="false" text="Ciudad Vieja" />
-                                <CheckMenuItem fx:id="centro" mnemonicParsing="false" text="Centro" />
-                                <CheckMenuItem fx:id="barrioSur" mnemonicParsing="false" text="Barrio Sur" />
-                                <CheckMenuItem fx:id="cordon" mnemonicParsing="false" text="Cordón" />
-                                <CheckMenuItem fx:id="palermo" mnemonicParsing="false" text="Palermo" />
-                                <CheckMenuItem fx:id="parqueRodo" mnemonicParsing="false" text="Parque Rodó" />
-                                <CheckMenuItem fx:id="puntaCarretas" mnemonicParsing="false" text="Punta Carretas" />
-                                <CheckMenuItem fx:id="pocitos" mnemonicParsing="false" text="Pocitos" />
-                                <CheckMenuItem fx:id="buceo" mnemonicParsing="false" text="Buceo" />
-                                <CheckMenuItem fx:id="parqueBatlle" mnemonicParsing="false" text="Parque Batlle" />
-                                <CheckMenuItem fx:id="malvin" mnemonicParsing="false" text="Malvín" />
-                                <CheckMenuItem fx:id="puntaGorda" mnemonicParsing="false" text="Punta Gorda" />
-                                <CheckMenuItem fx:id="carrasco" mnemonicParsing="false" text="Carrasco" />
-                                <CheckMenuItem fx:id="maronias" mnemonicParsing="false" text="Maroñas" />
+                                <RadioMenuItem fx:id="ciudadVieja" mnemonicParsing="false" onAction="#selectedBarrio" text="Ciudad Vieja" />
+                                <RadioMenuItem fx:id="centro" mnemonicParsing="false" onAction="#selectedBarrio" text="Centro" />
+                                <RadioMenuItem fx:id="barrioSur" mnemonicParsing="false" onAction="#selectedBarrio" text="Barrio Sur" />
+                                <RadioMenuItem fx:id="palermo" mnemonicParsing="false" onAction="#selectedBarrio" text="Palermo" />
+                                <RadioMenuItem fx:id="puntaCarretas" mnemonicParsing="false" onAction="#selectedBarrio" text="Punta Carretas" />
+                                <RadioMenuItem fx:id="maronias" mnemonicParsing="false" onAction="#selectedBarrio" text="Maroñas" />
+                                <RadioMenuItem fx:id="cordon" mnemonicParsing="false" onAction="#selectedBarrio" text="Cordon" />
+                                <RadioMenuItem fx:id="buceo" mnemonicParsing="false" onAction="#selectedBarrio" text="Buceo" />
+                                <RadioMenuItem fx:id="malvin" mnemonicParsing="false" onAction="#selectedBarrio" text="Malvin" />
+                                <RadioMenuItem fx:id="pocitos" mnemonicParsing="false" onAction="#selectedBarrio" text="Pocitos" />
+                                <RadioMenuItem fx:id="parqueBatlle" mnemonicParsing="false" onAction="#selectedBarrio" text="Parque Batlle" />
+                                <RadioMenuItem fx:id="puntaGorda" mnemonicParsing="false" onAction="#selectedBarrio" text="Punta Gorda" />
+                                <RadioMenuItem fx:id="carrasco" mnemonicParsing="false" onAction="#selectedBarrio" text="Carrasco" />
                            </items>
                         </MenuButton>
                             </children>
