@@ -197,7 +197,7 @@ public class Principal {
 
         if (restaurantToFind.getText() == null || restaurantToFind.getText().equals("")) {
             if (selectedBarrios.isEmpty() == true && selectedItemsComidas.isEmpty() == true) {
-
+                initialize();
 
             } else if (selectedBarrios.isEmpty() == true && selectedItemsComidas.isEmpty() == false) {
 

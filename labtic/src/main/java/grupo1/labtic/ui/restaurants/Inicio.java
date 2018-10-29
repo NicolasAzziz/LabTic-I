@@ -11,6 +11,7 @@ import grupo1.labtic.ui.cliente.Principal;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -38,11 +39,12 @@ public class Inicio {
             showAlert("Falta información", "No se ingresaron los datos requeridos");
         } else {
             try {
+
                 String login = usuarioField.getText();
                 String password = passField.getText();
                 Restaurant r = restaurantRepository.findOneByEmail(login);
                 System.out.println(login);
-                long id = u.getId();
+                long id = r.getId();
                 if (r.getPassword().equals(password)) {
                     if(r.getNombreRestaurant()==null||r.getNombreRestaurant().equals("")){
                         FXMLLoader loader = new FXMLLoader();
@@ -52,7 +54,9 @@ public class Inicio {
                         Stage stage = new Stage();
                         stage.setTitle("Ingrese los datos de su restaurante");
                         stage.setScene(new Scene(root));
+                        ((Stage)((Node)actionEvent.getSource()).getScene().getWindow()).close();
                         stage.show();
+
                     }
                     else{
                         //ingresar a pantalla principal del resto
