@@ -1,6 +1,7 @@
 package grupo1.labtic.ui.restaurants;
 
 import grupo1.labtic.ClienteApplication;
+import grupo1.labtic.RestaurantApplication;
 import grupo1.labtic.persistence.RestaurantRepository;
 import grupo1.labtic.services.entities.Cliente;
 import grupo1.labtic.services.entities.Restaurant;
@@ -30,7 +31,7 @@ public class Inicio {
 
     public void contactarse(ActionEvent actionEvent) {
     }
-
+    @FXML
     public void signInResto(ActionEvent actionEvent) {
         if (usuarioField.getText() == null || usuarioField.getText().equals("") || passField.getText() == null || passField.getText().equals("")) {
             showAlert("Falta información", "No se ingresaron los datos requeridos");
@@ -42,8 +43,8 @@ public class Inicio {
                 if (r.getPassword().equals(password)) {
                     if(r.getNombreRestaurant()==null||r.getNombreRestaurant().equals("")){
                         FXMLLoader loader = new FXMLLoader();
-                        loader.setControllerFactory(ClienteApplication.getContext()::getBean);
-                        Parent root = loader.load(Principal.class.getResourceAsStream("solicitarDatos.fxml"));
+                        loader.setControllerFactory(RestaurantApplication.getContext()::getBean);
+                        Parent root = loader.load(SolicitarDatos.class.getResourceAsStream("SolicitarDatos.fxml"));
                         Stage stage = new Stage();
                         stage.setTitle("Ingrese los datos de su restaurante");
                         stage.setScene(new Scene(root));

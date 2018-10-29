@@ -227,7 +227,7 @@ public class Restaurant extends Usuario {
     public void setRut(long rut) {
         this.rut = rut;
     }
-    
+
     public byte[] getImagen() {
         return imagen;
     }

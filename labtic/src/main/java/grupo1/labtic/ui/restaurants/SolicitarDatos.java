@@ -166,7 +166,9 @@ public class SolicitarDatos {
                 telefonoRestaurante.getText().equals("") || direccionRestaurante.getText() == null || direccionRestaurante.getText().equals("") ||
                 hAperturaRestaurante.getText() == null || hAperturaRestaurante.getText().equals("") || mAperturaRestaurante.getText() == null ||
                 mAperturaRestaurante.getText().equals("") || hCierreRestaurante.getText() == null || hCierreRestaurante.getText().equals("") ||
-                mCierreRestaurante.getText() == null || mCierreRestaurante.getText().equals("") || email.getText() == null || email.getText().equals("")){
+                mCierreRestaurante.getText() == null || mCierreRestaurante.getText().equals("") || email.getText() == null || email.getText().equals("") || barriosMenu.getItems().stream().filter(item ->
+                RadioMenuItem.class.isInstance(item) && RadioMenuItem.class.cast(item).isSelected())
+                .map(MenuItem::getText).collect(Collectors.toList()).size() == 0 ){
 
             showAlert("Datos faltantes!",
                     "No se ingresaron los datos necesarios para completar el ingreso.");
@@ -185,7 +187,6 @@ public class SolicitarDatos {
                             String nombre = nombreRestaurante.getText();
                             String telefono = (telefonoRestaurante.getText());
                             String direccion = direccionRestaurante.getText();
-                            String barrio = null;
                             Integer hAbre = Integer.valueOf(hAperturaRestaurante.getText());
                             Integer mAbre = Integer.valueOf(mAperturaRestaurante.getText());
                             String habre = hAperturaRestaurante.getText() + ":" + mAperturaRestaurante.getText();
@@ -209,13 +210,12 @@ public class SolicitarDatos {
                         serviceRestaurant.setTipoDePagoList(restaurante, selectedItemsTipoDePagoMenu);
 
                             List<String> selectedBarrio = barriosMenu.getItems().stream().filter(item ->
-                                    CheckMenuItem.class.isInstance(item) && CheckMenuItem.class.cast(item).isSelected())
+                                    RadioMenuItem.class.isInstance(item) && RadioMenuItem.class.cast(item).isSelected())
                                     .map(MenuItem::getText).collect(Collectors.toList());
-                            if (selectedBarrio.size() == 1) {
-                                barrio = selectedBarrio.get(0);
-                            } else {
-                                showAlert("Informacion Invalida", "Se encontró un error al registrar el Barrio");
-                            }
+
+
+                            String barrio = selectedBarrio.get(0);
+
 
                             serviceRestaurant.setGrupoDeComidaList(restaurante, selectedItemsComidas);
 
@@ -279,7 +279,6 @@ public class SolicitarDatos {
 
         // Obtener la imagen seleccionada
         imgFile = fileChooser.showOpenDialog(null);
-
 
     }
 

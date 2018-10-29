@@ -13,7 +13,7 @@ import org.springframework.context.ConfigurableApplicationContext;
 @SpringBootApplication
 public class RestaurantApplication extends Application {
 
-    private ConfigurableApplicationContext context;
+    private  static ConfigurableApplicationContext context;
 
     private FXMLLoader fxmlLoader;
 
@@ -43,5 +43,9 @@ public class RestaurantApplication extends Application {
     @Override
     public void stop() {
         context.close();
+    }
+
+    public static ConfigurableApplicationContext getContext() {
+        return context;
     }
 }
