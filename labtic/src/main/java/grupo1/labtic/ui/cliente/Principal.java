@@ -1,14 +1,11 @@
 package grupo1.labtic.ui.cliente;
 
-import grupo1.labtic.AdminApplication;
+import grupo1.labtic.ClienteApplication;
 import grupo1.labtic.persistence.RestaurantRepository;
 import grupo1.labtic.services.entities.Restaurant;
-import grupo1.labtic.services.entities.restaurant.GrupoDeComida;
-import grupo1.labtic.ui.admins.PortadaAdmin;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -17,20 +14,15 @@ import javafx.scene.control.*;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.awt.*;
 import java.io.IOException;
-import java.sql.Blob;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 @Component
@@ -182,6 +174,29 @@ public class Principal {
         imagen.setCellValueFactory(new PropertyValueFactory<Restaurant, ImageView>("imageView"));
         List<Restaurant> restaurantes = (List) repository.findAll();
         tableViewRestaurantes.setItems(FXCollections.observableList(restaurantes));
+
+        tableViewRestaurantes.setRowFactory( tv -> {
+            TableRow<Restaurant> row = new TableRow<>();
+            row.setOnMouseClicked((event1) -> {
+                if (event1.getClickCount() == 2 && (! row.isEmpty()) ) {
+                    try {
+                        FXMLLoader loader = new FXMLLoader();
+                        loader.setControllerFactory(ClienteApplication.getContext()::getBean);
+                        Parent root = loader.load(RestaurantEspecifico.class.getResourceAsStream("restaurantEspecifico.fxml"));
+                        Stage stage = new Stage();
+                        stage.setTitle("Restaurant específico");
+                        stage.setScene(new Scene(root));
+                        stage.show();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    //Cargar pantalla de un restaurant especifico
+                    //Restaurant rowData = row.getItem();
+                    //System.out.println(rowData);
+                }
+            });
+            return row ;
+        });
     }
 
     @FXML
@@ -230,29 +245,7 @@ public class Principal {
 
             }
         }
-
-        tableViewRestaurantes.setOnMousePressed(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                if (event.isPrimaryButtonDown() && event.getClickCount() == 2) {
-                    Parent root;
-                    try {
-                        root = FXMLLoader.load(getClass().getClassLoader().getResource("RestaurantEspecifico.fxml"));
-                        Stage stage = new Stage();
-                        stage.setTitle("Pantalla de informacion Restaurant");
-                        stage.setScene(new Scene(root, 450, 450));
-                        stage.show();
-                    }
-                    catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-        });
-
     }
-
-
 
 
 }

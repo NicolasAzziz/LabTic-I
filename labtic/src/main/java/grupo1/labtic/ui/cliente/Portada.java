@@ -54,7 +54,7 @@ public class Portada {
                 }
             } catch (Exception e) {
                 e.printStackTrace();
-                showAlert("Usuario no econtrado", "El usuario ingresado no existe");
+                showAlert("Usuario no encontrado", "El usuario ingresado no existe");
             }
         }
     }

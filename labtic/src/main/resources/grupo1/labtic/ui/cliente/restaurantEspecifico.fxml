@@ -6,7 +6,6 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="494.0" prefWidth="724.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="grupo1.labtic.ui.cliente.RestaurantEspecifico">
    <children>
       <SplitPane dividerPositions="0.17073170731707318" layoutX="266.0" layoutY="86.0" orientation="VERTICAL" prefHeight="608.0" prefWidth="889.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -33,7 +32,7 @@
                                     <Font size="20.0" />
                                  </font>
                               </Text>
-                              <Button fx:id="reservar" layoutX="614.0" layoutY="57.0" mnemonicParsing="false" text="Reservar" />
+                              <Button fx:id="reservar" layoutX="614.0" layoutY="57.0" mnemonicParsing="false" onAction="#reservar" text="Reservar" />
                               <ComboBox fx:id="cantPersonasReserva" layoutX="16.0" layoutY="57.0" prefWidth="150.0" promptText="Personas" />
                               <ComboBox fx:id="horaReserva" layoutX="452.0" layoutY="57.0" prefWidth="150.0" promptText="Hora" />
                               <DatePicker fx:id="fechaReserva" layoutX="178.0" layoutY="57.0" />
