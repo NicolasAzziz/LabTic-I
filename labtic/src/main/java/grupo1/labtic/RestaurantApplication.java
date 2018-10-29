@@ -15,9 +15,14 @@ public class RestaurantApplication extends Application {
 
     private  static ConfigurableApplicationContext context;
 
+
     private FXMLLoader fxmlLoader;
 
     private Parent root;
+
+    public static ConfigurableApplicationContext getContext() {
+        return context;
+    }
 
     public static void main(String[] args) {
         launch(args);
@@ -45,7 +50,4 @@ public class RestaurantApplication extends Application {
         context.close();
     }
 
-    public static ConfigurableApplicationContext getContext() {
-        return context;
-    }
 }

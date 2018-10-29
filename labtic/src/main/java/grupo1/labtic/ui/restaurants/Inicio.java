@@ -1,5 +1,6 @@
 package grupo1.labtic.ui.restaurants;
 
+import grupo1.labtic.AdminApplication;
 import grupo1.labtic.ClienteApplication;
 import grupo1.labtic.RestaurantApplication;
 import grupo1.labtic.persistence.RestaurantRepository;
@@ -40,11 +41,14 @@ public class Inicio {
                 String login = usuarioField.getText();
                 String password = passField.getText();
                 Restaurant r = restaurantRepository.findOneByEmail(login);
+                System.out.println(login);
+                long id = u.getId();
                 if (r.getPassword().equals(password)) {
                     if(r.getNombreRestaurant()==null||r.getNombreRestaurant().equals("")){
                         FXMLLoader loader = new FXMLLoader();
                         loader.setControllerFactory(RestaurantApplication.getContext()::getBean);
                         Parent root = loader.load(SolicitarDatos.class.getResourceAsStream("SolicitarDatos.fxml"));
+
                         Stage stage = new Stage();
                         stage.setTitle("Ingrese los datos de su restaurante");
                         stage.setScene(new Scene(root));
