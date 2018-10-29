@@ -1,7 +1,7 @@
 package grupo1.labtic.ui.admins;
 
 import grupo1.labtic.services.RestaurantService;
-import grupo1.labtic.services.entities.UsuarioService;
+import grupo1.labtic.services.UsuarioService;
 import grupo1.labtic.services.exceptions.EmailInvalido;
 import grupo1.labtic.services.exceptions.InvalidRestaurantInformation;
 import grupo1.labtic.services.exceptions.RestaurantAlreadyExists;
@@ -10,11 +10,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import org.hibernate.validator.internal.constraintvalidators.bv.EmailValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import javax.validation.constraints.Email;
 
 @Component
 public class Administrar {

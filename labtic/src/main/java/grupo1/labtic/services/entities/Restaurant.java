@@ -2,11 +2,16 @@ package grupo1.labtic.services.entities;
 
 import grupo1.labtic.services.entities.restaurant.GrupoDeComida;
 import grupo1.labtic.services.entities.restaurant.TipoDePago;
+import javafx.embed.swing.SwingFXUtils;
+import javafx.scene.image.ImageView;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.ManyToMany;
+import javax.imageio.ImageIO;
+import javax.persistence.*;
+import javax.validation.constraints.Size;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -38,6 +43,12 @@ public class Restaurant extends Usuario {
     private String nombreRestaurant;
     @Column(name = "SitioWeb")
     private String sitioWeb;
+    @Column
+    private String precioMedio;
+    @Column
+    @Lob
+    private byte[] imagen;
+
 
 
     public Restaurant(String email, String password, long rut, String direccion, String horarioApertura, String horarioCierre, String barrio, String telefono, String descripcion) {
@@ -59,6 +70,10 @@ public class Restaurant extends Usuario {
         this.rut = rut;
         grupoDeComidaList = new ArrayList<>();
         tipoDePagoList = new ArrayList<>();
+    }
+
+    public Restaurant(String email, String password) {
+        super(email, password);
     }
 
     public Restaurant() {
@@ -110,7 +125,6 @@ public class Restaurant extends Usuario {
     public String getHorarioApertura() {
         return horarioApertura;
     }
-
     public void setHorarioApertura(String horarioApertura) {
         this.horarioApertura = horarioApertura;
     }
@@ -147,13 +161,44 @@ public class Restaurant extends Usuario {
         this.descripcion = descripcion;
     }
 
+    public String getPrecioMedio() {
+        return precioMedio;
+    }
+
+    public void setPrecioMedio(String precioMedio) {
+        this.precioMedio = precioMedio;
+    }
+
     public List<GrupoDeComida> getGrupoDeComidaList() {
         return grupoDeComidaList;
     }
 
-    public void setGrupoDeComidaList(List<GrupoDeComida> grupoDeComidaList) { this.grupoDeComidaList.addAll(grupoDeComidaList); }
+    public void setGrupoDeComidaList(List<GrupoDeComida> grupoDeComidaList) {
+        this.grupoDeComidaList.addAll(grupoDeComidaList);
+    }
 
-    public void addGrupoDeComida(GrupoDeComida grupoDeComida) { this.grupoDeComidaList.add(grupoDeComida); }
+    public ImageView getImageView(){
+        javafx.scene.image.Image image = null;
+        ImageView imagenn = null;
+        try {
+            if(imagen !=null) {
+                BufferedImage img = ImageIO.read(new ByteArrayInputStream(imagen));
+                image = SwingFXUtils.toFXImage(img, null);
+                imagenn = new ImageView(image);
+                imagenn.setFitHeight(100);
+                imagenn.setFitWidth(100);
+                imagenn.setPreserveRatio(true);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return imagenn;
+    }
+
+    public void addGrupoDeComida(GrupoDeComida grupoDeComida) {
+        this.grupoDeComidaList.add(grupoDeComida);
+    }
 
     public List<TipoDePago> getTipoDePagoList() {
         return tipoDePagoList;
@@ -181,6 +226,14 @@ public class Restaurant extends Usuario {
 
     public void setRut(long rut) {
         this.rut = rut;
+    }
+    
+    public byte[] getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(byte[] imagen) {
+        this.imagen = imagen;
     }
 
 }

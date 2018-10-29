@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="494.0" prefWidth="724.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="grupo1.labtic.ui.cliente.RestaurantEspecifico">
+   <children>
+      <SplitPane dividerPositions="0.17073170731707318" layoutX="266.0" layoutY="86.0" orientation="VERTICAL" prefHeight="608.0" prefWidth="889.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+               <children>
+                  <Text layoutX="14.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre del Restaurant" wrappingWidth="347.9658203125">
+                     <font>
+                        <Font size="32.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="656.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rating" />
+                  <Text layoutX="539.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Barrio - Precio medio" />
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="424.0" prefWidth="722.0">
+               <children>
+                  <SplitPane dividerPositions="0.2817955112219451" layoutX="227.0" layoutY="35.0" orientation="VERTICAL" prefHeight="403.0" prefWidth="722.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <items>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                           <children>
+                              <Text layoutX="16.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hace tu reserva">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Text>
+                              <Button fx:id="reservar" layoutX="614.0" layoutY="57.0" mnemonicParsing="false" text="Reservar" />
+                              <ComboBox fx:id="cantPersonasReserva" layoutX="16.0" layoutY="57.0" prefWidth="150.0" promptText="Personas" />
+                              <ComboBox fx:id="horaReserva" layoutX="452.0" layoutY="57.0" prefWidth="150.0" promptText="Hora" />
+                              <DatePicker fx:id="fechaReserva" layoutX="178.0" layoutY="57.0" />
+                           </children>
+                        </AnchorPane>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="296.0" prefWidth="720.0">
+                           <children>
+                              <Text layoutX="14.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Descripción" />
+                              <TextArea fx:id="descripcion" layoutX="14.0" layoutY="42.0" prefHeight="200.0" prefWidth="356.0" />
+                           </children>
+                        </AnchorPane>
+                    </items>
+                  </SplitPane>
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+   </children>
+</AnchorPane>

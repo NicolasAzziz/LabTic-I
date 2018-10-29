@@ -40,6 +40,7 @@ public class ClienteApplication extends Application {
         fxmlLoader.setLocation(Portada.class.getResource("Portada.fxml"));
         root = fxmlLoader.load();
         primaryStage.setScene(new Scene(root));
+        primaryStage.setTitle("Bienvenido!");
         primaryStage.show();
     }
 

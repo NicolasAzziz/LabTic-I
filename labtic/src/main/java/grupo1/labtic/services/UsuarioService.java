@@ -1,4 +1,4 @@
-package grupo1.labtic.services.entities;
+package grupo1.labtic.services;
 
 import grupo1.labtic.services.exceptions.EmailInvalido;
 import org.hibernate.validator.internal.constraintvalidators.bv.EmailValidator;

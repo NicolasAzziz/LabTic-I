@@ -3,7 +3,7 @@ package grupo1.labtic.ui.cliente;
 import grupo1.labtic.persistence.ClienteRepository;
 import grupo1.labtic.services.ClienteService;
 import grupo1.labtic.services.entities.Cliente;
-import grupo1.labtic.services.entities.UsuarioService;
+import grupo1.labtic.services.UsuarioService;
 import grupo1.labtic.services.exceptions.EmailInvalido;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
