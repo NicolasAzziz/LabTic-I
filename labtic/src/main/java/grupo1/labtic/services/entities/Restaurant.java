@@ -196,6 +196,18 @@ public class Restaurant extends Usuario {
         return imagenn;
     }
 
+    public String getCocinasOfrecidas(){
+        String exit = "";
+
+        for(int i = 0 ; i < getGrupoDeComidaList().size(); i++){
+
+            exit = exit + getGrupoDeComidaList().get(i).getGrupo() + " \n";
+
+        }
+
+        return exit;
+    }
+
     public void addGrupoDeComida(GrupoDeComida grupoDeComida) {
         this.grupoDeComidaList.add(grupoDeComida);
     }

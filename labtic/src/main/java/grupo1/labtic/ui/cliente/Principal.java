@@ -172,6 +172,7 @@ public class Principal {
         barrio.setCellValueFactory(new PropertyValueFactory<Restaurant, String>("barrio"));
         cocinas.setCellValueFactory(new PropertyValueFactory<Restaurant, String>("cocinas"));
         imagen.setCellValueFactory(new PropertyValueFactory<Restaurant, ImageView>("imageView"));
+        cocinas.setCellValueFactory(new PropertyValueFactory<Restaurant, String>("cocinasOfrecidas"));
         List<Restaurant> restaurantes = (List) repository.findAll();
         tableViewRestaurantes.setItems(FXCollections.observableList(restaurantes));
 
@@ -212,7 +213,7 @@ public class Principal {
 
         if (restaurantToFind.getText() == null || restaurantToFind.getText().equals("")) {
             if (selectedBarrios.isEmpty() == true && selectedItemsComidas.isEmpty() == true) {
-
+                initialize();
 
             } else if (selectedBarrios.isEmpty() == true && selectedItemsComidas.isEmpty() == false) {
 
