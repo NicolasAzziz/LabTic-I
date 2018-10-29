@@ -42,7 +42,7 @@ public class Inicio {
                 String password = passField.getText();
                 Restaurant r = restaurantRepository.findOneByEmail(login);
                 System.out.println(login);
-                long id = u.getId();
+                long id = r.getId();
                 if (r.getPassword().equals(password)) {
                     if(r.getNombreRestaurant()==null||r.getNombreRestaurant().equals("")){
                         FXMLLoader loader = new FXMLLoader();

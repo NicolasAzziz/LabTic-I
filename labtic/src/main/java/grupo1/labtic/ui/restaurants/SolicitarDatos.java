@@ -315,7 +315,7 @@ public class SolicitarDatos {
         ensaladas.setSelected(false);
 
         for(int i = 0; i< barriosMenu.getItems().size();i++){
-            ((CheckMenuItem)barriosMenu.getItems().get(i)).setSelected(false);
+            ((RadioMenuItem)barriosMenu.getItems().get(i)).setSelected(false);
         }
     }
 
