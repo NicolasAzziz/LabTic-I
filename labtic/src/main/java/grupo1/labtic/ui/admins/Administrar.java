@@ -7,9 +7,11 @@ import grupo1.labtic.services.exceptions.InvalidRestaurantInformation;
 import grupo1.labtic.services.exceptions.RestaurantAlreadyExists;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -39,6 +41,7 @@ public class Administrar {
             restaurantService.crearRestaurant(email, pass, rut1);
             showAlert("Restaurante agregado.", "Se agrego con exito el restaurante.");
             clean();
+            ((Stage)((Node)actionEvent.getSource()).getScene().getWindow()).close();
         } catch (InvalidRestaurantInformation e) {
             showAlert("Informacion invalida!", "Se encontro un error en los datos ingresados.");
         } catch (RestaurantAlreadyExists e) {

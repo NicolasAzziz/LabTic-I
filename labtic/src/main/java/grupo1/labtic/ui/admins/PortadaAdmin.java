@@ -90,9 +90,6 @@ public class PortadaAdmin {
         ObservableList<Restaurant> data = FXCollections.observableList((List) listaRestaurantes);
 
         table.setItems(data);
-
-
-
     }
 
     @FXML
