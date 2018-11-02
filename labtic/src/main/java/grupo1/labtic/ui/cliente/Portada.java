@@ -48,8 +48,8 @@ public class Portada {
                     Stage stage = new Stage();
                     stage.setTitle("Donde quiere comer?");
                     stage.setScene(new Scene(root));
-                    ((Stage)((Node)actionEvent.getSource()).getScene().getWindow()).close();
                     stage.show();
+                    ((Stage)((Node)actionEvent.getSource()).getScene().getWindow()).close();
                 }else{
                     showAlert("Contrasña incorrecta", "La contraseña ingresada no es correcta.");
                     pass.setText(null);
