@@ -15,6 +15,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
@@ -207,6 +208,7 @@ public class Principal {
                         Parent root = loader.load(Principal.class.getResourceAsStream("restaurantEspecifico.fxml"));
                         Stage stage = new Stage();
                         stage.setTitle("Restaurant específico");
+                        stage.getIcons().add(new Image("grupo1/labtic/ui/Imagenes/yendoIcono.png"));
                         stage.setScene(new Scene(root));
                         nombre.setText(rowData.getNombreRestaurant());
                         description.setText(rowData.getDescripcion());

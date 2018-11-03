@@ -14,6 +14,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,6 +66,12 @@ public class PortadaAdmin {
     @FXML
     private Circle circle2;
 
+    @FXML
+    private ImageView imageView;
+
+    @FXML
+    private AnchorPane imageContainer;
+
     @Autowired
     private RestaurantRepository restaurantRepository;
 
@@ -88,7 +97,9 @@ public class PortadaAdmin {
 
         Iterable<Restaurant> listaRestaurantes = restaurantRepository.findAll();
         ObservableList<Restaurant> data = FXCollections.observableList((List) listaRestaurantes);
-
+        imageView.setPreserveRatio(true);
+        imageView.fitWidthProperty().bind(imageContainer.widthProperty());
+        //imageView.fitHeightProperty().bind(imageContainer.heightProperty());
         table.setItems(data);
     }
 
@@ -102,6 +113,7 @@ public class PortadaAdmin {
                     .class.getResourceAsStream("Admin.fxml"));
             Stage stage = new Stage();
             stage.setTitle("Nuevo Restaurant");
+            stage.getIcons().add(new Image("grupo1/labtic/ui/Imagenes/yendoIcono.png"));
             stage.setScene(new Scene(root));
             stage.show();
         } catch (IOException e) {

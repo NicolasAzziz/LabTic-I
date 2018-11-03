@@ -18,11 +18,17 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
+
+import static grupo1.labtic.ui.Alert.showAlert;
 
 @Component
 public class Portada {
@@ -32,6 +38,19 @@ public class Portada {
     private TextField usuario;
     @FXML
     private PasswordField pass;
+    @FXML
+    private ImageView imagePortada;
+    @FXML
+    private AnchorPane imagePortadaContainer;
+
+    public void initialize() {
+        imagePortada.setPreserveRatio(false);
+        imagePortada.fitHeightProperty().bind(imagePortadaContainer.heightProperty());
+        imagePortada.fitWidthProperty().bind(imagePortadaContainer.widthProperty());
+        //imagePortadaContainer.
+
+    }
+
     @FXML
     public void signIn(ActionEvent actionEvent) {
         if (usuario.getText() == null || usuario.getText().equals("") || pass.getText() == null || pass.getText().equals("")) {
@@ -47,6 +66,7 @@ public class Portada {
                     Parent root = loader.load(Principal.class.getResourceAsStream("Principal.fxml"));
                     Stage stage = new Stage();
                     stage.setTitle("Donde quiere comer?");
+                    stage.getIcons().add(new Image("grupo1/labtic/ui/Imagenes/yendoIcono.png"));
                     stage.setScene(new Scene(root));
                     stage.show();
                     ((Stage)((Node)actionEvent.getSource()).getScene().getWindow()).close();
@@ -75,11 +95,4 @@ public class Portada {
         }
     }
 
-    private void showAlert(String title, String contextText) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(contextText);
-        alert.showAndWait();
-    }
 }
