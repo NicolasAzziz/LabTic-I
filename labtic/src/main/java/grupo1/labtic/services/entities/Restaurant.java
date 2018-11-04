@@ -208,6 +208,8 @@ public class Restaurant extends Usuario {
         return exit;
     }
 
+
+
     public void addGrupoDeComida(GrupoDeComida grupoDeComida) {
         this.grupoDeComidaList.add(grupoDeComida);
     }
@@ -246,6 +248,14 @@ public class Restaurant extends Usuario {
 
     public void setImagen(byte[] imagen) {
         this.imagen = imagen;
+    }
+
+    public String getPagosOfrecidos(){
+        String exit = "";
+        for(int i = 0 ; i < getTipoDePagoList().size(); i++){
+            exit = exit + getTipoDePagoList().get(i).getNombre() + " \n";
+        }
+        return exit;
     }
 
 }
