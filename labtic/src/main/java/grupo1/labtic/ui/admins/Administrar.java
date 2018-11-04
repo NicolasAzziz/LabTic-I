@@ -7,11 +7,15 @@ import grupo1.labtic.services.exceptions.InvalidRestaurantInformation;
 import grupo1.labtic.services.exceptions.RestaurantAlreadyExists;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import static grupo1.labtic.ui.Alert.showAlert;
 
 @Component
 public class Administrar {
@@ -39,10 +43,11 @@ public class Administrar {
             restaurantService.crearRestaurant(email, pass, rut1);
             showAlert("Restaurante agregado.", "Se agrego con exito el restaurante.");
             clean();
+            ((Stage)((Node)actionEvent.getSource()).getScene().getWindow()).close();
         } catch (InvalidRestaurantInformation e) {
             showAlert("Informacion invalida!", "Se encontro un error en los datos ingresados.");
         } catch (RestaurantAlreadyExists e) {
-            showAlert("Restaurante ya registrado", "El email ya ha sido registrado en el sistema");
+            showAlert("Restaurante ya registrado", e.getMessage());
         } catch(EmailInvalido e){
             showAlert("Email invalido", "El e-mail ingresado no es correcto.");
         }catch(NumberFormatException e){
@@ -58,11 +63,4 @@ public class Administrar {
         rut.setText(null);
     }
 
-    public void showAlert(String title, String contextText) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(contextText);
-        alert.showAndWait();
-    }
 }

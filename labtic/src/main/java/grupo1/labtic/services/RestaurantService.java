@@ -52,12 +52,12 @@ public class RestaurantService {
 
         if (restaurantRepository.findOneByEmail(email) != null) {
 
-            throw new RestaurantAlreadyExists();
+            throw new RestaurantAlreadyExists("Ya existe un restaurante con el email: " + email);
         }
 
         if (restaurantRepository.findByRut(rut) != null) {
 
-            throw new RestaurantAlreadyExists();
+            throw new RestaurantAlreadyExists("RUT ya existente.");
         }
 
         Restaurant oRestaurant = new Restaurant(email, password, rut);
@@ -79,7 +79,7 @@ public class RestaurantService {
 
         if (restaurantRepository.findOneByEmail(email) != null) {
 
-            throw new RestaurantAlreadyExists();
+            throw new RestaurantAlreadyExists("Ya existe un usuario con el email: " + email);
         }
 
 

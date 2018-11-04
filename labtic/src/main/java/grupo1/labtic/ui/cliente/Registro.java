@@ -14,6 +14,8 @@ import javafx.scene.control.TextField;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import static grupo1.labtic.ui.Alert.showAlert;
+
 @Component
 public class Registro {
 
@@ -87,13 +89,6 @@ public class Registro {
             nombreCliente.setText(null);
         }
 
-        private void showAlert(String title, String contextText){
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle(title);
-            alert.setHeaderText(null);
-            alert.setContentText(contextText);
-            alert.showAndWait();
-        }
 
     }
 

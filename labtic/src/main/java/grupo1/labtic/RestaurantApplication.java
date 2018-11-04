@@ -5,10 +5,12 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.core.io.ClassPathResource;
 
 @SpringBootApplication
 public class RestaurantApplication extends Application {
@@ -40,7 +42,8 @@ public class RestaurantApplication extends Application {
         fxmlLoader.setLocation(SolicitarDatos.class.getResource("inicio.fxml"));
 
         root = fxmlLoader.load();
-        primaryStage.setTitle("Yendo");
+        primaryStage.setTitle("Yendo Restaurant");
+        primaryStage.getIcons().add(new Image("grupo1/labtic/ui/Imagenes/yendoIcono.png"));
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
     }
