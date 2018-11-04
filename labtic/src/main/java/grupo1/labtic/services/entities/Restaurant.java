@@ -125,6 +125,7 @@ public class Restaurant extends Usuario {
     public String getHorarioApertura() {
         return horarioApertura;
     }
+
     public void setHorarioApertura(String horarioApertura) {
         this.horarioApertura = horarioApertura;
     }
@@ -197,6 +198,7 @@ public class Restaurant extends Usuario {
     }
 
     public String getCocinasOfrecidas(){
+
         String exit = "";
 
         for(int i = 0 ; i < getGrupoDeComidaList().size(); i++){

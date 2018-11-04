@@ -175,75 +175,71 @@ public class SolicitarDatos {
                     "No se ingresaron los datos necesarios para completar el ingreso.");
         } else {
 
-                String email = this.email.getText();
-                Restaurant restaurante = restaurantRepository.getRestaurantByEmail(email);
+            String email = this.email.getText();
+            Restaurant restaurante = restaurantRepository.getRestaurantByEmail(email);
 
-                if(restaurante == null){
-                    showAlert("Usuario no encontrado", "El email: " + this.email.getText() +" no existe en el sistema");
+            if(restaurante == null){
+                showAlert("Usuario no encontrado", "El email: " + this.email.getText() +" no existe en el sistema");
 
-                }else {
+            }else {
 
-                    if (restaurante.getPassword().equals(passActual.getText())) {
-                        try {
-                            String nombre = nombreRestaurante.getText();
-                            String telefono = (telefonoRestaurante.getText());
-                            String direccion = direccionRestaurante.getText();
-                            Integer hAbre = Integer.valueOf(hAperturaRestaurante.getText());
-                            Integer mAbre = Integer.valueOf(mAperturaRestaurante.getText());
-                            String habre = hAperturaRestaurante.getText() + ":" + mAperturaRestaurante.getText();
-                            Integer hCierra = Integer.valueOf(hCierreRestaurante.getText());
-                            Integer mCierra = Integer.valueOf(mCierreRestaurante.getText());
-                            String hcierra = hCierreRestaurante.getText() + ":" + mCierreRestaurante.getText();
-                            String descripcion = descR.getText();
-                            String web = webRestaurante.getText();
-                            String nuevaPass = passNueva.getText();
+                if (restaurante.getPassword().equals(passActual.getText())) {
+                    try {
+                        String nombre = nombreRestaurante.getText();
+                        String telefono = (telefonoRestaurante.getText());
+                        String direccion = direccionRestaurante.getText();
+                        Integer hAbre = Integer.valueOf(hAperturaRestaurante.getText());
+                        Integer mAbre = Integer.valueOf(mAperturaRestaurante.getText());
+                        String habre = hAperturaRestaurante.getText() + ":" + mAperturaRestaurante.getText();
+                        Integer hCierra = Integer.valueOf(hCierreRestaurante.getText());
+                        Integer mCierra = Integer.valueOf(mCierreRestaurante.getText());
+                        String hcierra = hCierreRestaurante.getText() + ":" + mCierreRestaurante.getText();
+                        String descripcion = descR.getText();
+                        String web = webRestaurante.getText();
+                        String nuevaPass = passNueva.getText();
 
-//                        List<CheckMenuItem> itemsComidas = comidasMenu.getItems();
-                            List<String> selectedItemsComidas = comidasMenu.getItems().stream().filter(item ->
-                                    CheckMenuItem.class.isInstance(item) && CheckMenuItem.class.cast(item).isSelected())
-                                    .map(MenuItem::getText).collect(Collectors.toList());
+                        List<String> selectedItemsComidas = comidasMenu.getItems().stream().filter(item ->
+                                CheckMenuItem.class.isInstance(item) && CheckMenuItem.class.cast(item).isSelected())
+                                .map(MenuItem::getText).collect(Collectors.toList());
 
-                            List<String> selectedItemsTipoDePagoMenu = metodosPagoMenu.getItems().stream().filter(item ->
-                                    CheckMenuItem.class.isInstance(item) && CheckMenuItem.class.cast(item).isSelected())
-                                    .map(MenuItem::getText).collect(Collectors.toList());
+                        serviceRestaurant.setGrupoDeComidaList(restaurante, selectedItemsComidas);
 
+                        List<String> selectedItemsTipoDePagoMenu = metodosPagoMenu.getItems().stream().filter(item ->
+                                CheckMenuItem.class.isInstance(item) && CheckMenuItem.class.cast(item).isSelected())
+                                .map(MenuItem::getText).collect(Collectors.toList());
 
                         serviceRestaurant.setTipoDePagoList(restaurante, selectedItemsTipoDePagoMenu);
 
-                            List<String> selectedBarrio = barriosMenu.getItems().stream().filter(item ->
-                                    RadioMenuItem.class.isInstance(item) && RadioMenuItem.class.cast(item).isSelected())
-                                    .map(MenuItem::getText).collect(Collectors.toList());
+                        List<String> selectedBarrio = barriosMenu.getItems().stream().filter(item ->
+                                RadioMenuItem.class.isInstance(item) && RadioMenuItem.class.cast(item).isSelected())
+                                .map(MenuItem::getText).collect(Collectors.toList());
 
+                        String barrio = selectedBarrio.get(0);
 
-                            String barrio = selectedBarrio.get(0);
+                        List<Mesa> mesas = new ArrayList<>(mesaList);
 
+                        serviceRestaurant.setListaMesasRestaurante(restaurante, mesas);
 
-                            serviceRestaurant.setGrupoDeComidaList(restaurante, selectedItemsComidas);
+                        serviceRestaurant.registrarDatosRestaurant(restaurante, nombre, telefono, direccion, barrio, habre, hcierra, descripcion, web, nuevaPass);
 
-                            List<Mesa> mesas = new ArrayList<>(mesaList);
-
-                            serviceRestaurant.setListaMesasRestaurante(restaurante, mesas);
-
-                            serviceRestaurant.registrarDatosRestaurant(restaurante, nombre, telefono, direccion, barrio, habre, hcierra, descripcion, web,
-                                    nuevaPass);
-                            if(imgFile != null) {
-                                serviceRestaurant.guardarImagen(restaurante, imgFile);
-                            }
-
-                            if(precioMedio == null || precioMedio.getText().equals("")){
-
-                            }else{
-                                serviceRestaurant.setPrecioMedio(restaurante,precioMedio.getText());
-                            }
-                            showAlert("Datos guardados", "Se guardaron con éxito los datos de su restaurante");
-                            clean();
-                        } catch (NumberFormatException e) {
-                            showAlert("Informacion Invalida", "Se encontró un error en los datos ingresados");
+                        if(imgFile != null) {
+                            serviceRestaurant.guardarImagen(restaurante, imgFile);
                         }
-                    } else {
-                        showAlert("Contraseña incorrecta", "La contraseña ingresada es incorrecta");
+
+                        if(precioMedio == null || precioMedio.getText().equals("")){
+
+                        }else{
+                            serviceRestaurant.setPrecioMedio(restaurante, precioMedio.getText());
+                        }
+                        showAlert("Datos guardados", "Se guardaron con éxito los datos de su restaurante");
+                        clean();
+                    } catch (NumberFormatException e) {
+                        showAlert("Informacion Invalida", "Se encontró un error en los datos ingresados");
                     }
+                } else {
+                    showAlert("Contraseña incorrecta", "La contraseña ingresada es incorrecta");
                 }
+            }
         }
     }
 

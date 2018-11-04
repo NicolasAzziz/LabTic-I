@@ -51,7 +51,7 @@ public class Portada {
                     ((Stage)((Node)actionEvent.getSource()).getScene().getWindow()).close();
                     stage.show();
                 }else{
-                    showAlert("Contrasña incorrecta", "La contraseña ingresada no es correcta.");
+                    showAlert("Contraseña incorrecta", "La contraseña ingresada no es correcta.");
                     pass.setText(null);
                 }
             } catch (Exception e) {

@@ -146,11 +146,11 @@ public class RestaurantService {
 
     }
 
-    public void setGrupoDeComida(Restaurant restaurant, String grupoDeComida) {
-        GrupoDeComida grupoDeComida1 = grupoDeComidaRepository.getGrupoDeComidaByGrupo(grupoDeComida);
-        restaurant.addGrupoDeComida(grupoDeComida1);
-        restaurantRepository.save(restaurant);
-    }
+//    public void setGrupoDeComida(Restaurant restaurant, String grupoDeComida) {
+//        GrupoDeComida grupoDeComida1 = grupoDeComidaRepository.getGrupoDeComidaByGrupo(grupoDeComida);
+//        restaurant.addGrupoDeComida(grupoDeComida1);
+//        restaurantRepository.save(restaurant);
+//    }
 
     public void setGrupoDeComidaList(Restaurant restaurant, List<String> grupoDeComidaList) {
         List<GrupoDeComida> grupoDeComida1 = grupoDeComidaRepository.getGrupoDeComidaByGrupo(grupoDeComidaList);

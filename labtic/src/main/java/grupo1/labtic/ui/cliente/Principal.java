@@ -236,14 +236,17 @@ public class Principal {
                     observableList.add(restoFound.get(i));
                 }
 
-                nombreRestaurante.setCellValueFactory(new PropertyValueFactory<Restaurant,String>("NombreRestaurant"));
-                barrio.setCellValueFactory(new PropertyValueFactory<Restaurant,String>("barrio"));
-                descripcion.setCellValueFactory(new PropertyValueFactory<Restaurant,String>("descripcion"));
+                nombreRestaurante.setCellValueFactory(new PropertyValueFactory<Restaurant, String>("nombreRestaurant"));
+                descripcion.setCellValueFactory(new PropertyValueFactory<Restaurant, String>("descripcion"));
+                barrio.setCellValueFactory(new PropertyValueFactory<Restaurant, String>("barrio"));
+//                cocinas.setCellValueFactory(new PropertyValueFactory<Restaurant, String>("cocinas"));
+                imagen.setCellValueFactory(new PropertyValueFactory<Restaurant, ImageView>("imageView"));
+                cocinas.setCellValueFactory(new PropertyValueFactory<Restaurant, String>("cocinasOfrecidas"));
 
-//                cocinas.setCellValueFactory(new PropertyValueFactory<Restaurant,String>("listaComida"));
+//                List<Restaurant> restaurantes = (List) repository.findAll();
+//                tableViewRestaurantes.setItems(FXCollections.observableList(restaurantes));
 
                 tableViewRestaurantes.setItems(observableList);
-
             }
         }
     }

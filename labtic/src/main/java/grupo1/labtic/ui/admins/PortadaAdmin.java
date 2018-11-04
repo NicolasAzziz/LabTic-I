@@ -2,12 +2,14 @@ package grupo1.labtic.ui.admins;
 
 import grupo1.labtic.AdminApplication;
 import grupo1.labtic.persistence.RestaurantRepository;
+import grupo1.labtic.services.entities.Admin;
 import grupo1.labtic.services.entities.Restaurant;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -101,11 +103,11 @@ public class PortadaAdmin {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setControllerFactory(AdminApplication.getContext()::getBean);
-            Parent root = loader.load(PortadaAdmin
-                    .class.getResourceAsStream("Admin.fxml"));
+            Parent root = loader.load(Administrar.class.getResourceAsStream("Admin.fxml"));
             Stage stage = new Stage();
             stage.setTitle("Nuevo Restaurant");
             stage.setScene(new Scene(root));
+            ((Stage)((Node)actionEvent.getSource()).getScene().getWindow()).close();
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();

@@ -50,7 +50,6 @@ public class Inicio {
                         FXMLLoader loader = new FXMLLoader();
                         loader.setControllerFactory(RestaurantApplication.getContext()::getBean);
                         Parent root = loader.load(SolicitarDatos.class.getResourceAsStream("SolicitarDatos.fxml"));
-
                         Stage stage = new Stage();
                         stage.setTitle("Ingrese los datos de su restaurante");
                         stage.setScene(new Scene(root));
