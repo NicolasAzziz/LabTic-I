@@ -5,11 +5,9 @@ spring:
     driverClassName: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/labtic?useSSL=false&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
     username: root
-<<<<<<< HEAD
+
     password: imation
-=======
-    password: password
->>>>>>> b4432752167c176d8a91c306ef0d968bd70542e9
+
   jpa:
     show-sql: true
     hibernate:

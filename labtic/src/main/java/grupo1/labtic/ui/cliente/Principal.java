@@ -3,6 +3,8 @@ package grupo1.labtic.ui.cliente;
 import grupo1.labtic.ClienteApplication;
 import grupo1.labtic.persistence.RestaurantRepository;
 import grupo1.labtic.services.entities.Restaurant;
+import grupo1.labtic.services.entities.restaurant.GrupoDeComida;
+import grupo1.labtic.services.entities.restaurant.comida.Cocina;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -18,6 +20,9 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -112,9 +117,23 @@ public class Principal {
     @FXML
     private Text nombre;
     @FXML
-    private TextArea description;
+    private Text description;
     @FXML
     private Text barrioPM;
+    @FXML
+    private Text direccion;
+    @FXML
+    private Text tel;
+    @FXML
+    private Text horario;
+    @FXML
+    private HBox hBox;
+    @FXML
+    private ImageView logo;
+    @FXML
+    private Text comidas;
+    @FXML
+    private Text pagos;
     @FXML
     private Button reservar;
     @FXML
@@ -123,7 +142,6 @@ public class Principal {
     private ComboBox<?> cantPersonasReserva;
     @FXML
     private DatePicker fechaReserva;
-
 
     @FXML
     private TableView<Restaurant> tableViewRestaurantes;
@@ -197,6 +215,7 @@ public class Principal {
         List<Restaurant> restaurantes = (List) repository.findAll();
         tableViewRestaurantes.setItems(FXCollections.observableList(restaurantes));
 
+
         tableViewRestaurantes.setRowFactory( tv -> {
             TableRow<Restaurant> row = new TableRow<>();
             row.setOnMouseClicked((event1) -> {
@@ -213,6 +232,13 @@ public class Principal {
                         nombre.setText(rowData.getNombreRestaurant());
                         description.setText(rowData.getDescripcion());
                         barrioPM.setText(rowData.getBarrio()+" - "+rowData.getPrecioMedio());
+                        tel.setText(rowData.getTelefono());
+                        direccion.setText(rowData.getDireccion());
+                        horario.setText(rowData.getHorarioApertura()+" - "+rowData.getHorarioCierre());
+                        description.setText(rowData.getDescripcion());
+                        logo.setImage(rowData.getImageView().getImage());
+                        comidas.setText(rowData.getCocinasOfrecidas());
+                        //pagos.setText(rowData.getPagosOfrecidos());
                         stage.show();
                         ((Stage)((Node)event1.getSource()).getScene().getWindow()).close();
                     } catch (IOException e) {
