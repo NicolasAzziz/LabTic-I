@@ -239,6 +239,7 @@ public class Principal {
                         logo.setImage(rowData.getImageView().getImage());
                         comidas.setText(rowData.getCocinasOfrecidas());
                         //pagos.setText(rowData.getPagosOfrecidos());
+
                         stage.show();
                         ((Stage)((Node)event1.getSource()).getScene().getWindow()).close();
                     } catch (IOException e) {
@@ -302,7 +303,7 @@ public class Principal {
 
     @FXML
     void reservar(ActionEvent event) {
-        nombre.setText("");
+
     }
 
 
