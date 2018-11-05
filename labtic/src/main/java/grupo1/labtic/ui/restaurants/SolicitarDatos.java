@@ -293,6 +293,7 @@ public class SolicitarDatos {
                             String nuevaPass = passNueva.getText();
 
 //                        List<CheckMenuItem> itemsComidas = comidasMenu.getItems();
+
                             List<String> selectedItemsComidas = comidasMenu.getItems().stream().filter(item ->
                                     CheckMenuItem.class.isInstance(item) && CheckMenuItem.class.cast(item).isSelected())
                                     .map(MenuItem::getText).collect(Collectors.toList());
