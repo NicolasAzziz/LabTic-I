@@ -29,7 +29,7 @@ public interface RestaurantRepository extends CrudRepository<Restaurant, String>
 
     Iterable<Restaurant> findAllByBarrio(List<String> restoPorZona);
 
-    Iterable<Restaurant> findAllByGrupoDeComidaListAndBarrio(List<String> porZona, List<GrupoDeComida> porBarrio);
+    Iterable<Restaurant> findAllByGrupoDeComidaListAndBarrio(List<String> restoPorZona, List<GrupoDeComida> comidaPorGrupo);
 
     Iterable<Restaurant> findAll();
 }

@@ -1,6 +1,7 @@
 package grupo1.labtic.ui.cliente;
 
 import grupo1.labtic.ClienteApplication;
+import grupo1.labtic.persistence.GrupoDeComidaRepository;
 import grupo1.labtic.persistence.RestaurantRepository;
 import grupo1.labtic.services.entities.Restaurant;
 import grupo1.labtic.services.entities.restaurant.GrupoDeComida;
@@ -28,8 +29,10 @@ import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.swing.text.html.HTMLDocument;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -38,6 +41,9 @@ public class Principal {
 
     @Autowired
     private RestaurantRepository repository;
+
+    @Autowired
+    private GrupoDeComidaRepository grupoDeComidaRepository;
 
     @FXML
     private MenuButton zonasToFindTable;
@@ -241,7 +247,6 @@ public class Principal {
                         //pagos.setText(rowData.getPagosOfrecidos());
 
                         stage.show();
-                        ((Stage)((Node)event1.getSource()).getScene().getWindow()).close();
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -270,9 +275,34 @@ public class Principal {
 
             } else if (selectedBarrios.isEmpty() == true && selectedItemsComidas.isEmpty() == false) {
 
+                List<Restaurant> restaurantes = new ArrayList<>();
+
+                Iterable<Restaurant> restos = repository.findAllByGrupoDeComidaList(grupoDeComidaRepository.getGrupoDeComidaByGrupo(selectedItemsComidas));
+
+                restos.forEach(resto -> restaurantes.add(resto));
+
+                restaurantesFiltrados(restaurantes);
+
+
             } else if (selectedBarrios.isEmpty() == false && selectedItemsComidas.isEmpty() == true) {
 
-            } else {
+                List<Restaurant> restaurantes = new ArrayList<>();
+
+                Iterable<Restaurant> restos = repository.findAllByBarrio(selectedBarrios);
+
+                restos.forEach(resto -> restaurantes.add(resto));
+
+                restaurantesFiltrados(restaurantes);
+
+            } else{
+
+                List<Restaurant> restaurantes = new ArrayList<>();
+
+                Iterable<Restaurant> restos = repository.findAllByGrupoDeComidaListAndBarrio(selectedBarrios , grupoDeComidaRepository.getGrupoDeComidaByGrupo(selectedItemsComidas));
+
+                restos.forEach(resto -> restaurantes.add(resto));
+
+                restaurantesFiltrados(restaurantes);
 
             }
 
@@ -283,28 +313,66 @@ public class Principal {
                 ArrayList<Restaurant> restoFound = new ArrayList();
                 restoFound.add(resto);
 
-                ObservableList<Restaurant> observableList = FXCollections.observableArrayList();
+                restaurantesFiltrados(restoFound);
 
-                for(int i = 0 ; i < restoFound.size(); i++){
-                    observableList.add(restoFound.get(i));
-                }
-
-                nombreRestaurante.setCellValueFactory(new PropertyValueFactory<Restaurant, String>("nombreRestaurant"));
-                descripcion.setCellValueFactory(new PropertyValueFactory<Restaurant, String>("descripcion"));
-                barrio.setCellValueFactory(new PropertyValueFactory<Restaurant, String>("barrio"));
-                imagen.setCellValueFactory(new PropertyValueFactory<Restaurant, ImageView>("imageView"));
-                cocinas.setCellValueFactory(new PropertyValueFactory<Restaurant, String>("cocinasOfrecidas"));
-
-//                List<Restaurant> restaurantes = (List) repository.findAll();
-//                tableViewRestaurantes.setItems(FXCollections.observableList(restaurantes));
-
-                tableViewRestaurantes.setItems(observableList);
             }
         }
     }
 
     @FXML
     void reservar(ActionEvent event) {
+
+    }
+
+    public void restaurantesFiltrados(List<Restaurant> restaurants){
+
+        ObservableList<Restaurant> observableList = FXCollections.observableArrayList();
+
+        for(int i = 0 ; i < restaurants.size(); i++){
+            observableList.add(restaurants.get(i));
+        }
+
+        nombreRestaurante.setCellValueFactory(new PropertyValueFactory<Restaurant, String>("nombreRestaurant"));
+        descripcion.setCellValueFactory(new PropertyValueFactory<Restaurant, String>("descripcion"));
+        barrio.setCellValueFactory(new PropertyValueFactory<Restaurant, String>("barrio"));
+        imagen.setCellValueFactory(new PropertyValueFactory<Restaurant, ImageView>("imageView"));
+        cocinas.setCellValueFactory(new PropertyValueFactory<Restaurant, String>("cocinasOfrecidas"));
+
+        tableViewRestaurantes.setItems(observableList);
+
+        tableViewRestaurantes.setRowFactory( tv -> {
+            TableRow<Restaurant> row = new TableRow<>();
+            row.setOnMouseClicked((event1) -> {
+                if (event1.getClickCount() == 2 && (! row.isEmpty()) ) {
+                    rowData = row.getItem();
+                    try {
+                        FXMLLoader loader = new FXMLLoader();
+                        loader.setControllerFactory(ClienteApplication.getContext()::getBean);
+                        Parent root = loader.load(Principal.class.getResourceAsStream("restaurantEspecifico.fxml"));
+                        Stage stage = new Stage();
+                        stage.setTitle("Restaurant específico");
+                        stage.getIcons().add(new Image("grupo1/labtic/ui/Imagenes/yendoIcono.png"));
+                        stage.setScene(new Scene(root));
+                        nombre.setText(rowData.getNombreRestaurant());
+                        description.setText(rowData.getDescripcion());
+                        barrioPM.setText(rowData.getBarrio()+" - "+rowData.getPrecioMedio());
+                        tel.setText(rowData.getTelefono());
+                        direccion.setText(rowData.getDireccion());
+                        horario.setText(rowData.getHorarioApertura()+" - "+rowData.getHorarioCierre());
+                        description.setText(rowData.getDescripcion());
+                        logo.setImage(rowData.getImageView().getImage());
+                        comidas.setText(rowData.getCocinasOfrecidas());
+                        //pagos.setText(rowData.getPagosOfrecidos());
+
+                        stage.show();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+            return row;
+        });
+
 
     }
 
