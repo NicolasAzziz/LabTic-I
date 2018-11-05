@@ -92,6 +92,7 @@ public class Inicio {
                         stage.getIcons().add(new Image("grupo1/labtic/ui/Imagenes/yendoIcono.png"));
                         stage.setScene(new Scene(root));
                         ((Stage)((Node)actionEvent.getSource()).getScene().getWindow()).close();
+                        stage.show();
                     }
                 }else{
                     showAlert("Contrasña incorrecta", "La contraseña ingresada no es correcta.");

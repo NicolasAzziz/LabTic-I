@@ -259,5 +259,4 @@ public class Restaurant extends Usuario {
         }
         return exit;
     }
-
 }
