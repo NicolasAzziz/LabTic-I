@@ -175,7 +175,7 @@ public class Restaurant extends Usuario {
     }
 
     public void setGrupoDeComidaList(List<GrupoDeComida> grupoDeComidaList) {
-        this.grupoDeComidaList.addAll(grupoDeComidaList);
+        this.grupoDeComidaList = grupoDeComidaList;
     }
 
     public ImageView getImageView(){
@@ -209,7 +209,6 @@ public class Restaurant extends Usuario {
 
         return exit;
     }
-
 
 
     public void addGrupoDeComida(GrupoDeComida grupoDeComida) {

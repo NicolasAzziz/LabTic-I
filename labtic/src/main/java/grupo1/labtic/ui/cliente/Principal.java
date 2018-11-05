@@ -209,9 +209,9 @@ public class Principal {
         nombreRestaurante.setCellValueFactory(new PropertyValueFactory<Restaurant, String>("nombreRestaurant"));
         descripcion.setCellValueFactory(new PropertyValueFactory<Restaurant, String>("descripcion"));
         barrio.setCellValueFactory(new PropertyValueFactory<Restaurant, String>("barrio"));
-//        cocinas.setCellValueFactory(new PropertyValueFactory<Restaurant, String>("cocinas"));
         imagen.setCellValueFactory(new PropertyValueFactory<Restaurant, ImageView>("imageView"));
         cocinas.setCellValueFactory(new PropertyValueFactory<Restaurant, String>("cocinasOfrecidas"));
+
         List<Restaurant> restaurantes = (List) repository.findAll();
         tableViewRestaurantes.setItems(FXCollections.observableList(restaurantes));
 

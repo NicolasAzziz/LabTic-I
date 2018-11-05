@@ -271,36 +271,40 @@ public class SolicitarDatos {
                 mAperturaRestaurante.getText().equals("") || hCierreRestaurante.getText() == null || hCierreRestaurante.getText().equals("") ||
                 mCierreRestaurante.getText() == null || mCierreRestaurante.getText().equals("") ||  barriosMenu.getItems().stream().filter(item ->
                 RadioMenuItem.class.isInstance(item) && RadioMenuItem.class.cast(item).isSelected())
-                .map(MenuItem::getText).collect(Collectors.toList()).size() == 0 ){
+                .map(MenuItem::getText).collect(Collectors.toList()).size() == 0 || comidasMenu.getItems().stream().filter(item ->
+                CheckMenuItem.class.isInstance(item) && CheckMenuItem.class.cast(item).isSelected())
+                .map(MenuItem::getText).collect(Collectors.toList()).size() == 0 || metodosPagoMenu.getItems().stream().filter(item ->
+                CheckMenuItem.class.isInstance(item) && CheckMenuItem.class.cast(item).isSelected())
+                .map(MenuItem::getText).collect(Collectors.toList()).size() == 0){
 
             showAlert("Datos faltantes!", "No se ingresaron los datos necesarios para completar el ingreso.");
         } else {
                 Restaurant restaurante = Inicio.getRestaurant();
 
                 if (passNueva.getText().equals(passNuevaRepeat.getText())) {
-                        try {
-                            String nombre = nombreRestaurante.getText();
-                            String telefono = (telefonoRestaurante.getText());
-                            String direccion = direccionRestaurante.getText();
-                            Integer hAbre = Integer.valueOf(hAperturaRestaurante.getText());
-                            Integer mAbre = Integer.valueOf(mAperturaRestaurante.getText());
-                            String habre = hAperturaRestaurante.getText() + ":" + mAperturaRestaurante.getText();
-                            Integer hCierra = Integer.valueOf(hCierreRestaurante.getText());
-                            Integer mCierra = Integer.valueOf(mCierreRestaurante.getText());
-                            String hcierra = hCierreRestaurante.getText() + ":" + mCierreRestaurante.getText();
-                            String descripcion = descR.getText();
-                            String web = webRestaurante.getText();
-                            String nuevaPass = passNueva.getText();
+                    try {
+                        String nombre = nombreRestaurante.getText();
+                        String telefono = (telefonoRestaurante.getText());
+                        String direccion = direccionRestaurante.getText();
+                        Integer hAbre = Integer.valueOf(hAperturaRestaurante.getText());
+                        Integer mAbre = Integer.valueOf(mAperturaRestaurante.getText());
+                        String habre = hAperturaRestaurante.getText() + ":" + mAperturaRestaurante.getText();
+                        Integer hCierra = Integer.valueOf(hCierreRestaurante.getText());
+                        Integer mCierra = Integer.valueOf(mCierreRestaurante.getText());
+                        String hcierra = hCierreRestaurante.getText() + ":" + mCierreRestaurante.getText();
+                        String descripcion = descR.getText();
+                        String web = webRestaurante.getText();
+                        String nuevaPass = passNueva.getText();
 
-//                        List<CheckMenuItem> itemsComidas = comidasMenu.getItems();
+                        List<String> selectedItemsComidas = comidasMenu.getItems().stream().filter(item ->
+                                CheckMenuItem.class.isInstance(item) && CheckMenuItem.class.cast(item).isSelected())
+                                .map(MenuItem::getText).collect(Collectors.toList());
 
-                            List<String> selectedItemsComidas = comidasMenu.getItems().stream().filter(item ->
-                                    CheckMenuItem.class.isInstance(item) && CheckMenuItem.class.cast(item).isSelected())
-                                    .map(MenuItem::getText).collect(Collectors.toList());
+                        serviceRestaurant.setGrupoDeComidaList(restaurante, selectedItemsComidas);
 
-                            List<String> selectedItemsTipoDePagoMenu = metodosPagoMenu.getItems().stream().filter(item ->
-                                    CheckMenuItem.class.isInstance(item) && CheckMenuItem.class.cast(item).isSelected())
-                                    .map(MenuItem::getText).collect(Collectors.toList());
+                        List<String> selectedItemsTipoDePagoMenu = metodosPagoMenu.getItems().stream().filter(item ->
+                                CheckMenuItem.class.isInstance(item) && CheckMenuItem.class.cast(item).isSelected())
+                                .map(MenuItem::getText).collect(Collectors.toList());
 
                         serviceRestaurant.setTipoDePagoList(restaurante, selectedItemsTipoDePagoMenu);
 
