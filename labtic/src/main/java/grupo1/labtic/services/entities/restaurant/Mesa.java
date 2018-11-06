@@ -10,12 +10,8 @@ import java.util.Objects;
 @Embeddable
 public class Mesa {
 
-    @Column(unique = true)
-    @NotNull
+    @Column(name = "nroReferencia")
     private Integer nroReferencia;
-
-    @Column(name = "restaurant_id")
-    private long restaurant_id;
 
     @Column(name = "cantidadDeLugares")
     @NotNull
@@ -73,13 +69,6 @@ public class Mesa {
         this.nroReferencia = nroReferencia;
     }
 
-    public long getRestaurantID() {
-        return restaurant_id;
-    }
-
-    public void setRestaurantID(long restaurant) {
-        this.restaurant_id = restaurant;
-    }
 
     public Integer getCantLugares() {
         return cantLugares;

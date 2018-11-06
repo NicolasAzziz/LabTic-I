@@ -51,8 +51,7 @@ public class Restaurant extends Usuario {
     private byte[] imagen;
 
     @ElementCollection
-    @CollectionTable(name = "Mesas", joinColumns = @JoinColumn(name = "RESTAURANT"))
-    @Column(name = "MESAS_NO")
+    @CollectionTable(name = "Mesas", joinColumns = @JoinColumn(name = "Restaurant_id"),uniqueConstraints = @UniqueConstraint(columnNames = {"restaurant_id","nroReferencia"}))
     private List<Mesa> mesas;
 
 

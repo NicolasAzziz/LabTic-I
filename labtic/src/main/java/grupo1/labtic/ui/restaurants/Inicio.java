@@ -18,6 +18,8 @@ import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.io.IOException;
+
 import static grupo1.labtic.ui.Alert.showAlert;
 
 @Component
@@ -66,8 +68,6 @@ public class Inicio {
                 String login = usuarioField.getText();
                 String password = passField.getText();
                 restaurant = restaurantRepository.findOneByEmail(login);
-                System.out.println(login);
-                long id = restaurant.getId();
                 if (restaurant.getPassword().equals(password)) {
                     if(restaurant.getNombreRestaurant()==null||restaurant.getNombreRestaurant().equals("")){
                         FXMLLoader loader = new FXMLLoader();
@@ -79,7 +79,6 @@ public class Inicio {
                         stage.setTitle("Ingrese los datos de su restaurante");
                         stage.getIcons().add(new Image("grupo1/labtic/ui/Imagenes/yendoIcono.png"));
                         stage.setScene(new Scene(root));
-                        ((Stage)((Node)actionEvent.getSource()).getScene().getWindow()).close();
                         stage.show();
 
                     }
@@ -98,9 +97,11 @@ public class Inicio {
                     showAlert("Contrasña incorrecta", "La contraseña ingresada no es correcta.");
                     passField.setText(null);
                 }
-            } catch (Exception e) {
-                e.printStackTrace();
+            } catch (NullPointerException e) {
+                //e.printStackTrace();
                 showAlert("Usuario no econtrado", "El email: " + this.usuarioField.getText() +" no existe en el sistema");
+            } catch (IOException e){
+                e.printStackTrace();
             }
         }
     }

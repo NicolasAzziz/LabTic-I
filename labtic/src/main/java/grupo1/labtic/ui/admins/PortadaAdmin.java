@@ -99,12 +99,18 @@ public class PortadaAdmin {
 
         Iterable<Restaurant> listaRestaurantes = restaurantRepository.findAll();
         ObservableList<Restaurant> data = FXCollections.observableList((List) listaRestaurantes);
+        table.setItems(data);
         imageView.setPreserveRatio(true);
         imageView.fitWidthProperty().bind(imageContainer.widthProperty());
         //imageView.fitHeightProperty().bind(imageContainer.heightProperty());
-        table.setItems(data);
     }
 
+    @FXML
+    void actualizarTabla(ActionEvent event) {
+        Iterable<Restaurant> listaRestaurantes = restaurantRepository.findAll();
+        ObservableList<Restaurant> data = FXCollections.observableList((List) listaRestaurantes);
+        table.setItems(data);
+    }
     @FXML
     public void agregarRestaurant(ActionEvent actionEvent) {
 

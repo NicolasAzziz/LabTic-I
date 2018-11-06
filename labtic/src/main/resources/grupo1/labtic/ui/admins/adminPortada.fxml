@@ -81,6 +81,11 @@
                                                   </font>
                                               </Text>
                                               <Button fx:id="agregarRestaurant" mnemonicParsing="false" onAction="#agregarRestaurant" text="Agregar" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP" />
+                                    <Button mnemonicParsing="false" onAction="#actualizarTabla" text="Actualizar tabla" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
+                                       <GridPane.margin>
+                                          <Insets bottom="5.0" />
+                                       </GridPane.margin>
+                                    </Button>
                                  </children>
                               </GridPane>
                                     </children>
