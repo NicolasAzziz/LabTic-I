@@ -277,10 +277,26 @@ public class Principal {
 
                 List<Restaurant> restaurantes = new ArrayList<>();
 
-                Iterable<Restaurant> restos = repository.findAllByGrupoDeComidaList(grupoDeComidaRepository.getGrupoDeComidaByGrupo(selectedItemsComidas));
+                if(selectedItemsComidas.size() == 1){
+                    Iterable<Restaurant> restos = repository.findAllByGrupoDeComidaList(grupoDeComidaRepository.getGrupoDeComidaByGrupo(selectedItemsComidas));
+                    restos.forEach(resto -> restaurantes.add(resto));
+                }else{
 
-                restos.forEach(resto -> restaurantes.add(resto));
+                    List<Restaurant> byComida = new ArrayList<>();
 
+                    for(int i = 0 ; i < selectedItemsComidas.size(); i ++){
+
+                        List<String> restoIndex = new ArrayList<>();
+
+                        restoIndex.add(selectedItemsComidas.get(i));
+
+                        Iterable<Restaurant> restos = repository.findAllByGrupoDeComidaList(grupoDeComidaRepository.getGrupoDeComidaByGrupo(restoIndex));
+
+                        restos.forEach(resto -> restaurantes.add(resto));
+
+                    }
+
+                }
                 restaurantesFiltrados(restaurantes);
 
 
@@ -288,19 +304,50 @@ public class Principal {
 
                 List<Restaurant> restaurantes = new ArrayList<>();
 
-                Iterable<Restaurant> restos = repository.findAllByBarrio(selectedBarrios);
+                if(selectedBarrios.size() == 1){
+                    Iterable<Restaurant> restos = repository.findAllByBarrio(selectedBarrios);
+                    restos.forEach(resto -> restaurantes.add(resto));
+                }else{
+                    for(int i = 0 ; i < selectedBarrios.size(); i++){
 
-                restos.forEach(resto -> restaurantes.add(resto));
+                        List<String> restoIndex = new ArrayList<>();
 
+                        restoIndex.add(selectedBarrios.get(i));
+
+                        Iterable<Restaurant> restos = repository.findAllByBarrio(restoIndex);
+
+                        restos.forEach(resto -> restaurantes.add(resto));
+
+                    }
+                }
                 restaurantesFiltrados(restaurantes);
 
             } else{
 
                 List<Restaurant> restaurantes = new ArrayList<>();
 
-                Iterable<Restaurant> restos = repository.findAllByGrupoDeComidaListAndBarrio(selectedBarrios , grupoDeComidaRepository.getGrupoDeComidaByGrupo(selectedItemsComidas));
+                List<Restaurant>  byComida = new ArrayList<>();
 
-                restos.forEach(resto -> restaurantes.add(resto));
+                for(int i = 0 ; i < selectedItemsComidas.size(); i ++){
+
+                    List<String> restoIndex = new ArrayList<>();
+
+                    restoIndex.add(selectedItemsComidas.get(i));
+
+                    Iterable<Restaurant> restos = repository.findAllByGrupoDeComidaList(grupoDeComidaRepository.getGrupoDeComidaByGrupo(restoIndex));
+
+                    restos.forEach(resto -> byComida.add(resto));
+
+                }
+
+                for(int j = 0 ; j < byComida.size(); j++){
+
+                    for(int n = 0 ; n < selectedBarrios.size(); n++){
+                        if (byComida.get(j).getBarrio().equals(selectedBarrios.get(n))){
+                            restaurantes.add(byComida.get(j));
+                        }
+                    }
+                }
 
                 restaurantesFiltrados(restaurantes);
 
