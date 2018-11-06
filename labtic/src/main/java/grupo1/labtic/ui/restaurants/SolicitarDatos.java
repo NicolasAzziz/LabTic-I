@@ -341,8 +341,7 @@ public class SolicitarDatos {
                             stage.getIcons().add(new Image("grupo1/labtic/ui/Imagenes/yendoIcono.png"));
                             stage.setScene(new Scene(root));
                             ((Stage)((Node)event.getSource()).getScene().getWindow()).close();
-
-
+                            stage.show();
                         } catch (NumberFormatException e) {
                             showAlert("Informacion Invalida", "Se encontró un error en los datos ingresados");
                         } catch (IOException e) {
@@ -429,8 +428,4 @@ public class SolicitarDatos {
             ((RadioMenuItem)barriosMenu.getItems().get(i)).setSelected(false);
         }
     }
-
-
-
-
 }

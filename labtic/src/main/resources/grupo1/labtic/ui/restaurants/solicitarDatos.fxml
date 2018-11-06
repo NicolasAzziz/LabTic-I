@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckMenuItem?>
@@ -21,17 +27,17 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="grupo1.labtic.ui.restaurants.SolicitarDatos">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="grupo1.labtic.ui.restaurants.SolicitarDatos">
     <children>
         <SplitPane dividerPositions="0.2" orientation="VERTICAL" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <items>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                     <children>
-                        <BorderPane maxHeight="120.0" prefHeight="77.0" prefWidth="598.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <BorderPane maxHeight="120.0" prefHeight="77.0" prefWidth="598.0" style="-fx-background-color: f9f3a2;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                             <center>
                                 <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Yendo" underline="true" BorderPane.alignment="CENTER_LEFT">
                                     <font>
-                                        <Font name="Script MT Bold" size="50.0" />
+                                        <Font name="Script MT Bold" size="75.0" />
                                     </font>
                                     <BorderPane.margin>
                                         <Insets left="20.0" />
@@ -41,7 +47,7 @@
                         </BorderPane>
                     </children>
                 </AnchorPane>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="120.0" prefWidth="160.0">
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="120.0" prefWidth="160.0" style="-fx-background-color: d5f7b0;">
                     <children>
 
                         <GridPane layoutY="14.0" prefHeight="635.0" prefWidth="1278.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -193,27 +199,27 @@
                            </font></Button>
                                 <Text strokeType="OUTSIDE" strokeWidth="0.0" text="* Campos Obligatorios" GridPane.columnIndex="2" GridPane.rowIndex="8" GridPane.valignment="CENTER" />
 
-                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="D" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                                <Text fill="#90bf5a" strokeType="OUTSIDE" strokeWidth="0.0" text="D" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                                     <font>
                                         <Font name="Bauhaus 93" size="50.0" />
                                     </font>
                                 </Text>
-                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="A" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                                <Text fill="#90bf5a" strokeType="OUTSIDE" strokeWidth="0.0" text="A" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                                     <font>
                                         <Font name="Bauhaus 93" size="50.0" />
                                     </font>
                                 </Text>
-                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="T" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                                <Text fill="#90bf5a" strokeType="OUTSIDE" strokeWidth="0.0" text="T" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                                     <font>
                                         <Font name="Bauhaus 93" size="50.0" />
                                     </font>
                                 </Text>
-                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="O" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+                                <Text fill="#90bf5a" strokeType="OUTSIDE" strokeWidth="0.0" text="O" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                                     <font>
                                         <Font name="Bauhaus 93" size="50.0" />
                                     </font>
                                 </Text>
-                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="S" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="TOP">
+                                <Text fill="#90bf5a" strokeType="OUTSIDE" strokeWidth="0.0" text="S" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="TOP">
                                     <font>
                                         <Font name="Bauhaus 93" size="50.0" />
                                     </font>

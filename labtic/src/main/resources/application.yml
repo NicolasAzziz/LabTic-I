@@ -8,6 +8,7 @@ spring:
 
     password: password
 
+
   jpa:
     show-sql: true
     hibernate:
