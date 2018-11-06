@@ -7,10 +7,12 @@ import grupo1.labtic.services.UsuarioService;
 import grupo1.labtic.services.exceptions.EmailInvalido;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -69,6 +71,7 @@ public class Registro {
                         cliente = new Cliente(nombreCliente.getText(), emailCliente.getText(), password.getText());
                         clienteService.agregarCliente(cliente);
                         showAlert("Cliente agregado.", "Gracias por registrarse, " + nombreCliente.getText() + ".");
+                        ((Stage)((Node)event.getSource()).getScene().getWindow()).close();
                         clean();
                     }
                 }

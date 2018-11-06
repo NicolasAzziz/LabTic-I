@@ -3,7 +3,6 @@ package grupo1.labtic.services;
 import grupo1.labtic.persistence.GrupoDeComidaRepository;
 import grupo1.labtic.persistence.RestaurantRepository;
 import grupo1.labtic.persistence.TipoDePagoRepository;
-import grupo1.labtic.persistence.restaurantRepository.MesaRepository;
 import grupo1.labtic.persistence.restaurantRepository.MetodoDePagoRepository;
 import grupo1.labtic.services.entities.Restaurant;
 import grupo1.labtic.services.entities.restaurant.GrupoDeComida;
@@ -15,10 +14,6 @@ import grupo1.labtic.services.exceptions.RestaurantAlreadyExists;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.imageio.ImageIO;
-import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -36,8 +31,7 @@ public class RestaurantService {
     private MetodoDePagoRepository metodoDePagoRepository;
     @Autowired
     private RestaurantRepository restaurantRepository;
-    @Autowired
-    private MesaRepository mesaRepository;
+
 
     public void crearRestaurant(String email, String password, long rut)
             throws InvalidRestaurantInformation, RestaurantAlreadyExists {
@@ -139,11 +133,9 @@ public class RestaurantService {
 
     public void setListaMesasRestaurante(Restaurant restaurant, List<Mesa> mesasList) {
 
-        for (Mesa mesa:mesasList) {
-            mesa.setRestaurant(restaurant);
-        }
+        restaurant.setMesas(mesasList);
 
-        mesaRepository.saveAll(mesasList);
+        restaurantRepository.save(restaurant);
 
     }
 

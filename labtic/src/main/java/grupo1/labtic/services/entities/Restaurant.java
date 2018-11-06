@@ -1,6 +1,7 @@
 package grupo1.labtic.services.entities;
 
 import grupo1.labtic.services.entities.restaurant.GrupoDeComida;
+import grupo1.labtic.services.entities.restaurant.Mesa;
 import grupo1.labtic.services.entities.restaurant.TipoDePago;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.image.ImageView;
@@ -49,6 +50,10 @@ public class Restaurant extends Usuario {
     @Lob
     private byte[] imagen;
 
+    @ElementCollection
+    @CollectionTable(name = "Mesas", joinColumns = @JoinColumn(name = "RESTAURANT"))
+    @Column(name = "MESAS_NO")
+    private List<Mesa> mesas;
 
 
     public Restaurant(String email, String password, long rut, String direccion, String horarioApertura, String horarioCierre, String barrio, String telefono, String descripcion) {
@@ -108,6 +113,14 @@ public class Restaurant extends Usuario {
 
     public String getNombreRestaurant() {
         return nombreRestaurant;
+    }
+
+    public List<Mesa> getMesas() {
+        return mesas;
+    }
+
+    public void setMesas(List<Mesa> mesas) {
+        this.mesas = mesas;
     }
 
     public void setNombreRestaurant(String nombreRestaurant) {

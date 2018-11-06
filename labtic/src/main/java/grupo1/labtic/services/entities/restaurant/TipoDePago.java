@@ -16,7 +16,7 @@ public class TipoDePago {
     @Column(name = "id", updatable = false, nullable = false)
     private long id;
 
-    @Column(name = "Nombre_TipoDePago", unique = true)
+    @Column(name = "nombre_TipoDePago", unique = true)
     private String nombre;
 
     public TipoDePago() {

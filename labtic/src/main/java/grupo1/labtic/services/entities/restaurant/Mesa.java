@@ -7,11 +7,15 @@ import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Objects;
 
-@Entity(name = "MESA")
+@Embeddable
 public class Mesa {
 
-    @EmbeddedId
-    private MesaPK mesaPK;
+    @Column(unique = true)
+    @NotNull
+    private Integer nroReferencia;
+
+    @Column(name = "restaurant_id")
+    private long restaurant_id;
 
     @Column(name = "cantidadDeLugares")
     @NotNull
@@ -21,38 +25,21 @@ public class Mesa {
     private boolean mesaLibre;
 
     public Mesa() {
-        mesaPK= new MesaPK();
     }
 
     public Mesa(Restaurant rest, Integer numeroReferencia, Integer cantLugares) {
-        mesaPK = new MesaPK();
-        this.mesaPK.setMesaRestaurant(rest);
-        this.mesaPK.setNroReferencia(numeroReferencia);
+        nroReferencia = numeroReferencia;
         this.cantLugares = cantLugares;
         mesaLibre = true;
 
         //cantLugares= 1;
     }
 
-    public Mesa(MesaPK mesaPK, @NotNull int cantLugares) {
-        this.mesaPK = mesaPK;
-        this.cantLugares = cantLugares;
-        mesaLibre = true;
-    }
 
     public Mesa(int nroReferencia, int cantLugares){
-        mesaPK = new MesaPK();
-        setNumeroReferencia(nroReferencia);
+        setNroReferencia(nroReferencia);
         setCantLugares(cantLugares);
         mesaLibre = true;
-    }
-
-    public MesaPK getMesaPK() {
-        return mesaPK;
-    }
-
-    public void setMesaPK(MesaPK mesaPK) {
-        this.mesaPK = mesaPK;
     }
 
     public boolean isMesaLibre() {
@@ -68,92 +55,80 @@ public class Mesa {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Mesa mesa = (Mesa) o;
-        return cantLugares == mesa.cantLugares &&
-                mesaLibre == mesa.mesaLibre &&
-                Objects.equals(mesaPK, mesa.mesaPK);
+        return mesaLibre == mesa.mesaLibre &&
+                Objects.equals(nroReferencia, mesa.nroReferencia) &&
+                Objects.equals(cantLugares, mesa.cantLugares);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(mesaPK, cantLugares, mesaLibre);
-    }
-
-    public Integer getNumeroReferencia() {
-        return this.mesaPK.getNroReferencia();
-    }
-
-    public void setNumeroReferencia(int numeroReferencia) {
-        this.mesaPK.setNroReferencia(numeroReferencia);
-    }
-
-    public Integer getCantLugares() {
-        return cantLugares;
-    }
-
-    public void setCantLugares(int cantLugares) {
-        this.cantLugares = cantLugares;
-    }
-
-    public boolean getEstaLibre() {
-        return mesaLibre;
-    }
-
-    public void setLibre() {
-        mesaLibre = true;
-    }
-
-    public void setOcupada() {
-        mesaLibre = false;
-    }
-
-    public Restaurant getRestaurant() {
-        return this.mesaPK.getMesaRestaurant();
-    }
-
-    public void setRestaurant(Restaurant res) {
-        this.mesaPK.setMesaRestaurant(res);
-    }
-
-    @Override
-    public String toString(){
-        return "No. de mesa: " + getNumeroReferencia()+".  No. lugares: "+getCantLugares()+".";
-    }
-}
-
-
-class MesaPK implements Serializable {
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "restaurantId")
-    private Restaurant MesaRestaurant;
-    private Integer nroReferencia;
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        MesaPK mesaPK = (MesaPK) o;
-        return MesaRestaurant == mesaPK.MesaRestaurant &&
-                nroReferencia == mesaPK.nroReferencia;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(MesaRestaurant, nroReferencia);
-    }
-
-    public Restaurant getMesaRestaurant() {
-        return MesaRestaurant;
-    }
-
-    public void setMesaRestaurant(Restaurant mesaRestaurant) {
-        this.MesaRestaurant = mesaRestaurant;
+        return Objects.hash(nroReferencia, cantLugares, mesaLibre);
     }
 
     public Integer getNroReferencia() {
         return nroReferencia;
     }
 
-    public void setNroReferencia(int nroReferencia) {
+    public void setNroReferencia(Integer nroReferencia) {
         this.nroReferencia = nroReferencia;
     }
+
+    public long getRestaurantID() {
+        return restaurant_id;
+    }
+
+    public void setRestaurantID(long restaurant) {
+        this.restaurant_id = restaurant;
+    }
+
+    public Integer getCantLugares() {
+        return cantLugares;
+    }
+
+    public void setCantLugares(Integer cantLugares) {
+        this.cantLugares = cantLugares;
+    }
+
+    @Override
+    public String toString(){
+        return "No. de mesa: " + getNroReferencia()+".  No. lugares: "+getCantLugares()+".";
+    }
 }
+
+//
+//class MesaPK implements Serializable {
+//    @ManyToOne(cascade = CascadeType.ALL)
+//    @JoinColumn(name = "restaurantId")
+//    private Restaurant MesaRestaurant;
+//    private Integer nroReferencia;
+//
+//    @Override
+//    public boolean equals(Object o) {
+//        if (this == o) return true;
+//        if (o == null || getClass() != o.getClass()) return false;
+//        MesaPK mesaPK = (MesaPK) o;
+//        return MesaRestaurant == mesaPK.MesaRestaurant &&
+//                nroReferencia == mesaPK.nroReferencia;
+//    }
+//
+//    @Override
+//    public int hashCode() {
+//        return Objects.hash(MesaRestaurant, nroReferencia);
+//    }
+//
+//    public Restaurant getMesaRestaurant() {
+//        return MesaRestaurant;
+//    }
+//
+//    public void setMesaRestaurant(Restaurant mesaRestaurant) {
+//        this.MesaRestaurant = mesaRestaurant;
+//    }
+//
+//    public Integer getNroReferencia() {
+//        return nroReferencia;
+//    }
+//
+//    public void setNroReferencia(int nroReferencia) {
+//        this.nroReferencia = nroReferencia;
+//    }
+//}

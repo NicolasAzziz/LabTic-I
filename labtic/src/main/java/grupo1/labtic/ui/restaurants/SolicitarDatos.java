@@ -257,7 +257,7 @@ public class SolicitarDatos {
             bExit = true;
         }else{
             for(int i = 0; i<mesaList.size(); i++){
-                if(mesa.getNumeroReferencia() == mesaList.get(i).getNumeroReferencia())
+                if(mesa.getNroReferencia() == mesaList.get(i).getNroReferencia())
                     throw new NroReferenciaException("Ya agregó una mesa con ese numero de referencia.");
             }
         }
