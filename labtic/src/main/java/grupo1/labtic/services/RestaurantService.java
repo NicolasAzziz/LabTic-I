@@ -1,10 +1,12 @@
 package grupo1.labtic.services;
 
+import grupo1.labtic.persistence.BarrioRepository;
 import grupo1.labtic.persistence.GrupoDeComidaRepository;
 import grupo1.labtic.persistence.RestaurantRepository;
 import grupo1.labtic.persistence.TipoDePagoRepository;
 import grupo1.labtic.persistence.restaurantRepository.MetodoDePagoRepository;
 import grupo1.labtic.services.entities.Restaurant;
+import grupo1.labtic.services.entities.restaurant.Barrio;
 import grupo1.labtic.services.entities.restaurant.GrupoDeComida;
 import grupo1.labtic.services.entities.restaurant.Mesa;
 import grupo1.labtic.services.entities.restaurant.TipoDePago;
@@ -28,7 +30,7 @@ public class RestaurantService {
     @Autowired
     private TipoDePagoRepository tipoDePagoRepository;
     @Autowired
-    private MetodoDePagoRepository metodoDePagoRepository;
+    private BarrioRepository barrioRepository;
     @Autowired
     private RestaurantRepository restaurantRepository;
 
@@ -200,5 +202,23 @@ public class RestaurantService {
             tipoDePagoRepository.save(new TipoDePago("Ticket Alimentación"));
             tipoDePagoRepository.save(new TipoDePago("Ticket Restaurante"));
         }
+
+    }
+    public void insertarBarrios() {
+        if (barrioRepository.existsByBarrio("Carrasco") == false) {
+            barrioRepository.save(new Barrio("Ciudad Vieja"));
+            barrioRepository.save(new Barrio("Centro"));
+            barrioRepository.save(new Barrio("Palermo"));
+            barrioRepository.save(new Barrio("Punta Carretas"));
+            barrioRepository.save(new Barrio("Cordón"));
+            barrioRepository.save(new Barrio("Buceo"));
+            barrioRepository.save(new Barrio("Malvin"));
+            barrioRepository.save(new Barrio("Pocitos"));
+            barrioRepository.save(new Barrio("Parque Batlle"));
+            barrioRepository.save(new Barrio("Punta Gorda"));
+            barrioRepository.save(new Barrio("Carrasco"));
+            barrioRepository.save(new Barrio("Maroñas"));
+        }
+
     }
 }

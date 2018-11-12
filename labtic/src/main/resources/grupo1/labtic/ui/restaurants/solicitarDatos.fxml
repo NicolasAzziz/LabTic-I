@@ -92,7 +92,7 @@
                                         <RadioMenuItem fx:id="palermo" mnemonicParsing="false" onAction="#selectedBarrio" text="Palermo" />
                                         <RadioMenuItem fx:id="puntaCarretas" mnemonicParsing="false" onAction="#selectedBarrio" text="Punta Carretas" />
                                         <RadioMenuItem fx:id="maronias" mnemonicParsing="false" onAction="#selectedBarrio" text="Maroñas" />
-                                        <RadioMenuItem fx:id="cordon" mnemonicParsing="false" onAction="#selectedBarrio" text="Cordon" />
+                                        <RadioMenuItem fx:id="cordon" mnemonicParsing="false" onAction="#selectedBarrio" text="Cordón" />
                                         <RadioMenuItem fx:id="buceo" mnemonicParsing="false" onAction="#selectedBarrio" text="Buceo" />
                                         <RadioMenuItem fx:id="malvin" mnemonicParsing="false" onAction="#selectedBarrio" text="Malvin" />
                                         <RadioMenuItem fx:id="pocitos" mnemonicParsing="false" onAction="#selectedBarrio" text="Pocitos" />

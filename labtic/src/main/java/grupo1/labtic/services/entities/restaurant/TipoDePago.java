@@ -10,12 +10,8 @@ import java.util.Objects;
 
 @Entity(name = "TipoDePago")
 public class TipoDePago {
-    @Id
-    @GeneratedValue(generator = "tipoDePago_id")
-    @GenericGenerator(name = "tipoDePago_id", strategy = "increment")
-    @Column(name = "id", updatable = false, nullable = false)
-    private long id;
 
+    @Id
     @Column(name = "nombre_TipoDePago", unique = true)
     private String nombre;
 
@@ -31,21 +27,12 @@ public class TipoDePago {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         TipoDePago that = (TipoDePago) o;
-        return id == that.id &&
-                Objects.equals(nombre, that.nombre);
+        return Objects.equals(nombre, that.nombre);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, nombre);
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
+        return Objects.hash(nombre);
     }
 
     public String getNombre() {

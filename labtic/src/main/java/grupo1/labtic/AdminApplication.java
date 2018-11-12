@@ -41,6 +41,7 @@ public class AdminApplication extends Application {
         restaurantService = context.getBean(RestaurantService.class);
         restaurantService.insertarGrupoDeComidas();
         restaurantService.insertarTiposDePagos();
+        restaurantService.insertarBarrios();
     }
 
     @Override
