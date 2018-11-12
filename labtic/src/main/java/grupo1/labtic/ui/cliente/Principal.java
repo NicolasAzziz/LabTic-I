@@ -140,12 +140,15 @@ public class Principal {
     private Text comidas;
     @FXML
     private Text pagos;
+
     @FXML
     private Button reservar;
     @FXML
-    private ComboBox<?> horaReserva;
+    private TextField personas;
     @FXML
-    private ComboBox<?> cantPersonasReserva;
+    private TextField hora;
+    @FXML
+    private TextField min;
     @FXML
     private DatePicker fechaReserva;
 
@@ -164,6 +167,7 @@ public class Principal {
     @FXML
     private TableColumn cocinas;
 
+    private String mailResto;
     private Restaurant rowData;
 
 
@@ -244,7 +248,10 @@ public class Principal {
                         description.setText(rowData.getDescripcion());
                         logo.setImage(rowData.getImageView().getImage());
                         comidas.setText(rowData.getCocinasOfrecidas());
+
 //                        pagos.setText(rowData.getPagosOfrecidos());
+
+                        mailResto=rowData.getEmail();
                         stage.show();
                     } catch (IOException e) {
                         e.printStackTrace();
