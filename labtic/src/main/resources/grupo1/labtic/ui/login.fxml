@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="grupo1.labtic.ui.LoginController">
+   <children>
+      <ImageView fitHeight="421.0" fitWidth="673.0" layoutX="-47.0" layoutY="-2.0" opacity="0.5" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Imagenes/arreglo.jpg" />
+         </image>
+      </ImageView>
+      <Pane layoutX="39.0" layoutY="100.0" prefHeight="200.0" prefWidth="249.0">
+         <children>
+            <Text fill="#493928" layoutX="57.0" layoutY="114.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Yendo">
+               <font>
+                  <Font name="Yu Gothic Regular" size="46.0" />
+               </font>
+            </Text>
+         </children>
+      </Pane>
+      <Line endX="100.0" fill="#e4e4e4" layoutX="289.0" layoutY="199.0" rotate="90.0" startX="-100.0" stroke="#493928" />
+      <Pane layoutX="320.0" layoutY="59.0" prefHeight="280.0" prefWidth="249.0">
+         <children>
+            <Button fx:id="registro" layoutX="55.0" layoutY="241.0" mnemonicParsing="false" onAction="#registrate" opacity="0.6" style="-fx-background-color: #493928;" text="Eres nuevo? Registrate!" textFill="WHITE" />
+            <JFXPasswordField fx:id="password" focusColor="#493928" labelFloat="true" layoutX="22.0" layoutY="128.0" prefHeight="25.0" prefWidth="205.0" promptText="Password" unFocusColor="WHITE" />
+            <JFXButton fx:id="signIn" layoutX="22.0" layoutY="203.0" onAction="#signIn" prefHeight="25.0" prefWidth="205.0" style="-fx-background-color: #493928;" text="SIGN IN" textFill="WHITE" />
+            <JFXTextField fx:id="email" focusColor="#493928" labelFloat="true" layoutX="23.0" layoutY="79.0" prefHeight="25.0" prefWidth="205.0" promptText="Email" unFocusColor="WHITE" />
+         </children>
+      </Pane>
+      <JFXTextField layoutX="165.0" layoutY="349.0" prefHeight="25.0" prefWidth="249.0" text="Tienes un restaurant y quieres unirte a yendo?" />
+      <JFXButton fx:id="nuevoResto" layoutX="238.0" layoutY="374.0" prefHeight="25.0" prefWidth="101.0" text="Contactanos" textFill="#493928">
+         <font>
+            <Font name="System Italic" size="12.0" />
+         </font>
+      </JFXButton>
+   </children>
+</AnchorPane>

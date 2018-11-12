@@ -1,6 +1,6 @@
 package grupo1.labtic.ui.restaurants;
 
-import grupo1.labtic.RestaurantApplication;
+import grupo1.labtic.AppApplication;
 import grupo1.labtic.persistence.RestaurantRepository;
 import grupo1.labtic.services.entities.Restaurant;
 import javafx.event.ActionEvent;
@@ -71,7 +71,7 @@ public class Inicio {
                 if (restaurant.getPassword().equals(password)) {
                     if(restaurant.getNombreRestaurant()==null||restaurant.getNombreRestaurant().equals("")){
                         FXMLLoader loader = new FXMLLoader();
-                        loader.setControllerFactory(RestaurantApplication.getContext()::getBean);
+                        loader.setControllerFactory(AppApplication.getContext()::getBean);
 
                         Parent root = loader.load(SolicitarDatos.class.getResourceAsStream("SolicitarDatos.fxml"));
 
@@ -84,7 +84,7 @@ public class Inicio {
                     }
                     else{
                         FXMLLoader loader = new FXMLLoader();
-                        loader.setControllerFactory(RestaurantApplication.getContext()::getBean);
+                        loader.setControllerFactory(AppApplication.getContext()::getBean);
                         Parent root = loader.load(getClass().getResourceAsStream("restaurantePrincipal.fxml"));
                         Stage stage = new Stage();
                         stage.setTitle("¡Bienvenido!");
