@@ -244,6 +244,7 @@ public class Principal {
                         description.setText(rowData.getDescripcion());
                         logo.setImage(rowData.getImageView().getImage());
                         comidas.setText(rowData.getCocinasOfrecidas());
+//                        pagos.setText(rowData.getPagosOfrecidos());
                         stage.show();
                     } catch (IOException e) {
                         e.printStackTrace();
@@ -407,7 +408,7 @@ public class Principal {
                         description.setText(rowData.getDescripcion());
                         logo.setImage(rowData.getImageView().getImage());
                         comidas.setText(rowData.getCocinasOfrecidas());
-                        //pagos.setText(rowData.getPagosOfrecidos());
+//                        pagos.setText(rowData.getPagosOfrecidos());
                         stage.show();
                     } catch (IOException e) {
                         e.printStackTrace();

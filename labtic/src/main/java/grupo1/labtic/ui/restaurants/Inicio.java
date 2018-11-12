@@ -79,6 +79,7 @@ public class Inicio {
                         stage.setTitle("Ingrese los datos de su restaurante");
                         stage.getIcons().add(new Image("grupo1/labtic/ui/Imagenes/yendoIcono.png"));
                         stage.setScene(new Scene(root));
+                        ((Stage)((Node)actionEvent.getSource()).getScene().getWindow()).close();
                         stage.show();
 
                     }

@@ -209,6 +209,7 @@ public class Restaurant extends Usuario {
         return imagenn;
     }
 
+
     public String getCocinasOfrecidas(){
 
         String exit = "";
