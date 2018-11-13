@@ -48,18 +48,18 @@ public class LoginController {
     private JFXTextField email;
     @FXML
     private JFXButton nuevoResto;
-    @FXML
-    private ImageView imagePortada;
-    @FXML
-    private AnchorPane imagePortadaContainer;
-
-    public void initialize() {
-        imagePortada.setPreserveRatio(false);
-        imagePortada.fitHeightProperty().bind(imagePortadaContainer.heightProperty());
-        imagePortada.fitWidthProperty().bind(imagePortadaContainer.widthProperty());
-        //imagePortadaContainer.
-
-    }
+//    @FXML
+//    private ImageView imagePortada;
+//    @FXML
+//    private AnchorPane imagePortadaContainer;
+//
+//    public void initialize() {
+//        imagePortada.setPreserveRatio(false);
+//        imagePortada.fitHeightProperty().bind(imagePortadaContainer.heightProperty());
+//        imagePortada.fitWidthProperty().bind(imagePortadaContainer.widthProperty());
+//        //imagePortadaContainer.
+//
+//    }
 
     @FXML
     public void signIn(ActionEvent actionEvent) {
