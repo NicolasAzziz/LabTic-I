@@ -16,6 +16,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -40,6 +42,7 @@ public class Registro {
     @FXML
     private JFXPasswordField passwordRepeted;
 
+
     @Autowired
     private ClienteRepository clienteRepository;
 
@@ -48,6 +51,18 @@ public class Registro {
 
     @Autowired
     private UsuarioService usuarioService;
+//    @FXML
+//    private ImageView imagePortada;
+    @FXML
+    private AnchorPane imagePortadaContainer;
+//
+//    public void initialize() {
+//        imagePortada.setPreserveRatio(false);
+//        imagePortada.fitHeightProperty().bind(imagePortadaContainer.heightProperty());
+//        imagePortada.fitWidthProperty().bind(imagePortadaContainer.widthProperty());
+//        //imagePortadaContainer.
+//
+//    }
 
     @FXML
     void registrarCliente(ActionEvent event) {

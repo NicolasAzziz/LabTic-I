@@ -3,20 +3,13 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXPasswordField?>
 <?import com.jfoenix.controls.JFXTextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="grupo1.labtic.ui.cliente.Registro">
+<AnchorPane fx:id="imagePortadaContainer" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="grupo1.labtic.ui.cliente.Registro">
    <children>
-      <ImageView fitHeight="450.0" fitWidth="678.0" layoutX="-39.0" layoutY="-2.0" opacity="0.5" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="file:/C:/Users/Juan%20Pedro%20Grille/Documents/LabTic-I/labtic/src/main/resources/grupo1/labtic/ui/Imagenes/arreglo.jpg" />
-         </image>
-      </ImageView>
       <Pane layoutX="200.0" layoutY="86.0" prefHeight="300.0" prefWidth="200.0">
          <children>
             <JFXTextField fx:id="emailCliente" focusColor="#463626" labelFloat="true" layoutX="9.0" layoutY="78.0" prefHeight="25.0" prefWidth="181.0" promptText="Email" unFocusColor="WHITE" />
@@ -32,13 +25,6 @@
          </font>
       </Text>
       <JFXButton fx:id="backButton" onAction="#back" text="Back" textFill="#463626">
-         <graphic>
-            <ImageView fitHeight="54.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="file:/C:/Users/Juan%20Pedro%20Grille/Documents/LabTic-I/labtic/src/main/resources/grupo1/labtic/ui/Imagenes/back-undo-return-button-png-5.png" />
-               </image>
-            </ImageView>
-         </graphic>
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
