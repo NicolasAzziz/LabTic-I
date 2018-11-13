@@ -1,5 +1,9 @@
 package grupo1.labtic.ui.admins;
 
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXPasswordField;
+import com.jfoenix.controls.JFXTextField;
+import grupo1.labtic.AppApplication;
 import grupo1.labtic.services.RestaurantService;
 import grupo1.labtic.services.UsuarioService;
 import grupo1.labtic.services.exceptions.EmailInvalido;
@@ -7,13 +11,15 @@ import grupo1.labtic.services.exceptions.InvalidRestaurantInformation;
 import grupo1.labtic.services.exceptions.RestaurantAlreadyExists;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.control.Alert;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import java.io.IOException;
 
 import static grupo1.labtic.ui.Alert.showAlert;
 
@@ -23,12 +29,17 @@ public class Administrar {
     RestaurantService restaurantService;
     @Autowired
     UsuarioService usuarioService;
+
     @FXML
-    private TextField email;
+    private JFXButton backButton;
     @FXML
-    private PasswordField password;
+    private JFXTextField email;
     @FXML
-    private TextField rut;
+    private JFXTextField rut;
+    @FXML
+    private JFXButton agregarResto;
+    @FXML
+    private JFXPasswordField password;
 
     @FXML
     public void agregar(ActionEvent actionEvent) {
@@ -55,7 +66,21 @@ public class Administrar {
         };
     }
 
-
+    @FXML
+    public void back(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setControllerFactory(AppApplication.getContext()::getBean);
+            Parent root = null;
+            root = loader.load(PortadaAdmin.class.getResourceAsStream("adminPortada.fxml"));
+            Stage stage = new Stage();
+            stage.setTitle("Administrador");
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     private void clean() {
         email.setText(null);

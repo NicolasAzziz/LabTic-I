@@ -113,7 +113,7 @@ public class PortadaAdmin {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setControllerFactory(AppApplication.getContext()::getBean);
-            Parent root = loader.load(Administrar.class.getResourceAsStream("Admin.fxml"));
+            Parent root = loader.load(Administrar.class.getResourceAsStream("nuevoRestaurant.fxml"));
             Stage stage = new Stage();
             stage.setTitle("Nuevo Restaurant");
             stage.getIcons().add(new Image("grupo1/labtic/ui/Imagenes/yendoIcono.png"));
@@ -124,7 +124,6 @@ public class PortadaAdmin {
         }
 
     }
-
 
 }
 
