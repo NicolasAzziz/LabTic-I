@@ -41,6 +41,7 @@ public class Administrar {
     @FXML
     private JFXPasswordField password;
 
+
     @FXML
     public void agregar(ActionEvent actionEvent) {
         if (email.getText() == null || "".equals(email.getText()) || "".equals(password.getText()) ||

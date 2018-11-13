@@ -65,9 +65,6 @@ public class PortadaAdmin {
     private Circle circle2;
 
     @FXML
-    private ImageView imageView;
-
-    @FXML
     private AnchorPane imageContainer;
 
     @Autowired

@@ -16,10 +16,13 @@ import grupo1.labtic.ui.restaurants.SolicitarDatos;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -45,6 +48,18 @@ public class LoginController {
     private JFXTextField email;
     @FXML
     private JFXButton nuevoResto;
+    @FXML
+    private ImageView imagePortada;
+    @FXML
+    private AnchorPane imagePortadaContainer;
+
+    public void initialize() {
+        imagePortada.setPreserveRatio(false);
+        imagePortada.fitHeightProperty().bind(imagePortadaContainer.heightProperty());
+        imagePortada.fitWidthProperty().bind(imagePortadaContainer.widthProperty());
+        //imagePortadaContainer.
+
+    }
 
     @FXML
     public void signIn(ActionEvent actionEvent) {
@@ -53,11 +68,88 @@ public class LoginController {
         } else {
 
             if(clienteRepository.findByEmail(email.getText()) != null){
-                handleClienteLogin();
+                //handleClienteLogin();
+                try {
+                    String login = email.getText();
+                    String pass = password.getText();
+                    Cliente u = clienteRepository.findByEmail(login);
+                    if (u.getPassword().equals(pass)) {
+                        FXMLLoader loader = new FXMLLoader();
+                        loader.setControllerFactory(AppApplication.getContext()::getBean);
+                        Parent root = loader.load(Principal.class.getResourceAsStream("Principal.fxml"));
+                        Stage stage = new Stage();
+                        stage.setTitle("Donde quiere comer?");
+                        stage.getIcons().add(new Image("grupo1/labtic/ui/Imagenes/yendoIcono.png"));
+                        stage.setScene(new Scene(root));
+                        stage.show();
+                        ((Stage)((Node)actionEvent.getSource()).getScene().getWindow()).close();
+                    }else{
+                        showAlert("Contraseña incorrecta", "La contraseña ingresada no es correcta.");
+                        password.setText(null);
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    showAlert("Usuario no encontrado", "El usuario ingresado no existe");
+                }
             }else if(restoRepository.findOneByEmail(email.getText()) != null){
-                handleRestoLogin();
+                //handleRestoLogin();
+                try {
+
+                    String login = email.getText();
+                    String pass = password.getText();
+                    Restaurant r = restoRepository.findOneByEmail(login);
+                    if (r.getPassword().equals(pass)) {
+                        if(r.getNombreRestaurant()==null||r.getNombreRestaurant().equals("")){
+                            FXMLLoader loader = new FXMLLoader();
+                            loader.setControllerFactory(AppApplication.getContext()::getBean);
+
+                            Parent root = loader.load(SolicitarDatos.class.getResourceAsStream("SolicitarDatos.fxml"));
+
+                            Stage stage = new Stage();
+                            stage.setTitle("Ingrese los datos de su restaurante");
+                            stage.getIcons().add(new Image("grupo1/labtic/ui/Imagenes/yendoIcono.png"));
+                            stage.setScene(new Scene(root));
+                            stage.show();
+                            ((Stage)((Node)actionEvent.getSource()).getScene().getWindow()).close();
+
+                        }
+                        else{
+                            FXMLLoader loader = new FXMLLoader();
+                            loader.setControllerFactory(AppApplication.getContext()::getBean);
+                            Parent root = loader.load(RestaurantePrincipal.class.getResourceAsStream("restaurantePrincipal.fxml"));
+                            Stage stage = new Stage();
+                            stage.setTitle("¡Bienvenido!");
+                            stage.getIcons().add(new Image("grupo1/labtic/ui/Imagenes/yendoIcono.png"));
+                            stage.setScene(new Scene(root));
+                            stage.show();
+                            ((Stage)((Node)actionEvent.getSource()).getScene().getWindow()).close();
+                        }
+                    }else{
+                        showAlert("Contrasña incorrecta", "La contraseña ingresada no es correcta.");
+                        password.setText(null);
+                    }
+                } catch (NullPointerException e) {
+                    e.printStackTrace();
+                    showAlert("Usuario no econtrado", "El email: " + this.email.getText() +" no existe en el sistema");
+                } catch (IOException e){
+                    e.printStackTrace();
+                }
             }else{
-                handleAdminLogin();
+                //handleAdminLogin();
+                FXMLLoader loader = new FXMLLoader();
+                loader.setControllerFactory(AppApplication.getContext()::getBean);
+                Parent root = null;
+                try {
+                    root = loader.load(Administrar.class.getResourceAsStream("AdminPortada.fxml"));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                Stage stage = new Stage();
+                stage.setTitle("Yendo");
+                stage.getIcons().add(new Image("grupo1/labtic/ui/Imagenes/yendoIcono.png"));
+                stage.setScene(new Scene(root));
+                stage.show();
+                ((Stage)((Node)actionEvent.getSource()).getScene().getWindow()).close();
             }
 
         }
@@ -77,89 +169,89 @@ public class LoginController {
             e.printStackTrace();
         }
     }
+//
+//    public void handleClienteLogin(){
+//        try {
+//            String login = email.getText();
+//            String pass = password.getText();
+//            Cliente u = clienteRepository.findByEmail(login);
+//            if (u.getPassword().equals(pass)) {
+//                FXMLLoader loader = new FXMLLoader();
+//                loader.setControllerFactory(AppApplication.getContext()::getBean);
+//                Parent root = loader.load(Principal.class.getResourceAsStream("Principal.fxml"));
+//                Stage stage = new Stage();
+//                stage.setTitle("Donde quiere comer?");
+//                stage.getIcons().add(new Image("grupo1/labtic/ui/Imagenes/yendoIcono.png"));
+//                stage.setScene(new Scene(root));
+//                stage.show();
+//                ((Stage)((Node)actionEvent.getSource()).getScene().getWindow()).close();
+//            }else{
+//                showAlert("Contraseña incorrecta", "La contraseña ingresada no es correcta.");
+//                password.setText(null);
+//            }
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            showAlert("Usuario no encontrado", "El usuario ingresado no existe");
+//        }
+//    }
 
-    public void handleClienteLogin(){
-        try {
-            String login = email.getText();
-            String pass = password.getText();
-            Cliente u = clienteRepository.findByEmail(login);
-            if (u.getPassword().equals(pass)) {
-                FXMLLoader loader = new FXMLLoader();
-                loader.setControllerFactory(AppApplication.getContext()::getBean);
-                Parent root = loader.load(Principal.class.getResourceAsStream("Principal.fxml"));
-                Stage stage = new Stage();
-                stage.setTitle("Donde quiere comer?");
-                stage.getIcons().add(new Image("grupo1/labtic/ui/Imagenes/yendoIcono.png"));
-                stage.setScene(new Scene(root));
-                stage.show();
-                //((Stage)((Node)actionEvent.getSource()).getScene().getWindow()).close();
-            }else{
-                showAlert("Contraseña incorrecta", "La contraseña ingresada no es correcta.");
-                password.setText(null);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            showAlert("Usuario no encontrado", "El usuario ingresado no existe");
-        }
-    }
-
-    public void handleRestoLogin(){
-        try {
-
-            String login = email.getText();
-            String pass = password.getText();
-            Restaurant r = restoRepository.findOneByEmail(login);
-            if (r.getPassword().equals(pass)) {
-                if(r.getNombreRestaurant()==null||r.getNombreRestaurant().equals("")){
-                    FXMLLoader loader = new FXMLLoader();
-                    loader.setControllerFactory(AppApplication.getContext()::getBean);
-
-                    Parent root = loader.load(SolicitarDatos.class.getResourceAsStream("SolicitarDatos.fxml"));
-
-                    Stage stage = new Stage();
-                    stage.setTitle("Ingrese los datos de su restaurante");
-                    stage.getIcons().add(new Image("grupo1/labtic/ui/Imagenes/yendoIcono.png"));
-                    stage.setScene(new Scene(root));
-                    stage.show();
-
-                }
-                else{
-                    FXMLLoader loader = new FXMLLoader();
-                    loader.setControllerFactory(AppApplication.getContext()::getBean);
-                    Parent root = loader.load(RestaurantePrincipal.class.getResourceAsStream("restaurantePrincipal.fxml"));
-                    Stage stage = new Stage();
-                    stage.setTitle("¡Bienvenido!");
-                    stage.getIcons().add(new Image("grupo1/labtic/ui/Imagenes/yendoIcono.png"));
-                    stage.setScene(new Scene(root));
-                    stage.show();
-                }
-            }else{
-                showAlert("Contrasña incorrecta", "La contraseña ingresada no es correcta.");
-                password.setText(null);
-            }
-        } catch (NullPointerException e) {
-            e.printStackTrace();
-            showAlert("Usuario no econtrado", "El email: " + this.email.getText() +" no existe en el sistema");
-        } catch (IOException e){
-            e.printStackTrace();
-        }
-    }
-
-    public void handleAdminLogin(){
-
-        FXMLLoader loader = new FXMLLoader();
-        loader.setControllerFactory(AppApplication.getContext()::getBean);
-        Parent root = null;
-        try {
-            root = loader.load(Administrar.class.getResourceAsStream("AdminPortada.fxml"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        Stage stage = new Stage();
-        stage.setTitle("Donde quiere comer?");
-        stage.getIcons().add(new Image("grupo1/labtic/ui/Imagenes/yendoIcono.png"));
-        stage.setScene(new Scene(root));
-        stage.show();
-    }
+//    public void handleRestoLogin(){
+//        try {
+//
+//            String login = email.getText();
+//            String pass = password.getText();
+//            Restaurant r = restoRepository.findOneByEmail(login);
+//            if (r.getPassword().equals(pass)) {
+//                if(r.getNombreRestaurant()==null||r.getNombreRestaurant().equals("")){
+//                    FXMLLoader loader = new FXMLLoader();
+//                    loader.setControllerFactory(AppApplication.getContext()::getBean);
+//
+//                    Parent root = loader.load(SolicitarDatos.class.getResourceAsStream("SolicitarDatos.fxml"));
+//
+//                    Stage stage = new Stage();
+//                    stage.setTitle("Ingrese los datos de su restaurante");
+//                    stage.getIcons().add(new Image("grupo1/labtic/ui/Imagenes/yendoIcono.png"));
+//                    stage.setScene(new Scene(root));
+//                    stage.show();
+//
+//                }
+//                else{
+//                    FXMLLoader loader = new FXMLLoader();
+//                    loader.setControllerFactory(AppApplication.getContext()::getBean);
+//                    Parent root = loader.load(RestaurantePrincipal.class.getResourceAsStream("restaurantePrincipal.fxml"));
+//                    Stage stage = new Stage();
+//                    stage.setTitle("¡Bienvenido!");
+//                    stage.getIcons().add(new Image("grupo1/labtic/ui/Imagenes/yendoIcono.png"));
+//                    stage.setScene(new Scene(root));
+//                    stage.show();
+//                }
+//            }else{
+//                showAlert("Contrasña incorrecta", "La contraseña ingresada no es correcta.");
+//                password.setText(null);
+//            }
+//        } catch (NullPointerException e) {
+//            e.printStackTrace();
+//            showAlert("Usuario no econtrado", "El email: " + this.email.getText() +" no existe en el sistema");
+//        } catch (IOException e){
+//            e.printStackTrace();
+//        }
+//    }
+//
+//    public void handleAdminLogin(){
+//
+//        FXMLLoader loader = new FXMLLoader();
+//        loader.setControllerFactory(AppApplication.getContext()::getBean);
+//        Parent root = null;
+//        try {
+//            root = loader.load(Administrar.class.getResourceAsStream("AdminPortada.fxml"));
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//        Stage stage = new Stage();
+//        stage.setTitle("Yendo");
+//        stage.getIcons().add(new Image("grupo1/labtic/ui/Imagenes/yendoIcono.png"));
+//        stage.setScene(new Scene(root));
+//        stage.show();
+//    }
 
 }
