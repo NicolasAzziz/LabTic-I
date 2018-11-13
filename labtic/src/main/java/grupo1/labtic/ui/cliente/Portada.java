@@ -1,7 +1,7 @@
 package grupo1.labtic.ui.cliente;
 
 
-import grupo1.labtic.ClienteApplication;
+import grupo1.labtic.AppApplication;
 import grupo1.labtic.persistence.ClienteRepository;
 import grupo1.labtic.services.entities.Cliente;
 import javafx.event.ActionEvent;
@@ -55,15 +55,15 @@ public class Portada {
                 Cliente u = clienteRepository.findByEmail(login);
                 if (u.getPassword().equals(password)) {
                     FXMLLoader loader = new FXMLLoader();
-                    loader.setControllerFactory(ClienteApplication.getContext()::getBean);
+                    loader.setControllerFactory(AppApplication.getContext()::getBean);
                     Parent root = loader.load(Principal.class.getResourceAsStream("Principal.fxml"));
                     Stage stage = new Stage();
                     stage.setTitle("Donde quiere comer?");
                     stage.getIcons().add(new Image("grupo1/labtic/ui/Imagenes/yendoIcono.png"));
                     stage.setScene(new Scene(root));
                     stage.show();
-                    ((Stage)((Node)actionEvent.getSource()).getScene().getWindow()).close();
-                }else{
+                    ((Stage) ((Node) actionEvent.getSource()).getScene().getWindow()).close();
+                } else {
                     showAlert("Contraseña incorrecta", "La contraseña ingresada no es correcta.");
                     pass.setText(null);
                 }
@@ -73,11 +73,12 @@ public class Portada {
             }
         }
     }
+
     @FXML
     void registrate(ActionEvent actionEvent) {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setControllerFactory(ClienteApplication.getContext()::getBean);
+            loader.setControllerFactory(AppApplication.getContext()::getBean);
             Parent root = loader.load(Registro.class.getResourceAsStream("registrarse.fxml"));
             Stage stage = new Stage();
             stage.setTitle("Registro de cliente");

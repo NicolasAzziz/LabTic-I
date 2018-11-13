@@ -53,7 +53,7 @@ public class Restaurant extends Usuario {
     private byte[] imagen;
 
     @ElementCollection
-    @CollectionTable(name = "Mesas", joinColumns = @JoinColumn(name = "Restaurant_id"),uniqueConstraints = @UniqueConstraint(columnNames = {"restaurant_id","nroReferencia"}))
+    @CollectionTable(name = "Mesas", joinColumns = @JoinColumn(name = "Restaurant_id"), uniqueConstraints = @UniqueConstraint(columnNames = {"restaurant_id", "nroReferencia"}))
     private List<Mesa> mesas;
 
 
@@ -116,16 +116,16 @@ public class Restaurant extends Usuario {
         return nombreRestaurant;
     }
 
+    public void setNombreRestaurant(String nombreRestaurant) {
+        this.nombreRestaurant = nombreRestaurant;
+    }
+
     public List<Mesa> getMesas() {
         return mesas;
     }
 
     public void setMesas(List<Mesa> mesas) {
         this.mesas = mesas;
-    }
-
-    public void setNombreRestaurant(String nombreRestaurant) {
-        this.nombreRestaurant = nombreRestaurant;
     }
 
     public String getDireccion() {
@@ -192,11 +192,11 @@ public class Restaurant extends Usuario {
         this.grupoDeComidaList = grupoDeComidaList;
     }
 
-    public ImageView getImageView(){
+    public ImageView getImageView() {
         javafx.scene.image.Image image = null;
         ImageView imagenn = null;
         try {
-            if(imagen !=null) {
+            if (imagen != null) {
                 BufferedImage img = ImageIO.read(new ByteArrayInputStream(imagen));
                 image = SwingFXUtils.toFXImage(img, null);
                 imagenn = new ImageView(image);
@@ -211,11 +211,11 @@ public class Restaurant extends Usuario {
         return imagenn;
     }
 
-    public String getCocinasOfrecidasString(){
+    public String getCocinasOfrecidasString() {
 
         String exit = "";
 
-        for(int i = 0 ; i < getGrupoDeComidaList().size(); i++){
+        for (int i = 0; i < getGrupoDeComidaList().size(); i++) {
 
             exit = exit + getGrupoDeComidaList().get(i).getGrupo() + " \n";
 
@@ -232,17 +232,13 @@ public class Restaurant extends Usuario {
     public String getTipoDePagoListString() {
         String exit = "";
 
-        for(int i = 0 ; i < tipoDePagoList.size(); i++){
+        for (int i = 0; i < tipoDePagoList.size(); i++) {
 
             exit = exit + tipoDePagoList.get(i).getNombre() + " \n";
 
         }
 
         return exit;
-    }
-
-    public void setTipoDePagoList(List<TipoDePago> tipoDePagoList) {
-        this.tipoDePagoList = tipoDePagoList;
     }
 
     public void addTipoDePago(TipoDePago tipoDePagoList) {
@@ -277,9 +273,13 @@ public class Restaurant extends Usuario {
         return tipoDePagoList;
     }
 
-    public String getPagosOfrecidos(){
+    public void setTipoDePagoList(List<TipoDePago> tipoDePagoList) {
+        this.tipoDePagoList = tipoDePagoList;
+    }
+
+    public String getPagosOfrecidos() {
         String exit = "";
-        for(int i = 0 ; i < tipoDePagoList.size(); i++){
+        for (int i = 0; i < tipoDePagoList.size(); i++) {
             exit = exit + tipoDePagoList.get(i).getNombre() + " \n";
         }
         return exit;

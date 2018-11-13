@@ -1,19 +1,26 @@
 package grupo1.labtic.ui.cliente;
 
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXPasswordField;
+import com.jfoenix.controls.JFXTextField;
+import grupo1.labtic.AppApplication;
 import grupo1.labtic.persistence.ClienteRepository;
 import grupo1.labtic.services.ClienteService;
 import grupo1.labtic.services.UsuarioService;
 import grupo1.labtic.services.entities.Cliente;
 import grupo1.labtic.services.exceptions.EmailInvalido;
+import grupo1.labtic.ui.LoginController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import java.io.IOException;
 
 import static grupo1.labtic.ui.Alert.showAlert;
 
@@ -21,19 +28,17 @@ import static grupo1.labtic.ui.Alert.showAlert;
 public class Registro {
 
     @FXML
-    private TextField nombreCliente;
-
+    private JFXTextField emailCliente;
     @FXML
-    private TextField emailCliente;
-
+    private JFXTextField nombreCliente;
     @FXML
-    private PasswordField password;
-
+    private JFXButton registrar;
     @FXML
-    private TextField passwordRepeted;
-
+    private JFXPasswordField password;
     @FXML
-    private Button registrar;
+    private JFXButton backButton;
+    @FXML
+    private JFXPasswordField passwordRepeted;
 
     @Autowired
     private ClienteRepository clienteRepository;
@@ -70,7 +75,7 @@ public class Registro {
                         cliente = new Cliente(nombreCliente.getText(), emailCliente.getText(), password.getText());
                         clienteService.agregarCliente(cliente);
                         showAlert("Cliente agregado.", "Gracias por registrarse, " + nombreCliente.getText() + ".");
-                        ((Stage)((Node)event.getSource()).getScene().getWindow()).close();
+                        ((Stage) ((Node) event.getSource()).getScene().getWindow()).close();
                         clean();
                     }
                 }
@@ -81,16 +86,34 @@ public class Registro {
             showAlert("Email invalido.", emailInvalido.getMessage());
         }
     }
-        private void cleanPasswords() {
-            password.setText(null);
-            passwordRepeted.setText(null);
-        }
-        private void clean(){
-            cleanPasswords();
-            emailCliente.setText(null);
-            nombreCliente.setText(null);
-        }
 
-
+    private void cleanPasswords() {
+        password.setText(null);
+        passwordRepeted.setText(null);
     }
+
+    private void clean() {
+        cleanPasswords();
+        emailCliente.setText(null);
+        nombreCliente.setText(null);
+    }
+
+    @FXML
+    void back(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setControllerFactory(AppApplication.getContext()::getBean);
+            Parent root = null;
+            root = loader.load(LoginController.class.getResourceAsStream("login.fxml"));
+            Stage stage = new Stage();
+            stage.setTitle("Bienvenido!");
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+}
+
 

@@ -1,7 +1,7 @@
 package grupo1.labtic.ui.restaurants;
 
 
-import grupo1.labtic.RestaurantApplication;
+import grupo1.labtic.AppApplication;
 import grupo1.labtic.persistence.RestaurantRepository;
 import grupo1.labtic.services.RestaurantService;
 import grupo1.labtic.services.entities.Restaurant;
@@ -37,181 +37,122 @@ public class SolicitarDatos {
 
     @Autowired
     RestaurantService serviceRestaurant;
+    ObservableList<Mesa> mesaList;
     @Autowired
     private RestaurantRepository restaurantRepository;
-
     @FXML
     private TextField nombreRestaurante;
-
     @FXML
     private PasswordField passNueva;
-
     @FXML
     private PasswordField passNuevaRepeat;
-
     @FXML
     private TextField direccionRestaurante;
-
     @FXML
     private MenuButton barriosMenu;
-
     @FXML
     private RadioMenuItem ciudadVieja;
-
     @FXML
     private RadioMenuItem centro;
-
     @FXML
     private RadioMenuItem barrioSur;
-
     @FXML
     private RadioMenuItem palermo;
-
     @FXML
     private RadioMenuItem puntaCarretas;
-
     @FXML
     private RadioMenuItem maronias;
-
     @FXML
     private RadioMenuItem cordon;
-
     @FXML
     private RadioMenuItem buceo;
-
     @FXML
     private RadioMenuItem malvin;
-
     @FXML
     private RadioMenuItem pocitos;
-
     @FXML
     private RadioMenuItem parqueBatlle;
-
     @FXML
     private RadioMenuItem puntaGorda;
-
     @FXML
     private RadioMenuItem carrasco;
-
     @FXML
     private TextField hAperturaRestaurante;
-
     @FXML
     private TextField mAperturaRestaurante;
-
     @FXML
     private TextField hCierreRestaurante;
-
     @FXML
     private TextField mCierreRestaurante;
-
     @FXML
     private MenuButton metodosPagoMenu;
-
     @FXML
     private CheckMenuItem tarjetaD;
-
     @FXML
     private CheckMenuItem tarjetaC;
-
     @FXML
     private CheckMenuItem efectivo;
-
     @FXML
     private CheckMenuItem ticketA;
-
     @FXML
     private CheckMenuItem ticketR;
-
     @FXML
     private MenuButton comidasMenu;
-
     @FXML
     private CheckMenuItem sushi;
-
     @FXML
     private CheckMenuItem hamburgesas;
-
     @FXML
     private CheckMenuItem ensaladas;
-
     @FXML
     private CheckMenuItem cafeteria;
-
     @FXML
     private CheckMenuItem parrilla;
-
     @FXML
     private CheckMenuItem celiacos;
-
     @FXML
     private CheckMenuItem chivitos;
-
     @FXML
     private CheckMenuItem comidaChina;
-
     @FXML
     private CheckMenuItem comidaMexicana;
-
     @FXML
     private CheckMenuItem comidaVegetariana;
-
     @FXML
     private CheckMenuItem comidaVegana;
-
     @FXML
     private CheckMenuItem milanesas;
-
     @FXML
     private CheckMenuItem pescadoMariscos;
-
     @FXML
     private CheckMenuItem pizza;
-
     @FXML
     private CheckMenuItem sandwiches;
-
     @FXML
     private CheckMenuItem tartas;
-
     @FXML
     private CheckMenuItem wrap;
-
     @FXML
     private CheckMenuItem wok;
-
     @FXML
     private TextField telefonoRestaurante;
-
     @FXML
     private TextArea descR;
-
     @FXML
     private ListView<Mesa> listMesas;
-
     @FXML
     private TextField webRestaurante;
-
     @FXML
     private TextField precioMedio;
-
     @FXML
     private ImageView imagenVistaPrevia;
-
     @FXML
     private TextField nMesas;
-
     @FXML
     private TextField nSillas;
-
     @FXML
     private GridPane imgContainer;
-
     private File imgFile;
-
-    ObservableList<Mesa> mesaList;
-
     private Restaurant restaurant;
 
     @FXML
@@ -225,7 +166,7 @@ public class SolicitarDatos {
 
                 Integer referencia = Integer.valueOf(nMesas.getText());
                 Integer capacidad = Integer.valueOf(nSillas.getText());
-                Mesa mesa = new Mesa( referencia, capacidad);
+                Mesa mesa = new Mesa(referencia, capacidad);
 
                 verificacionMesas(mesa);
 
@@ -237,111 +178,113 @@ public class SolicitarDatos {
             } catch (NumberFormatException e) {
                 showAlert("No se pudo agregar la mesa",
                         "El número o la cantidad de lugares disponibles en la mesa son inválidos");
-            } catch (NroReferenciaException e){
+            } catch (NroReferenciaException e) {
                 showAlert("No se puedo agregar la mesa",
                         e.getMessage());
             }
         }
     }
+
     private boolean verificacionMesas(Mesa mesa) throws NroReferenciaException {
         boolean bExit = false;
-        if(mesaList == null || mesaList.size() == 0){
+        if (mesaList == null || mesaList.size() == 0) {
             bExit = true;
-        }else{
-            for(int i = 0; i<mesaList.size(); i++){
-                if(mesa.getNroReferencia() == mesaList.get(i).getNroReferencia())
+        } else {
+            for (int i = 0; i < mesaList.size(); i++) {
+                if (mesa.getNroReferencia() == mesaList.get(i).getNroReferencia())
                     throw new NroReferenciaException("Ya agregó una mesa con ese numero de referencia.");
             }
         }
         return bExit;
     }
+
     @FXML
     public void registrar(ActionEvent event) {
         if (nombreRestaurante.getText() == null || nombreRestaurante.getText().equals("") || telefonoRestaurante.getText() == null ||
                 telefonoRestaurante.getText().equals("") || direccionRestaurante.getText() == null || direccionRestaurante.getText().equals("") ||
                 hAperturaRestaurante.getText() == null || hAperturaRestaurante.getText().equals("") || mAperturaRestaurante.getText() == null ||
                 mAperturaRestaurante.getText().equals("") || hCierreRestaurante.getText() == null || hCierreRestaurante.getText().equals("") ||
-                mCierreRestaurante.getText() == null || mCierreRestaurante.getText().equals("") ||  barriosMenu.getItems().stream().filter(item ->
+                mCierreRestaurante.getText() == null || mCierreRestaurante.getText().equals("") || barriosMenu.getItems().stream().filter(item ->
                 RadioMenuItem.class.isInstance(item) && RadioMenuItem.class.cast(item).isSelected())
                 .map(MenuItem::getText).collect(Collectors.toList()).size() == 0 || comidasMenu.getItems().stream().filter(item ->
                 CheckMenuItem.class.isInstance(item) && CheckMenuItem.class.cast(item).isSelected())
                 .map(MenuItem::getText).collect(Collectors.toList()).size() == 0 || metodosPagoMenu.getItems().stream().filter(item ->
                 CheckMenuItem.class.isInstance(item) && CheckMenuItem.class.cast(item).isSelected())
-                .map(MenuItem::getText).collect(Collectors.toList()).size() == 0){
+                .map(MenuItem::getText).collect(Collectors.toList()).size() == 0) {
 
             showAlert("Datos faltantes!", "No se ingresaron los datos necesarios para completar el ingreso.");
         } else {
-                if (passNueva.getText().equals(passNuevaRepeat.getText())) {
-                    try {
-                        String nombre = nombreRestaurante.getText();
-                        String telefono = (telefonoRestaurante.getText());
-                        String direccion = direccionRestaurante.getText();
-                        Integer hAbre = Integer.valueOf(hAperturaRestaurante.getText());
-                        Integer mAbre = Integer.valueOf(mAperturaRestaurante.getText());
-                        String habre = hAperturaRestaurante.getText() + ":" + mAperturaRestaurante.getText();
-                        Integer hCierra = Integer.valueOf(hCierreRestaurante.getText());
-                        Integer mCierra = Integer.valueOf(mCierreRestaurante.getText());
-                        String hcierra = hCierreRestaurante.getText() + ":" + mCierreRestaurante.getText();
-                        String descripcion = descR.getText();
-                        String web = webRestaurante.getText();
-                        String nuevaPass = passNueva.getText();
+            if (passNueva.getText().equals(passNuevaRepeat.getText())) {
+                try {
+                    String nombre = nombreRestaurante.getText();
+                    String telefono = (telefonoRestaurante.getText());
+                    String direccion = direccionRestaurante.getText();
+                    Integer hAbre = Integer.valueOf(hAperturaRestaurante.getText());
+                    Integer mAbre = Integer.valueOf(mAperturaRestaurante.getText());
+                    String habre = hAperturaRestaurante.getText() + ":" + mAperturaRestaurante.getText();
+                    Integer hCierra = Integer.valueOf(hCierreRestaurante.getText());
+                    Integer mCierra = Integer.valueOf(mCierreRestaurante.getText());
+                    String hcierra = hCierreRestaurante.getText() + ":" + mCierreRestaurante.getText();
+                    String descripcion = descR.getText();
+                    String web = webRestaurante.getText();
+                    String nuevaPass = passNueva.getText();
 
-                        List<String> selectedItemsComidas = comidasMenu.getItems().stream().filter(item ->
-                                CheckMenuItem.class.isInstance(item) && CheckMenuItem.class.cast(item).isSelected())
-                                .map(MenuItem::getText).collect(Collectors.toList());
+                    List<String> selectedItemsComidas = comidasMenu.getItems().stream().filter(item ->
+                            CheckMenuItem.class.isInstance(item) && CheckMenuItem.class.cast(item).isSelected())
+                            .map(MenuItem::getText).collect(Collectors.toList());
 
-                        serviceRestaurant.setGrupoDeComidaList(restaurant, selectedItemsComidas);
+                    serviceRestaurant.setGrupoDeComidaList(restaurant, selectedItemsComidas);
 
-                        List<String> selectedItemsTipoDePagoMenu = metodosPagoMenu.getItems().stream().filter(item ->
-                                CheckMenuItem.class.isInstance(item) && CheckMenuItem.class.cast(item).isSelected())
-                                .map(MenuItem::getText).collect(Collectors.toList());
+                    List<String> selectedItemsTipoDePagoMenu = metodosPagoMenu.getItems().stream().filter(item ->
+                            CheckMenuItem.class.isInstance(item) && CheckMenuItem.class.cast(item).isSelected())
+                            .map(MenuItem::getText).collect(Collectors.toList());
 
-                        serviceRestaurant.setTipoDePagoList(restaurant, selectedItemsTipoDePagoMenu);
+                    serviceRestaurant.setTipoDePagoList(restaurant, selectedItemsTipoDePagoMenu);
 
-                        List<String> selectedBarrio = barriosMenu.getItems().stream().filter(item ->
-                                RadioMenuItem.class.isInstance(item) && RadioMenuItem.class.cast(item).isSelected())
-                                .map(MenuItem::getText).collect(Collectors.toList());
+                    List<String> selectedBarrio = barriosMenu.getItems().stream().filter(item ->
+                            RadioMenuItem.class.isInstance(item) && RadioMenuItem.class.cast(item).isSelected())
+                            .map(MenuItem::getText).collect(Collectors.toList());
 
-                        String barrio = selectedBarrio.get(0);
+                    String barrio = selectedBarrio.get(0);
 
-                        List<Mesa> mesas = new ArrayList<>(mesaList);
+                    List<Mesa> mesas = new ArrayList<>(mesaList);
 
-                        serviceRestaurant.setListaMesasRestaurante(restaurant, mesas);
+                    serviceRestaurant.setListaMesasRestaurante(restaurant, mesas);
 
-                        serviceRestaurant.registrarDatosRestaurant(restaurant, nombre, telefono, direccion, barrio, habre, hcierra, descripcion, web, nuevaPass);
+                    serviceRestaurant.registrarDatosRestaurant(restaurant, nombre, telefono, direccion, barrio, habre, hcierra, descripcion, web, nuevaPass);
 
-                        if(imgFile != null) {
-                            serviceRestaurant.guardarImagen(restaurant, imgFile);
-                        }
-
-                        if(precioMedio == null || precioMedio.getText().equals("")){
-
-
-                        }else{
-                            serviceRestaurant.setPrecioMedio(restaurant,precioMedio.getText());
-                        }
-                            showAlert("Datos guardados", "Se guardaron con éxito los datos de su restaurante");
-                            clean();
-
-                            FXMLLoader loader = new FXMLLoader();
-                            loader.setControllerFactory(RestaurantApplication.getContext()::getBean);
-                            Parent root = loader.load(RestaurantePrincipal.class.getResourceAsStream("restaurantePrincipal.fxml"));
-                            Stage stage = new Stage();
-                            stage.setTitle("¡Bienvenido!");
-                            stage.getIcons().add(new Image("grupo1/labtic/ui/Imagenes/yendoIcono.png"));
-                            stage.setScene(new Scene(root));
-                            ((Stage)((Node)event.getSource()).getScene().getWindow()).close();
-                            stage.show();
-                        } catch (NumberFormatException e) {
-                            showAlert("Informacion Invalida", "Se encontró un error en los datos ingresados");
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    } else {
-                        showAlert("Contraseñas incorrectas", "Las contraseñas no coinciden.");
+                    if (imgFile != null) {
+                        serviceRestaurant.guardarImagen(restaurant, imgFile);
                     }
+
+                    if (precioMedio == null || precioMedio.getText().equals("")) {
+
+
+                    } else {
+                        serviceRestaurant.setPrecioMedio(restaurant, precioMedio.getText());
+                    }
+                    showAlert("Datos guardados", "Se guardaron con éxito los datos de su restaurante");
+                    clean();
+
+                    FXMLLoader loader = new FXMLLoader();
+                    loader.setControllerFactory(AppApplication.getContext()::getBean);
+                    Parent root = loader.load(RestaurantePrincipal.class.getResourceAsStream("restaurantePrincipal.fxml"));
+                    Stage stage = new Stage();
+                    stage.setTitle("¡Bienvenido!");
+                    stage.getIcons().add(new Image("grupo1/labtic/ui/Imagenes/yendoIcono.png"));
+                    stage.setScene(new Scene(root));
+                    ((Stage) ((Node) event.getSource()).getScene().getWindow()).close();
+                    stage.show();
+                } catch (NumberFormatException e) {
+                    showAlert("Informacion Invalida", "Se encontró un error en los datos ingresados");
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
+            } else {
+                showAlert("Contraseñas incorrectas", "Las contraseñas no coinciden.");
+            }
         }
+    }
 
     @FXML
     public void selectedBarrio(ActionEvent actionEvent) {
@@ -363,7 +306,7 @@ public class SolicitarDatos {
         carrasco.setToggleGroup(toggleGroup);
     }
 
-    public void restaurante(Restaurant restaurant){
+    public void restaurante(Restaurant restaurant) {
         this.restaurant = restaurant;
     }
 
@@ -417,8 +360,8 @@ public class SolicitarDatos {
         hamburgesas.setSelected(false);
         ensaladas.setSelected(false);
         imagenVistaPrevia.setImage(null);
-        for(int i = 0; i< barriosMenu.getItems().size();i++){
-            ((RadioMenuItem)barriosMenu.getItems().get(i)).setSelected(false);
+        for (int i = 0; i < barriosMenu.getItems().size(); i++) {
+            ((RadioMenuItem) barriosMenu.getItems().get(i)).setSelected(false);
         }
     }
 }

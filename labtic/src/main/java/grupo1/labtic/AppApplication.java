@@ -1,7 +1,6 @@
 package grupo1.labtic;
 
-
-import grupo1.labtic.ui.cliente.Portada;
+import grupo1.labtic.ui.LoginController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -13,7 +12,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 
 @SpringBootApplication
-public class ClienteApplication extends Application {
+public class AppApplication extends Application {
 
     private static ConfigurableApplicationContext context;
 
@@ -31,16 +30,17 @@ public class ClienteApplication extends Application {
 
     @Override
     public void init() throws Exception {
-        context = SpringApplication.run(ClienteApplication.class);
+        context = SpringApplication.run(AppApplication.class);
         fxmlLoader = new FXMLLoader();
         fxmlLoader.setControllerFactory(context::getBean);
     }
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        fxmlLoader.setLocation(Portada.class.getResource("Portada.fxml"));
+        fxmlLoader.setLocation(LoginController.class.getResource("login.fxml"));
         root = fxmlLoader.load();
-        primaryStage.setScene(new Scene(root));
+        Scene scene = new Scene(root);
+        primaryStage.setScene(scene);
         primaryStage.setTitle("Bienvenido!");
         primaryStage.getIcons().add(new Image("grupo1/labtic/ui/Imagenes/yendoIcono.png"));
         primaryStage.show();

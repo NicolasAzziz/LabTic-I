@@ -1,6 +1,6 @@
 package grupo1.labtic.ui.cliente;
 
-import grupo1.labtic.ClienteApplication;
+import grupo1.labtic.AppApplication;
 import grupo1.labtic.persistence.GrupoDeComidaRepository;
 import grupo1.labtic.persistence.RestaurantRepository;
 import grupo1.labtic.services.entities.Restaurant;
@@ -174,14 +174,14 @@ public class Principal {
         tableViewRestaurantes.setItems(FXCollections.observableList(restaurantes));
 
 
-        tableViewRestaurantes.setRowFactory( tv -> {
+        tableViewRestaurantes.setRowFactory(tv -> {
             TableRow<Restaurant> row = new TableRow<>();
             row.setOnMouseClicked((event1) -> {
-                if (event1.getClickCount() == 2 && (! row.isEmpty()) ) {
+                if (event1.getClickCount() == 2 && (!row.isEmpty())) {
                     rowData = row.getItem();
                     try {
                         FXMLLoader loader = new FXMLLoader();
-                        loader.setControllerFactory(ClienteApplication.getContext()::getBean);
+                        loader.setControllerFactory(AppApplication.getContext()::getBean);
                         Parent root = loader.load(Principal.class.getResourceAsStream("restaurantEspecifico.fxml"));
                         Stage stage = new Stage();
                         stage.setTitle("Restaurant específico");
@@ -189,17 +189,17 @@ public class Principal {
                         stage.setScene(new Scene(root));
                         nombre.setText(rowData.getNombreRestaurant());
                         description.setText(rowData.getDescripcion());
-                        barrioPM.setText(rowData.getBarrio()+" - "+rowData.getPrecioMedio());
+                        barrioPM.setText(rowData.getBarrio() + " - " + rowData.getPrecioMedio());
                         tel.setText(rowData.getTelefono());
                         direccion.setText(rowData.getDireccion());
-                        horario.setText(rowData.getHorarioApertura()+" - "+rowData.getHorarioCierre());
+                        horario.setText(rowData.getHorarioApertura() + " - " + rowData.getHorarioCierre());
                         description.setText(rowData.getDescripcion());
-                        if(rowData.getImagen()!=null) {
+                        if (rowData.getImagen() != null) {
                             logo.setImage(rowData.getImageView().getImage());
                         }
                         comidas.setText(rowData.getCocinasOfrecidasString());
                         pagos.setText(rowData.getTipoDePagoListString());
-                        mailResto=rowData.getEmail();
+                        mailResto = rowData.getEmail();
                         stage.show();
                     } catch (IOException e) {
                         e.printStackTrace();
@@ -209,7 +209,6 @@ public class Principal {
             return row;
         });
     }
-
 
 
     @FXML
@@ -231,14 +230,14 @@ public class Principal {
 
                 List<Restaurant> restaurantes = new ArrayList<>();
 
-                if(selectedItemsComidas.size() == 1){
+                if (selectedItemsComidas.size() == 1) {
                     Iterable<Restaurant> restos = repository.findAllByGrupoDeComidaList(grupoDeComidaRepository.getGrupoDeComidaByGrupo(selectedItemsComidas));
                     restos.forEach(resto -> restaurantes.add(resto));
-                }else{
+                } else {
 
                     List<Restaurant> byComida = new ArrayList<>();
 
-                    for(int i = 0 ; i < selectedItemsComidas.size(); i ++){
+                    for (int i = 0; i < selectedItemsComidas.size(); i++) {
 
                         List<String> restoIndex = new ArrayList<>();
 
@@ -258,11 +257,11 @@ public class Principal {
 
                 List<Restaurant> restaurantes = new ArrayList<>();
 
-                if(selectedBarrios.size() == 1){
+                if (selectedBarrios.size() == 1) {
                     Iterable<Restaurant> restos = repository.findAllByBarrio(selectedBarrios);
                     restos.forEach(resto -> restaurantes.add(resto));
-                }else{
-                    for(int i = 0 ; i < selectedBarrios.size(); i++){
+                } else {
+                    for (int i = 0; i < selectedBarrios.size(); i++) {
 
                         List<String> restoIndex = new ArrayList<>();
 
@@ -276,13 +275,13 @@ public class Principal {
                 }
                 restaurantesFiltrados(restaurantes);
 
-            } else{
+            } else {
 
                 List<Restaurant> restaurantes = new ArrayList<>();
 
-                List<Restaurant>  byComida = new ArrayList<>();
+                List<Restaurant> byComida = new ArrayList<>();
 
-                for(int i = 0 ; i < selectedItemsComidas.size(); i ++){
+                for (int i = 0; i < selectedItemsComidas.size(); i++) {
 
                     List<String> restoIndex = new ArrayList<>();
 
@@ -294,10 +293,10 @@ public class Principal {
 
                 }
 
-                for(int j = 0 ; j < byComida.size(); j++){
+                for (int j = 0; j < byComida.size(); j++) {
 
-                    for(int n = 0 ; n < selectedBarrios.size(); n++){
-                        if (byComida.get(j).getBarrio().equals(selectedBarrios.get(n))){
+                    for (int n = 0; n < selectedBarrios.size(); n++) {
+                        if (byComida.get(j).getBarrio().equals(selectedBarrios.get(n))) {
                             restaurantes.add(byComida.get(j));
                         }
                     }
@@ -325,11 +324,11 @@ public class Principal {
 
     }
 
-    public void restaurantesFiltrados(List<Restaurant> restaurants){
+    public void restaurantesFiltrados(List<Restaurant> restaurants) {
 
         ObservableList<Restaurant> observableList = FXCollections.observableArrayList();
 
-        for(int i = 0 ; i < restaurants.size(); i++){
+        for (int i = 0; i < restaurants.size(); i++) {
             observableList.add(restaurants.get(i));
         }
 
@@ -341,14 +340,14 @@ public class Principal {
 
         tableViewRestaurantes.setItems(observableList);
 
-        tableViewRestaurantes.setRowFactory( tv -> {
+        tableViewRestaurantes.setRowFactory(tv -> {
             TableRow<Restaurant> row = new TableRow<>();
             row.setOnMouseClicked((event1) -> {
-                if (event1.getClickCount() == 2 && (! row.isEmpty()) ) {
+                if (event1.getClickCount() == 2 && (!row.isEmpty())) {
                     rowData = row.getItem();
                     try {
                         FXMLLoader loader = new FXMLLoader();
-                        loader.setControllerFactory(ClienteApplication.getContext()::getBean);
+                        loader.setControllerFactory(AppApplication.getContext()::getBean);
                         Parent root = loader.load(Principal.class.getResourceAsStream("restaurantEspecifico.fxml"));
                         Stage stage = new Stage();
                         stage.setTitle("Restaurant específico");
@@ -356,10 +355,10 @@ public class Principal {
                         stage.setScene(new Scene(root));
                         nombre.setText(rowData.getNombreRestaurant());
                         description.setText(rowData.getDescripcion());
-                        barrioPM.setText(rowData.getBarrio()+" - "+rowData.getPrecioMedio());
+                        barrioPM.setText(rowData.getBarrio() + " - " + rowData.getPrecioMedio());
                         tel.setText(rowData.getTelefono());
                         direccion.setText(rowData.getDireccion());
-                        horario.setText(rowData.getHorarioApertura()+" - "+rowData.getHorarioCierre());
+                        horario.setText(rowData.getHorarioApertura() + " - " + rowData.getHorarioCierre());
                         description.setText(rowData.getDescripcion());
                         logo.setImage(rowData.getImageView().getImage());
                         comidas.setText(rowData.getCocinasOfrecidasString());

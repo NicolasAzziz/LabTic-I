@@ -5,255 +5,356 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="grupo1.labtic.ui.restaurants.SolicitarDatos">
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+            prefHeight="750.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8"
+            fx:controller="grupo1.labtic.ui.restaurants.SolicitarDatos">
     <children>
-        <SplitPane dividerPositions="0.2" orientation="VERTICAL" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <SplitPane dividerPositions="0.2" orientation="VERTICAL" prefHeight="400.0" prefWidth="600.0"
+                   AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+                   AnchorPane.topAnchor="0.0">
             <items>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                     <children>
-                        <BorderPane maxHeight="120.0" prefHeight="77.0" prefWidth="598.0" style="-fx-background-color: f9f3a2;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <BorderPane maxHeight="120.0" prefHeight="77.0" prefWidth="598.0"
+                                    style="-fx-background-color: f9f3a2;" AnchorPane.bottomAnchor="0.0"
+                                    AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                             <center>
-                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Yendo" underline="true" BorderPane.alignment="CENTER_LEFT">
+                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Yendo" underline="true"
+                                      BorderPane.alignment="CENTER_LEFT">
                                     <font>
-                                        <Font name="Script MT Bold" size="75.0" />
+                                        <Font name="Script MT Bold" size="75.0"/>
                                     </font>
                                     <BorderPane.margin>
-                                        <Insets left="20.0" />
+                                        <Insets left="20.0"/>
                                     </BorderPane.margin>
                                 </Text>
                             </center>
                         </BorderPane>
                     </children>
                 </AnchorPane>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="120.0" prefWidth="160.0" style="-fx-background-color: d5f7b0;">
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="120.0" prefWidth="160.0"
+                            style="-fx-background-color: d5f7b0;">
                     <children>
 
-                        <GridPane layoutY="14.0" prefHeight="635.0" prefWidth="1278.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <GridPane layoutY="14.0" prefHeight="635.0" prefWidth="1278.0" AnchorPane.bottomAnchor="0.0"
+                                  AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
 
                             <columnConstraints>
-                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="267.0" minWidth="10.0" prefWidth="80.0" />
-                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="309.0" minWidth="10.0" prefWidth="184.0" />
-                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="411.0" minWidth="10.0" prefWidth="197.0" />
-                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="411.0" minWidth="10.0" prefWidth="52.0" />
-                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="411.0" minWidth="10.0" prefWidth="124.0" />
-                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="411.0" minWidth="10.0" prefWidth="176.0" />
-                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="411.0" minWidth="10.0" prefWidth="34.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="267.0" minWidth="10.0" prefWidth="80.0"/>
+                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="309.0" minWidth="10.0"
+                                                   prefWidth="184.0"/>
+                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="411.0" minWidth="10.0"
+                                                   prefWidth="197.0"/>
+                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="411.0" minWidth="10.0" prefWidth="52.0"/>
+                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="411.0" minWidth="10.0"
+                                                   prefWidth="124.0"/>
+                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="411.0" minWidth="10.0"
+                                                   prefWidth="176.0"/>
+                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="411.0" minWidth="10.0" prefWidth="34.0"/>
                             </columnConstraints>
                             <rowConstraints>
-                                <RowConstraints prefHeight="60.0" valignment="CENTER" />
-                                <RowConstraints prefHeight="60.0" valignment="CENTER" />
+                                <RowConstraints prefHeight="60.0" valignment="CENTER"/>
+                                <RowConstraints prefHeight="60.0" valignment="CENTER"/>
 
-                                <RowConstraints prefHeight="60.0" valignment="CENTER" />
-                                <RowConstraints prefHeight="60.0" valignment="CENTER" />
-                                <RowConstraints prefHeight="60.0" valignment="CENTER" />
-                                <RowConstraints prefHeight="60.0" valignment="CENTER" />
-                                <RowConstraints prefHeight="60.0" valignment="CENTER" />
-                                <RowConstraints maxHeight="253.0" minHeight="10.0" prefHeight="106.888916015625" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="253.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                                <RowConstraints prefHeight="60.0" valignment="CENTER"/>
+                                <RowConstraints prefHeight="60.0" valignment="CENTER"/>
+                                <RowConstraints prefHeight="60.0" valignment="CENTER"/>
+                                <RowConstraints prefHeight="60.0" valignment="CENTER"/>
+                                <RowConstraints prefHeight="60.0" valignment="CENTER"/>
+                                <RowConstraints maxHeight="253.0" minHeight="10.0" prefHeight="106.888916015625"
+                                                vgrow="SOMETIMES"/>
+                                <RowConstraints maxHeight="253.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES"/>
 
                             </rowConstraints>
                             <children>
-                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="*Nombre del restaurante:" wrappingWidth="78.580078125" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                                <TextField fx:id="nombreRestaurante" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.valignment="CENTER" />
-                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="*Contraseña nueva:" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                                <PasswordField fx:id="passNueva" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="*Repetir contraseña:" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-                                <PasswordField fx:id="passNuevaRepeat" GridPane.columnIndex="5" GridPane.rowIndex="1" />
-                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="*Dirección:" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
-                                <TextField fx:id="direccionRestaurante" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
-                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="*Barrio:" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-                                <MenuButton fx:id="barriosMenu" alignment="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="157.0" text="Seleccione" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="*Nombre del restaurante:"
+                                      wrappingWidth="78.580078125" GridPane.columnIndex="1" GridPane.halignment="CENTER"
+                                      GridPane.valignment="CENTER"/>
+                                <TextField fx:id="nombreRestaurante" GridPane.columnIndex="2"
+                                           GridPane.halignment="RIGHT" GridPane.valignment="CENTER"/>
+                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="*Contraseña nueva:"
+                                      GridPane.columnIndex="4" GridPane.halignment="CENTER"
+                                      GridPane.valignment="CENTER"/>
+                                <PasswordField fx:id="passNueva" GridPane.columnIndex="5" GridPane.halignment="CENTER"
+                                               GridPane.valignment="CENTER"/>
+                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="*Repetir contraseña:"
+                                      GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="1"
+                                      GridPane.valignment="CENTER"/>
+                                <PasswordField fx:id="passNuevaRepeat" GridPane.columnIndex="5" GridPane.rowIndex="1"/>
+                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="*Dirección:" GridPane.columnIndex="1"
+                                      GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER"/>
+                                <TextField fx:id="direccionRestaurante" GridPane.columnIndex="2"
+                                           GridPane.halignment="CENTER" GridPane.rowIndex="2"
+                                           GridPane.valignment="CENTER"/>
+                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="*Barrio:" GridPane.columnIndex="1"
+                                      GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER"/>
+                                <MenuButton fx:id="barriosMenu" alignment="CENTER" mnemonicParsing="false"
+                                            prefHeight="25.0" prefWidth="157.0" text="Seleccione"
+                                            GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1"
+                                            GridPane.valignment="CENTER">
                                     <items>
-                                        <RadioMenuItem fx:id="ciudadVieja" mnemonicParsing="false" onAction="#selectedBarrio" text="Ciudad Vieja" />
-                                        <RadioMenuItem fx:id="centro" mnemonicParsing="false" onAction="#selectedBarrio" text="Centro" />
-                                        <RadioMenuItem fx:id="barrioSur" mnemonicParsing="false" onAction="#selectedBarrio" text="Barrio Sur" />
-                                        <RadioMenuItem fx:id="palermo" mnemonicParsing="false" onAction="#selectedBarrio" text="Palermo" />
-                                        <RadioMenuItem fx:id="puntaCarretas" mnemonicParsing="false" onAction="#selectedBarrio" text="Punta Carretas" />
-                                        <RadioMenuItem fx:id="maronias" mnemonicParsing="false" onAction="#selectedBarrio" text="Maroñas" />
-                                        <RadioMenuItem fx:id="cordon" mnemonicParsing="false" onAction="#selectedBarrio" text="Cordón" />
-                                        <RadioMenuItem fx:id="buceo" mnemonicParsing="false" onAction="#selectedBarrio" text="Buceo" />
-                                        <RadioMenuItem fx:id="malvin" mnemonicParsing="false" onAction="#selectedBarrio" text="Malvin" />
-                                        <RadioMenuItem fx:id="pocitos" mnemonicParsing="false" onAction="#selectedBarrio" text="Pocitos" />
-                                        <RadioMenuItem fx:id="parqueBatlle" mnemonicParsing="false" onAction="#selectedBarrio" text="Parque Batlle" />
-                                        <RadioMenuItem fx:id="puntaGorda" mnemonicParsing="false" onAction="#selectedBarrio" text="Punta Gorda" />
-                                        <RadioMenuItem fx:id="carrasco" mnemonicParsing="false" onAction="#selectedBarrio" text="Carrasco" />
+                                        <RadioMenuItem fx:id="ciudadVieja" mnemonicParsing="false"
+                                                       onAction="#selectedBarrio" text="Ciudad Vieja"/>
+                                        <RadioMenuItem fx:id="centro" mnemonicParsing="false" onAction="#selectedBarrio"
+                                                       text="Centro"/>
+                                        <RadioMenuItem fx:id="barrioSur" mnemonicParsing="false"
+                                                       onAction="#selectedBarrio" text="Barrio Sur"/>
+                                        <RadioMenuItem fx:id="palermo" mnemonicParsing="false"
+                                                       onAction="#selectedBarrio" text="Palermo"/>
+                                        <RadioMenuItem fx:id="puntaCarretas" mnemonicParsing="false"
+                                                       onAction="#selectedBarrio" text="Punta Carretas"/>
+                                        <RadioMenuItem fx:id="maronias" mnemonicParsing="false"
+                                                       onAction="#selectedBarrio" text="Maroñas"/>
+                                        <RadioMenuItem fx:id="cordon" mnemonicParsing="false" onAction="#selectedBarrio"
+                                                       text="Cordón"/>
+                                        <RadioMenuItem fx:id="buceo" mnemonicParsing="false" onAction="#selectedBarrio"
+                                                       text="Buceo"/>
+                                        <RadioMenuItem fx:id="malvin" mnemonicParsing="false" onAction="#selectedBarrio"
+                                                       text="Malvin"/>
+                                        <RadioMenuItem fx:id="pocitos" mnemonicParsing="false"
+                                                       onAction="#selectedBarrio" text="Pocitos"/>
+                                        <RadioMenuItem fx:id="parqueBatlle" mnemonicParsing="false"
+                                                       onAction="#selectedBarrio" text="Parque Batlle"/>
+                                        <RadioMenuItem fx:id="puntaGorda" mnemonicParsing="false"
+                                                       onAction="#selectedBarrio" text="Punta Gorda"/>
+                                        <RadioMenuItem fx:id="carrasco" mnemonicParsing="false"
+                                                       onAction="#selectedBarrio" text="Carrasco"/>
                                     </items>
                                 </MenuButton>
-                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="*Horario de apertura:" textAlignment="CENTER" wrappingWidth="65.595703125" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
-                                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
-                           <children>
-                              <TextField fx:id="hAperturaRestaurante" alignment="CENTER_RIGHT" />
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="  :  " />
-                              <TextField fx:id="mAperturaRestaurante" />
-                           </children>
+                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="*Horario de apertura:"
+                                      textAlignment="CENTER" wrappingWidth="65.595703125" GridPane.columnIndex="4"
+                                      GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER"/>
+                                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="5"
+                                      GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                                    <children>
+                                        <TextField fx:id="hAperturaRestaurante" alignment="CENTER_RIGHT"/>
+                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="  :  "/>
+                                        <TextField fx:id="mAperturaRestaurante"/>
+                                    </children>
                                 </HBox>
-                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="*Horario de cierre:" textAlignment="CENTER" wrappingWidth="59.802734375" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
-                                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="3">
+                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="*Horario de cierre:"
+                                      textAlignment="CENTER" wrappingWidth="59.802734375" GridPane.columnIndex="4"
+                                      GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER"/>
+                                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="5"
+                                      GridPane.rowIndex="3">
                                     <children>
                                         <TextField fx:id="hCierreRestaurante" alignment="CENTER_RIGHT">
                                             <HBox.margin>
-                                                <Insets />
+                                                <Insets/>
                                             </HBox.margin>
                                         </TextField>
                                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="  :  ">
                                             <HBox.margin>
-                                                <Insets />
+                                                <Insets/>
                                             </HBox.margin>
                                         </Text>
                                         <TextField fx:id="mCierreRestaurante">
                                             <HBox.margin>
-                                                <Insets />
+                                                <Insets/>
                                             </HBox.margin>
                                         </TextField>
                                     </children>
                                 </HBox>
-                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="*Métodos de pago aceptados:" textAlignment="CENTER" wrappingWidth="98.744140625" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
-                                <MenuButton fx:id="metodosPagoMenu" alignment="CENTER" cacheHint="SPEED" contentDisplay="BOTTOM" mnemonicParsing="false" prefHeight="25.0" prefWidth="157.0" text="Seleccione" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
-                           <items>
-                                        <CheckMenuItem fx:id="tarjetaD" mnemonicParsing="false" text="Tarjeta de Débito" />
-                                        <CheckMenuItem fx:id="tarjetaC" mnemonicParsing="false" text="Tarjeta de Crédito" />
-                                        <CheckMenuItem fx:id="efectivo" mnemonicParsing="false" text="Efectivo" />
-                                        <CheckMenuItem fx:id="ticketA" mnemonicParsing="false" text="Ticket Alimentación" />
-                                        <CheckMenuItem fx:id="ticketR" mnemonicParsing="false" text="Ticket Restaurante" />
-                           </items>
-                                </MenuButton>
-                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="*Comidas:" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
-                                <MenuButton fx:id="comidasMenu" alignment="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="146.0" text="Seleccione" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="*Métodos de pago aceptados:"
+                                      textAlignment="CENTER" wrappingWidth="98.744140625" GridPane.columnIndex="1"
+                                      GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER"/>
+                                <MenuButton fx:id="metodosPagoMenu" alignment="CENTER" cacheHint="SPEED"
+                                            contentDisplay="BOTTOM" mnemonicParsing="false" prefHeight="25.0"
+                                            prefWidth="157.0" text="Seleccione" textAlignment="CENTER"
+                                            GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3"
+                                            GridPane.valignment="CENTER">
                                     <items>
-                                        <CheckMenuItem fx:id="sushi" mnemonicParsing="false" text="Sushi" />
-                                        <CheckMenuItem fx:id="hamburgesas" mnemonicParsing="false" text="Hamburguesas" />
-                                        <CheckMenuItem fx:id="ensaladas" mnemonicParsing="false" text="Ensaladas" />
-                                        <CheckMenuItem fx:id="cafeteria" mnemonicParsing="false" text="Cafetería" />
-                                        <CheckMenuItem fx:id="parrilla" mnemonicParsing="false" text="Parrilla" />
-                                        <CheckMenuItem fx:id="celiacos" mnemonicParsing="false" text="Celíacos" />
-                                        <CheckMenuItem fx:id="chivitos" mnemonicParsing="false" text="Chivitos" />
-                                        <CheckMenuItem fx:id="comidaChina" mnemonicParsing="false" text="Comida China" />
-                                        <CheckMenuItem fx:id="comidaMexicana" mnemonicParsing="false" text="Comida Mexicana" />
-                                        <CheckMenuItem fx:id="comidaVegetariana" mnemonicParsing="false" text="Comida Vegetariana" />
-                                        <CheckMenuItem fx:id="comidaVegana" mnemonicParsing="false" text="Comida Vegana" />
-                                        <CheckMenuItem fx:id="milanesas" mnemonicParsing="false" text="Milanesas" />
-                                        <CheckMenuItem fx:id="pescadoMariscos" mnemonicParsing="false" text="Pescado y Mariscos" />
-                                        <CheckMenuItem fx:id="pizza" mnemonicParsing="false" text="Pizza" />
-                                        <CheckMenuItem fx:id="sandwiches" mnemonicParsing="false" text="Sandwiches" />
-                                        <CheckMenuItem fx:id="tartas" mnemonicParsing="false" text="Tartas" />
-                                        <CheckMenuItem fx:id="wrap" mnemonicParsing="false" text="Wraps" />
-                                        <CheckMenuItem fx:id="wok" mnemonicParsing="false" text="Wok" />
+                                        <CheckMenuItem fx:id="tarjetaD" mnemonicParsing="false"
+                                                       text="Tarjeta de Débito"/>
+                                        <CheckMenuItem fx:id="tarjetaC" mnemonicParsing="false"
+                                                       text="Tarjeta de Crédito"/>
+                                        <CheckMenuItem fx:id="efectivo" mnemonicParsing="false" text="Efectivo"/>
+                                        <CheckMenuItem fx:id="ticketA" mnemonicParsing="false"
+                                                       text="Ticket Alimentación"/>
+                                        <CheckMenuItem fx:id="ticketR" mnemonicParsing="false"
+                                                       text="Ticket Restaurante"/>
                                     </items>
                                 </MenuButton>
-                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="*Teléfono:" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER" />
-                                <TextField fx:id="telefonoRestaurante" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER" />
-                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Breve descripción del servicio ofrecido:" textAlignment="CENTER" wrappingWidth="108.18359375" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
-                                <TextArea fx:id="descR" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="4" />
-                        <GridPane alignment="CENTER" gridLinesVisible="true" GridPane.columnIndex="2" GridPane.rowIndex="7">
-                          <rowConstraints>
-                              <RowConstraints />
-                            <RowConstraints maxHeight="13.333328247070312" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
-                          </rowConstraints>
-                           <children>
-                              <ListView fx:id="listMesas" prefHeight="200.0" prefWidth="200.0" />
-                           </children>
-                           <columnConstraints>
-                              <ColumnConstraints />
-                           </columnConstraints>
-                        </GridPane>
-                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Sitio web:" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER" />
-                                <TextField fx:id="webRestaurante" GridPane.columnIndex="5" GridPane.rowIndex="5" />
+                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="*Comidas:" GridPane.columnIndex="1"
+                                      GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER"/>
+                                <MenuButton fx:id="comidasMenu" alignment="CENTER" mnemonicParsing="false"
+                                            prefHeight="25.0" prefWidth="146.0" text="Seleccione"
+                                            GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4"
+                                            GridPane.valignment="CENTER">
+                                    <items>
+                                        <CheckMenuItem fx:id="sushi" mnemonicParsing="false" text="Sushi"/>
+                                        <CheckMenuItem fx:id="hamburgesas" mnemonicParsing="false" text="Hamburguesas"/>
+                                        <CheckMenuItem fx:id="ensaladas" mnemonicParsing="false" text="Ensaladas"/>
+                                        <CheckMenuItem fx:id="cafeteria" mnemonicParsing="false" text="Cafetería"/>
+                                        <CheckMenuItem fx:id="parrilla" mnemonicParsing="false" text="Parrilla"/>
+                                        <CheckMenuItem fx:id="celiacos" mnemonicParsing="false" text="Celíacos"/>
+                                        <CheckMenuItem fx:id="chivitos" mnemonicParsing="false" text="Chivitos"/>
+                                        <CheckMenuItem fx:id="comidaChina" mnemonicParsing="false" text="Comida China"/>
+                                        <CheckMenuItem fx:id="comidaMexicana" mnemonicParsing="false"
+                                                       text="Comida Mexicana"/>
+                                        <CheckMenuItem fx:id="comidaVegetariana" mnemonicParsing="false"
+                                                       text="Comida Vegetariana"/>
+                                        <CheckMenuItem fx:id="comidaVegana" mnemonicParsing="false"
+                                                       text="Comida Vegana"/>
+                                        <CheckMenuItem fx:id="milanesas" mnemonicParsing="false" text="Milanesas"/>
+                                        <CheckMenuItem fx:id="pescadoMariscos" mnemonicParsing="false"
+                                                       text="Pescado y Mariscos"/>
+                                        <CheckMenuItem fx:id="pizza" mnemonicParsing="false" text="Pizza"/>
+                                        <CheckMenuItem fx:id="sandwiches" mnemonicParsing="false" text="Sandwiches"/>
+                                        <CheckMenuItem fx:id="tartas" mnemonicParsing="false" text="Tartas"/>
+                                        <CheckMenuItem fx:id="wrap" mnemonicParsing="false" text="Wraps"/>
+                                        <CheckMenuItem fx:id="wok" mnemonicParsing="false" text="Wok"/>
+                                    </items>
+                                </MenuButton>
+                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="*Teléfono:" GridPane.columnIndex="1"
+                                      GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER"/>
+                                <TextField fx:id="telefonoRestaurante" GridPane.columnIndex="2"
+                                           GridPane.halignment="CENTER" GridPane.rowIndex="5"
+                                           GridPane.valignment="CENTER"/>
+                                <Text strokeType="OUTSIDE" strokeWidth="0.0"
+                                      text="Breve descripción del servicio ofrecido:" textAlignment="CENTER"
+                                      wrappingWidth="108.18359375" GridPane.columnIndex="4" GridPane.halignment="CENTER"
+                                      GridPane.rowIndex="4" GridPane.valignment="CENTER"/>
+                                <TextArea fx:id="descR" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5"
+                                          GridPane.rowIndex="4"/>
+                                <GridPane alignment="CENTER" gridLinesVisible="true" GridPane.columnIndex="2"
+                                          GridPane.rowIndex="7">
+                                    <rowConstraints>
+                                        <RowConstraints/>
+                                        <RowConstraints maxHeight="13.333328247070312" minHeight="0.0" prefHeight="0.0"
+                                                        vgrow="SOMETIMES"/>
+                                    </rowConstraints>
+                                    <children>
+                                        <ListView fx:id="listMesas" prefHeight="200.0" prefWidth="200.0"/>
+                                    </children>
+                                    <columnConstraints>
+                                        <ColumnConstraints/>
+                                    </columnConstraints>
+                                </GridPane>
+                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Sitio web:" GridPane.columnIndex="4"
+                                      GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER"/>
+                                <TextField fx:id="webRestaurante" GridPane.columnIndex="5" GridPane.rowIndex="5"/>
 
-                        <TextField fx:id="precioMedio" GridPane.columnIndex="2" GridPane.rowIndex="6" />
-                        <GridPane fx:id="imgContainer" GridPane.columnIndex="5" GridPane.rowIndex="7">
-                          <columnConstraints>
-                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                          </columnConstraints>
-                          <rowConstraints>
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                          </rowConstraints>
-                           <children>
-                              <ImageView fx:id="imagenVistaPrevia" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
-                           </children>
-                        </GridPane>
-                                <Button alignment="CENTER" contentDisplay="CENTER" defaultButton="true" onAction="#registrar" text="Registrarse" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER">
-                           <font>
-                              <Font size="13.0" />
-                           </font></Button>
-                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="* Campos Obligatorios" GridPane.columnIndex="2" GridPane.rowIndex="8" GridPane.valignment="CENTER" />
+                                <TextField fx:id="precioMedio" GridPane.columnIndex="2" GridPane.rowIndex="6"/>
+                                <GridPane fx:id="imgContainer" GridPane.columnIndex="5" GridPane.rowIndex="7">
+                                    <columnConstraints>
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                                    </columnConstraints>
+                                    <rowConstraints>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                    </rowConstraints>
+                                    <children>
+                                        <ImageView fx:id="imagenVistaPrevia" fitHeight="150.0" fitWidth="200.0"
+                                                   pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER"
+                                                   GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER"
+                                                   GridPane.vgrow="ALWAYS"/>
+                                    </children>
+                                </GridPane>
+                                <Button alignment="CENTER" contentDisplay="CENTER" defaultButton="true"
+                                        onAction="#registrar" text="Registrarse" textAlignment="CENTER" wrapText="true"
+                                        GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="8"
+                                        GridPane.valignment="CENTER">
+                                    <font>
+                                        <Font size="13.0"/>
+                                    </font>
+                                </Button>
+                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="* Campos Obligatorios"
+                                      GridPane.columnIndex="2" GridPane.rowIndex="8" GridPane.valignment="CENTER"/>
 
-                                <Text fill="#90bf5a" strokeType="OUTSIDE" strokeWidth="0.0" text="D" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                                <Text fill="#90bf5a" strokeType="OUTSIDE" strokeWidth="0.0" text="D"
+                                      GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                                     <font>
-                                        <Font name="Bauhaus 93" size="50.0" />
+                                        <Font name="Bauhaus 93" size="50.0"/>
                                     </font>
                                 </Text>
-                                <Text fill="#90bf5a" strokeType="OUTSIDE" strokeWidth="0.0" text="A" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                                <Text fill="#90bf5a" strokeType="OUTSIDE" strokeWidth="0.0" text="A"
+                                      GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                                     <font>
-                                        <Font name="Bauhaus 93" size="50.0" />
+                                        <Font name="Bauhaus 93" size="50.0"/>
                                     </font>
                                 </Text>
-                                <Text fill="#90bf5a" strokeType="OUTSIDE" strokeWidth="0.0" text="T" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                                <Text fill="#90bf5a" strokeType="OUTSIDE" strokeWidth="0.0" text="T"
+                                      GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                                     <font>
-                                        <Font name="Bauhaus 93" size="50.0" />
+                                        <Font name="Bauhaus 93" size="50.0"/>
                                     </font>
                                 </Text>
-                                <Text fill="#90bf5a" strokeType="OUTSIDE" strokeWidth="0.0" text="O" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+                                <Text fill="#90bf5a" strokeType="OUTSIDE" strokeWidth="0.0" text="O"
+                                      GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                                     <font>
-                                        <Font name="Bauhaus 93" size="50.0" />
+                                        <Font name="Bauhaus 93" size="50.0"/>
                                     </font>
                                 </Text>
-                                <Text fill="#90bf5a" strokeType="OUTSIDE" strokeWidth="0.0" text="S" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="TOP">
+                                <Text fill="#90bf5a" strokeType="OUTSIDE" strokeWidth="0.0" text="S"
+                                      GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="TOP">
                                     <font>
-                                        <Font name="Bauhaus 93" size="50.0" />
+                                        <Font name="Bauhaus 93" size="50.0"/>
                                     </font>
                                 </Text>
-                                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
-                           <children>
-                                      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
-                                          <children>
-                                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
-                                                  <children>
-                                                      <Text fx:id="nMesa" strokeType="OUTSIDE" strokeWidth="0.0" text="*Número de mesa:" wrappingWidth="62.912109375">
-                                                          <VBox.margin>
-                                                              <Insets />
-                                                          </VBox.margin>
-                                                      </Text>
-                                                      <TextField fx:id="nMesas" maxHeight="25.0" maxWidth="50.0" minWidth="50.0" prefHeight="25.0" prefWidth="50.0">
-                                                          <VBox.margin>
-                                                              <Insets right="10.0" top="11.0" />
-                                                          </VBox.margin>
-                                                      </TextField>
-                                                  </children>
-                                              </VBox>
-                                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
-                                                  <children>
-                                                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="*Capacidad de la mesa" wrappingWidth="76.41015625">
-                                                          <VBox.margin>
-                                                              <Insets />
-                                                          </VBox.margin>
-                                                      </Text>
-                                                      <TextField fx:id="nSillas" maxWidth="50.0" minWidth="50.0" prefHeight="25.0" prefWidth="50.0">
-                                                          <VBox.margin>
-                                                              <Insets right="10.0" top="10.0" />
-                                                          </VBox.margin>
-                                                      </TextField>
-                                                  </children>
-                                              </VBox>
-                                              <Button mnemonicParsing="false" onAction="#agregarMesa" prefHeight="28.0" prefWidth="49.0" text="+">
-                                                  <font>
-                                                      <Font name="Arial Rounded MT Bold" size="13.0" />
-                                                  </font>
-                                       <HBox.margin>
-                                          <Insets right="10.0" top="42.0" />
-                                       </HBox.margin>
-                                              </Button>
-                                          </children>
-                                      </HBox>
-                           </children>
+                                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1"
+                                      GridPane.rowIndex="7">
+                                    <children>
+                                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                            <children>
+                                                <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                                                    <children>
+                                                        <Text fx:id="nMesa" strokeType="OUTSIDE" strokeWidth="0.0"
+                                                              text="*Número de mesa:" wrappingWidth="62.912109375">
+                                                            <VBox.margin>
+                                                                <Insets/>
+                                                            </VBox.margin>
+                                                        </Text>
+                                                        <TextField fx:id="nMesas" maxHeight="25.0" maxWidth="50.0"
+                                                                   minWidth="50.0" prefHeight="25.0" prefWidth="50.0">
+                                                            <VBox.margin>
+                                                                <Insets right="10.0" top="11.0"/>
+                                                            </VBox.margin>
+                                                        </TextField>
+                                                    </children>
+                                                </VBox>
+                                                <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                                                    <children>
+                                                        <Text strokeType="OUTSIDE" strokeWidth="0.0"
+                                                              text="*Capacidad de la mesa" wrappingWidth="76.41015625">
+                                                            <VBox.margin>
+                                                                <Insets/>
+                                                            </VBox.margin>
+                                                        </Text>
+                                                        <TextField fx:id="nSillas" maxWidth="50.0" minWidth="50.0"
+                                                                   prefHeight="25.0" prefWidth="50.0">
+                                                            <VBox.margin>
+                                                                <Insets right="10.0" top="10.0"/>
+                                                            </VBox.margin>
+                                                        </TextField>
+                                                    </children>
+                                                </VBox>
+                                                <Button mnemonicParsing="false" onAction="#agregarMesa"
+                                                        prefHeight="28.0" prefWidth="49.0" text="+">
+                                                    <font>
+                                                        <Font name="Arial Rounded MT Bold" size="13.0"/>
+                                                    </font>
+                                                    <HBox.margin>
+                                                        <Insets right="10.0" top="42.0"/>
+                                                    </HBox.margin>
+                                                </Button>
+                                            </children>
+                                        </HBox>
+                                    </children>
                                 </HBox>
-                                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Precio promedio:" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER" />
-                                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Imagen" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER" />
-                        <Button mnemonicParsing="false" onAction="#cargarImagen" text="Examinar" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Vista previa" textAlignment="CENTER" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="TOP">
-                           <GridPane.margin>
-                              <Insets top="5.0" />
-                           </GridPane.margin>
-                        </Text>
+                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Precio promedio:"
+                                      textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER"
+                                      GridPane.rowIndex="6" GridPane.valignment="CENTER"/>
+                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Imagen" GridPane.columnIndex="4"
+                                      GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER"/>
+                                <Button mnemonicParsing="false" onAction="#cargarImagen" text="Examinar"
+                                        GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="6"/>
+                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Vista previa" textAlignment="CENTER"
+                                      GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="7"
+                                      GridPane.valignment="TOP">
+                                    <GridPane.margin>
+                                        <Insets top="5.0"/>
+                                    </GridPane.margin>
+                                </Text>
                             </children>
                         </GridPane>
                     </children>

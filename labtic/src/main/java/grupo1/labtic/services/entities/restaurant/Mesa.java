@@ -32,7 +32,7 @@ public class Mesa {
     }
 
 
-    public Mesa(int nroReferencia, int cantLugares){
+    public Mesa(int nroReferencia, int cantLugares) {
         setNroReferencia(nroReferencia);
         setCantLugares(cantLugares);
         mesaLibre = true;
@@ -79,8 +79,8 @@ public class Mesa {
     }
 
     @Override
-    public String toString(){
-        return "No. de mesa: " + getNroReferencia()+".  No. lugares: "+getCantLugares()+".";
+    public String toString() {
+        return "No. de mesa: " + getNroReferencia() + ".  No. lugares: " + getCantLugares() + ".";
     }
 }
 
