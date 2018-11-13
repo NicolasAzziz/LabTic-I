@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
+<?import com.jfoenix.controls.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXPasswordField?>
 <?import com.jfoenix.controls.JFXTextField?>
@@ -7,42 +15,87 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="grupo1.labtic.ui.LoginController">
+<AnchorPane fx:id="imagePortadaContainer" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="grupo1.labtic.ui.LoginController">
    <children>
-      <ImageView fitHeight="421.0" fitWidth="673.0" layoutX="-47.0" layoutY="-2.0" opacity="0.5" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="imagePortada" fitHeight="421.0" fitWidth="673.0" layoutX="-1.0" layoutY="-2.0" opacity="0.25" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@Imagenes/arreglo.jpg" />
          </image>
       </ImageView>
-      <Pane layoutX="39.0" layoutY="100.0" prefHeight="200.0" prefWidth="249.0">
+      <GridPane prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="249.0" minWidth="10.0" prefWidth="179.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="249.0" minWidth="10.0" prefWidth="81.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="195.0" minWidth="10.0" prefWidth="99.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="291.0" minWidth="10.0" prefWidth="270.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="284.0" minHeight="10.0" prefHeight="98.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="314.0" minHeight="10.0" prefHeight="253.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="260.0" minHeight="10.0" prefHeight="72.0" vgrow="SOMETIMES" />
+        </rowConstraints>
          <children>
-            <Text fill="#493928" layoutX="57.0" layoutY="114.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Yendo">
+            <Line endX="100.0" fill="#e4e4e4" rotate="90.0" startX="-100.0" stroke="#493928" strokeWidth="1.8" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+            <Text fill="#493928" strokeType="OUTSIDE" strokeWidth="0.0" text="Yendo" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                <font>
-                  <Font name="Yu Gothic Regular" size="46.0" />
+                  <Font name="Yu Gothic Regular" size="65.0" />
+               </font>
+            </Text>
+            <GridPane GridPane.columnIndex="3" GridPane.rowIndex="1">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints maxHeight="74.0" minHeight="10.0" prefHeight="74.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="60.0" minHeight="10.0" prefHeight="56.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <JFXTextField fx:id="email" focusColor="#493928" labelFloat="true" prefHeight="25.0" prefWidth="205.0" promptText="Email" unFocusColor="WHITE" GridPane.halignment="LEFT" GridPane.valignment="CENTER">
+                     <font>
+                        <Font name="Arial" size="13.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets right="25.0" />
+                     </GridPane.margin>
+                  </JFXTextField>
+                  <JFXPasswordField fx:id="password" focusColor="#493928" labelFloat="true" prefHeight="25.0" prefWidth="205.0" promptText="Password" unFocusColor="WHITE" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                     <font>
+                        <Font name="Arial" size="13.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets right="25.0" />
+                     </GridPane.margin>
+                  </JFXPasswordField>
+                  <JFXButton fx:id="signIn" onAction="#signIn" prefHeight="25.0" prefWidth="205.0" style="-fx-background-color: #493928;" text="SIGN IN" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+                  <Button fx:id="registro" mnemonicParsing="false" onAction="#registrate" opacity="0.6" style="-fx-background-color: #493928;" text="¿Eres nuevo? ¡Registrate!" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+               </children>
+            </GridPane>
+            <JFXButton fx:id="nuevoResto" prefHeight="25.0" prefWidth="101.0" text="Contactanos" textFill="#493928" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="TOP">
+               <font>
+                  <Font name="System Italic" size="13.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets top="25.0" />
+               </GridPane.margin>
+            </JFXButton>
+            <Text fill="#493928" strokeType="OUTSIDE" strokeWidth="0.0" text="¿Tienes un restaurante y quieres unirte?" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="TOP">
+               <GridPane.margin>
+                  <Insets top="15.0" />
+               </GridPane.margin>
+               <font>
+                  <Font size="13.0" />
                </font>
             </Text>
          </children>
-      </Pane>
-      <Line endX="100.0" fill="#e4e4e4" layoutX="289.0" layoutY="199.0" rotate="90.0" startX="-100.0" stroke="#493928" />
-      <Pane layoutX="320.0" layoutY="59.0" prefHeight="280.0" prefWidth="249.0">
-         <children>
-            <Button fx:id="registro" layoutX="55.0" layoutY="241.0" mnemonicParsing="false" onAction="#registrate" opacity="0.6" style="-fx-background-color: #493928;" text="Eres nuevo? Registrate!" textFill="WHITE" />
-            <JFXPasswordField fx:id="password" focusColor="#493928" labelFloat="true" layoutX="22.0" layoutY="128.0" prefHeight="25.0" prefWidth="205.0" promptText="Password" unFocusColor="WHITE" />
-            <JFXButton fx:id="signIn" layoutX="22.0" layoutY="203.0" onAction="#signIn" prefHeight="25.0" prefWidth="205.0" style="-fx-background-color: #493928;" text="SIGN IN" textFill="WHITE" />
-            <JFXTextField fx:id="email" focusColor="#493928" labelFloat="true" layoutX="23.0" layoutY="79.0" prefHeight="25.0" prefWidth="205.0" promptText="Email" unFocusColor="WHITE" />
-         </children>
-      </Pane>
-      <JFXTextField layoutX="165.0" layoutY="349.0" prefHeight="25.0" prefWidth="249.0" text="Tienes un restaurant y quieres unirte a yendo?" />
-      <JFXButton fx:id="nuevoResto" layoutX="238.0" layoutY="374.0" prefHeight="25.0" prefWidth="101.0" text="Contactanos" textFill="#493928">
-         <font>
-            <Font name="System Italic" size="12.0" />
-         </font>
-      </JFXButton>
+      </GridPane>
    </children>
 </AnchorPane>

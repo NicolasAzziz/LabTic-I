@@ -1,5 +1,7 @@
 package grupo1.labtic.ui.admins;
 
+import com.jfoenix.controls.JFXPasswordField;
+import com.jfoenix.controls.JFXTextField;
 import grupo1.labtic.services.RestaurantService;
 import grupo1.labtic.services.UsuarioService;
 import grupo1.labtic.services.exceptions.EmailInvalido;
@@ -11,6 +13,8 @@ import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -24,11 +28,22 @@ public class Administrar {
     @Autowired
     UsuarioService usuarioService;
     @FXML
-    private TextField email;
+    private JFXTextField email;
     @FXML
-    private PasswordField password;
+    private JFXPasswordField password;
     @FXML
-    private TextField rut;
+    private JFXTextField rut;
+//    @FXML
+//    private ImageView imagePortada;
+//    @FXML
+//    private AnchorPane imagePortadaContainer;
+//
+//    public void initialize() {
+//        imagePortada.setPreserveRatio(false);
+//        imagePortada.fitHeightProperty().bind(imagePortadaContainer.heightProperty());
+//        imagePortada.fitWidthProperty().bind(imagePortadaContainer.widthProperty());
+//        //imagePortadaContainer.
+//    }
 
     @FXML
     public void agregar(ActionEvent actionEvent) {
