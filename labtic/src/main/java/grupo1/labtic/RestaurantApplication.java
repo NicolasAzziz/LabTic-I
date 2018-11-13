@@ -10,12 +10,11 @@ import javafx.stage.Stage;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.core.io.ClassPathResource;
 
 @SpringBootApplication
 public class RestaurantApplication extends Application {
 
-    private  static ConfigurableApplicationContext context;
+    private static ConfigurableApplicationContext context;
 
 
     private FXMLLoader fxmlLoader;

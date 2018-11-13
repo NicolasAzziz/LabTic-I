@@ -4,7 +4,6 @@ import grupo1.labtic.persistence.BarrioRepository;
 import grupo1.labtic.persistence.GrupoDeComidaRepository;
 import grupo1.labtic.persistence.RestaurantRepository;
 import grupo1.labtic.persistence.TipoDePagoRepository;
-import grupo1.labtic.persistence.restaurantRepository.MetodoDePagoRepository;
 import grupo1.labtic.services.entities.Restaurant;
 import grupo1.labtic.services.entities.restaurant.Barrio;
 import grupo1.labtic.services.entities.restaurant.GrupoDeComida;
@@ -12,7 +11,6 @@ import grupo1.labtic.services.entities.restaurant.Mesa;
 import grupo1.labtic.services.entities.restaurant.TipoDePago;
 import grupo1.labtic.services.exceptions.InvalidRestaurantInformation;
 import grupo1.labtic.services.exceptions.RestaurantAlreadyExists;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -87,7 +85,7 @@ public class RestaurantService {
 
     }
 
-    public void setPrecioMedio(Restaurant restaurante , String precioMedio){
+    public void setPrecioMedio(Restaurant restaurante, String precioMedio) {
         restaurante.setPrecioMedio(precioMedio);
         restaurantRepository.save(restaurante);
     }
@@ -160,12 +158,12 @@ public class RestaurantService {
         restaurantRepository.save(restaurant);
     }
 
-    public void guardarImagen(Restaurant restaurant, File imgFile){
+    public void guardarImagen(Restaurant restaurant, File imgFile) {
         byte[] data = null;
         try {
             FileInputStream fis = new FileInputStream(imgFile);
             data = Files.readAllBytes(imgFile.toPath());
-        }catch(IOException e){
+        } catch (IOException e) {
             e.getStackTrace();
         }
         restaurant.setImagen(data);
@@ -204,6 +202,7 @@ public class RestaurantService {
         }
 
     }
+
     public void insertarBarrios() {
         if (barrioRepository.existsByBarrio("Carrasco") == false) {
             barrioRepository.save(new Barrio("Ciudad Vieja"));

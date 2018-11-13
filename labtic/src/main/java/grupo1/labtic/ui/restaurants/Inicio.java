@@ -40,8 +40,6 @@ public class Inicio {
     @FXML
     private AnchorPane imageSignInContainer;
 
-    private static Restaurant restaurant;
-
     public void  initialize() {
 
         imagePortada.setPreserveRatio(true);
@@ -67,7 +65,7 @@ public class Inicio {
 
                 String login = usuarioField.getText();
                 String password = passField.getText();
-                restaurant = restaurantRepository.findOneByEmail(login);
+                Restaurant restaurant = restaurantRepository.findOneByEmail(login);
                 if (restaurant.getPassword().equals(password)) {
                     if(restaurant.getNombreRestaurant()==null||restaurant.getNombreRestaurant().equals("")){
                         FXMLLoader loader = new FXMLLoader();
@@ -80,7 +78,8 @@ public class Inicio {
                         stage.getIcons().add(new Image("grupo1/labtic/ui/Imagenes/yendoIcono.png"));
                         stage.setScene(new Scene(root));
                         stage.show();
-
+                        SolicitarDatos controler = loader.<SolicitarDatos>getController();
+                        controler.restaurante(restaurant);
                     }
                     else{
                         FXMLLoader loader = new FXMLLoader();
@@ -92,6 +91,7 @@ public class Inicio {
                         stage.setScene(new Scene(root));
                         ((Stage)((Node)actionEvent.getSource()).getScene().getWindow()).close();
                         stage.show();
+
                     }
                 }else{
                     showAlert("Contrasña incorrecta", "La contraseña ingresada no es correcta.");
@@ -104,9 +104,6 @@ public class Inicio {
                 e.printStackTrace();
             }
         }
-    }
-    public static Restaurant getRestaurant(){
-        return restaurant;
     }
 
 

@@ -2,14 +2,12 @@ package grupo1.labtic.ui.admins;
 
 import grupo1.labtic.AdminApplication;
 import grupo1.labtic.persistence.RestaurantRepository;
-import grupo1.labtic.services.entities.Admin;
 import grupo1.labtic.services.entities.Restaurant;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -26,8 +24,6 @@ import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import java.util.ResourceBundle;
 

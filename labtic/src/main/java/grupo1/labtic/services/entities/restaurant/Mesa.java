@@ -2,9 +2,9 @@ package grupo1.labtic.services.entities.restaurant;
 
 import grupo1.labtic.services.entities.Restaurant;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
 import javax.validation.constraints.NotNull;
-import java.io.Serializable;
 import java.util.Objects;
 
 @Embeddable

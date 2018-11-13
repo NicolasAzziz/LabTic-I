@@ -1,29 +1,21 @@
 package grupo1.labtic.ui.restaurants;
 
 
-import grupo1.labtic.AdminApplication;
-import grupo1.labtic.ClienteApplication;
 import grupo1.labtic.RestaurantApplication;
 import grupo1.labtic.persistence.RestaurantRepository;
 import grupo1.labtic.services.RestaurantService;
 import grupo1.labtic.services.entities.Restaurant;
 import grupo1.labtic.services.entities.restaurant.Mesa;
 import grupo1.labtic.services.exceptions.NroReferenciaException;
-import grupo1.labtic.ui.admins.PortadaAdmin;
-import grupo1.labtic.ui.cliente.Principal;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
@@ -32,8 +24,6 @@ import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import javax.imageio.ImageIO;
-import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -222,6 +212,8 @@ public class SolicitarDatos {
 
     ObservableList<Mesa> mesaList;
 
+    private Restaurant restaurant;
+
     @FXML
     public void agregarMesa(ActionEvent actionEvent) {
         String n = nMesas.getText();
@@ -279,8 +271,6 @@ public class SolicitarDatos {
 
             showAlert("Datos faltantes!", "No se ingresaron los datos necesarios para completar el ingreso.");
         } else {
-                Restaurant restaurante = Inicio.getRestaurant();
-
                 if (passNueva.getText().equals(passNuevaRepeat.getText())) {
                     try {
                         String nombre = nombreRestaurante.getText();
@@ -300,13 +290,13 @@ public class SolicitarDatos {
                                 CheckMenuItem.class.isInstance(item) && CheckMenuItem.class.cast(item).isSelected())
                                 .map(MenuItem::getText).collect(Collectors.toList());
 
-                        serviceRestaurant.setGrupoDeComidaList(restaurante, selectedItemsComidas);
+                        serviceRestaurant.setGrupoDeComidaList(restaurant, selectedItemsComidas);
 
                         List<String> selectedItemsTipoDePagoMenu = metodosPagoMenu.getItems().stream().filter(item ->
                                 CheckMenuItem.class.isInstance(item) && CheckMenuItem.class.cast(item).isSelected())
                                 .map(MenuItem::getText).collect(Collectors.toList());
 
-                        serviceRestaurant.setTipoDePagoList(restaurante, selectedItemsTipoDePagoMenu);
+                        serviceRestaurant.setTipoDePagoList(restaurant, selectedItemsTipoDePagoMenu);
 
                         List<String> selectedBarrio = barriosMenu.getItems().stream().filter(item ->
                                 RadioMenuItem.class.isInstance(item) && RadioMenuItem.class.cast(item).isSelected())
@@ -316,19 +306,19 @@ public class SolicitarDatos {
 
                         List<Mesa> mesas = new ArrayList<>(mesaList);
 
-                        serviceRestaurant.setListaMesasRestaurante(restaurante, mesas);
+                        serviceRestaurant.setListaMesasRestaurante(restaurant, mesas);
 
-                        serviceRestaurant.registrarDatosRestaurant(restaurante, nombre, telefono, direccion, barrio, habre, hcierra, descripcion, web, nuevaPass);
+                        serviceRestaurant.registrarDatosRestaurant(restaurant, nombre, telefono, direccion, barrio, habre, hcierra, descripcion, web, nuevaPass);
 
                         if(imgFile != null) {
-                            serviceRestaurant.guardarImagen(restaurante, imgFile);
+                            serviceRestaurant.guardarImagen(restaurant, imgFile);
                         }
 
                         if(precioMedio == null || precioMedio.getText().equals("")){
 
 
                         }else{
-                            serviceRestaurant.setPrecioMedio(restaurante,precioMedio.getText());
+                            serviceRestaurant.setPrecioMedio(restaurant,precioMedio.getText());
                         }
                             showAlert("Datos guardados", "Se guardaron con éxito los datos de su restaurante");
                             clean();
@@ -353,7 +343,6 @@ public class SolicitarDatos {
                 }
         }
 
-
     @FXML
     public void selectedBarrio(ActionEvent actionEvent) {
 
@@ -372,6 +361,10 @@ public class SolicitarDatos {
         parqueBatlle.setToggleGroup(toggleGroup);
         puntaGorda.setToggleGroup(toggleGroup);
         carrasco.setToggleGroup(toggleGroup);
+    }
+
+    public void restaurante(Restaurant restaurant){
+        this.restaurant = restaurant;
     }
 
     public void cargarImagen(ActionEvent event) {

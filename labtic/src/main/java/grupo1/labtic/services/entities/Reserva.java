@@ -1,6 +1,5 @@
 package grupo1.labtic.services.entities;
 
-import grupo1.labtic.services.entities.restaurant.Mesa;
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -33,6 +32,9 @@ public class Reserva {
 
     @Column
     private int nroReferencia;
+
+    @Column
+    private String estado;
 
     public Reserva() {
     }
@@ -74,6 +76,22 @@ public class Reserva {
 
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 
     public Restaurant getRestaurant() {
