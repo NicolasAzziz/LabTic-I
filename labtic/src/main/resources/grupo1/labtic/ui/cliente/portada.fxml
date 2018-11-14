@@ -106,7 +106,7 @@
                                                         <Font name="Bauhaus 93" size="46.0"/>
                                                     </font>
                                                 </Text>
-                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Reserva tu mesa"
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Reserva tu nroReferencia"
                                                       wrappingWidth="63.8203125" GridPane.columnIndex="6"
                                                       GridPane.halignment="LEFT" GridPane.rowIndex="5"
                                                       GridPane.valignment="BOTTOM">

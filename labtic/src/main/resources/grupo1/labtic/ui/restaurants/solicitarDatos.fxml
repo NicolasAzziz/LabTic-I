@@ -171,7 +171,7 @@
                                             <children>
                                                 <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                                                     <children>
-                                                        <Text fx:id="nMesa" strokeType="OUTSIDE" strokeWidth="0.0" text="*Número de mesa:" wrappingWidth="62.912109375">
+                                                        <Text fx:id="nMesa" strokeType="OUTSIDE" strokeWidth="0.0" text="*Número de nroReferencia:" wrappingWidth="62.912109375">
                                                             <VBox.margin>
                                                                 <Insets />
                                                             </VBox.margin>
@@ -185,7 +185,7 @@
                                                 </VBox>
                                                 <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                                                     <children>
-                                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="*Capacidad de la mesa" wrappingWidth="76.41015625">
+                                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="*Capacidad de la nroReferencia" wrappingWidth="76.41015625">
                                                             <VBox.margin>
                                                                 <Insets />
                                                             </VBox.margin>

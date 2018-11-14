@@ -68,6 +68,7 @@ public class Restaurant extends Usuario {
         this.rut = rut;
         grupoDeComidaList = new ArrayList<>();
         tipoDePagoList = new ArrayList<>();
+        mesas = new ArrayList<>();
     }
 
 
@@ -122,6 +123,19 @@ public class Restaurant extends Usuario {
 
     public List<Mesa> getMesas() {
         return mesas;
+    }
+
+    public boolean setMesa(Mesa mesa){
+        boolean bExit = false;
+        for(int i = 0; i<mesas.size(); i++){
+            if(mesa.getNroReferencia() == mesas.get(i).getNroReferencia()){
+                bExit = true;
+            }
+        }
+        if(bExit) {
+            mesas.add(mesa);
+        }
+        return bExit;
     }
 
     public void setMesas(List<Mesa> mesas) {

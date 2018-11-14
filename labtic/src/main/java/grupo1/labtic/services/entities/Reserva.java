@@ -30,7 +30,7 @@ public class Reserva {
     @JoinColumn(name = "restaurant_id")
     private Restaurant restaurant;
 
-    @Column
+
     private int nroReferencia;
 
     @Column
