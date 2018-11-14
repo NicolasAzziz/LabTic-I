@@ -8,6 +8,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -108,13 +109,17 @@ public class PortadaAdmin {
     public void agregarRestaurant(ActionEvent actionEvent) {
 
         try {
+            double h = ((Stage)((Node)actionEvent.getSource()).getScene().getWindow()).getHeight();
+            double w = ((Stage)((Node)actionEvent.getSource()).getScene().getWindow()).getWidth();
             FXMLLoader loader = new FXMLLoader();
             loader.setControllerFactory(AppApplication.getContext()::getBean);
-            Parent root = loader.load(Administrar.class.getResourceAsStream("nuevoRestaurant.fxml"));
+            Parent root = loader.load(Administrar.class.getResourceAsStream("admin.fxml"));
             Stage stage = new Stage();
             stage.setTitle("Nuevo Restaurant");
             stage.getIcons().add(new Image("grupo1/labtic/ui/Imagenes/yendoIcono.png"));
             stage.setScene(new Scene(root));
+            stage.setWidth(w);
+            stage.setHeight(h);
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();

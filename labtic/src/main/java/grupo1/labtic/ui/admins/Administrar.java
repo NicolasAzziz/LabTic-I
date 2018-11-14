@@ -15,6 +15,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -40,7 +44,26 @@ public class Administrar {
     private JFXButton agregarResto;
     @FXML
     private JFXPasswordField password;
+    @FXML
+    private ImageView logo;
+    @FXML
+    private ImageView imagePortada;
+    @FXML
+    private AnchorPane imagePortadaContainer;
+    @FXML
+    private ImageView imgBack;
 
+    public void initialize() {
+        imagePortada.setPreserveRatio(false);
+        imagePortada.fitHeightProperty().bind(imagePortadaContainer.heightProperty());
+        imagePortada.fitWidthProperty().bind(imagePortadaContainer.widthProperty());
+        Image img = new Image("file:src/main/resources/grupo1/labtic/ui/Imagenes/arreglo.jpg");
+        imagePortada.setImage(img);
+        Image iB = new Image("file:src/main/resources/grupo1/labtic/ui/admins/imgAdmin/back.png");
+        imgBack.setImage(iB);
+        Image iL = new Image("file:src/main/resources/grupo1/labtic/ui/Imagenes/yendoIcono.png");
+        logo.setImage(iL);
+    }
 
     @FXML
     public void agregar(ActionEvent actionEvent) {
@@ -89,4 +112,7 @@ public class Administrar {
         rut.setText(null);
     }
 
+    public void backBtn(ActionEvent actionEvent) {
+        ((Stage)((Node)actionEvent.getSource()).getScene().getWindow()).close();
+    }
 }
