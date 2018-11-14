@@ -115,7 +115,11 @@ public class PortadaAdmin {
             Stage stage = new Stage();
             stage.setTitle("Nuevo Restaurant");
             stage.getIcons().add(new Image("grupo1/labtic/ui/Imagenes/yendoIcono.png"));
+            double w = ((Stage)((Node)actionEvent.getSource()).getScene().getWindow()).getWidth();
+            double h = ((Stage)((Node)actionEvent.getSource()).getScene().getWindow()).getHeight();
             stage.setScene(new Scene(root));
+            stage.setHeight(h);
+            stage.setWidth(w);
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
