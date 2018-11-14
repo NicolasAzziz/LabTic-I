@@ -16,6 +16,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -40,6 +43,7 @@ public class Registro {
     @FXML
     private JFXPasswordField passwordRepeted;
 
+
     @Autowired
     private ClienteRepository clienteRepository;
 
@@ -48,6 +52,26 @@ public class Registro {
 
     @Autowired
     private UsuarioService usuarioService;
+    @FXML
+    private ImageView imagePortada;
+    @FXML
+    private AnchorPane imagePortadaContainer;
+    @FXML
+    private ImageView imgBack;
+    @FXML
+    private ImageView logo;
+
+    public void initialize() {
+        imagePortada.setPreserveRatio(false);
+        imagePortada.fitHeightProperty().bind(imagePortadaContainer.heightProperty());
+        imagePortada.fitWidthProperty().bind(imagePortadaContainer.widthProperty());
+        Image img = new Image("file:src/main/resources/grupo1/labtic/ui/Imagenes/arreglo.jpg");
+        imagePortada.setImage(img);
+        Image iB = new Image("file:src/main/resources/grupo1/labtic/ui/cliente/imgCliente/back.png");
+        imgBack.setImage(iB);
+        Image iL = new Image("file:src/main/resources/grupo1/labtic/ui/Imagenes/yendoIcono.png");
+        logo.setImage(iL);
+    }
 
     @FXML
     void registrarCliente(ActionEvent event) {
@@ -100,18 +124,7 @@ public class Registro {
 
     @FXML
     void back(ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader();
-            loader.setControllerFactory(AppApplication.getContext()::getBean);
-            Parent root = null;
-            root = loader.load(LoginController.class.getResourceAsStream("login.fxml"));
-            Stage stage = new Stage();
-            stage.setTitle("Bienvenido!");
-            stage.setScene(new Scene(root));
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        ((Stage)((Node)event.getSource()).getScene().getWindow()).close();
     }
 
 }

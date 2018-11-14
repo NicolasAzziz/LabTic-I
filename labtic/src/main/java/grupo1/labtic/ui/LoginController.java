@@ -52,13 +52,17 @@ public class LoginController {
     private ImageView imagePortada;
     @FXML
     private AnchorPane imagePortadaContainer;
+    @FXML
+    private ImageView logo;
 
     public void initialize() {
-//        imagePortada.setPreserveRatio(false);
-//        imagePortada.fitHeightProperty().bind(imagePortadaContainer.heightProperty());
-//        imagePortada.fitWidthProperty().bind(imagePortadaContainer.widthProperty());
-        //imagePortadaContainer.
-
+        imagePortada.setPreserveRatio(false);
+        imagePortada.fitHeightProperty().bind(imagePortadaContainer.heightProperty());
+        imagePortada.fitWidthProperty().bind(imagePortadaContainer.widthProperty());
+        Image img = new Image("file:src/main/resources/grupo1/labtic/ui/Imagenes/arreglo.jpg");
+        imagePortada.setImage(img);
+        Image iL = new Image("file:src/main/resources/grupo1/labtic/ui/Imagenes/yendoIcono.png");
+        logo.setImage(iL);
     }
 
     @FXML
@@ -163,6 +167,7 @@ public class LoginController {
             Parent root = loader.load(Registro.class.getResourceAsStream("registrarse.fxml"));
             Stage stage = new Stage();
             stage.setTitle("Registro de cliente");
+            stage.getIcons().add(new Image("grupo1/labtic/ui/Imagenes/yendoIcono.png"));
             stage.setScene(new Scene(root));
             stage.show();
         } catch (IOException e) {
