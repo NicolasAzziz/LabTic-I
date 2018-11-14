@@ -41,7 +41,7 @@ public class Administrar {
     @FXML
     private JFXTextField rut;
     @FXML
-    private JFXButton agregarResto;
+    private JFXButton agregarRestaurante;
     @FXML
     private JFXPasswordField password;
     @FXML
@@ -53,17 +53,17 @@ public class Administrar {
     @FXML
     private ImageView imgBack;
 
-    public void initialize() {
-        imagePortada.setPreserveRatio(false);
-        imagePortada.fitHeightProperty().bind(imagePortadaContainer.heightProperty());
-        imagePortada.fitWidthProperty().bind(imagePortadaContainer.widthProperty());
-        Image img = new Image("file:src/main/resources/grupo1/labtic/ui/Imagenes/arreglo.jpg");
-        imagePortada.setImage(img);
-        Image iB = new Image("file:src/main/resources/grupo1/labtic/ui/admins/imgAdmin/back.png");
-        imgBack.setImage(iB);
-        Image iL = new Image("file:src/main/resources/grupo1/labtic/ui/Imagenes/yendoIcono.png");
-        logo.setImage(iL);
-    }
+//    public void initialize() {
+//        imagePortada.setPreserveRatio(false);
+//        imagePortada.fitHeightProperty().bind(imagePortadaContainer.heightProperty());
+//        imagePortada.fitWidthProperty().bind(imagePortadaContainer.widthProperty());
+//        Image img = new Image("file:src/main/resources/grupo1/labtic/ui/Imagenes/arreglo.jpg");
+//        imagePortada.setImage(img);
+//        Image iB = new Image("file:src/main/resources/grupo1/labtic/ui/admins/imgAdmin/back.png");
+//        imgBack.setImage(iB);
+//        Image iL = new Image("file:src/main/resources/grupo1/labtic/ui/Imagenes/yendoIcono.png");
+//        logo.setImage(iL);
+//    }
 
     @FXML
     public void agregar(ActionEvent actionEvent) {
@@ -89,22 +89,22 @@ public class Administrar {
             showAlert(("RUT invalido"), "El campo RUT solo debe contener numeros.");
         };
     }
-
-    @FXML
-    public void back(ActionEvent actionEvent) {
-        try {
-            FXMLLoader loader = new FXMLLoader();
-            loader.setControllerFactory(AppApplication.getContext()::getBean);
-            Parent root = null;
-            root = loader.load(PortadaAdmin.class.getResourceAsStream("adminPortada.fxml"));
-            Stage stage = new Stage();
-            stage.setTitle("Administrador");
-            stage.setScene(new Scene(root));
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+//
+//    @FXML
+//    public void back(ActionEvent actionEvent) {
+//        try {
+//            FXMLLoader loader = new FXMLLoader();
+//            loader.setControllerFactory(AppApplication.getContext()::getBean);
+//            Parent root = null;
+//            root = loader.load(PortadaAdmin.class.getResourceAsStream("adminPortada.fxml"));
+//            Stage stage = new Stage();
+//            stage.setTitle("Administrador");
+//            stage.setScene(new Scene(root));
+//            stage.show();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
     private void clean() {
         email.setText(null);

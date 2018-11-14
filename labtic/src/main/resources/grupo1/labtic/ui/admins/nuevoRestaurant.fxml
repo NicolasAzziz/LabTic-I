@@ -14,21 +14,15 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="grupo1.labtic.ui.admins.Administrar">
    <children>
       <ImageView fitHeight="425.0" fitWidth="673.0" opacity="0.5" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="file:/C:/Users/Juan%20Pedro%20Grille/Documents/LabTic-I/labtic/src/main/resources/grupo1/labtic/ui/Imagenes/arreglo.jpg" />
-         </image>
       </ImageView>
       <Text fill="#463626" layoutX="151.0" layoutY="78.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nuevo Restaurant">
          <font>
             <Font name="Yu Gothic Regular" size="36.0" />
          </font>
       </Text>
-      <JFXButton fx:id="backButton" onAction="#back" text="Back" textFill="#463626">
+      <JFXButton fx:id="backButton" onAction="#backBtn" text="Back" textFill="#463626">
          <graphic>
             <ImageView fitHeight="57.0" fitWidth="57.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="file:/C:/Users/Juan%20Pedro%20Grille/Documents/LabTic-I/labtic/src/main/resources/grupo1/labtic/ui/Imagenes/back-undo-return-button-png-5.png" />
-               </image>
             </ImageView>
          </graphic>
          <font>
