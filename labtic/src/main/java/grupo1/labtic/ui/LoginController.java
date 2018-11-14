@@ -54,9 +54,9 @@ public class LoginController {
     private AnchorPane imagePortadaContainer;
 
     public void initialize() {
-        imagePortada.setPreserveRatio(false);
-        imagePortada.fitHeightProperty().bind(imagePortadaContainer.heightProperty());
-        imagePortada.fitWidthProperty().bind(imagePortadaContainer.widthProperty());
+        //imagePortada.setPreserveRatio(false);
+        //imagePortada.fitHeightProperty().bind(imagePortadaContainer.heightProperty());
+        //imagePortada.fitWidthProperty().bind(imagePortadaContainer.widthProperty());
         //imagePortadaContainer.
 
     }
