@@ -12,6 +12,8 @@ public interface RestaurantRepository extends CrudRepository<Restaurant, String>
 
 //    Usuario findOneByEmail(String email);
 
+    boolean existsByDireccion(String direccion);
+
     Restaurant getOneByEmail(String email);
 
     Restaurant getRestaurantById(long id);

@@ -9,6 +9,7 @@ import grupo1.labtic.services.entities.restaurant.Barrio;
 import grupo1.labtic.services.entities.restaurant.GrupoDeComida;
 import grupo1.labtic.services.entities.restaurant.Mesa;
 import grupo1.labtic.services.entities.restaurant.TipoDePago;
+import grupo1.labtic.services.exceptions.DuplicateDireccion;
 import grupo1.labtic.services.exceptions.InvalidRestaurantInformation;
 import grupo1.labtic.services.exceptions.RestaurantAlreadyExists;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -113,9 +114,13 @@ public class RestaurantService {
 //        }
 //    }
 
-    public void registrarDatosRestaurant(Restaurant restaurant, String nombre, String telefono, String direccion,
+    public void registrarDatosRestaurant(Restaurant restaurante, String nombre, String telefono, String direccion,
                                          String barrio, String habre, String hcierra, String descripcion, String web,
-                                         String nuevaPass) {
+                                         String nuevaPass) throws DuplicateDireccion {
+        if (restaurantRepository.existsByDireccion(direccion)) {
+            throw new DuplicateDireccion("La dirección ingresada ya esta registrada.");
+        }
+        Restaurant restaurant = restaurantRepository.getRestaurantByEmail(restaurante.getEmail());
         restaurant.setNombreRestaurant(nombre);
         restaurant.setTelefono(telefono);
         restaurant.setDireccion(direccion);
@@ -131,7 +136,8 @@ public class RestaurantService {
         restaurantRepository.save(restaurant);
     }*/
 
-    public void setListaMesasRestaurante(Restaurant restaurant, List<Mesa> mesasList) {
+    public void setListaMesasRestaurante(Restaurant restaurante, List<Mesa> mesasList) {
+        Restaurant restaurant = restaurantRepository.getRestaurantByEmail(restaurante.getEmail());
 
         restaurant.setMesas(mesasList);
 
@@ -140,7 +146,8 @@ public class RestaurantService {
     }
 
 
-    public void setGrupoDeComidaList(Restaurant restaurant, List<String> grupoDeComidaList) {
+    public void setGrupoDeComidaList(Restaurant restaurante, List<String> grupoDeComidaList) {
+        Restaurant restaurant = restaurantRepository.getRestaurantByEmail(restaurante.getEmail());
         List<GrupoDeComida> grupoDeComida1 = grupoDeComidaRepository.getGrupoDeComidaByGrupo(grupoDeComidaList);
         restaurant.setGrupoDeComidaList(grupoDeComida1);
         restaurantRepository.save(restaurant);
@@ -152,13 +159,15 @@ public class RestaurantService {
         restaurantRepository.save(restaurant);
     }
 
-    public void setTipoDePagoList(Restaurant restaurant, List<String> nombreTipoDePagoList) {
+    public void setTipoDePagoList(Restaurant restaurante, List<String> nombreTipoDePagoList) {
+        Restaurant restaurant = restaurantRepository.getRestaurantByEmail(restaurante.getEmail());
         List<TipoDePago> nombreTipoDePagoList1 = tipoDePagoRepository.getListByNombre(nombreTipoDePagoList);
         restaurant.setTipoDePagoList(nombreTipoDePagoList1);
         restaurantRepository.save(restaurant);
     }
 
-    public void guardarImagen(Restaurant restaurant, File imgFile) {
+    public void guardarImagen(Restaurant restaurante, File imgFile) {
+        Restaurant restaurant = restaurantRepository.getRestaurantByEmail(restaurante.getEmail());
         byte[] data = null;
         try {
             FileInputStream fis = new FileInputStream(imgFile);
