@@ -13,6 +13,8 @@ public class AdminService {
 
     public void admin(){
         Admin admin = new Admin("admin@yendo","admin");
-        adminRepository.save(admin);
+        boolean exist = adminRepository.existsByEmail("admin@yendo");
+        if(!exist)
+            adminRepository.save(admin);
     }
 }

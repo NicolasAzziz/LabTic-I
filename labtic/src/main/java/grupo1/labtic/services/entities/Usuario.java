@@ -17,7 +17,7 @@ public abstract class Usuario {
     @Column(name = "id", updatable = false, nullable = false)
     private long id;
 
-    @Column(name = "email")
+    @Column(name = "email", unique = true)
     @Email
     private String email;
 
