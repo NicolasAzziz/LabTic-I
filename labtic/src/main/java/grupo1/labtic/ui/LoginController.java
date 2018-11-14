@@ -54,9 +54,9 @@ public class LoginController {
     private AnchorPane imagePortadaContainer;
 
     public void initialize() {
-        imagePortada.setPreserveRatio(false);
-        imagePortada.fitHeightProperty().bind(imagePortadaContainer.heightProperty());
-        imagePortada.fitWidthProperty().bind(imagePortadaContainer.widthProperty());
+//        imagePortada.setPreserveRatio(false);
+//        imagePortada.fitHeightProperty().bind(imagePortadaContainer.heightProperty());
+//        imagePortada.fitWidthProperty().bind(imagePortadaContainer.widthProperty());
         //imagePortadaContainer.
 
     }
@@ -67,7 +67,7 @@ public class LoginController {
             showAlert("Falta información", "No se ingresaron los datos requeridos");
         } else {
 
-            if (clienteRepository.findByEmail(email.getText()) != null) {
+            if(clienteRepository.findByEmail(email.getText()) != null){
                 //handleClienteLogin();
                 try {
                     String login = email.getText();
@@ -82,8 +82,8 @@ public class LoginController {
                         stage.getIcons().add(new Image("grupo1/labtic/ui/Imagenes/yendoIcono.png"));
                         stage.setScene(new Scene(root));
                         stage.show();
-                        ((Stage) ((Node) actionEvent.getSource()).getScene().getWindow()).close();
-                    } else {
+                        ((Stage)((Node)actionEvent.getSource()).getScene().getWindow()).close();
+                    }else{
                         showAlert("Contraseña incorrecta", "La contraseña ingresada no es correcta.");
                         password.setText(null);
                     }
@@ -91,7 +91,7 @@ public class LoginController {
                     e.printStackTrace();
                     showAlert("Usuario no encontrado", "El usuario ingresado no existe");
                 }
-            } else if (restoRepository.findOneByEmail(email.getText()) != null) {
+            }else if(restoRepository.findOneByEmail(email.getText()) != null){
                 //handleRestoLogin();
                 try {
 
@@ -99,7 +99,7 @@ public class LoginController {
                     String pass = password.getText();
                     Restaurant r = restoRepository.findOneByEmail(login);
                     if (r.getPassword().equals(pass)) {
-                        if (r.getNombreRestaurant() == null || r.getNombreRestaurant().equals("")) {
+                        if(r.getNombreRestaurant()==null||r.getNombreRestaurant().equals("")){
                             FXMLLoader loader = new FXMLLoader();
                             loader.setControllerFactory(AppApplication.getContext()::getBean);
 
@@ -110,9 +110,10 @@ public class LoginController {
                             stage.getIcons().add(new Image("grupo1/labtic/ui/Imagenes/yendoIcono.png"));
                             stage.setScene(new Scene(root));
                             stage.show();
-                            ((Stage) ((Node) actionEvent.getSource()).getScene().getWindow()).close();
+                            ((Stage)((Node)actionEvent.getSource()).getScene().getWindow()).close();
 
-                        } else {
+                        }
+                        else{
                             FXMLLoader loader = new FXMLLoader();
                             loader.setControllerFactory(AppApplication.getContext()::getBean);
                             Parent root = loader.load(RestaurantePrincipal.class.getResourceAsStream("restaurantePrincipal.fxml"));
@@ -121,19 +122,19 @@ public class LoginController {
                             stage.getIcons().add(new Image("grupo1/labtic/ui/Imagenes/yendoIcono.png"));
                             stage.setScene(new Scene(root));
                             stage.show();
-                            ((Stage) ((Node) actionEvent.getSource()).getScene().getWindow()).close();
+                            ((Stage)((Node)actionEvent.getSource()).getScene().getWindow()).close();
                         }
-                    } else {
+                    }else{
                         showAlert("Contrasña incorrecta", "La contraseña ingresada no es correcta.");
                         password.setText(null);
                     }
                 } catch (NullPointerException e) {
                     e.printStackTrace();
-                    showAlert("Usuario no econtrado", "El email: " + this.email.getText() + " no existe en el sistema");
-                } catch (IOException e) {
+                    showAlert("Usuario no econtrado", "El email: " + this.email.getText() +" no existe en el sistema");
+                } catch (IOException e){
                     e.printStackTrace();
                 }
-            } else {
+            }else{
                 //handleAdminLogin();
                 FXMLLoader loader = new FXMLLoader();
                 loader.setControllerFactory(AppApplication.getContext()::getBean);
@@ -148,7 +149,7 @@ public class LoginController {
                 stage.getIcons().add(new Image("grupo1/labtic/ui/Imagenes/yendoIcono.png"));
                 stage.setScene(new Scene(root));
                 stage.show();
-                ((Stage) ((Node) actionEvent.getSource()).getScene().getWindow()).close();
+                ((Stage)((Node)actionEvent.getSource()).getScene().getWindow()).close();
             }
 
         }
