@@ -42,20 +42,21 @@ public class Registro {
     private JFXButton backButton;
     @FXML
     private JFXPasswordField passwordRepeted;
+    @FXML
+    private ImageView fondo;
+    @FXML
+    private AnchorPane imagePortadaContainer;
 
 
     @Autowired
     private ClienteRepository clienteRepository;
-
     @Autowired
     private ClienteService clienteService;
-
     @Autowired
     private UsuarioService usuarioService;
+
     @FXML
     private ImageView imagePortada;
-    @FXML
-    private AnchorPane imagePortadaContainer;
     @FXML
     private ImageView imgBack;
     @FXML
