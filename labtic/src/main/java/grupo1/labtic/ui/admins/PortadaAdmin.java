@@ -8,6 +8,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -15,7 +16,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
@@ -104,6 +104,7 @@ public class PortadaAdmin {
         ObservableList<Restaurant> data = FXCollections.observableList((List) listaRestaurantes);
         table.setItems(data);
     }
+
     @FXML
     public void agregarRestaurant(ActionEvent actionEvent) {
 
@@ -114,7 +115,11 @@ public class PortadaAdmin {
             Stage stage = new Stage();
             stage.setTitle("Nuevo Restaurant");
             stage.getIcons().add(new Image("grupo1/labtic/ui/Imagenes/yendoIcono.png"));
+            double w = ((Stage)((Node)actionEvent.getSource()).getScene().getWindow()).getWidth();
+            double h = ((Stage)((Node)actionEvent.getSource()).getScene().getWindow()).getHeight();
             stage.setScene(new Scene(root));
+            stage.setHeight(h);
+            stage.setWidth(w);
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();

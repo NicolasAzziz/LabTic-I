@@ -16,6 +16,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -54,13 +55,24 @@ public class Registro {
     @Autowired
     private UsuarioService usuarioService;
 
-//    public void initialize() {
-//        imagePortada.setPreserveRatio(false);
-//        imagePortada.fitHeightProperty().bind(imagePortadaContainer.heightProperty());
-//        imagePortada.fitWidthProperty().bind(imagePortadaContainer.widthProperty());
-//        //imagePortadaContainer.
-//
-//   }
+    @FXML
+    private ImageView imagePortada;
+    @FXML
+    private ImageView imgBack;
+    @FXML
+    private ImageView logo;
+
+    public void initialize() {
+        imagePortada.setPreserveRatio(false);
+        imagePortada.fitHeightProperty().bind(imagePortadaContainer.heightProperty());
+        imagePortada.fitWidthProperty().bind(imagePortadaContainer.widthProperty());
+        Image img = new Image("file:src/main/resources/grupo1/labtic/ui/Imagenes/arreglo.jpg");
+        imagePortada.setImage(img);
+        Image iB = new Image("file:src/main/resources/grupo1/labtic/ui/cliente/imgCliente/back.png");
+        imgBack.setImage(iB);
+        Image iL = new Image("file:src/main/resources/grupo1/labtic/ui/Imagenes/yendoIcono.png");
+        logo.setImage(iL);
+    }
 
     @FXML
     void registrarCliente(ActionEvent event) {
@@ -88,7 +100,7 @@ public class Registro {
                         cliente = new Cliente(nombreCliente.getText(), emailCliente.getText(), password.getText());
                         clienteService.agregarCliente(cliente);
                         showAlert("Cliente agregado.", "Gracias por registrarse, " + nombreCliente.getText() + ".");
-                        ((Stage)((Node)event.getSource()).getScene().getWindow()).close();
+                        ((Stage) ((Node) event.getSource()).getScene().getWindow()).close();
                         clean();
                     }
                 }
@@ -99,30 +111,21 @@ public class Registro {
             showAlert("Email invalido.", emailInvalido.getMessage());
         }
     }
-        private void cleanPasswords() {
-            password.setText(null);
-            passwordRepeted.setText(null);
-        }
-        private void clean(){
-            cleanPasswords();
-            emailCliente.setText(null);
-            nombreCliente.setText(null);
-        }
+
+    private void cleanPasswords() {
+        password.setText(null);
+        passwordRepeted.setText(null);
+    }
+
+    private void clean() {
+        cleanPasswords();
+        emailCliente.setText(null);
+        nombreCliente.setText(null);
+    }
 
     @FXML
     void back(ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader();
-            loader.setControllerFactory(AppApplication.getContext()::getBean);
-            Parent root = null;
-            root = loader.load(LoginController.class.getResourceAsStream("login.fxml"));
-            Stage stage = new Stage();
-            stage.setTitle("Bienvenido!");
-            stage.setScene(new Scene(root));
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        ((Stage)((Node)event.getSource()).getScene().getWindow()).close();
     }
 
 }

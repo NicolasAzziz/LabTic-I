@@ -5,11 +5,11 @@ import grupo1.labtic.services.entities.restaurant.Mesa;
 import grupo1.labtic.services.entities.restaurant.TipoDePago;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.image.ImageView;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.imageio.ImageIO;
 import javax.persistence.*;
-import javax.validation.constraints.Size;
-import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -33,10 +33,12 @@ public class Restaurant extends Usuario {
     @Column(name = "descripcion")
     protected String descripcion;
     @Column
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany
+    @LazyCollection(LazyCollectionOption.FALSE)
     protected List<GrupoDeComida> grupoDeComidaList;
     @Column
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany
+    @LazyCollection(LazyCollectionOption.FALSE)
     protected List<TipoDePago> tipoDePagoList;
     @Column(name = "RUT", unique = true)
     private long rut;
@@ -51,7 +53,7 @@ public class Restaurant extends Usuario {
     private byte[] imagen;
 
     @ElementCollection
-    @CollectionTable(name = "Mesas", joinColumns = @JoinColumn(name = "Restaurant_id"),uniqueConstraints = @UniqueConstraint(columnNames = {"restaurant_id","nroReferencia"}))
+    @CollectionTable(name = "Mesas", joinColumns = @JoinColumn(name = "Restaurant_id"), uniqueConstraints = @UniqueConstraint(columnNames = {"restaurant_id", "nroReferencia"}))
     private List<Mesa> mesas;
 
 
@@ -114,16 +116,16 @@ public class Restaurant extends Usuario {
         return nombreRestaurant;
     }
 
+    public void setNombreRestaurant(String nombreRestaurant) {
+        this.nombreRestaurant = nombreRestaurant;
+    }
+
     public List<Mesa> getMesas() {
         return mesas;
     }
 
     public void setMesas(List<Mesa> mesas) {
         this.mesas = mesas;
-    }
-
-    public void setNombreRestaurant(String nombreRestaurant) {
-        this.nombreRestaurant = nombreRestaurant;
     }
 
     public String getDireccion() {
@@ -190,11 +192,11 @@ public class Restaurant extends Usuario {
         this.grupoDeComidaList = grupoDeComidaList;
     }
 
-    public ImageView getImageView(){
+    public ImageView getImageView() {
         javafx.scene.image.Image image = null;
         ImageView imagenn = null;
         try {
-            if(imagen !=null) {
+            if (imagen != null) {
                 BufferedImage img = ImageIO.read(new ByteArrayInputStream(imagen));
                 image = SwingFXUtils.toFXImage(img, null);
                 imagenn = new ImageView(image);
@@ -209,11 +211,11 @@ public class Restaurant extends Usuario {
         return imagenn;
     }
 
-    public String getCocinasOfrecidas(){
+    public String getCocinasOfrecidasString() {
 
         String exit = "";
 
-        for(int i = 0 ; i < getGrupoDeComidaList().size(); i++){
+        for (int i = 0; i < getGrupoDeComidaList().size(); i++) {
 
             exit = exit + getGrupoDeComidaList().get(i).getGrupo() + " \n";
 
@@ -227,12 +229,16 @@ public class Restaurant extends Usuario {
         this.grupoDeComidaList.add(grupoDeComida);
     }
 
-    public List<TipoDePago> getTipoDePagoList() {
-        return tipoDePagoList;
-    }
+    public String getTipoDePagoListString() {
+        String exit = "";
 
-    public void setTipoDePagoList(List<TipoDePago> tipoDePagoList) {
-        this.tipoDePagoList = tipoDePagoList;
+        for (int i = 0; i < tipoDePagoList.size(); i++) {
+
+            exit = exit + tipoDePagoList.get(i).getNombre() + " \n";
+
+        }
+
+        return exit;
     }
 
     public void addTipoDePago(TipoDePago tipoDePagoList) {
@@ -263,10 +269,18 @@ public class Restaurant extends Usuario {
         this.imagen = imagen;
     }
 
-    public String getPagosOfrecidos(){
+    public List<TipoDePago> getTipoDePagoList() {
+        return tipoDePagoList;
+    }
+
+    public void setTipoDePagoList(List<TipoDePago> tipoDePagoList) {
+        this.tipoDePagoList = tipoDePagoList;
+    }
+
+    public String getPagosOfrecidos() {
         String exit = "";
-        for(int i = 0 ; i < getTipoDePagoList().size(); i++){
-            exit = exit + getTipoDePagoList().get(i).getNombre() + " \n";
+        for (int i = 0; i < tipoDePagoList.size(); i++) {
+            exit = exit + tipoDePagoList.get(i).getNombre() + " \n";
         }
         return exit;
     }

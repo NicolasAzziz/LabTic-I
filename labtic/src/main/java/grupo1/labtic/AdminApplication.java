@@ -1,8 +1,7 @@
 package grupo1.labtic;
 
-import grupo1.labtic.services.AdminService;
 import grupo1.labtic.services.RestaurantService;
-import grupo1.labtic.ui.LoginController;
+import grupo1.labtic.ui.admins.Administrar;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -13,18 +12,16 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 
+import java.io.IOException;
+
 @SpringBootApplication
-public class AppApplication extends Application {
+public class AdminApplication extends Application {
 
     private static ConfigurableApplicationContext context;
 
     private FXMLLoader fxmlLoader;
 
     private Parent root;
-
-    private AdminService adminService;
-
-    private RestaurantService restaurantService;
 
     public static ConfigurableApplicationContext getContext() {
         return context;
@@ -35,29 +32,21 @@ public class AppApplication extends Application {
     }
 
     @Override
-    public void init() throws Exception {
-        context = SpringApplication.run(AppApplication.class);
+    public void init() {
+        context = SpringApplication.run(AdminApplication.class);
         fxmlLoader = new FXMLLoader();
         fxmlLoader.setControllerFactory(context::getBean);
-        adminService = context.getBean(AdminService.class);
-        adminService.admin();
-        //Administrador:
-        //login:    admin@yendo
-        //password: admin
-        restaurantService = context.getBean(RestaurantService.class);
-        restaurantService.insertarGrupoDeComidas();
-        restaurantService.insertarTiposDePagos();
-        restaurantService.insertarBarrios();
+
     }
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
-        fxmlLoader.setLocation(LoginController.class.getResource("login.fxml"));
+    public void start(Stage primaryStage) throws IOException {
+//        restaurantService.insertarGrupoDeComidas();
+        fxmlLoader.setLocation(Administrar.class.getResource("adminPortada.fxml"));
         root = fxmlLoader.load();
-        Scene scene = new Scene(root);
-        primaryStage.setScene(scene);
-        primaryStage.setTitle("Bienvenido!");
+        primaryStage.setTitle("Administrador");
         primaryStage.getIcons().add(new Image("grupo1/labtic/ui/Imagenes/yendoIcono.png"));
+        primaryStage.setScene(new Scene(root));
         primaryStage.show();
     }
 

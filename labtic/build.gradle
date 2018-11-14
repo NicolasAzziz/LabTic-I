@@ -36,4 +36,5 @@ dependencies {
     runtime('com.h2database:h2')
     runtime group: 'mysql', name: 'mysql-connector-java', version: '8.0.12'
 
+    compile group: 'com.jfoenix', name: 'jfoenix', version: '8.0.7'
 }
