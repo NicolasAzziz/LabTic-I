@@ -115,7 +115,8 @@ public class LoginController {
                             stage.setScene(new Scene(root));
                             stage.show();
                             ((Stage)((Node)actionEvent.getSource()).getScene().getWindow()).close();
-
+                            SolicitarDatos controler = loader.<SolicitarDatos>getController();
+                            controler.restaurante(r);
                         }
                         else{
                             FXMLLoader loader = new FXMLLoader();
@@ -144,9 +145,9 @@ public class LoginController {
                 loader.setControllerFactory(AppApplication.getContext()::getBean);
                 Parent root = null;
                 try {
-                    root = loader.load(Administrar.class.getResourceAsStream("AdminPortada.fxml"));
+                    root = loader.load(Administrar.class.getResourceAsStream("adminPortada.fxml"));
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    e.fillInStackTrace();
                 }
                 Stage stage = new Stage();
                 stage.setTitle("Yendo");

@@ -3,13 +3,11 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXPasswordField?>
 <?import com.jfoenix.controls.JFXTextField?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
-
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="grupo1.labtic.ui.admins.Administrar">
    <children>
@@ -32,9 +30,9 @@
       <Pane layoutX="200.0" layoutY="86.0" prefHeight="285.0" prefWidth="200.0">
          <children>
             <JFXTextField fx:id="email" focusColor="#463626" labelFloat="true" layoutX="12.0" layoutY="26.0" prefHeight="25.0" prefWidth="179.0" promptText="Email" unFocusColor="WHITE" />
+            <JFXPasswordField fx:id="password" focusColor="#463626" labelFloat="true" layoutX="6.0" layoutY="84.0" prefHeight="25.0" prefWidth="188.0" promptText="Contraseña" unFocusColor="WHITE" />
             <JFXTextField fx:id="rut" focusColor="#463626" labelFloat="true" layoutX="12.0" layoutY="143.0" prefHeight="25.0" prefWidth="179.0" promptText="Rut" unFocusColor="WHITE" />
             <JFXButton fx:id="agregarResto" layoutX="33.0" layoutY="208.0" onAction="#agregar" prefHeight="25.0" prefWidth="135.0" style="-fx-background-color: #463626;" text="Agregar" textFill="WHITE" />
-            <JFXPasswordField fx:id="password" focusColor="#463626" labelFloat="true" layoutX="6.0" layoutY="84.0" prefHeight="25.0" prefWidth="188.0" promptText="Contraseña" unFocusColor="WHITE" />
          </children>
       </Pane>
    </children>

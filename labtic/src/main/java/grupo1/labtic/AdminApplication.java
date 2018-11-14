@@ -23,8 +23,6 @@ public class AdminApplication extends Application {
 
     private Parent root;
 
-    private RestaurantService restaurantService;
-
     public static ConfigurableApplicationContext getContext() {
         return context;
     }
@@ -38,16 +36,13 @@ public class AdminApplication extends Application {
         context = SpringApplication.run(AdminApplication.class);
         fxmlLoader = new FXMLLoader();
         fxmlLoader.setControllerFactory(context::getBean);
-        restaurantService = context.getBean(RestaurantService.class);
-        restaurantService.insertarGrupoDeComidas();
-        restaurantService.insertarTiposDePagos();
-        restaurantService.insertarBarrios();
+
     }
 
     @Override
     public void start(Stage primaryStage) throws IOException {
 //        restaurantService.insertarGrupoDeComidas();
-        fxmlLoader.setLocation(Administrar.class.getResource("AdminPortada.fxml"));
+        fxmlLoader.setLocation(Administrar.class.getResource("adminPortada.fxml"));
         root = fxmlLoader.load();
         primaryStage.setTitle("Administrador");
         primaryStage.getIcons().add(new Image("grupo1/labtic/ui/Imagenes/yendoIcono.png"));

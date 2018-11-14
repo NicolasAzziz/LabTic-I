@@ -1,4 +1,7 @@
 package grupo1.labtic.persistence;
 
-public class AdminRepository {
+import grupo1.labtic.services.entities.Admin;
+import org.springframework.data.repository.CrudRepository;
+
+public interface AdminRepository extends CrudRepository<Admin,String> {
 }

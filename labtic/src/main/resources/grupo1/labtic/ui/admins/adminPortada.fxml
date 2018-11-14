@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<<<<<<< HEAD
-        <?import javafx.scene.control.*?>
-        <?import javafx.scene.image.Image?>
-        <?import javafx.scene.image.ImageView?>
-        <?import javafx.scene.layout.*?>
-        =======
+
         <?import javafx.scene.control.Button?>
         <?import javafx.scene.control.SplitPane?>
         <?import javafx.scene.control.TableColumn?>
@@ -15,10 +10,10 @@
         <?import javafx.scene.layout.ColumnConstraints?>
         <?import javafx.scene.layout.GridPane?>
         <?import javafx.scene.layout.RowConstraints?>
-        >>>>>>> 1ed71579dfb6962e9370d1d24b4ee6085f0ce57c
         <?import javafx.scene.shape.Circle?>
         <?import javafx.scene.text.Font?>
         <?import javafx.scene.text.Text?>
+<?import javafx.geometry.Insets?>
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171"
             xmlns:fx="http://javafx.com/fxml/1" fx:controller="grupo1.labtic.ui.admins.PortadaAdmin">
 <children>

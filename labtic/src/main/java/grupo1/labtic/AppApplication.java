@@ -1,5 +1,7 @@
 package grupo1.labtic;
 
+import grupo1.labtic.services.AdminService;
+import grupo1.labtic.services.RestaurantService;
 import grupo1.labtic.ui.LoginController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -7,6 +9,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -19,6 +22,10 @@ public class AppApplication extends Application {
     private FXMLLoader fxmlLoader;
 
     private Parent root;
+
+    private AdminService adminService;
+
+    private RestaurantService restaurantService;
 
     public static ConfigurableApplicationContext getContext() {
         return context;
@@ -33,6 +40,15 @@ public class AppApplication extends Application {
         context = SpringApplication.run(AppApplication.class);
         fxmlLoader = new FXMLLoader();
         fxmlLoader.setControllerFactory(context::getBean);
+        adminService = context.getBean(AdminService.class);
+        adminService.admin();
+        //Administrador:
+        //login:    admin@yendo
+        //password: admin
+        restaurantService = context.getBean(RestaurantService.class);
+        restaurantService.insertarGrupoDeComidas();
+        restaurantService.insertarTiposDePagos();
+        restaurantService.insertarBarrios();
     }
 
     @Override
