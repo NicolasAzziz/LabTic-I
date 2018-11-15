@@ -84,7 +84,7 @@ public class LoginController {
                     if (u.getPassword().equals(pass)) {
                         FXMLLoader loader = new FXMLLoader();
                         loader.setControllerFactory(AppApplication.getContext()::getBean);
-                        Parent root = loader.load(Principal.class.getResourceAsStream("Principal.fxml"));
+                        Parent root = loader.load(Principal.class.getResourceAsStream("principalCliente.fxml"));
                         Stage stage = new Stage();
                         stage.setTitle("Donde quiere comer?");
                         stage.getIcons().add(new Image("grupo1/labtic/ui/Imagenes/yendoIcono.png"));
@@ -139,7 +139,7 @@ public class LoginController {
                         loader.setControllerFactory(AppApplication.getContext()::getBean);
                         Parent root = null;
                         try {
-                            root = loader.load(RestaurantePrincipal.class.getResourceAsStream("restaurantePrincipal.fxml"));
+                            root = loader.load(RestaurantePrincipal.class.getResourceAsStream("principalRestaurante.fxml"));
                         } catch (IOException e) {
                             e.printStackTrace();
                         }

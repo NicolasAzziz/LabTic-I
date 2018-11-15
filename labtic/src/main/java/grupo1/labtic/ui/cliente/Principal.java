@@ -1,5 +1,6 @@
 package grupo1.labtic.ui.cliente;
 
+import com.jfoenix.controls.JFXButton;
 import grupo1.labtic.AppApplication;
 import grupo1.labtic.persistence.GrupoDeComidaRepository;
 import grupo1.labtic.persistence.RestaurantRepository;
@@ -157,6 +158,14 @@ public class Principal {
     private TableColumn barrio;
     @FXML
     private TableColumn cocinas;
+    @FXML
+    private JFXButton buscar;
+    @FXML
+    private JFXButton cerrarSesion;
+    @FXML
+    private JFXButton reservas;
+    @FXML
+    private JFXButton ajustes;
 
     private String mailResto;
 
@@ -382,6 +391,21 @@ public class Principal {
         });
 
 
+    }
+
+    @FXML
+    void ajustes(ActionEvent event) {
+        //Modificar datos
+    }
+
+    @FXML
+    void cerrarSesion(ActionEvent event) {
+        ((Stage)((Node)event.getSource()).getScene().getWindow()).close();
+    }
+
+    @FXML
+    void reservas(ActionEvent event) {
+        //Ver reservas de cada usuario
     }
 
 
