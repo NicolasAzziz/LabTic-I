@@ -143,14 +143,7 @@ public class Principal {
 
     @FXML
     private Button reservar;
-    @FXML
-    private TextField personas;
-    @FXML
-    private TextField hora;
-    @FXML
-    private TextField min;
-    @FXML
-    private DatePicker fechaReserva;
+
 
     @FXML
     private TableView<Restaurant> tableViewRestaurantes;
@@ -168,6 +161,7 @@ public class Principal {
     private TableColumn cocinas;
 
     private String mailResto;
+
     private Restaurant rowData;
 
 
@@ -234,8 +228,9 @@ public class Principal {
                     try {
                         FXMLLoader loader = new FXMLLoader();
                         loader.setControllerFactory(ClienteApplication.getContext()::getBean);
-                        Parent root = loader.load(Principal.class.getResourceAsStream("restaurantEspecifico.fxml"));
+                        Parent root = loader.load(RestaurantEspecifico.class.getResourceAsStream("restaurantEspecifico.fxml"));
                         Stage stage = new Stage();
+
                         stage.setTitle("Restaurant específico");
                         stage.getIcons().add(new Image("grupo1/labtic/ui/Imagenes/yendoIcono.png"));
                         stage.setScene(new Scene(root));
@@ -249,10 +244,16 @@ public class Principal {
                         logo.setImage(rowData.getImageView().getImage());
                         comidas.setText(rowData.getCocinasOfrecidas());
 
+
+
 //                        pagos.setText(rowData.getPagosOfrecidos());
 
-                        mailResto=rowData.getEmail();
+                        mailResto = rowData.getEmail();
+
                         stage.show();
+
+                        RestaurantEspecifico controller = loader.getController();
+                        controller.sendResto(rowData);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
