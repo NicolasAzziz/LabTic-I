@@ -87,8 +87,9 @@ public class RestaurantService {
     }
 
     public void setPrecioMedio(Restaurant restaurante, String precioMedio) {
-        restaurante.setPrecioMedio(precioMedio);
-        restaurantRepository.save(restaurante);
+        Restaurant restaurant = restaurantRepository.getOneByEmail(restaurante.getEmail());
+        restaurant.setPrecioMedio(precioMedio);
+        restaurantRepository.save(restaurant);
     }
 
 //    public void registrarDatosRestaurant(long id, String nombre, String telefono, String direccion,
