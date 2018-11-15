@@ -8,7 +8,6 @@ spring:
 
     password: imation
 
-
   jpa:
     show-sql: true
     hibernate:

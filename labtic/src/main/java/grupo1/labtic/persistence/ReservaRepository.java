@@ -1,8 +1,8 @@
 package grupo1.labtic.persistence;
 
 import grupo1.labtic.services.entities.Cliente;
+import grupo1.labtic.services.entities.Reserva;
 import org.springframework.data.repository.CrudRepository;
 
-public interface ClienteRepository extends CrudRepository<Cliente, String> {
-    Cliente findByEmail(String email);
+public interface ReservaRepository extends CrudRepository<Reserva, String> {
 }

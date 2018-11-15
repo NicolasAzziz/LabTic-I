@@ -11,7 +11,7 @@ public class ClienteService {
     @Autowired
     ClienteRepository clienteRepository;
 
-    public void agregarCliente(Cliente cliente){
+    public void agregarCliente(Cliente cliente) {
         clienteRepository.save(cliente);
     }
 

@@ -1,8 +1,7 @@
 package grupo1.labtic.ui.admins;
 
-import grupo1.labtic.AdminApplication;
+import grupo1.labtic.AppApplication;
 import grupo1.labtic.persistence.RestaurantRepository;
-import grupo1.labtic.services.entities.Admin;
 import grupo1.labtic.services.entities.Restaurant;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -17,7 +16,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
@@ -26,8 +24,6 @@ import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -69,9 +65,6 @@ public class PortadaAdmin {
     private Circle circle2;
 
     @FXML
-    private ImageView imageView;
-
-    @FXML
     private AnchorPane imageContainer;
 
     @Autowired
@@ -100,8 +93,8 @@ public class PortadaAdmin {
         Iterable<Restaurant> listaRestaurantes = restaurantRepository.findAll();
         ObservableList<Restaurant> data = FXCollections.observableList((List) listaRestaurantes);
         table.setItems(data);
-        imageView.setPreserveRatio(true);
-        imageView.fitWidthProperty().bind(imageContainer.widthProperty());
+//        imageView.setPreserveRatio(true);
+//        imageView.fitWidthProperty().bind(imageContainer.widthProperty());
         //imageView.fitHeightProperty().bind(imageContainer.heightProperty());
     }
 
@@ -111,24 +104,28 @@ public class PortadaAdmin {
         ObservableList<Restaurant> data = FXCollections.observableList((List) listaRestaurantes);
         table.setItems(data);
     }
+
     @FXML
     public void agregarRestaurant(ActionEvent actionEvent) {
 
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setControllerFactory(AdminApplication.getContext()::getBean);
-            Parent root = loader.load(Administrar.class.getResourceAsStream("Admin.fxml"));
+            loader.setControllerFactory(AppApplication.getContext()::getBean);
+            Parent root = loader.load(Administrar.class.getResourceAsStream("nuevoRestaurant.fxml"));
             Stage stage = new Stage();
             stage.setTitle("Nuevo Restaurant");
             stage.getIcons().add(new Image("grupo1/labtic/ui/Imagenes/yendoIcono.png"));
+            double w = ((Stage)((Node)actionEvent.getSource()).getScene().getWindow()).getWidth();
+            double h = ((Stage)((Node)actionEvent.getSource()).getScene().getWindow()).getHeight();
             stage.setScene(new Scene(root));
+            stage.setHeight(h);
+            stage.setWidth(w);
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
         }
 
     }
-
 
 }
 

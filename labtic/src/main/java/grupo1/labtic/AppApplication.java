@@ -1,6 +1,8 @@
 package grupo1.labtic;
 
-import grupo1.labtic.ui.restaurants.SolicitarDatos;
+import grupo1.labtic.services.AdminService;
+import grupo1.labtic.services.RestaurantService;
+import grupo1.labtic.ui.LoginController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -10,17 +12,19 @@ import javafx.stage.Stage;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.core.io.ClassPathResource;
 
 @SpringBootApplication
-public class RestaurantApplication extends Application {
+public class AppApplication extends Application {
 
-    private  static ConfigurableApplicationContext context;
-
+    private static ConfigurableApplicationContext context;
 
     private FXMLLoader fxmlLoader;
 
     private Parent root;
+
+    private AdminService adminService;
+
+    private RestaurantService restaurantService;
 
     public static ConfigurableApplicationContext getContext() {
         return context;
@@ -32,19 +36,28 @@ public class RestaurantApplication extends Application {
 
     @Override
     public void init() throws Exception {
-        context = SpringApplication.run(RestaurantApplication.class);
+        context = SpringApplication.run(AppApplication.class);
         fxmlLoader = new FXMLLoader();
         fxmlLoader.setControllerFactory(context::getBean);
+        adminService = context.getBean(AdminService.class);
+        adminService.admin();
+        //Administrador:
+        //login:    admin@yendo
+        //password: admin
+        restaurantService = context.getBean(RestaurantService.class);
+        restaurantService.insertarGrupoDeComidas();
+        restaurantService.insertarTiposDePagos();
+        restaurantService.insertarBarrios();
     }
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        fxmlLoader.setLocation(SolicitarDatos.class.getResource("inicio.fxml"));
-
+        fxmlLoader.setLocation(LoginController.class.getResource("login.fxml"));
         root = fxmlLoader.load();
-        primaryStage.setTitle("Yendo Restaurant");
+        Scene scene = new Scene(root);
+        primaryStage.setScene(scene);
+        primaryStage.setTitle("Bienvenido!");
         primaryStage.getIcons().add(new Image("grupo1/labtic/ui/Imagenes/yendoIcono.png"));
-        primaryStage.setScene(new Scene(root));
         primaryStage.show();
     }
 
@@ -52,5 +65,4 @@ public class RestaurantApplication extends Application {
     public void stop() {
         context.close();
     }
-
 }

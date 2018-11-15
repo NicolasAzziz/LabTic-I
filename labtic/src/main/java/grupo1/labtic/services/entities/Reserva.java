@@ -1,6 +1,5 @@
 package grupo1.labtic.services.entities;
 
-import grupo1.labtic.services.entities.restaurant.Mesa;
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -11,80 +10,121 @@ import java.util.Objects;
 @Entity(name = "RESERVA")
 public class Reserva {
 //
+
     @Id
     @GeneratedValue(generator = "reserva_id")
     @GenericGenerator(name = "reserva_id", strategy = "increment")
     @Column(name = "id", updatable = false, nullable = false)
     private long id;
-//    @DateTimeFormat
-//    @Column(name = "fechaYhora")
-//    private Date fechaYhora;
-//    @ElementCollection
-//    @CollectionTable(name = "Mesa", joinColumns = @JoinColumn(name = "Restaurant"))
-//    private Mesa mesa;
-//    @OneToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "CLIENTE_ID")
-//    private Cliente cliente;
-//    @Column
-//    private boolean aceptar;
-//
-//
-//    public Reserva(Cliente cliente, Mesa mesa) {
-//        aceptar=false;
-//        this.cliente = cliente;
-//        this.mesa = mesa;
-//        fechaYhora = new Date();
-//    }
-//
-//    public Reserva() {
-//    }
-//
-//    public long getId() {
-//        return id;
-//    }
-//
-//    public void setId(long id) {
-//        this.id = id;
-//    }
-//
-//    public Date getFechaYhora() {
-//        return fechaYhora;
-//    }
-//
-//    public void setFechaYhora(Date fechaYhora) {
-//        this.fechaYhora = fechaYhora;
-//    }
-//
-//    public Mesa getMesa() {
-//        return mesa;
-//    }
-//
-//    public void setMesa(Mesa mesa) {
-//        this.mesa = mesa;
-//    }
-//
-//    public Cliente getCliente() {
-//        return cliente;
-//    }
-//
-//    public void setCliente(Cliente cliente) {
-//        this.cliente = cliente;
-//    }
-//
-//    @Override
-//    public boolean equals(Object o) {
-//        if (this == o) return true;
-//        if (o == null || getClass() != o.getClass()) return false;
-//        Reserva reserva = (Reserva) o;
-//        return id == reserva.id &&
-//                Objects.equals(fechaYhora, reserva.fechaYhora) &&
-//                Objects.equals(mesa, reserva.mesa) &&
-//                Objects.equals(cliente, reserva.cliente);
-//    }
-//
-//    @Override
-//    public int hashCode() {
-//        return Objects.hash(id, fechaYhora, mesa, cliente);
-//    }
+
+    @DateTimeFormat
+    @Column(name = "fechaYhora")
+    private Date fechaYhora;
+
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "cliente_id")
+    private Cliente cliente;
+
+
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "restaurant_id")
+    private Restaurant restaurant;
+
+    @Column
+    private int nroReferencia;
+
+    @Column
+    private String estado;
+
+    public Reserva() {
+    }
+
+    public Reserva(Cliente cliente, Restaurant restaurant, int nroReferencia) {
+        this.cliente = cliente;
+        this.restaurant = restaurant;
+        this.nroReferencia = nroReferencia;
+        fechaYhora = new Date();
+        setEstadoSolicitado();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Reserva reserva = (Reserva) o;
+        return nroReferencia == reserva.nroReferencia &&
+                Objects.equals(fechaYhora, reserva.fechaYhora) &&
+                Objects.equals(cliente.getEmail(), reserva.cliente.getEmail()) &&
+                Objects.equals(restaurant.getEmail(), reserva.restaurant.getEmail());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(fechaYhora, cliente.getEmail(), restaurant.getEmail(), nroReferencia);
+    }
+
+    public Date getFechaYhora() {
+        return fechaYhora;
+    }
+
+    public void setFechaYhora(Date fechaYhora) {
+        this.fechaYhora = fechaYhora;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstadoSolicitado(){
+        estado = "Solicitado";
+    }
+
+    public void setEstadoAceptado(){
+        estado = "Aceptado";
+        restaurant.getMesas().get(nroReferencia).setMesaLibre(false);
+    }
+
+    public void setEstadoRechazado(){
+        estado = "Rechazado";
+    }
+
+    public void setEstadoFinalizado(){
+        estado = "Finalizado";
+        restaurant.getMesas().get(nroReferencia).setMesaLibre(true);
+    }
+
+
+
+    public Restaurant getRestaurant() {
+        return restaurant;
+    }
+
+    public void setRestaurant(Restaurant restaurant) {
+        this.restaurant = restaurant;
+    }
+
+    public int getNroReferencia() {
+        return nroReferencia;
+    }
+
+    public void setNroReferencia(int nroReferencia) {
+        this.nroReferencia = nroReferencia;
+    }
 }
 

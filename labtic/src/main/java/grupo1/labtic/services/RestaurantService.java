@@ -1,16 +1,17 @@
 package grupo1.labtic.services;
 
+import grupo1.labtic.persistence.BarrioRepository;
 import grupo1.labtic.persistence.GrupoDeComidaRepository;
 import grupo1.labtic.persistence.RestaurantRepository;
 import grupo1.labtic.persistence.TipoDePagoRepository;
-import grupo1.labtic.persistence.restaurantRepository.MetodoDePagoRepository;
 import grupo1.labtic.services.entities.Restaurant;
+import grupo1.labtic.services.entities.restaurant.Barrio;
 import grupo1.labtic.services.entities.restaurant.GrupoDeComida;
 import grupo1.labtic.services.entities.restaurant.Mesa;
 import grupo1.labtic.services.entities.restaurant.TipoDePago;
+import grupo1.labtic.services.exceptions.DuplicateDireccion;
 import grupo1.labtic.services.exceptions.InvalidRestaurantInformation;
 import grupo1.labtic.services.exceptions.RestaurantAlreadyExists;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,7 +29,7 @@ public class RestaurantService {
     @Autowired
     private TipoDePagoRepository tipoDePagoRepository;
     @Autowired
-    private MetodoDePagoRepository metodoDePagoRepository;
+    private BarrioRepository barrioRepository;
     @Autowired
     private RestaurantRepository restaurantRepository;
 
@@ -85,9 +86,10 @@ public class RestaurantService {
 
     }
 
-    public void setPrecioMedio(Restaurant restaurante , String precioMedio){
-        restaurante.setPrecioMedio(precioMedio);
-        restaurantRepository.save(restaurante);
+    public void setPrecioMedio(Restaurant restaurante, String precioMedio) {
+        Restaurant restaurant = restaurantRepository.getOneByEmail(restaurante.getEmail());
+        restaurant.setPrecioMedio(precioMedio);
+        restaurantRepository.save(restaurant);
     }
 
 //    public void registrarDatosRestaurant(long id, String nombre, String telefono, String direccion,
@@ -113,9 +115,13 @@ public class RestaurantService {
 //        }
 //    }
 
-    public void registrarDatosRestaurant(Restaurant restaurant, String nombre, String telefono, String direccion,
+    public void registrarDatosRestaurant(Restaurant restaurante, String nombre, String telefono, String direccion,
                                          String barrio, String habre, String hcierra, String descripcion, String web,
-                                         String nuevaPass) {
+                                         String nuevaPass) throws DuplicateDireccion {
+        if (restaurantRepository.existsByDireccion(direccion)) {
+            throw new DuplicateDireccion("La dirección ingresada ya esta registrada.");
+        }
+        Restaurant restaurant = restaurantRepository.getRestaurantByEmail(restaurante.getEmail());
         restaurant.setNombreRestaurant(nombre);
         restaurant.setTelefono(telefono);
         restaurant.setDireccion(direccion);
@@ -131,7 +137,8 @@ public class RestaurantService {
         restaurantRepository.save(restaurant);
     }*/
 
-    public void setListaMesasRestaurante(Restaurant restaurant, List<Mesa> mesasList) {
+    public void setListaMesasRestaurante(Restaurant restaurante, List<Mesa> mesasList) {
+        Restaurant restaurant = restaurantRepository.getRestaurantByEmail(restaurante.getEmail());
 
         restaurant.setMesas(mesasList);
 
@@ -140,7 +147,8 @@ public class RestaurantService {
     }
 
 
-    public void setGrupoDeComidaList(Restaurant restaurant, List<String> grupoDeComidaList) {
+    public void setGrupoDeComidaList(Restaurant restaurante, List<String> grupoDeComidaList) {
+        Restaurant restaurant = restaurantRepository.getRestaurantByEmail(restaurante.getEmail());
         List<GrupoDeComida> grupoDeComida1 = grupoDeComidaRepository.getGrupoDeComidaByGrupo(grupoDeComidaList);
         restaurant.setGrupoDeComidaList(grupoDeComida1);
         restaurantRepository.save(restaurant);
@@ -152,18 +160,20 @@ public class RestaurantService {
         restaurantRepository.save(restaurant);
     }
 
-    public void setTipoDePagoList(Restaurant restaurant, List<String> nombreTipoDePagoList) {
+    public void setTipoDePagoList(Restaurant restaurante, List<String> nombreTipoDePagoList) {
+        Restaurant restaurant = restaurantRepository.getRestaurantByEmail(restaurante.getEmail());
         List<TipoDePago> nombreTipoDePagoList1 = tipoDePagoRepository.getListByNombre(nombreTipoDePagoList);
         restaurant.setTipoDePagoList(nombreTipoDePagoList1);
         restaurantRepository.save(restaurant);
     }
 
-    public void guardarImagen(Restaurant restaurant, File imgFile){
+    public void guardarImagen(Restaurant restaurante, File imgFile) {
+        Restaurant restaurant = restaurantRepository.getRestaurantByEmail(restaurante.getEmail());
         byte[] data = null;
         try {
             FileInputStream fis = new FileInputStream(imgFile);
             data = Files.readAllBytes(imgFile.toPath());
-        }catch(IOException e){
+        } catch (IOException e) {
             e.getStackTrace();
         }
         restaurant.setImagen(data);
@@ -200,5 +210,24 @@ public class RestaurantService {
             tipoDePagoRepository.save(new TipoDePago("Ticket Alimentación"));
             tipoDePagoRepository.save(new TipoDePago("Ticket Restaurante"));
         }
+
+    }
+
+    public void insertarBarrios() {
+        if (barrioRepository.existsByBarrio("Carrasco") == false) {
+            barrioRepository.save(new Barrio("Ciudad Vieja"));
+            barrioRepository.save(new Barrio("Centro"));
+            barrioRepository.save(new Barrio("Palermo"));
+            barrioRepository.save(new Barrio("Punta Carretas"));
+            barrioRepository.save(new Barrio("Cordón"));
+            barrioRepository.save(new Barrio("Buceo"));
+            barrioRepository.save(new Barrio("Malvin"));
+            barrioRepository.save(new Barrio("Pocitos"));
+            barrioRepository.save(new Barrio("Parque Batlle"));
+            barrioRepository.save(new Barrio("Punta Gorda"));
+            barrioRepository.save(new Barrio("Carrasco"));
+            barrioRepository.save(new Barrio("Maroñas"));
+        }
+
     }
 }
