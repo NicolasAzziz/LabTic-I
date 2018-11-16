@@ -5,4 +5,7 @@ import grupo1.labtic.services.entities.Reserva;
 import org.springframework.data.repository.CrudRepository;
 
 public interface ReservaRepository extends CrudRepository<Reserva, String> {
+
+    Iterable<Reserva> getReservasByEstadoIs(String estado);
+
 }

@@ -1,5 +1,6 @@
 package grupo1.labtic.persistence;
 
+import grupo1.labtic.services.entities.Reserva;
 import grupo1.labtic.services.entities.Restaurant;
 import grupo1.labtic.services.entities.restaurant.GrupoDeComida;
 import org.springframework.data.repository.CrudRepository;
@@ -33,4 +34,5 @@ public interface RestaurantRepository extends CrudRepository<Restaurant, String>
     Iterable<Restaurant> findAllByGrupoDeComidaListAndBarrio(List<String> restoPorZona, List<GrupoDeComida> comidaPorGrupo);
 
     Iterable<Restaurant> findAll();
+
 }

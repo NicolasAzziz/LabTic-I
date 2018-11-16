@@ -73,29 +73,6 @@ public class RestauranteEspecifico {
     @FXML
     void facturar(ActionEvent event) {
 
-        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-        String formatedDateDesde = sdf.format(fechaDesde);
-        String formatedDateHasta = sdf.format(fechaHasta);
-        Date dateDesde =  null;
-        Date dateHasta = null;
-        try{
-            dateDesde = sdf.parse(formatedDateDesde);
-            dateHasta = sdf.parse(formatedDateHasta);
-        }catch (ParseException e) {
-            e.printStackTrace();
-        }
-
-        if(fechaDesde.getValue() == null || fechaHasta.getValue() == null){
-
-            showAlert("Fechas invalidas!", "No se registraron fechas correctas para realizar la facturacion");
-
-        }else if (dateDesde.before(new Date()) || dateHasta.before(new Date()) || dateDesde.after(dateHasta)){
-
-            showAlert("Fechas invalidas!", "Las fechas registradas no son correctas");
-        }else {
-            
-        }
-
     }
 
     public void sendResto(Restaurant resto){

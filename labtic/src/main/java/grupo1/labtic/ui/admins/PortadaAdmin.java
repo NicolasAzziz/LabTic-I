@@ -1,7 +1,9 @@
 package grupo1.labtic.ui.admins;
 
 import grupo1.labtic.AppApplication;
+import grupo1.labtic.persistence.ReservaRepository;
 import grupo1.labtic.persistence.RestaurantRepository;
+import grupo1.labtic.services.entities.Reserva;
 import grupo1.labtic.services.entities.Restaurant;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -11,10 +13,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableRow;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -28,8 +27,13 @@ import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.*;
+
+import static grupo1.labtic.ui.Alert.showAlert;
 
 @Component
 public class PortadaAdmin {
@@ -94,6 +98,14 @@ public class PortadaAdmin {
     private Text comidas;
     @FXML
     private Text pagos;
+    @FXML
+    private DatePicker fechaHasta;
+    @FXML
+    private DatePicker fechaDesde;
+    @FXML
+    private Text importe;
+
+    private ReservaRepository reservaRepository;
 
     private Restaurant rowData;
 
@@ -134,11 +146,7 @@ public class PortadaAdmin {
                         Stage stage = new Stage();
                         stage.setTitle("Restaurant específico");
                         stage.getIcons().add(new Image("grupo1/labtic/ui/Imagenes/yendoIcono.png"));
-                        double w = ((Stage)((Node)event1.getSource()).getScene().getWindow()).getWidth();
-                        double h = ((Stage)((Node)event1.getSource()).getScene().getWindow()).getHeight();
                         stage.setScene(new Scene(root));
-                        stage.setHeight(h);
-                        stage.setWidth(w);
                         nombre.setText(rowData.getNombreRestaurant());
                         description.setText(rowData.getDescripcion());
                         barrioPM.setText(rowData.getBarrio() + " - " + rowData.getPrecioMedio());
@@ -194,6 +202,40 @@ public class PortadaAdmin {
 
     @FXML
     void facturar(ActionEvent event) {
+
+        if(fechaDesde.getValue() == null || fechaHasta.getValue() == null){
+
+            showAlert("Fechas invalidas!", "No se registraron fechas correctas para realizar la facturacion");
+
+        }else {
+
+            LocalDate dateDesde = fechaDesde.getValue();
+            LocalDate dateHasta = fechaHasta.getValue();
+
+            if (dateDesde.isAfter(LocalDate.now()) || dateHasta.isAfter(LocalDate.now()) || dateDesde.isAfter(dateHasta)){
+
+                showAlert("Fechas invalidas!", "Las fechas registradas no son correctas");
+
+            }else {
+
+                Iterable<Reserva> reservasFinzalizadas = reservaRepository.getReservasByEstadoIs("Finalizado");
+                Iterable<Reserva> reservasAceptadas = reservaRepository.getReservasByEstadoIs("Aceptado");
+
+                List<Reserva> reservas = new ArrayList<>();
+
+                reservasFinzalizadas.forEach(reserva -> reservas.add(reserva));
+                reservasAceptadas.forEach(reserva -> reservas.add(reserva));
+
+                for(int i = 0 ; i < reservas.size(); i++){
+
+                }
+
+
+                importe.setText("$ " + "Correcto");
+            }
+
+
+        }
 
     }
 

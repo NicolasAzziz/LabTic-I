@@ -57,6 +57,7 @@ public class Restaurant extends Usuario {
     private List<Mesa> mesas;
 
 
+
     public Restaurant(String email, String password, long rut, String direccion, String horarioApertura, String horarioCierre, String barrio, String telefono, String descripcion) {
         super(email, password);
         this.direccion = direccion;
