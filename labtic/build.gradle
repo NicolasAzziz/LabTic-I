@@ -37,4 +37,7 @@ dependencies {
     runtime group: 'mysql', name: 'mysql-connector-java', version: '8.0.12'
 
     compile group: 'com.jfoenix', name: 'jfoenix', version: '8.0.7'
+    // https://mvnrepository.com/artifact/de.jensd/fontawesomefx
+    compile group: 'de.jensd', name: 'fontawesomefx', version: '8.9'
+
 }
