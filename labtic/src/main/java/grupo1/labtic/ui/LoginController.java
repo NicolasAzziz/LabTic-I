@@ -106,7 +106,6 @@ public class LoginController {
             } else if (restoRepository.findOneByEmail(email.getText()) != null) {
                 //handleRestoLogin();
 
-
                 String login = email.getText();
                 String pass = password.getText();
                 Restaurant r = restoRepository.findOneByEmail(login);

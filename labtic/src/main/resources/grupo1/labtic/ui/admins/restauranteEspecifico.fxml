@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="494.0" prefWidth="724.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="grupo1.labtic.ui.admins.PortadaAdmin">
+    <children>
+        <SplitPane dividerPositions="0.17073170731707318" layoutX="266.0" layoutY="86.0" orientation="VERTICAL" prefHeight="608.0" prefWidth="889.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <items>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                    <children>
+                        <BorderPane prefHeight="81.0" prefWidth="722.0" style="-fx-background-color: d5f7b0;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                            <left>
+                                <Text fx:id="nombre" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre del Restaurant" wrappingWidth="347.9658203125" BorderPane.alignment="CENTER">
+                                    <font>
+                                        <Font size="32.0" />
+                                    </font>
+                                    <BorderPane.margin>
+                                        <Insets left="10.0" />
+                                    </BorderPane.margin>
+                                </Text>
+                            </left>
+                            <right>
+                                <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" spacing="20.0" BorderPane.alignment="CENTER">
+                                    <children>
+                                        <Text fx:id="rate" strokeType="OUTSIDE" strokeWidth="0.0" text="Rating" />
+                                        <Text fx:id="barrioPM" strokeType="OUTSIDE" strokeWidth="0.0" text="Barrio - Precio medio" />
+                                    </children>
+                                </VBox>
+                            </right>
+                        </BorderPane>
+                    </children>
+                </AnchorPane>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="424.0" prefWidth="722.0">
+                    <children>
+                        <SplitPane dividerPositions="0.25" layoutX="227.0" layoutY="35.0" orientation="VERTICAL" prefHeight="403.0" prefWidth="722.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                            <items>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" style="-fx-background-color: f9f3a2;">
+                                    <children>
+                                        <GridPane prefHeight="111.0" prefWidth="720.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                            <columnConstraints>
+                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                            </columnConstraints>
+                                            <rowConstraints>
+                                                <RowConstraints minHeight="10.0" prefHeight="54.0" vgrow="SOMETIMES" />
+                                            </rowConstraints>
+                                            <children>
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Facturacion:" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                                                    <font>
+                                                        <Font name="System Italic" size="18.0" />
+                                                    </font>
+                                                </Text>
+                                                <Button fx:id="facturar" minWidth="80.0" mnemonicParsing="false" onAction="#facturar" text="Facturar" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                                                <DatePicker fx:id="fechaDesde" prefHeight="25.0" prefWidth="124.0" promptText="Desde" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                                    <DatePicker fx:id="fechaHasta" prefHeight="25.0" prefWidth="124.0" promptText="Hasta" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                                    <Text fx:id="importe" strokeType="OUTSIDE" strokeWidth="0.0" text="importe" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                                            </children>
+                                        </GridPane>
+                                    </children>
+                                </AnchorPane>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="296.0" prefWidth="720.0" style="-fx-background-color: d5f7b0;">
+                                    <children>
+                                        <GridPane prefHeight="286.0" prefWidth="720.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                            <columnConstraints>
+                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="354.0" minWidth="10.0" prefWidth="256.0" />
+                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="521.0" minWidth="10.0" prefWidth="464.0" />
+                                            </columnConstraints>
+                                            <rowConstraints>
+                                                <RowConstraints maxHeight="152.0" minHeight="10.0" prefHeight="152.0" vgrow="SOMETIMES" />
+                                                <RowConstraints maxHeight="138.0" minHeight="10.0" prefHeight="134.0" vgrow="SOMETIMES" />
+                                            </rowConstraints>
+                                            <children>
+                                                <ImageView fx:id="logo" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="LEFT" GridPane.valignment="TOP" />
+                                                <Text fx:id="description" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.valignment="TOP">
+                                                    <GridPane.margin>
+                                                        <Insets left="10.0" top="10.0" />
+                                                    </GridPane.margin>
+                                                </Text>
+                                                <VBox prefHeight="200.0" prefWidth="100.0" spacing="30.0" GridPane.rowIndex="1">
+                                                    <children>
+                                                        <Text fx:id="direccion" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+                                                            <VBox.margin>
+                                                                <Insets left="10.0" top="10.0" />
+                                                            </VBox.margin>
+                                                        </Text>
+                                                        <Text fx:id="tel" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+                                                            <VBox.margin>
+                                                                <Insets left="10.0" />
+                                                            </VBox.margin>
+                                                        </Text>
+                                                        <Text fx:id="horario" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+                                                            <VBox.margin>
+                                                                <Insets left="10.0" />
+                                                            </VBox.margin>
+                                                        </Text>
+                                                    </children>
+                                                    <GridPane.margin>
+                                                        <Insets />
+                                                    </GridPane.margin>
+                                                </VBox>
+                                                <HBox fx:id="hBox" prefHeight="100.0" prefWidth="200.0" spacing="30.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                                    <children>
+                                                        <Text fx:id="comidas" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+                                                        <Text fx:id="pagos" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+                                                    </children>
+                                                </HBox>
+                                            </children>
+                                        </GridPane>
+                                    </children>
+                                </AnchorPane>
+                            </items>
+                        </SplitPane>
+                    </children>
+                </AnchorPane>
+            </items>
+        </SplitPane>
+    </children>
+</AnchorPane>
