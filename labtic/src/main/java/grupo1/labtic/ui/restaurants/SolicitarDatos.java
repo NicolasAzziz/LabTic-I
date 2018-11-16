@@ -6,6 +6,7 @@ import grupo1.labtic.persistence.RestaurantRepository;
 import grupo1.labtic.services.RestaurantService;
 import grupo1.labtic.services.entities.Restaurant;
 import grupo1.labtic.services.entities.restaurant.Mesa;
+import grupo1.labtic.services.exceptions.DuplicateDireccion;
 import grupo1.labtic.services.exceptions.NroReferenciaException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -157,8 +158,6 @@ public class SolicitarDatos {
 
     @FXML
     public void agregarMesa(ActionEvent actionEvent) {
-        String n = nMesas.getText();
-        String g = nSillas.getText().toString();
 
         if (!(nMesas.getText() == null || nMesas.getText().equals("") || nSillas.getText() == null && nSillas.getText().equals(""))) {
             try {
@@ -233,13 +232,11 @@ public class SolicitarDatos {
                             CheckMenuItem.class.isInstance(item) && CheckMenuItem.class.cast(item).isSelected())
                             .map(MenuItem::getText).collect(Collectors.toList());
 
-                    serviceRestaurant.setGrupoDeComidaList(restaurant, selectedItemsComidas);
 
                     List<String> selectedItemsTipoDePagoMenu = metodosPagoMenu.getItems().stream().filter(item ->
                             CheckMenuItem.class.isInstance(item) && CheckMenuItem.class.cast(item).isSelected())
                             .map(MenuItem::getText).collect(Collectors.toList());
 
-                    serviceRestaurant.setTipoDePagoList(restaurant, selectedItemsTipoDePagoMenu);
 
                     List<String> selectedBarrio = barriosMenu.getItems().stream().filter(item ->
                             RadioMenuItem.class.isInstance(item) && RadioMenuItem.class.cast(item).isSelected())
@@ -248,21 +245,21 @@ public class SolicitarDatos {
                     String barrio = selectedBarrio.get(0);
 
                     List<Mesa> mesas = new ArrayList<>(mesaList);
-                    restaurant = restaurantRepository.getRestaurantByEmail(restaurant.getEmail());
-                    serviceRestaurant.setListaMesasRestaurante(restaurant, mesas);
+
+
 
                     serviceRestaurant.registrarDatosRestaurant(restaurant, nombre, telefono, direccion, barrio, habre, hcierra, descripcion, web, nuevaPass);
-
+                    serviceRestaurant.setGrupoDeComidaList(restaurant, selectedItemsComidas);
+                    serviceRestaurant.setTipoDePagoList(restaurant, selectedItemsTipoDePagoMenu);
+                    serviceRestaurant.setListaMesasRestaurante(restaurant, mesas);
                     if (imgFile != null) {
                         serviceRestaurant.guardarImagen(restaurant, imgFile);
                     }
-
                     if (precioMedio == null || precioMedio.getText().equals("")) {
-
-
                     } else {
                         serviceRestaurant.setPrecioMedio(restaurant, precioMedio.getText());
                     }
+
                     showAlert("Datos guardados", "Se guardaron con éxito los datos de su restaurante");
                     clean();
 
@@ -272,8 +269,8 @@ public class SolicitarDatos {
                     Stage stage = new Stage();
                     stage.setTitle("¡Bienvenido!");
                     stage.getIcons().add(new Image("grupo1/labtic/ui/Imagenes/yendoIcono.png"));
-                    double w = ((Stage)((Node)event.getSource()).getScene().getWindow()).getWidth();
-                    double h = ((Stage)((Node)event.getSource()).getScene().getWindow()).getHeight();
+                    double w = ((Stage) ((Node) event.getSource()).getScene().getWindow()).getWidth();
+                    double h = ((Stage) ((Node) event.getSource()).getScene().getWindow()).getHeight();
                     stage.setScene(new Scene(root));
                     stage.setHeight(h);
                     stage.setWidth(w);
@@ -283,6 +280,8 @@ public class SolicitarDatos {
                     showAlert("Informacion Invalida", "Se encontró un error en los datos ingresados");
                 } catch (IOException e) {
                     e.printStackTrace();
+                } catch (DuplicateDireccion duplicateDireccion) {
+                    showAlert("Entrada duplicada", duplicateDireccion.getMessage());
                 }
             } else {
                 showAlert("Contraseñas incorrectas", "Las contraseñas no coinciden.");

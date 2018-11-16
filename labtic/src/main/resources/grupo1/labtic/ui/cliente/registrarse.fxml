@@ -17,11 +17,8 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<<<<<<< HEAD
-<AnchorPane fx:id="imagePortadaContainer" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="grupo1.labtic.ui.cliente.Registro">
-=======
+
 <AnchorPane fx:id="imagePortadaContainer" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="grupo1.labtic.ui.cliente.Registro">
->>>>>>> c8d9263d29be0f274a143a5b842cca4c8d835f92
    <children>
       <ImageView fx:id="imagePortada" fitHeight="427.0" fitWidth="673.0" opacity="0.28" pickOnBounds="true" preserveRatio="true" />
       <GridPane alignment="CENTER" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -98,21 +95,12 @@
                </font>
             </Label>
          </children>
-<<<<<<< HEAD
-      </Pane>
+      </GridPane>
       <Text fill="#463626" layoutX="231.0" layoutY="76.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sing Up">
          <font>
             <Font name="Yu Gothic Regular" size="38.0" />
          </font>
       </Text>
-      <JFXButton fx:id="backButton" onAction="#back" text="Back" textFill="#463626">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font>
-      </JFXButton>
       <ImageView fitHeight="400.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true" />
-=======
-      </GridPane>
->>>>>>> c8d9263d29be0f274a143a5b842cca4c8d835f92
    </children>
 </AnchorPane>
