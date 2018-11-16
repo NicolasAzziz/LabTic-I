@@ -14,6 +14,6 @@ public interface GrupoDeComidaRepository extends CrudRepository<GrupoDeComida, S
     boolean existsByGrupo(String nombre);
 
     //    List<GrupoDeComida> getGrupoDeComidasByGrupo(List<String> nombreGrupo);
-    @Query("select o from GrupoComida o where o.grupo in :nombreGrupo")
-    List<GrupoDeComida> getGrupoDeComidaByGrupo(@Param("nombreGrupo") List<String> nombreGrupo);
+    @Query("select o from GrupoComida o where o.grupo in :grupoDeComida_Nombre")
+    List<GrupoDeComida> getGrupoDeComidaByGrupo(@Param("grupoDeComida_Nombre") List<String> nombreGrupo);
 }

@@ -230,4 +230,12 @@ public class RestaurantService {
         }
 
     }
+
+    public Restaurant getByEmail(String email) {
+        return restaurantRepository.getOneByEmail(email);
+    }
+
+    public void save(Restaurant restaurant) {
+        restaurantRepository.save(restaurant);
+    }
 }

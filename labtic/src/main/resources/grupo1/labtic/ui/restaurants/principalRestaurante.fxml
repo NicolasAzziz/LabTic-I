@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="grupo1.labtic.ui.restaurants.RestaurantePrincipal">
    <children>
       <GridPane prefHeight="400.0" prefWidth="600.0">
         <columnConstraints>
@@ -31,7 +31,7 @@
             </Label>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #857B6F;" GridPane.rowIndex="1">
                <children>
-                  <JFXButton fx:id="cerrarSesion" alignment="TOP_CENTER" contentDisplay="TOP" layoutX="11.0" layoutY="83.0" prefHeight="39.0" prefWidth="92.0" style="-fx-background-color: #493928;" text="Cerrar sesion" textFill="WHITE">
+                  <JFXButton alignment="TOP_CENTER" contentDisplay="TOP" layoutX="11.0" layoutY="83.0" onAction="#cerrarSesion" prefHeight="39.0" prefWidth="92.0" style="-fx-background-color: #493928;" text="Cerrar sesion" textFill="WHITE">
                      <graphic>
                         <FontAwesomeIconView fill="WHITE" glyphName="POWER_OFF" size="25.0" wrappingWidth="21.619057655334473" />
                      </graphic>
@@ -73,19 +73,22 @@
                         <Label alignment="CENTER" layoutX="43.0" layoutY="11.0" prefHeight="19.0" prefWidth="158.0" style="-fx-border-color: #493928;" text="Reservas Activas" textFill="#493928" />
                      </children>
                   </Pane>
-                  <TableView prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
+                  <TableView fx:id="reservasPendientes" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
                     <columns>
-                      <TableColumn prefWidth="77.6666259765625" text="Nombre" />
-                      <TableColumn prefWidth="50.3333740234375" text="Mesa" />
-                        <TableColumn prefWidth="55.66668701171875" text="Hora" />
-                        <TableColumn prefWidth="62.0" text="Aceptar" />
+                      <TableColumn fx:id="nomreClienteRP" prefWidth="90.0" text="Nombre" />
+                      <TableColumn fx:id="mesaRP" prefWidth="84.0" text="Mesa">
+                           <columns>
+                              <TableColumn fx:id="nroMesaRP" prefWidth="31.0" text="#" />
+                              <TableColumn fx:id="lugaresMesaRP" prefWidth="40.0" text="Lugares" />
+                           </columns></TableColumn>
+                        <TableColumn fx:id="horaRP" prefWidth="82.0" text="Hora" />
                     </columns>
                   </TableView>
-                  <TableView prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <TableView fx:id="reservasActivas" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                     <columns>
-                      <TableColumn prefWidth="112.3333740234375" text="Nombre" />
-                      <TableColumn prefWidth="49.6666259765625" text="Mesa" />
-                        <TableColumn text="Hora" />
+                      <TableColumn fx:id="nombreClienteRA" prefWidth="100.5555419921875" text="Nombre" />
+                      <TableColumn fx:id="mesaRA" prefWidth="62.4444580078125" text="Mesa" />
+                        <TableColumn fx:id="horaRA" text="Hora" />
                     </columns>
                   </TableView>
                   <Pane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
@@ -98,16 +101,16 @@
                         <Label alignment="CENTER" contentDisplay="CENTER" layoutX="43.0" layoutY="15.0" prefHeight="19.0" prefWidth="158.0" style="-fx-border-color: #493928;" text="Mesas Ocupadas" textAlignment="CENTER" textFill="#493928" />
                      </children>
                   </Pane>
-                  <TableView prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="3">
+                  <TableView fx:id="mesasLibres" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="3">
                     <columns>
-                      <TableColumn prefWidth="128.3333740234375" text="Nro Mesa" />
-                      <TableColumn prefWidth="114.6666259765625" text="Lugares" />
+                      <TableColumn fx:id="nroMesaML" prefWidth="128.3333740234375" text="Nro Mesa" />
+                      <TableColumn fx:id="lugaresML" prefWidth="114.6666259765625" text="Lugares" />
                     </columns>
                   </TableView>
-                  <TableView prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                  <TableView fx:id="mesasOcupadas" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                     <columns>
-                      <TableColumn prefWidth="125.0" text="Nro Mesa" />
-                      <TableColumn prefWidth="117.0" text="Lugares" />
+                      <TableColumn fx:id="nroMesaMO" prefWidth="125.0" text="Nro Mesa" />
+                      <TableColumn fx:id="lugaresMO" prefWidth="117.0" text="Lugares" />
                     </columns>
                   </TableView>
                </children>

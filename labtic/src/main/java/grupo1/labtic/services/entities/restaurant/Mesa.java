@@ -13,8 +13,7 @@ public class Mesa {
     @Column(name = "nroReferencia")
     private Integer nroReferencia;
 
-    @Column(name = "cantidadDeLugares")
-    @NotNull
+    @Column(name = "cantLugares")
     private Integer cantLugares;
 
     @Column(name = "libre")
@@ -81,6 +80,16 @@ public class Mesa {
     @Override
     public String toString() {
         return "No. de mesa: " + getNroReferencia() + ".  No. lugares: " + getCantLugares() + ".";
+    }
+
+    public String getEstado() {
+        String estado = "";
+        if(isMesaLibre()){
+            estado = "Libre";
+        } else if(isMesaLibre() == false){
+            estado = "Ocupada";
+        }
+        return estado;
     }
 }
 
