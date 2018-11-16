@@ -31,12 +31,12 @@
             </Label>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #857B6F;" GridPane.rowIndex="1">
                <children>
-                  <JFXButton alignment="TOP_CENTER" contentDisplay="TOP" layoutX="11.0" layoutY="83.0" onAction="#cerrarSesion" prefHeight="39.0" prefWidth="92.0" style="-fx-background-color: #493928;" text="Cerrar sesion" textFill="WHITE">
+                  <JFXButton fx:id="cerrarSesion" alignment="TOP_CENTER" contentDisplay="TOP" layoutX="11.0" layoutY="83.0" onAction="#cerrarSesion" prefHeight="39.0" prefWidth="92.0" style="-fx-background-color: #493928;" text="Cerrar sesion" textFill="WHITE">
                      <graphic>
                         <FontAwesomeIconView fill="WHITE" glyphName="POWER_OFF" size="25.0" wrappingWidth="21.619057655334473" />
                      </graphic>
                   </JFXButton>
-                  <JFXButton fx:id="ajustes" alignment="TOP_CENTER" contentDisplay="TOP" layoutX="11.0" layoutY="206.0" prefHeight="27.0" prefWidth="92.0" style="-fx-background-color: #493928;" text="Ajustes" textFill="WHITE">
+                  <JFXButton fx:id="ajustes" alignment="TOP_CENTER" contentDisplay="TOP" layoutX="11.0" layoutY="206.0" onAction="#ajustes" prefHeight="27.0" prefWidth="92.0" style="-fx-background-color: #493928;" text="Ajustes" textFill="WHITE">
                      <graphic>
                         <FontAwesomeIconView fill="WHITE" glyphName="GEAR" size="25.0" />
                      </graphic>
@@ -45,7 +45,7 @@
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #857B6F;" GridPane.columnIndex="1">
                <children>
-                  <Label alignment="CENTER" layoutX="129.0" layoutY="15.0" style="-fx-background-color: #493928;" text="Nombre del restaurant" textFill="WHITE">
+                  <Label fx:id="nombreRestaurant" alignment="CENTER" layoutX="129.0" layoutY="15.0" style="-fx-background-color: #493928;" text="Nombre del restaurant" textFill="WHITE">
                      <font>
                         <Font name="Yu Gothic Regular" size="22.0" />
                      </font>

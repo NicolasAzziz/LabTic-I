@@ -7,6 +7,7 @@ import grupo1.labtic.persistence.RestaurantRepository;
 import grupo1.labtic.services.ReservaService;
 import grupo1.labtic.services.entities.Cliente;
 import grupo1.labtic.services.entities.Restaurant;
+import grupo1.labtic.ui.LoginController;
 import grupo1.labtic.services.entities.restaurant.Mesa;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -134,6 +135,10 @@ public class Principal {
     private Cliente cliente;
 
     private Restaurant rowData;
+
+    private FXMLLoader fxmlLoader;
+
+    private Parent root;
 
     public void setCliente(Cliente cliente){
         this.cliente = cliente;
@@ -356,7 +361,24 @@ public class Principal {
 
     @FXML
     void cerrarSesion(ActionEvent event) {
-        ((Stage)((Node)event.getSource()).getScene().getWindow()).close();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setControllerFactory(AppApplication.getContext()::getBean);
+        Parent root = null;
+        try {
+            root = loader.load(LoginController.class.getResourceAsStream("login.fxml"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Stage stage = new Stage();
+        stage.setTitle("¡Bienvenido!");
+        stage.getIcons().add(new Image("grupo1/labtic/ui/Imagenes/yendoIcono.png"));
+        double w = ((Stage) ((Node) event.getSource()).getScene().getWindow()).getWidth();
+        double h = ((Stage) ((Node) event.getSource()).getScene().getWindow()).getHeight();
+        stage.setScene(new Scene(root));
+        stage.setHeight(h);
+        stage.setWidth(w);
+        stage.show();
+        ((Stage) ((Node) event.getSource()).getScene().getWindow()).close();
     }
 
     @FXML
