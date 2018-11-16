@@ -54,6 +54,7 @@ public class Restaurant extends Usuario {
 
     @ElementCollection
     @CollectionTable(name = "Mesas", joinColumns = @JoinColumn(name = "Restaurant_id"), uniqueConstraints = @UniqueConstraint(columnNames = {"restaurant_id", "nroReferencia"}))
+    @LazyCollection(LazyCollectionOption.FALSE)
     private List<Mesa> mesas;
 
 
@@ -298,5 +299,15 @@ public class Restaurant extends Usuario {
             exit = exit + tipoDePagoList.get(i).getNombre() + " \n";
         }
         return exit;
+    }
+
+    public Mesa getMesa(int nroReferencia) {
+        Mesa oMesa = null;
+        for (Mesa mesa:mesas
+             ) {
+            if(mesa.getNroReferencia() == nroReferencia)
+                oMesa = mesa;
+        }
+        return oMesa;
     }
 }

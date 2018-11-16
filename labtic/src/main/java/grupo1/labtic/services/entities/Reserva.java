@@ -1,5 +1,6 @@
 package grupo1.labtic.services.entities;
 
+import grupo1.labtic.services.entities.restaurant.Mesa;
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -79,6 +80,16 @@ public class Reserva {
         this.cliente = cliente;
     }
 
+    public Mesa getMesa(){
+        Mesa eMesa = null;
+        for (Mesa mesa:restaurant.getMesas()
+             ) {
+            if(nroReferencia == mesa.getNroReferencia()){
+                eMesa = mesa;
+            }
+        }
+        return eMesa;
+    }
     public long getId() {
         return id;
     }
@@ -91,13 +102,21 @@ public class Reserva {
         return estado;
     }
 
+    public Integer getCantLugares(){
+        return getMesa().getCantLugares();
+    }
+
     public void setEstadoSolicitado(){
         estado = "Solicitado";
     }
 
+    public String getNombreCliente(){
+        return cliente.getNombre();
+    }
+
     public void setEstadoAceptado(){
         estado = "Aceptado";
-        restaurant.getMesas().get(nroReferencia).setMesaLibre(false);
+        restaurant.getMesa(nroReferencia).setMesaLibre(false);
     }
 
     public void setEstadoRechazado(){
@@ -106,7 +125,7 @@ public class Reserva {
 
     public void setEstadoFinalizado(){
         estado = "Finalizado";
-        restaurant.getMesas().get(nroReferencia).setMesaLibre(true);
+        restaurant.getMesa(nroReferencia).setMesaLibre(true);
     }
 
 
