@@ -25,7 +25,7 @@ public class ReservaService {
     }
 
     public void solicitarReserva(Cliente c, Restaurant r, int nroMesa){
-        reservaRepository.save(new Reserva(c,r,nroMesa));
+        reservaRepository.save(new Reserva(c, r, nroMesa));
     }
 
     public void save(Reserva reserva){
@@ -39,6 +39,7 @@ public class ReservaService {
         reservaRepository.save(reserva1);
         Restaurant restaurant = restaurantService.getByEmail(reserva.getRestaurant().getEmail());
         restaurant.getMesa(reserva.getNroReferencia()).setMesaLibre(false);
+        restaurant.setReservas(reserva1);
         restaurantService.save(restaurant);
     }
 }

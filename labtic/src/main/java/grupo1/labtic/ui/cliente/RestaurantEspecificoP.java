@@ -65,7 +65,7 @@ public class RestaurantEspecificoP {
     private TableColumn<?, ?> sillas;
 
     @FXML
-    private JFXButton cerrarSesion;
+    private JFXButton atras;
 
     @FXML
     private JFXButton reservas;
@@ -110,7 +110,7 @@ public class RestaurantEspecificoP {
         assert mesas != null : "fx:id=\"mesas\" was not injected: check your FXML file 'restaurantEspecificoP.fxml'.";
         assert numeroMesa != null : "fx:id=\"numeroMesa\" was not injected: check your FXML file 'restaurantEspecificoP.fxml'.";
         assert sillas != null : "fx:id=\"sillas\" was not injected: check your FXML file 'restaurantEspecificoP.fxml'.";
-        assert cerrarSesion != null : "fx:id=\"cerrarSesion\" was not injected: check your FXML file 'restaurantEspecificoP.fxml'.";
+        assert atras != null : "fx:id=\"cerrarSesion\" was not injected: check your FXML file 'restaurantEspecificoP.fxml'.";
         assert reservas != null : "fx:id=\"reservas\" was not injected: check your FXML file 'restaurantEspecificoP.fxml'.";
         assert ajustes != null : "fx:id=\"ajustes\" was not injected: check your FXML file 'restaurantEspecificoP.fxml'.";
 

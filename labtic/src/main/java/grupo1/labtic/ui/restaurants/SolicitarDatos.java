@@ -38,7 +38,6 @@ public class SolicitarDatos {
 
     @Autowired
     RestaurantService serviceRestaurant;
-    ObservableList<Mesa> mesaList;
     @Autowired
     private RestaurantRepository restaurantRepository;
     @FXML
@@ -155,6 +154,7 @@ public class SolicitarDatos {
     private GridPane imgContainer;
     private File imgFile;
     private Restaurant restaurant;
+    ObservableList<Mesa> mesaList;
 
     @FXML
     public void agregarMesa(ActionEvent actionEvent) {
@@ -244,14 +244,11 @@ public class SolicitarDatos {
 
                     String barrio = selectedBarrio.get(0);
 
-                    List<Mesa> mesas = new ArrayList<>(mesaList);
-
-
 
                     serviceRestaurant.registrarDatosRestaurant(restaurant, nombre, telefono, direccion, barrio, habre, hcierra, descripcion, web, nuevaPass);
                     serviceRestaurant.setGrupoDeComidaList(restaurant, selectedItemsComidas);
                     serviceRestaurant.setTipoDePagoList(restaurant, selectedItemsTipoDePagoMenu);
-                    serviceRestaurant.setListaMesasRestaurante(restaurant, mesas);
+                    serviceRestaurant.setListaMesasRestaurante(restaurant, mesaList);
                     if (imgFile != null) {
                         serviceRestaurant.guardarImagen(restaurant, imgFile);
                     }

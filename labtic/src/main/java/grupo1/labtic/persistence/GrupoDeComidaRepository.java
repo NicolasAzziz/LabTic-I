@@ -8,6 +8,7 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface GrupoDeComidaRepository extends CrudRepository<GrupoDeComida, String> {
+
     GrupoDeComida getGrupoDeComidaByGrupo(String nombreGrupo);
 
 

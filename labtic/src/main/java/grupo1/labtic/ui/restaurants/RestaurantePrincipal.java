@@ -155,6 +155,7 @@ public class RestaurantePrincipal {
     }
 
     private void reservasPendientes() {
+
         nomreClienteRP.setCellValueFactory(new PropertyValueFactory<Reserva, String>("nombreCliente"));
         mesaRP.setCellValueFactory(new PropertyValueFactory<Reserva, Mesa>("mesa"));
         lugaresMesaRP.setCellValueFactory(new PropertyValueFactory<Reserva, Integer>("cantLugares"));

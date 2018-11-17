@@ -305,6 +305,7 @@ public class Principal {
         imagen.setCellValueFactory(new PropertyValueFactory<Restaurant, ImageView>("imageView"));
         cocinas.setCellValueFactory(new PropertyValueFactory<Restaurant, String>("cocinasOfrecidasString"));
 
+
         tableViewRestaurantes.setItems(observableList);
 
         tableViewRestaurantes.setRowFactory(tv -> {
@@ -393,8 +394,13 @@ public class Principal {
     @FXML
     void solicitarMesa(ActionEvent event) {
         Mesa mesa = mesas.getSelectionModel().getSelectedItem();
-        reservaService.solicitarReserva(cliente,rowData,mesa.getNroReferencia());
+        reservaService.solicitarReserva(cliente, rowData, mesa.getNroReferencia());
         showAlert("Solicitado","Se ha enviado una solicitud de reserva al restaurante.");
 
+    }
+
+    @FXML
+    void atras(ActionEvent event) throws IOException {
+        ((Stage) ((Node) event.getSource()).getScene().getWindow()).close();
     }
 }

@@ -97,6 +97,7 @@ public class PortadaAdmin {
     @FXML
     private Text importe;
 
+    @Autowired
     private ReservaRepository reservaRepository;
 
     private Restaurant rowData;
@@ -215,25 +216,25 @@ public class PortadaAdmin {
 
             }else {
 
-                List<Reserva> reservas = new ArrayList<>();
+                List<Reserva> reservas = rowData.getReservas();
+                List<Reserva> reservasFiltradas = new ArrayList<>();
 
-//                Date formatDesde = Date.from(dateDesde.atStartOfDay(ZoneId.systemDefault()).toInstant());
-//                Date formatHasta = Date.from(dateHasta.atStartOfDay(ZoneId.systemDefault()).toInstant());
+                Date formatDesde = Date.from(dateDesde.atStartOfDay(ZoneId.systemDefault()).toInstant());
+                Date formatHasta = Date.from(dateHasta.atStartOfDay(ZoneId.systemDefault()).toInstant());
 
-                Iterable<Reserva> reservasAceptadas = reservaRepository.getReservasByEstadoAndRestaurant("Aceptado", rowData);
-//                Iterable<Reserva> reservasFinzalizadas = reservaRepository.getReservasByEstadoAndRestaurant("Finalizado", this.rowData);
-
-//                reservasFinzalizadas.forEach(reserva -> reservas.add(reserva));
+                Iterable<Reserva> reservasAceptadas = reservaRepository.getReservasByEstadoIsAndRestaurant("Aceptado", rowData);
+                Iterable<Reserva> reservasFinzalizadas = reservaRepository.getReservasByEstadoIsAndRestaurant("Finalizado", rowData);
 
                 reservasAceptadas.forEach(reserva -> reservas.add(reserva));
+                reservasFinzalizadas.forEach(reserva -> reservas.add(reserva));
 
-
+                for(int i = 0 ; i < reservas.size(); i++){
+                    if(reservas.get(i).getFechaYhora().after(formatDesde) && reservas.get(i).getFechaYhora().before(formatHasta)){
+                        reservasFiltradas.add(reservas.get(i));
+                    }
+                }
 
                 long importeAPagar = reservas.size() * precioPorReserva;
-
-// Probando Importe FALTA COMPROBAR LA FECHA
-
-                System.out.println(importeAPagar);
 
                 importe.setText("$ " + importeAPagar);
 

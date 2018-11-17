@@ -42,6 +42,8 @@ public class ReservasPendientes {
 
     @Autowired
     private ReservaService reservaService;
+
+
     public void setReserva(Reserva reserva){
         this.reserva = reserva;
         nombreCliente.setText(reserva.getCliente().getNombre());

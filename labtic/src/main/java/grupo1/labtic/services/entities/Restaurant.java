@@ -317,7 +317,7 @@ public class Restaurant extends Usuario {
     }
 
     public List<Reserva> getReservas() {
-        return reservas;
+        return this.reservas;
     }
 
     public void setReservas(Reserva reserva) {
