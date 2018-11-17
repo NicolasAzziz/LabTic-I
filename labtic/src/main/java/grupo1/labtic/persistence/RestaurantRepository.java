@@ -3,12 +3,14 @@ package grupo1.labtic.persistence;
 import grupo1.labtic.services.entities.Reserva;
 import grupo1.labtic.services.entities.Restaurant;
 import grupo1.labtic.services.entities.restaurant.GrupoDeComida;
+import grupo1.labtic.services.entities.restaurant.Mesa;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
 
 
 public interface RestaurantRepository extends CrudRepository<Restaurant, String> {
+
 
     Restaurant findOneByEmail(String email);
 

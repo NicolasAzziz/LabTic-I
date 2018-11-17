@@ -79,7 +79,7 @@ public class RestaurantEspecificoP {
     }
 
     @FXML
-    void cerrarSesion(ActionEvent event) {
+    void atras (ActionEvent event){
 
     }
 

@@ -152,6 +152,8 @@ public class LoginController {
                             stage.setWidth(w);
                             stage.show();
                             ((Stage) ((Node) actionEvent.getSource()).getScene().getWindow()).close();
+                            RestaurantePrincipal restaurantePrincipal = loader.<RestaurantePrincipal>getController();
+                            restaurantePrincipal.setRestaurant(r);
                         } catch (IOException e) {
                             e.printStackTrace();
                         }

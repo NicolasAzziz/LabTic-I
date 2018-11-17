@@ -48,6 +48,10 @@ public class Reserva {
         setEstadoSolicitado();
     }
 
+    public String getNombreRestaurant(){
+        return restaurant.getNombreRestaurant();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -128,6 +132,9 @@ public class Reserva {
         restaurant.getMesa(nroReferencia).setMesaLibre(true);
     }
 
+    public void setEstadoCancelado(){
+        estado = "Cancelado";
+    }
 
 
     public Restaurant getRestaurant() {

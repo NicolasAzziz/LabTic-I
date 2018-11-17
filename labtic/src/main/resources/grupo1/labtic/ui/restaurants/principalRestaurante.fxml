@@ -41,6 +41,11 @@
                         <FontAwesomeIconView fill="WHITE" glyphName="GEAR" size="25.0" />
                      </graphic>
                   </JFXButton>
+                  <JFXButton contentDisplay="CENTER" layoutX="36.0" layoutY="301.0" onAction="#refresh" style="-fx-background-color: #493928;" text=" " textAlignment="CENTER" textFill="WHITE">
+                     <graphic>
+                        <FontAwesomeIconView fill="WHITE" glyphName="REFRESH" size="20" textAlignment="CENTER" />
+                     </graphic>
+                  </JFXButton>
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #857B6F;" GridPane.columnIndex="1">
@@ -75,20 +80,13 @@
                   </Pane>
                   <TableView fx:id="reservasPendientes" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
                     <columns>
-                      <TableColumn fx:id="nomreClienteRP" prefWidth="90.0" text="Nombre" />
+                      <TableColumn fx:id="nombreClienteRP" prefWidth="90.0" text="Nombre" />
                       <TableColumn fx:id="mesaRP" prefWidth="84.0" text="Mesa">
                            <columns>
                               <TableColumn fx:id="nroMesaRP" prefWidth="31.0" text="#" />
-                              <TableColumn fx:id="lugaresMesaRP" prefWidth="40.0" text="Lugares" />
+                              <TableColumn fx:id="lugarMesaRP" prefWidth="40.0" text="Lugares" />
                            </columns></TableColumn>
                         <TableColumn fx:id="horaRP" prefWidth="82.0" text="Hora" />
-                    </columns>
-                  </TableView>
-                  <TableView fx:id="reservasActivas" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                    <columns>
-                      <TableColumn fx:id="nombreClienteRA" prefWidth="100.5555419921875" text="Nombre" />
-                      <TableColumn fx:id="mesaRA" prefWidth="62.4444580078125" text="Mesa" />
-                        <TableColumn fx:id="horaRA" text="Hora" />
                     </columns>
                   </TableView>
                   <Pane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
@@ -104,14 +102,26 @@
                   <TableView fx:id="mesasLibres" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="3">
                     <columns>
                       <TableColumn fx:id="nroMesaML" prefWidth="128.3333740234375" text="Nro Mesa" />
-                      <TableColumn fx:id="lugaresML" prefWidth="114.6666259765625" text="Lugares" />
+                      <TableColumn fx:id="lugarML" prefWidth="114.6666259765625" text="Lugares" />
                     </columns>
                   </TableView>
                   <TableView fx:id="mesasOcupadas" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                     <columns>
                       <TableColumn fx:id="nroMesaMO" prefWidth="125.0" text="Nro Mesa" />
-                      <TableColumn fx:id="lugaresMO" prefWidth="117.0" text="Lugares" />
+                      <TableColumn fx:id="lugarMO" prefWidth="117.0" text="Lugares" />
                     </columns>
+                  </TableView>
+                  <TableView fx:id="reservasActivas" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <columns>
+                        <TableColumn fx:id="nombreClienteRA" prefWidth="90.0" text="Nombre" />
+                        <TableColumn fx:id="mesaRA" prefWidth="84.0" text="Mesa">
+                           <columns>
+                              <TableColumn fx:id="nroMesaRA" prefWidth="31.0" text="#" />
+                              <TableColumn fx:id="lugarMesaRA" prefWidth="40.0" text="Lugares" />
+                           </columns>
+                        </TableColumn>
+                        <TableColumn fx:id="horaRA" prefWidth="82.0" text="Hora" />
+                     </columns>
                   </TableView>
                </children>
             </GridPane>

@@ -19,6 +19,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -237,5 +238,29 @@ public class RestaurantService {
 
     public void save(Restaurant restaurant) {
         restaurantRepository.save(restaurant);
+    }
+
+    public List<Mesa> mesasLibres(Restaurant restaurant) {
+        Restaurant restaurant1 = restaurantRepository.getRestaurantByEmail(restaurant.getEmail());
+        List<Mesa> mesas = restaurant1.getMesas();
+        List<Mesa> mesasLibres = new ArrayList<>();
+        for (Mesa mesa:mesas
+             ) {
+            if(mesa.isMesaLibre())
+                mesasLibres.add(mesa);
+        }
+        return mesasLibres;
+    }
+
+    public List<Mesa> mesasOcupadas(Restaurant restaurant) {
+        Restaurant restaurant1 = restaurantRepository.getRestaurantByEmail(restaurant.getEmail());
+        List<Mesa> mesas = restaurant1.getMesas();
+        List<Mesa> mesasOcupadas = new ArrayList<>();
+        for (Mesa mesa:mesas
+        ) {
+            if(mesa.isMesaLibre() == false)
+                mesasOcupadas.add(mesa);
+        }
+        return mesasOcupadas;
     }
 }

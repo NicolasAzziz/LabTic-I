@@ -11,7 +11,15 @@ import java.util.List;
 
 public interface ReservaRepository extends CrudRepository<Reserva, String> {
 
+    Iterable<Reserva> getReservaByCliente_EmailAndEstado(String clienteEmail, String estado);
+
     Iterable<Reserva> getReservasByEstadoIs(String estado);
+
+    Reserva getReservaById(long id);
+
+    Iterable<Reserva> getReservasByCliente_Email(String clienteEmail);
+
+    boolean existsByClienteAndRestaurantAndNroReferencia(Cliente cliente, Restaurant restaurant, int nroReserva);
 
     Reserva getById(long id);
 

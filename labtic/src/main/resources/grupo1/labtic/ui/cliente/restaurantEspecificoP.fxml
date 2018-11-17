@@ -342,19 +342,9 @@
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #857B6F;" GridPane.rowIndex="1">
                <children>
-                  <JFXButton fx:id="cerrarSesion" alignment="TOP_CENTER" contentDisplay="TOP" layoutX="10.0" layoutY="39.0" onAction="#cerrarSesion" prefHeight="39.0" prefWidth="92.0" style="-fx-background-color: #493928;" text="Atras" textFill="WHITE">
+                  <JFXButton alignment="TOP_CENTER" contentDisplay="TOP" layoutX="10.0" layoutY="39.0" onAction="#atras" prefHeight="39.0" prefWidth="92.0" style="-fx-background-color: #493928;" text="Atras" textFill="WHITE">
                      <graphic>
                         <FontAwesomeIconView fill="WHITE" glyphName="ARROW_CIRCLE_LEFT" size="25" />
-                     </graphic>
-                  </JFXButton>
-                  <JFXButton fx:id="reservas" alignment="TOP_CENTER" contentDisplay="TOP" layoutX="10.0" layoutY="239.0" onAction="#reservas" prefHeight="55.0" prefWidth="92.0" style="-fx-background-color: #493928;" text="Ver reservas" textFill="WHITE">
-                     <graphic>
-                        <FontAwesomeIconView fill="WHITE" glyphName="BOOKMARK_ALT" size="25.0" />
-                     </graphic>
-                  </JFXButton>
-                  <JFXButton fx:id="ajustes" alignment="TOP_CENTER" contentDisplay="TOP" layoutX="10.0" layoutY="139.0" onAction="#ajustes" prefHeight="27.0" prefWidth="92.0" style="-fx-background-color: #493928;" text="Ajustes" textFill="WHITE">
-                     <graphic>
-                        <FontAwesomeIconView fill="WHITE" glyphName="GEAR" size="25.0" />
                      </graphic>
                   </JFXButton>
                </children>
