@@ -4,8 +4,11 @@ import com.jfoenix.controls.JFXButton;
 import grupo1.labtic.AppApplication;
 import grupo1.labtic.persistence.GrupoDeComidaRepository;
 import grupo1.labtic.persistence.RestaurantRepository;
+import grupo1.labtic.services.ReservaService;
+import grupo1.labtic.services.entities.Cliente;
 import grupo1.labtic.services.entities.Restaurant;
 import grupo1.labtic.ui.LoginController;
+import grupo1.labtic.services.entities.restaurant.Mesa;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -15,19 +18,25 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.awt.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import static grupo1.labtic.ui.Alert.showAlert;
 
 @Component
 public class Principal {
@@ -38,6 +47,9 @@ public class Principal {
     @Autowired
     private GrupoDeComidaRepository grupoDeComidaRepository;
 
+    @Autowired
+    private ReservaService reservaService;
+
     @FXML
     private MenuButton zonasToFindTable;
     @FXML
@@ -46,104 +58,6 @@ public class Principal {
     @FXML
     private TextField restaurantToFind;
 
-    @FXML
-    private CheckMenuItem puntaCarretas;
-    @FXML
-    private CheckMenuItem palermo;
-    @FXML
-    private CheckMenuItem parqueRodo;
-    @FXML
-    private CheckMenuItem maronias;
-    @FXML
-    private CheckMenuItem cordon;
-    @FXML
-    private CheckMenuItem buceo;
-    @FXML
-    private CheckMenuItem malvin;
-    @FXML
-    private CheckMenuItem ciudadVieja;
-    @FXML
-    private CheckMenuItem centro;
-    @FXML
-    private CheckMenuItem pocitos;
-    @FXML
-    private CheckMenuItem barrioSur;
-    @FXML
-    private CheckMenuItem parqueBatlle;
-    @FXML
-    private CheckMenuItem puntaGorda;
-    @FXML
-    private CheckMenuItem carrasco;
-
-    @FXML
-    private CheckMenuItem comidaVegana;
-    @FXML
-    private CheckMenuItem parrilla;
-    @FXML
-    private CheckMenuItem sandwiches;
-    @FXML
-    private CheckMenuItem cafeteria;
-    @FXML
-    private CheckMenuItem comidaChina;
-    @FXML
-    private CheckMenuItem celiacos;
-    @FXML
-    private CheckMenuItem comidaMexicana;
-    @FXML
-    private CheckMenuItem wok;
-    @FXML
-    private CheckMenuItem hamburgesas;
-    @FXML
-    private CheckMenuItem pizza;
-    @FXML
-    private CheckMenuItem chivitos;
-    @FXML
-    private CheckMenuItem sushi;
-    @FXML
-    private CheckMenuItem tartas;
-    @FXML
-    private CheckMenuItem pescadoMariscos;
-    @FXML
-    private CheckMenuItem comidaVegetariana;
-    @FXML
-    private CheckMenuItem ensaladas;
-    @FXML
-    private CheckMenuItem wrap;
-    @FXML
-    private CheckMenuItem milanesas;
-
-
-    @FXML
-    private Text nombre;
-    @FXML
-    private Text description;
-    @FXML
-    private Text barrioPM;
-    @FXML
-    private Text direccion;
-    @FXML
-    private Text tel;
-    @FXML
-    private Text horario;
-    @FXML
-    private HBox hBox;
-    @FXML
-    private ImageView logo;
-    @FXML
-    private Text comidas;
-    @FXML
-    private Text pagos;
-
-    @FXML
-    private Button reservar;
-    @FXML
-    private TextField personas;
-    @FXML
-    private TextField hora;
-    @FXML
-    private TextField min;
-    @FXML
-    private DatePicker fechaReserva;
 
     @FXML
     private TableView<Restaurant> tableViewRestaurantes;
@@ -170,20 +84,74 @@ public class Principal {
 
     private String mailResto;
 
+    @FXML
+    private Text raiting;
+
+    @FXML
+    private Text horario;
+
+    @FXML
+    private Text nombre;
+
+    @FXML
+    private Text description;
+
+    @FXML
+    private Text comidas;
+
+    @FXML
+    private Text pagos;
+
+    @FXML
+    private Text precioMedio;
+
+    @FXML
+    private Text barrioRE;
+
+    @FXML
+    private Text direccion;
+
+    @FXML
+    private Text tel;
+
+    @FXML
+    private ImageView imagenRE;
+
+    @FXML
+    private HBox imagenContainer;
+
+    @FXML
+    private TableColumn numeroMesa;
+
+    @FXML
+    private TableColumn sillas;
+
+    @FXML
+    private TableView<Mesa> mesas;
+
+    @FXML
+    private TableColumn reservar;
+
+    private Cliente cliente;
+
     private Restaurant rowData;
 
     private FXMLLoader fxmlLoader;
 
     private Parent root;
 
+    public void setCliente(Cliente cliente){
+        this.cliente = cliente;
+    }
 
     @FXML
     void initialize() {
+
         nombreRestaurante.setCellValueFactory(new PropertyValueFactory<Restaurant, String>("nombreRestaurant"));
         descripcion.setCellValueFactory(new PropertyValueFactory<Restaurant, String>("descripcion"));
         barrio.setCellValueFactory(new PropertyValueFactory<Restaurant, String>("barrio"));
         imagen.setCellValueFactory(new PropertyValueFactory<Restaurant, ImageView>("imageView"));
-        cocinas.setCellValueFactory(new PropertyValueFactory<Restaurant, String>("cocinasOfrecidas"));
+        cocinas.setCellValueFactory(new PropertyValueFactory<Restaurant, String>("cocinasOfrecidasString"));
 
         List<Restaurant> restaurantes = (List) repository.findAll();
         tableViewRestaurantes.setItems(FXCollections.observableList(restaurantes));
@@ -195,31 +163,7 @@ public class Principal {
                 if (event1.getClickCount() == 2 && (!row.isEmpty())) {
                     rowData = row.getItem();
                     try {
-                        FXMLLoader loader = new FXMLLoader();
-                        loader.setControllerFactory(AppApplication.getContext()::getBean);
-                        Parent root = loader.load(Principal.class.getResourceAsStream("restaurantEspecifico.fxml"));
-                        Stage stage = new Stage();
-                        stage.setTitle("Restaurant específico");
-                        stage.getIcons().add(new Image("grupo1/labtic/ui/Imagenes/yendoIcono.png"));
-                        double w = ((Stage)((Node)event1.getSource()).getScene().getWindow()).getWidth();
-                        double h = ((Stage)((Node)event1.getSource()).getScene().getWindow()).getHeight();
-                        stage.setScene(new Scene(root));
-                        stage.setHeight(h);
-                        stage.setWidth(w);
-                        nombre.setText(rowData.getNombreRestaurant());
-                        description.setText(rowData.getDescripcion());
-                        barrioPM.setText(rowData.getBarrio() + " - " + rowData.getPrecioMedio());
-                        tel.setText(rowData.getTelefono());
-                        direccion.setText(rowData.getDireccion());
-                        horario.setText(rowData.getHorarioApertura() + " - " + rowData.getHorarioCierre());
-                        description.setText(rowData.getDescripcion());
-                        if (rowData.getImagen() != null) {
-                            logo.setImage(rowData.getImageView().getImage());
-                        }
-                        comidas.setText(rowData.getCocinasOfrecidasString());
-                        pagos.setText(rowData.getTipoDePagoListString());
-                        mailResto = rowData.getEmail();
-                        stage.show();
+                        loadRestaurantEspecifico(event1);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -355,7 +299,7 @@ public class Principal {
         descripcion.setCellValueFactory(new PropertyValueFactory<Restaurant, String>("descripcion"));
         barrio.setCellValueFactory(new PropertyValueFactory<Restaurant, String>("barrio"));
         imagen.setCellValueFactory(new PropertyValueFactory<Restaurant, ImageView>("imageView"));
-        cocinas.setCellValueFactory(new PropertyValueFactory<Restaurant, String>("cocinasOfrecidas"));
+        cocinas.setCellValueFactory(new PropertyValueFactory<Restaurant, String>("cocinasOfrecidasString"));
 
         tableViewRestaurantes.setItems(observableList);
 
@@ -365,28 +309,7 @@ public class Principal {
                 if (event1.getClickCount() == 2 && (!row.isEmpty())) {
                     rowData = row.getItem();
                     try {
-                        FXMLLoader loader = new FXMLLoader();
-                        loader.setControllerFactory(AppApplication.getContext()::getBean);
-                        Parent root = loader.load(Principal.class.getResourceAsStream("restaurantEspecifico.fxml"));
-                        Stage stage = new Stage();
-                        stage.setTitle("Restaurant específico");
-                        stage.getIcons().add(new Image("grupo1/labtic/ui/Imagenes/yendoIcono.png"));
-                        double w = ((Stage)((Node)event1.getSource()).getScene().getWindow()).getWidth();
-                        double h = ((Stage)((Node)event1.getSource()).getScene().getWindow()).getHeight();
-                        stage.setScene(new Scene(root));
-                        stage.setHeight(h);
-                        stage.setWidth(w);
-                        nombre.setText(rowData.getNombreRestaurant());
-                        description.setText(rowData.getDescripcion());
-                        barrioPM.setText(rowData.getBarrio() + " - " + rowData.getPrecioMedio());
-                        tel.setText(rowData.getTelefono());
-                        direccion.setText(rowData.getDireccion());
-                        horario.setText(rowData.getHorarioApertura() + " - " + rowData.getHorarioCierre());
-                        description.setText(rowData.getDescripcion());
-                        logo.setImage(rowData.getImageView().getImage());
-                        comidas.setText(rowData.getCocinasOfrecidasString());
-                        pagos.setText(rowData.getTipoDePagoListString());
-                        stage.show();
+                        loadRestaurantEspecifico(event1);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -397,7 +320,40 @@ public class Principal {
 
 
     }
+    private void loadRestaurantEspecifico(MouseEvent event1) throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setControllerFactory(AppApplication.getContext()::getBean);
+        Parent root = loader.load(Principal.class.getResourceAsStream("restaurantEspecificoP.fxml"));
+        Stage stage = new Stage();
+        stage.setTitle("Restaurant específico");
+        stage.getIcons().add(new Image("grupo1/labtic/ui/Imagenes/yendoIcono.png"));
+        double w = ((Stage)((Node)event1.getSource()).getScene().getWindow()).getWidth();
+        double h = ((Stage)((Node)event1.getSource()).getScene().getWindow()).getHeight();
+        stage.setScene(new Scene(root));
+        stage.setHeight(h);
+        stage.setWidth(w);
 
+
+        numeroMesa.setCellValueFactory(
+                (new PropertyValueFactory<Mesa,String>("nroReferencia")));
+        sillas.setCellValueFactory(new PropertyValueFactory<Mesa,String>("cantLugares"));
+
+        List<Mesa> mesasList = (List) rowData.getMesas();
+        mesas.setItems(FXCollections.observableList(mesasList));
+
+        nombre.setText(rowData.getNombreRestaurant());
+        description.setText(rowData.getDescripcion());
+        barrioRE.setText(rowData.getBarrio());
+        precioMedio.setText(rowData.getPrecioMedio());
+        tel.setText(rowData.getTelefono());
+        direccion.setText(rowData.getDireccion());
+        horario.setText(rowData.getHorarioApertura() + " - " + rowData.getHorarioCierre());
+        description.setText(rowData.getDescripcion());
+        imagenRE.setImage(rowData.getImageView().getImage());
+        comidas.setText(rowData.getCocinasOfrecidasString());
+        pagos.setText(rowData.getTipoDePagoListString());
+        stage.show();
+    }
     @FXML
     void ajustes(ActionEvent event) {
         //Modificar datos
@@ -429,7 +385,11 @@ public class Principal {
     void reservas(ActionEvent event) {
         //Ver reservas de cada usuario
     }
+    @FXML
+    void solicitarMesa(ActionEvent event) {
+        Mesa mesa = mesas.getSelectionModel().getSelectedItem();
+        reservaService.solicitarReserva(cliente,rowData,mesa.getNroReferencia());
+        showAlert("Solicitado","Se ha enviado una solicitud de reserva al restaurante.");
 
-
+    }
 }
-

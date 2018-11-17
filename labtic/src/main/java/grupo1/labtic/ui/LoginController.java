@@ -95,6 +95,8 @@ public class LoginController {
                         stage.setWidth(w);
                         stage.show();
                         ((Stage) ((Node) actionEvent.getSource()).getScene().getWindow()).close();
+                        Principal controler = loader.<Principal>getController();
+                        controler.setCliente(u);
                     } else {
                         showAlert("Contraseña incorrecta", "La contraseña ingresada no es correcta.");
                         password.setText(null);

@@ -75,17 +75,20 @@
                   </Pane>
                   <TableView fx:id="reservasPendientes" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
                     <columns>
-                      <TableColumn fx:id="nombre" prefWidth="77.6666259765625" text="Nombre" />
-                      <TableColumn fx:id="nroMesa" prefWidth="50.3333740234375" text="Mesa" />
-                        <TableColumn fx:id="hora" prefWidth="55.66668701171875" text="Hora" />
-                        <TableColumn prefWidth="62.0" text="Aceptar" />
+                      <TableColumn fx:id="nomreClienteRP" prefWidth="90.0" text="Nombre" />
+                      <TableColumn fx:id="mesaRP" prefWidth="84.0" text="Mesa">
+                           <columns>
+                              <TableColumn fx:id="nroMesaRP" prefWidth="31.0" text="#" />
+                              <TableColumn fx:id="lugaresMesaRP" prefWidth="40.0" text="Lugares" />
+                           </columns></TableColumn>
+                        <TableColumn fx:id="horaRP" prefWidth="82.0" text="Hora" />
                     </columns>
                   </TableView>
                   <TableView fx:id="reservasActivas" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                     <columns>
-                      <TableColumn prefWidth="112.3333740234375" text="Nombre" />
-                      <TableColumn prefWidth="49.6666259765625" text="Mesa" />
-                        <TableColumn text="Hora" />
+                      <TableColumn fx:id="nombreClienteRA" prefWidth="100.5555419921875" text="Nombre" />
+                      <TableColumn fx:id="mesaRA" prefWidth="62.4444580078125" text="Mesa" />
+                        <TableColumn fx:id="horaRA" text="Hora" />
                     </columns>
                   </TableView>
                   <Pane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
@@ -100,14 +103,14 @@
                   </Pane>
                   <TableView fx:id="mesasLibres" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="3">
                     <columns>
-                      <TableColumn prefWidth="128.3333740234375" text="Nro Mesa" />
-                      <TableColumn prefWidth="114.6666259765625" text="Lugares" />
+                      <TableColumn fx:id="nroMesaML" prefWidth="128.3333740234375" text="Nro Mesa" />
+                      <TableColumn fx:id="lugaresML" prefWidth="114.6666259765625" text="Lugares" />
                     </columns>
                   </TableView>
                   <TableView fx:id="mesasOcupadas" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                     <columns>
-                      <TableColumn prefWidth="125.0" text="Nro Mesa" />
-                      <TableColumn prefWidth="117.0" text="Lugares" />
+                      <TableColumn fx:id="nroMesaMO" prefWidth="125.0" text="Nro Mesa" />
+                      <TableColumn fx:id="lugaresMO" prefWidth="117.0" text="Lugares" />
                     </columns>
                   </TableView>
                </children>
