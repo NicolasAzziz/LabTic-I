@@ -16,9 +16,10 @@ public interface ReservaRepository extends CrudRepository<Reserva, String> {
     Reserva getById(long id);
 
     Iterable<Reserva> getReservasByEstadoAndRestaurant(String estado, Restaurant resto);
+//
+//    Iterable<Reserva> getReservasByFechaYhoraIsBetweenAndRestaurant(Date fechaDesde, Date fechaHasta);
 
-    Iterable<Reserva> getReservasByFechaYhoraIsBetweenAndRestaurant(Date fechaDesde, Date fechaHasta);
+//    Iterable<Reserva> getReservasByEstadoAndRestaurantAndFechaYhoraIsBetween(String estado, Restaurant resto, Date fechaDesde, Date fechaHasta);
 
-    Iterable<Reserva> getReservasByEstadoAndRestaurantAndFechaYhoraIsBetween(String estado, Restaurant resto, LocalDate fechaDesde, LocalDate fechaHasta);
 
 }

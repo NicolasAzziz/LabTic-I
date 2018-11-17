@@ -59,7 +59,7 @@ public class Restaurant extends Usuario {
 
     @ManyToMany
     @LazyCollection(LazyCollectionOption.FALSE)
-    private List<Reserva> reservas;
+    protected List<Reserva> reservas;
 
 
 

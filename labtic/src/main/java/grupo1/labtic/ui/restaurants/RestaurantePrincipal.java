@@ -161,9 +161,9 @@ public class RestaurantePrincipal {
         nroMesaRP.setCellValueFactory(new PropertyValueFactory<Mesa, Integer>("nroReferencia"));
         horaRP.setCellValueFactory(new PropertyValueFactory<Reserva, Date>("fechaYhora"));
 
-        reservaService.reservasPendientes().get(0).getMesa().getCantLugares();
-        reservaService.reservasPendientes().get(0).getNroReferencia();
-        reservaService.reservasPendientes().get(0).getCantLugares();
+//        reservaService.reservasPendientes().get(0).getMesa().getCantLugares();
+//        reservaService.reservasPendientes().get(0).getNroReferencia();
+//        reservaService.reservasPendientes().get(0).getCantLugares();
 
 
         reservasPendientes.setItems(FXCollections.observableList(reservaService.reservasPendientes()));

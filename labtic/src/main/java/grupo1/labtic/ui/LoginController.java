@@ -112,63 +112,64 @@ public class LoginController {
                 String pass = password.getText();
                 Restaurant r = restoRepository.findOneByEmail(login);
                 if (r.getPassword().equals(pass)) {
+
                     if (r.getNombreRestaurant() == null || r.getNombreRestaurant().equals("")) {
-                        FXMLLoader loader = new FXMLLoader();
-                        loader.setControllerFactory(AppApplication.getContext()::getBean);
-
-                        Parent root = null;
                         try {
-                            root = loader.load(SolicitarDatos.class.getResourceAsStream("SolicitarDatos.fxml"));
+                            FXMLLoader loader = new FXMLLoader();
+                            loader.setControllerFactory(AppApplication.getContext()::getBean);
+
+                            Parent root = loader.load(SolicitarDatos.class.getResourceAsStream("SolicitarDatos.fxml"));
+
+                            Stage stage = new Stage();
+                            stage.setTitle("Ingrese los datos de su restaurante");
+                            stage.getIcons().add(new Image("grupo1/labtic/ui/Imagenes/yendoIcono.png"));
+                            double w = ((Stage) ((Node) actionEvent.getSource()).getScene().getWindow()).getWidth();
+                            double h = ((Stage) ((Node) actionEvent.getSource()).getScene().getWindow()).getHeight();
+                            stage.setScene(new Scene(root));
+                            stage.setHeight(h);
+                            stage.setWidth(w);
+                            stage.show();
+                            ((Stage) ((Node) actionEvent.getSource()).getScene().getWindow()).close();
+                            SolicitarDatos controler = loader.<SolicitarDatos>getController();
+                            controler.restaurante(r);
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
-
-                        Stage stage = new Stage();
-                        stage.setTitle("Ingrese los datos de su restaurante");
-                        stage.getIcons().add(new Image("grupo1/labtic/ui/Imagenes/yendoIcono.png"));
-                        double w = ((Stage) ((Node) actionEvent.getSource()).getScene().getWindow()).getWidth();
-                        double h = ((Stage) ((Node) actionEvent.getSource()).getScene().getWindow()).getHeight();
-                        stage.setScene(new Scene(root));
-                        stage.setHeight(h);
-                        stage.setWidth(w);
-                        stage.show();
-                        ((Stage) ((Node) actionEvent.getSource()).getScene().getWindow()).close();
-                        SolicitarDatos controler = loader.<SolicitarDatos>getController();
-                        controler.restaurante(r);
                     } else {
-                        FXMLLoader loader = new FXMLLoader();
-                        loader.setControllerFactory(AppApplication.getContext()::getBean);
-                        Parent root = null;
                         try {
-                            root = loader.load(RestaurantePrincipal.class.getResourceAsStream("principalRestaurante.fxml"));
+                            FXMLLoader loader = new FXMLLoader();
+                            loader.setControllerFactory(AppApplication.getContext()::getBean);
+
+                            Parent root = loader.load(RestaurantePrincipal.class.getResourceAsStream("principalRestaurante.fxml"));
+
+                            Stage stage = new Stage();
+                            stage.setTitle("¡Bienvenido!");
+                            stage.getIcons().add(new Image("grupo1/labtic/ui/Imagenes/yendoIcono.png"));
+                            double w = ((Stage) ((Node) actionEvent.getSource()).getScene().getWindow()).getWidth();
+                            double h = ((Stage) ((Node) actionEvent.getSource()).getScene().getWindow()).getHeight();
+                            stage.setScene(new Scene(root));
+                            stage.setHeight(h);
+                            stage.setWidth(w);
+                            stage.show();
+                            ((Stage) ((Node) actionEvent.getSource()).getScene().getWindow()).close();
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
-                        Stage stage = new Stage();
-                        stage.setTitle("¡Bienvenido!");
-                        stage.getIcons().add(new Image("grupo1/labtic/ui/Imagenes/yendoIcono.png"));
-                        double w = ((Stage) ((Node) actionEvent.getSource()).getScene().getWindow()).getWidth();
-                        double h = ((Stage) ((Node) actionEvent.getSource()).getScene().getWindow()).getHeight();
-                        stage.setScene(new Scene(root));
-                        stage.setHeight(h);
-                        stage.setWidth(w);
-                        stage.show();
-                        ((Stage) ((Node) actionEvent.getSource()).getScene().getWindow()).close();
                     }
                 } else {
                     showAlert("Contrasña incorrecta", "La contraseña ingresada no es correcta.");
                     password.setText(null);
                 }
 
-            } else if (adminRepository.existsByEmail(email.getText())) {
+            } else if (adminRepository.getByEmail(email.getText()) != null) {
                 //handleAdminLogin();
+
                 Admin admin = adminRepository.getByEmail(email.getText());
                 if (admin.getPassword().equals(password.getText())) {
                     try {
                         FXMLLoader loader = new FXMLLoader();
                         loader.setControllerFactory(AppApplication.getContext()::getBean);
-                        Parent root = null;
-                        root = loader.load(PortadaAdmin.class.getResourceAsStream("PrincipalAdmin.fxml"));
+                        Parent root = loader.load(PortadaAdmin.class.getResourceAsStream("principalAdmin.fxml"));
                         Stage stage = new Stage();
                         stage.setTitle("Yendo");
                         stage.getIcons().add(new Image("grupo1/labtic/ui/Imagenes/yendoIcono.png"));
@@ -180,7 +181,7 @@ public class LoginController {
                         stage.show();
                         ((Stage) ((Node) actionEvent.getSource()).getScene().getWindow()).close();
                     } catch (IOException e) {
-                        e.fillInStackTrace();
+                        e.printStackTrace();
                     }
 
                 } else {

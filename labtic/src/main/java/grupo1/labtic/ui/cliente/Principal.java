@@ -104,12 +104,10 @@ public class Principal {
     private Text pagos;
 
     @FXML
-//<<<<<<< HEAD
-//    private Button reservar;
+    private Button reservar;
 
-//=======
+    @FXML
     private Text precioMedio;
-//>>>>>>> b788e0c4c2a82508f56d58f04a5bd8248b971890
 
     @FXML
     private Text barrioRE;
@@ -136,7 +134,7 @@ public class Principal {
     private TableView<Mesa> mesas;
 
     @FXML
-    private TableColumn reservar;
+    private TableColumn reservasColumn;
 
     private Cliente cliente;
 
@@ -326,6 +324,7 @@ public class Principal {
 
 
     }
+
     private void loadRestaurantEspecifico(MouseEvent event1) throws IOException {
         FXMLLoader loader = new FXMLLoader();
         loader.setControllerFactory(AppApplication.getContext()::getBean);
@@ -340,8 +339,7 @@ public class Principal {
         stage.setWidth(w);
 
 
-        numeroMesa.setCellValueFactory(
-                (new PropertyValueFactory<Mesa,String>("nroReferencia")));
+        numeroMesa.setCellValueFactory((new PropertyValueFactory<Mesa,String>("nroReferencia")));
         sillas.setCellValueFactory(new PropertyValueFactory<Mesa,String>("cantLugares"));
 
         List<Mesa> mesasList = (List) rowData.getMesas();
@@ -360,6 +358,7 @@ public class Principal {
         pagos.setText(rowData.getTipoDePagoListString());
         stage.show();
     }
+
     @FXML
     void ajustes(ActionEvent event) {
         //Modificar datos

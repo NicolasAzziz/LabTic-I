@@ -9,6 +9,7 @@ import java.util.List;
 
 
 public interface RestaurantRepository extends CrudRepository<Restaurant, String> {
+
     Restaurant findOneByEmail(String email);
 
 //    Usuario findOneByEmail(String email);

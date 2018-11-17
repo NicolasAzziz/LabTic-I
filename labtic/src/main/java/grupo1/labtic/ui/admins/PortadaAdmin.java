@@ -38,6 +38,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.*;
 
 import static grupo1.labtic.ui.Alert.showAlert;
@@ -100,6 +101,7 @@ public class PortadaAdmin {
 
     private Restaurant rowData;
 
+    @FXML
     private JFXButton cerrarSesion;
     @FXML
     private JFXButton agregarRestaurant;
@@ -213,20 +215,28 @@ public class PortadaAdmin {
 
             }else {
 
-
-
                 List<Reserva> reservas = new ArrayList<>();
 
-                Iterable<Reserva> reservasAceptadas = reservaRepository.getReservasByEstadoAndRestaurantAndFechaYhoraIsBetween("Aceptado", this.rowData, dateDesde, dateHasta);
-                Iterable<Reserva> reservasFinzalizadas = reservaRepository.getReservasByEstadoAndRestaurantAndFechaYhoraIsBetween("Finalizado", this.rowData, dateDesde, dateHasta);
+//                Date formatDesde = Date.from(dateDesde.atStartOfDay(ZoneId.systemDefault()).toInstant());
+//                Date formatHasta = Date.from(dateHasta.atStartOfDay(ZoneId.systemDefault()).toInstant());
 
-                reservasFinzalizadas.forEach(reserva -> reservas.add(reserva));
+                Iterable<Reserva> reservasAceptadas = reservaRepository.getReservasByEstadoAndRestaurant("Aceptado", rowData);
+//                Iterable<Reserva> reservasFinzalizadas = reservaRepository.getReservasByEstadoAndRestaurant("Finalizado", this.rowData);
+
+//                reservasFinzalizadas.forEach(reserva -> reservas.add(reserva));
+
                 reservasAceptadas.forEach(reserva -> reservas.add(reserva));
+
+
 
                 long importeAPagar = reservas.size() * precioPorReserva;
 
+// Probando Importe FALTA COMPROBAR LA FECHA
+
+                System.out.println(importeAPagar);
+
                 importe.setText("$ " + importeAPagar);
-                
+
             }
 
 
@@ -234,7 +244,7 @@ public class PortadaAdmin {
 
     }
 
-
+    @FXML
     void cerrarSesion(ActionEvent event) {
         FXMLLoader loader = new FXMLLoader();
         loader.setControllerFactory(AppApplication.getContext()::getBean);
