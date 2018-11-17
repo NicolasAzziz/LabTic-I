@@ -1,8 +1,10 @@
 package grupo1.labtic.ui.admins;
 
+import com.jfoenix.controls.JFXButton;
 import grupo1.labtic.AppApplication;
 import grupo1.labtic.persistence.RestaurantRepository;
 import grupo1.labtic.services.entities.Restaurant;
+import grupo1.labtic.ui.LoginController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -11,13 +13,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -30,46 +29,34 @@ import java.util.ResourceBundle;
 @Component
 public class PortadaAdmin {
 
-
     @FXML
     private ResourceBundle resources;
-
     @FXML
     private URL location;
-
     @FXML
     private TableView<Restaurant> table;
-
     @FXML
     private TableColumn<Restaurant, String> col_nombre;
-
     @FXML
     private TableColumn<Restaurant, String> col_email;
-
     @FXML
     private TableColumn<Restaurant, String> col_rut;
-
     @FXML
     private TableColumn<Restaurant, String> col_barrio;
-
     @FXML
     private TableColumn<Restaurant, String> col_telefono;
-
     @FXML
     private TableColumn<Restaurant, String> col_direccion;
-
-    @FXML
-    private Button agregarRestaurant;
-
-    @FXML
-    private Circle circle2;
-
-    @FXML
-    private AnchorPane imageContainer;
 
     @Autowired
     private RestaurantRepository restaurantRepository;
 
+    @FXML
+    private JFXButton cerrarSesion;
+    @FXML
+    private JFXButton agregarRestaurant;
+    @FXML
+    private JFXButton actualizar;
 
     @FXML
     void initialize() {
@@ -81,7 +68,6 @@ public class PortadaAdmin {
         assert col_telefono != null : "fx:id=\"col_telefono\" was not injected: check your FXML file 'adminPortada.fxml'.";
         assert col_direccion != null : "fx:id=\"col_direccion\" was not injected: check your FXML file 'adminPortada.fxml'.";
         assert agregarRestaurant != null : "fx:id=\"agregarRestaurant\" was not injected: check your FXML file 'adminPortada.fxml'.";
-        assert circle2 != null : "fx:id=\"circle2\" was not injected: check your FXML file 'adminPortada.fxml'.";
 
         col_nombre.setCellValueFactory(new PropertyValueFactory<Restaurant, String>("nombreRestaurant"));
         col_email.setCellValueFactory(new PropertyValueFactory<Restaurant, String>("email"));
@@ -127,6 +113,26 @@ public class PortadaAdmin {
 
     }
 
+    @FXML
+    void cerrarSesion(ActionEvent event) {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setControllerFactory(AppApplication.getContext()::getBean);
+        Parent root = null;
+        try {
+            root = loader.load(LoginController.class.getResourceAsStream("login.fxml"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Stage stage = new Stage();
+        stage.setTitle("¡Bienvenido!");
+        stage.getIcons().add(new Image("grupo1/labtic/ui/Imagenes/yendoIcono.png"));
+        double w = ((Stage) ((Node) event.getSource()).getScene().getWindow()).getWidth();
+        double h = ((Stage) ((Node) event.getSource()).getScene().getWindow()).getHeight();
+        stage.setScene(new Scene(root));
+        stage.setHeight(h);
+        stage.setWidth(w);
+        stage.show();
+        ((Stage) ((Node) event.getSource()).getScene().getWindow()).close();
+    }
+
 }
-
-
