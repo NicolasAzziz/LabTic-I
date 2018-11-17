@@ -104,9 +104,12 @@ public class Principal {
     private Text pagos;
 
     @FXML
-    private Button reservar;
+//<<<<<<< HEAD
+//    private Button reservar;
 
+//=======
     private Text precioMedio;
+//>>>>>>> b788e0c4c2a82508f56d58f04a5bd8248b971890
 
     @FXML
     private Text barrioRE;
@@ -166,44 +169,7 @@ public class Principal {
                 if (event1.getClickCount() == 2 && (!row.isEmpty())) {
                     rowData = row.getItem();
                     try {
-                        FXMLLoader loader = new FXMLLoader();
-
-                        loader.setControllerFactory(AppApplication.getContext()::getBean);
-                        Parent root = loader.load(Principal.class.getResourceAsStream("restaurantEspecifico.fxml"));
-
-                        Stage stage = new Stage();
-
-                        stage.setTitle("Restaurant específico");
-                        stage.getIcons().add(new Image("grupo1/labtic/ui/Imagenes/yendoIcono.png"));
-                        double w = ((Stage)((Node)event1.getSource()).getScene().getWindow()).getWidth();
-                        double h = ((Stage)((Node)event1.getSource()).getScene().getWindow()).getHeight();
-                        stage.setScene(new Scene(root));
-                        stage.setHeight(h);
-                        stage.setWidth(w);
-                        nombre.setText(rowData.getNombreRestaurant());
-                        description.setText(rowData.getDescripcion());
-                        barrioPM.setText(rowData.getBarrio() + " - " + rowData.getPrecioMedio());
-                        tel.setText(rowData.getTelefono());
-                        direccion.setText(rowData.getDireccion());
-                        horario.setText(rowData.getHorarioApertura() + " - " + rowData.getHorarioCierre());
-                        description.setText(rowData.getDescripcion());
-
-                        if (rowData.getImagen() != null) {
-                            logo.setImage(rowData.getImageView().getImage());
-                        }
-                        comidas.setText(rowData.getCocinasOfrecidasString());
-                        pagos.setText(rowData.getTipoDePagoListString());
-                        mailResto = rowData.getEmail();
-
-                        stage.show();
-
-                        RestaurantEspecifico controller = loader.getController();
-                        controller.sendResto(rowData);
-
-//     PARA QUE ES ?
-//                        loadRestaurantEspecifico(event1);
-
-
+                        loadRestaurantEspecifico(event1);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }

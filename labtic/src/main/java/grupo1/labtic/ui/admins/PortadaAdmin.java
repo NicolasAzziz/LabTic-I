@@ -38,6 +38,7 @@ import static grupo1.labtic.ui.Alert.showAlert;
 @Component
 public class PortadaAdmin {
 
+    private long precioPorReserva = 10L;
 
     @FXML
     private ResourceBundle resources;
@@ -108,6 +109,7 @@ public class PortadaAdmin {
     private ReservaRepository reservaRepository;
 
     private Restaurant rowData;
+
 
 
     @FXML
@@ -218,20 +220,20 @@ public class PortadaAdmin {
 
             }else {
 
-                Iterable<Reserva> reservasFinzalizadas = reservaRepository.getReservasByEstadoIs("Finalizado");
-                Iterable<Reserva> reservasAceptadas = reservaRepository.getReservasByEstadoIs("Aceptado");
+
 
                 List<Reserva> reservas = new ArrayList<>();
+
+                Iterable<Reserva> reservasAceptadas = reservaRepository.getReservasByEstadoAndRestaurantAndFechaYhoraIsBetween("Aceptado", this.rowData, dateDesde, dateHasta);
+                Iterable<Reserva> reservasFinzalizadas = reservaRepository.getReservasByEstadoAndRestaurantAndFechaYhoraIsBetween("Finalizado", this.rowData, dateDesde, dateHasta);
 
                 reservasFinzalizadas.forEach(reserva -> reservas.add(reserva));
                 reservasAceptadas.forEach(reserva -> reservas.add(reserva));
 
-                for(int i = 0 ; i < reservas.size(); i++){
+                long importeAPagar = reservas.size() * precioPorReserva;
 
-                }
-
-
-                importe.setText("$ " + "Correcto");
+                importe.setText("$ " + importeAPagar);
+                
             }
 
 

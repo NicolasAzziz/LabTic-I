@@ -57,6 +57,10 @@ public class Restaurant extends Usuario {
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<Mesa> mesas;
 
+    @ManyToMany
+    @LazyCollection(LazyCollectionOption.FALSE)
+    private List<Reserva> reservas;
+
 
 
     public Restaurant(String email, String password, long rut, String direccion, String horarioApertura, String horarioCierre, String barrio, String telefono, String descripcion) {
@@ -71,6 +75,7 @@ public class Restaurant extends Usuario {
         grupoDeComidaList = new ArrayList<>();
         tipoDePagoList = new ArrayList<>();
         mesas = new ArrayList<>();
+        reservas = new ArrayList<>();
     }
 
 
@@ -309,5 +314,13 @@ public class Restaurant extends Usuario {
                 oMesa = mesa;
         }
         return oMesa;
+    }
+
+    public List<Reserva> getReservas() {
+        return reservas;
+    }
+
+    public void setReservas(Reserva reserva) {
+        this.reservas.add(reserva);
     }
 }
