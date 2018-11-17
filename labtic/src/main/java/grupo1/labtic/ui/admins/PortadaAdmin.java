@@ -216,7 +216,7 @@ public class PortadaAdmin {
 
             }else {
 
-                List<Reserva> reservas = rowData.getReservas();
+                List<Reserva> reservas = new ArrayList<>();
                 List<Reserva> reservasFiltradas = new ArrayList<>();
 
                 Date formatDesde = Date.from(dateDesde.atStartOfDay(ZoneId.systemDefault()).toInstant());
@@ -228,13 +228,19 @@ public class PortadaAdmin {
                 reservasAceptadas.forEach(reserva -> reservas.add(reserva));
                 reservasFinzalizadas.forEach(reserva -> reservas.add(reserva));
 
+
                 for(int i = 0 ; i < reservas.size(); i++){
+
+                    System.out.println(reservas.get(i).getFechaYhora());
+                    System.out.println(formatDesde);
+                    System.out.println(formatHasta);
+
                     if(reservas.get(i).getFechaYhora().after(formatDesde) && reservas.get(i).getFechaYhora().before(formatHasta)){
                         reservasFiltradas.add(reservas.get(i));
                     }
                 }
 
-                long importeAPagar = reservas.size() * precioPorReserva;
+                long importeAPagar = reservasFiltradas.size() * precioPorReserva;
 
                 importe.setText("$ " + importeAPagar);
 

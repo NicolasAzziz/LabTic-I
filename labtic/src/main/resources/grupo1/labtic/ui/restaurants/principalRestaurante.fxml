@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="grupo1.labtic.ui.restaurants.RestaurantePrincipal">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="grupo1.labtic.ui.restaurants.RestaurantePrincipal">
    <children>
       <GridPane prefHeight="400.0" prefWidth="600.0">
         <columnConstraints>
@@ -31,14 +31,19 @@
             </Label>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #857B6F;" GridPane.rowIndex="1">
                <children>
-                  <JFXButton fx:id="cerrarSesion" alignment="TOP_CENTER" contentDisplay="TOP" layoutX="11.0" layoutY="83.0" onAction="#cerrarSesion" prefHeight="39.0" prefWidth="92.0" style="-fx-background-color: #493928;" text="Cerrar sesion" textFill="WHITE">
+                  <JFXButton fx:id="cerrarSesion" alignment="TOP_CENTER" contentDisplay="TOP" layoutX="11.0" layoutY="32.0" onAction="#cerrarSesion" prefHeight="39.0" prefWidth="92.0" style="-fx-background-color: #493928;" text="Cerrar sesion" textFill="WHITE">
                      <graphic>
                         <FontAwesomeIconView fill="WHITE" glyphName="POWER_OFF" size="25.0" wrappingWidth="21.619057655334473" />
                      </graphic>
                   </JFXButton>
-                  <JFXButton fx:id="ajustes" alignment="TOP_CENTER" contentDisplay="TOP" layoutX="11.0" layoutY="206.0" onAction="#ajustes" prefHeight="27.0" prefWidth="92.0" style="-fx-background-color: #493928;" text="Ajustes" textFill="WHITE">
+                  <JFXButton fx:id="ajustes" alignment="TOP_CENTER" contentDisplay="TOP" layoutX="11.0" layoutY="210.0" onAction="#ajustes" prefHeight="27.0" prefWidth="92.0" style="-fx-background-color: #493928;" text="Ajustes" textFill="WHITE">
                      <graphic>
                         <FontAwesomeIconView fill="WHITE" glyphName="GEAR" size="25.0" />
+                     </graphic>
+                  </JFXButton>
+                  <JFXButton fx:id="facturacion" alignment="TOP_CENTER" contentDisplay="TOP" layoutX="11.0" layoutY="117.0" onAction="#facturacion" prefHeight="55.0" prefWidth="92.0" style="-fx-background-color: #493928;" text="Facturacion" textFill="WHITE">
+                     <graphic>
+                        <FontAwesomeIconView fill="WHITE" glyphName="DOLLAR" size="25.0" />
                      </graphic>
                   </JFXButton>
                   <JFXButton contentDisplay="CENTER" layoutX="36.0" layoutY="301.0" onAction="#refresh" style="-fx-background-color: #493928;" text=" " textAlignment="CENTER" textFill="WHITE">

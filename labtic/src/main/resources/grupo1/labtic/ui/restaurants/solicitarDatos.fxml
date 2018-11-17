@@ -21,7 +21,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="grupo1.labtic.ui.restaurants.SolicitarDatos">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="grupo1.labtic.ui.restaurants.SolicitarDatos">
     <children>
         <SplitPane dividerPositions="0.2" orientation="VERTICAL" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <items>
@@ -171,7 +171,7 @@
                                             <children>
                                                 <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                                                     <children>
-                                                        <Text fx:id="nMesa" strokeType="OUTSIDE" strokeWidth="0.0" text="*Número de nroReferencia:" wrappingWidth="62.912109375">
+                                                        <Text fx:id="nMesa" strokeType="OUTSIDE" strokeWidth="0.0" text="No. Referencia de la mesa:" textAlignment="CENTER" wrappingWidth="62.912109375">
                                                             <VBox.margin>
                                                                 <Insets />
                                                             </VBox.margin>
@@ -185,7 +185,7 @@
                                                 </VBox>
                                                 <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                                                     <children>
-                                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="*Capacidad de la nroReferencia" wrappingWidth="76.41015625">
+                                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Capacidad de la Mesa" textAlignment="CENTER" wrappingWidth="76.41015625">
                                                             <VBox.margin>
                                                                 <Insets />
                                                             </VBox.margin>

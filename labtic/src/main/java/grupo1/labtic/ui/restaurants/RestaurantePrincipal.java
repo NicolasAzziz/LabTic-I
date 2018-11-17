@@ -2,6 +2,7 @@ package grupo1.labtic.ui.restaurants;
 
 import com.jfoenix.controls.JFXButton;
 import grupo1.labtic.AppApplication;
+import grupo1.labtic.persistence.ReservaRepository;
 import grupo1.labtic.services.ReservaService;
 import grupo1.labtic.services.RestaurantService;
 import grupo1.labtic.services.entities.Reserva;
@@ -15,19 +16,23 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableRow;
-import javafx.scene.control.TableView;
+import javafx.scene.chart.Axis;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import static grupo1.labtic.ui.Alert.showAlert;
 
 @Component
 public class RestaurantePrincipal {
@@ -37,9 +42,21 @@ public class RestaurantePrincipal {
     private ReservaService reservaService;
     @Autowired
     private RestaurantService restaurantService;
+    @Autowired
+    private ReservaRepository reservaRepository;
 
     @FXML
     private JFXButton ajustes;
+    @FXML
+    private JFXButton facturacion;
+    @FXML
+    private JFXButton facturar;
+    @FXML
+    private DatePicker fechaHasta;
+    @FXML
+    private DatePicker fechaDesde;
+    @FXML
+    private Text importe;
 
     @FXML
     private TableView<Reserva> reservasPendientes;
@@ -246,9 +263,91 @@ public class RestaurantePrincipal {
         stage.show();
         ((Stage) ((Node) event.getSource()).getScene().getWindow()).close();
     }
+
     @FXML
     void ajustes(ActionEvent event) {
         //Cambiar datos
+    }
+
+    @FXML
+    void facturacion(ActionEvent event){
+        FXMLLoader loader = new FXMLLoader();
+        loader.setControllerFactory(AppApplication.getContext()::getBean);
+        loader.setLocation(RestaurantePrincipal.class.getResource("facturacion.fxml"));
+
+        try {
+            loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        importe.setText("");
+        Parent root = loader.getRoot();
+
+        Stage stage = new Stage();
+
+        stage.setTitle("Facturacion");
+
+        stage.getIcons().add(new Image("grupo1/labtic/ui/Imagenes/yendoIcono.png"));
+        double w = ((Stage) ((Node) event.getSource()).getScene().getWindow()).getWidth();
+        double h = ((Stage) ((Node) event.getSource()).getScene().getWindow()).getHeight();
+        stage.setScene(new Scene(root));
+        stage.setHeight(h);
+        stage.setWidth(w);
+        stage.show();
+    }
+
+    @FXML
+    void facturar(ActionEvent event){
+
+        if(fechaDesde.getValue() == null || fechaHasta.getValue() == null){
+
+            showAlert("Fechas invalidas!", "No se registraron fechas correctas para realizar la facturacion");
+
+        }else {
+
+            LocalDate dateDesde = fechaDesde.getValue();
+            LocalDate dateHasta = fechaHasta.getValue();
+
+            if (dateDesde.isAfter(LocalDate.now()) || dateHasta.isAfter(LocalDate.now()) || dateDesde.isAfter(dateHasta)){
+
+                showAlert("Fechas invalidas!", "Las fechas registradas no son correctas");
+
+            }else {
+
+                List<Reserva> reservas = new ArrayList<>();
+                List<Reserva> reservasFiltradas = new ArrayList<>();
+
+                Date formatDesde = java.sql.Date.valueOf(dateDesde);
+                Date formatHasta = java.sql.Date.valueOf(dateHasta);
+
+                Iterable<Reserva> reservasAceptadas = reservaRepository.getReservasByEstadoIsAndRestaurant("Aceptado", restaurant);
+                Iterable<Reserva> reservasFinzalizadas = reservaRepository.getReservasByEstadoIsAndRestaurant("Finalizado", restaurant);
+
+                reservasAceptadas.forEach(reserva -> reservas.add(reserva));
+                reservasFinzalizadas.forEach(reserva -> reservas.add(reserva));
+
+
+
+                for(int i = 0 ; i < reservas.size(); i++){
+
+//  No esta comparando las fechas
+
+                    if(reservas.get(i).getFechaYhora().after(formatDesde) && reservas.get(i).getFechaYhora().before(formatHasta)){
+                        reservasFiltradas.add(reservas.get(i));
+                    }
+                }
+//CARGAR PRECIO
+                long importeAPagar = reservasFiltradas.size() * 10L;
+                System.out.println(importeAPagar);
+
+                importe.setText("EL MONTO CORRESPONDIENTE A LA FECHA INDICADA  ES DE $ " + importeAPagar);
+
+            }
+
+
+        }
+
     }
 
 }

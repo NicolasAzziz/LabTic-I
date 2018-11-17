@@ -107,9 +107,6 @@ public class Principal {
     private Text pagos;
 
     @FXML
-    private Button reservar;
-
-    @FXML
     private Text precioMedio;
 
     @FXML
@@ -290,11 +287,6 @@ public class Principal {
 
             }
         }
-    }
-
-    @FXML
-    void reservar(ActionEvent event) {
-
     }
 
     public void restaurantesFiltrados(List<Restaurant> restaurants) {
