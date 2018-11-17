@@ -10,7 +10,7 @@ import grupo1.labtic.persistence.RestaurantRepository;
 import grupo1.labtic.services.entities.Admin;
 import grupo1.labtic.services.entities.Cliente;
 import grupo1.labtic.services.entities.Restaurant;
-import grupo1.labtic.ui.admins.Administrar;
+import grupo1.labtic.ui.admins.PortadaAdmin;
 import grupo1.labtic.ui.cliente.Principal;
 import grupo1.labtic.ui.cliente.Registro;
 import grupo1.labtic.ui.restaurants.RestaurantePrincipal;
@@ -164,24 +164,25 @@ public class LoginController {
                 //handleAdminLogin();
                 Admin admin = adminRepository.getByEmail(email.getText());
                 if (admin.getPassword().equals(password.getText())) {
-                    FXMLLoader loader = new FXMLLoader();
-                    loader.setControllerFactory(AppApplication.getContext()::getBean);
-                    Parent root = null;
                     try {
-                        root = loader.load(Administrar.class.getResourceAsStream("adminPortada.fxml"));
+                        FXMLLoader loader = new FXMLLoader();
+                        loader.setControllerFactory(AppApplication.getContext()::getBean);
+                        Parent root = null;
+                        root = loader.load(PortadaAdmin.class.getResourceAsStream("PrincipalAdmin.fxml"));
+                        Stage stage = new Stage();
+                        stage.setTitle("Yendo");
+                        stage.getIcons().add(new Image("grupo1/labtic/ui/Imagenes/yendoIcono.png"));
+                        double w = ((Stage) ((Node) actionEvent.getSource()).getScene().getWindow()).getWidth();
+                        double h = ((Stage) ((Node) actionEvent.getSource()).getScene().getWindow()).getHeight();
+                        stage.setScene(new Scene(root));
+                        stage.setHeight(h);
+                        stage.setWidth(w);
+                        stage.show();
+                        ((Stage) ((Node) actionEvent.getSource()).getScene().getWindow()).close();
                     } catch (IOException e) {
                         e.fillInStackTrace();
                     }
-                    Stage stage = new Stage();
-                    stage.setTitle("Yendo");
-                    stage.getIcons().add(new Image("grupo1/labtic/ui/Imagenes/yendoIcono.png"));
-                    double w = ((Stage) ((Node) actionEvent.getSource()).getScene().getWindow()).getWidth();
-                    double h = ((Stage) ((Node) actionEvent.getSource()).getScene().getWindow()).getHeight();
-                    stage.setScene(new Scene(root));
-                    stage.setHeight(h);
-                    stage.setWidth(w);
-                    stage.show();
-                    ((Stage) ((Node) actionEvent.getSource()).getScene().getWindow()).close();
+
                 } else {
                     showAlert("Contrasña incorrecta", "La contraseña ingresada no es correcta.");
                     password.setText(null);
