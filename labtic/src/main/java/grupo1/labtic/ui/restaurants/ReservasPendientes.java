@@ -5,11 +5,16 @@ import java.util.ResourceBundle;
 
 import grupo1.labtic.services.ReservaService;
 import grupo1.labtic.services.entities.Reserva;
+import grupo1.labtic.services.exceptions.MesaOcupada;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import static grupo1.labtic.ui.Alert.showAlert;
 
 @Component
 public class ReservasPendientes {
@@ -30,6 +35,9 @@ public class ReservasPendientes {
     private Text sillas;
 
     @FXML
+    private Text fechaYhora;
+
+    @FXML
     private Text estadoMesa;
 
     @FXML
@@ -40,6 +48,11 @@ public class ReservasPendientes {
 
     private Reserva reserva;
 
+    private RestaurantePrincipal restaurantePrincipal;
+
+    void restaurantePrincipal(RestaurantePrincipal restaurantePrincipal){
+        this.restaurantePrincipal = restaurantePrincipal;
+    }
     @Autowired
     private ReservaService reservaService;
 
@@ -52,15 +65,27 @@ public class ReservasPendientes {
         sillas.setText(reserva.getMesa().getCantLugares().toString());
         estadoMesa.setText(reserva.getMesa().getEstado());
         estadoReserva.setText(reserva.getEstado());
+        fechaYhora.setText(reserva.getFechaYhora().toString());
     }
 
     @FXML
     void aceptarReserva(ActionEvent event) {
-        reservaService.aceptarReserva(reserva);
+        try {
+            reservaService.aceptarReserva(reserva);
+            showAlert("Reserva", "Se ha aceptado la reserva con exito.");
+            ((Stage) ((Node) event.getSource()).getScene().getWindow()).close();
+            restaurantePrincipal.actualizarTablas();
+        }catch(MesaOcupada e){
+            showAlert("Error", e.getMessage());
+        }
     }
 
     @FXML
     void rechazarReserva(ActionEvent event) {
+        reservaService.rechazarReserva(reserva);
+        showAlert("Reserva", "Se ha rechazado la reserva con exito.");
+        ((Stage) ((Node) event.getSource()).getScene().getWindow()).close();
+        restaurantePrincipal.actualizarTablas();
 
     }
 
@@ -72,8 +97,6 @@ public class ReservasPendientes {
         assert estadoMesa != null : "fx:id=\"estadoMesa\" was not injected: check your FXML file 'reservasPendientes.fxml'.";
         assert mesaNumero != null : "fx:id=\"mesaNumero\" was not injected: check your FXML file 'reservasPendientes.fxml'.";
         assert estadoReserva != null : "fx:id=\"estadoReserva\" was not injected: check your FXML file 'reservasPendientes.fxml'.";
-
-
 
     }
 }

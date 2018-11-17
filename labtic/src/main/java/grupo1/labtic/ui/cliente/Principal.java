@@ -5,10 +5,14 @@ import grupo1.labtic.AppApplication;
 import grupo1.labtic.persistence.GrupoDeComidaRepository;
 import grupo1.labtic.persistence.RestaurantRepository;
 import grupo1.labtic.services.ReservaService;
+import grupo1.labtic.services.RestaurantService;
 import grupo1.labtic.services.entities.Cliente;
 import grupo1.labtic.services.entities.Restaurant;
+import grupo1.labtic.services.exceptions.ClienteSinReservas;
+import grupo1.labtic.services.exceptions.ReservaYaSolicitada;
 import grupo1.labtic.ui.LoginController;
 import grupo1.labtic.services.entities.restaurant.Mesa;
+import grupo1.labtic.ui.restaurants.RestaurantePrincipal;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -31,7 +35,6 @@ import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.awt.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -138,7 +141,10 @@ public class Principal {
 
     private Cliente cliente;
 
-    private Restaurant rowData;
+    private Restaurant restaurant;
+
+    @Autowired
+    private RestaurantService restaurantService;
 
     private FXMLLoader fxmlLoader;
 
@@ -165,7 +171,7 @@ public class Principal {
             TableRow<Restaurant> row = new TableRow<>();
             row.setOnMouseClicked((event1) -> {
                 if (event1.getClickCount() == 2 && (!row.isEmpty())) {
-                    rowData = row.getItem();
+                    restaurant = row.getItem();
                     try {
                         loadRestaurantEspecifico(event1);
                     } catch (IOException e) {
@@ -312,7 +318,7 @@ public class Principal {
             TableRow<Restaurant> row = new TableRow<>();
             row.setOnMouseClicked((event1) -> {
                 if (event1.getClickCount() == 2 && (!row.isEmpty())) {
-                    rowData = row.getItem();
+                    restaurant = row.getItem();
                     try {
                         loadRestaurantEspecifico(event1);
                     } catch (IOException e) {
@@ -343,20 +349,20 @@ public class Principal {
         numeroMesa.setCellValueFactory((new PropertyValueFactory<Mesa,String>("nroReferencia")));
         sillas.setCellValueFactory(new PropertyValueFactory<Mesa,String>("cantLugares"));
 
-        List<Mesa> mesasList = (List) rowData.getMesas();
+        List<Mesa> mesasList = (List) restaurantService.getByEmail(restaurant.getEmail()).getMesas();
         mesas.setItems(FXCollections.observableList(mesasList));
 
-        nombre.setText(rowData.getNombreRestaurant());
-        description.setText(rowData.getDescripcion());
-        barrioRE.setText(rowData.getBarrio());
-        precioMedio.setText(rowData.getPrecioMedio());
-        tel.setText(rowData.getTelefono());
-        direccion.setText(rowData.getDireccion());
-        horario.setText(rowData.getHorarioApertura() + " - " + rowData.getHorarioCierre());
-        description.setText(rowData.getDescripcion());
-        imagenRE.setImage(rowData.getImageView().getImage());
-        comidas.setText(rowData.getCocinasOfrecidasString());
-        pagos.setText(rowData.getTipoDePagoListString());
+        nombre.setText(restaurant.getNombreRestaurant());
+        description.setText(restaurant.getDescripcion());
+        barrioRE.setText(restaurant.getBarrio());
+        precioMedio.setText(restaurant.getPrecioMedio());
+        tel.setText(restaurant.getTelefono());
+        direccion.setText(restaurant.getDireccion());
+        horario.setText(restaurant.getHorarioApertura() + " - " + restaurant.getHorarioCierre());
+        description.setText(restaurant.getDescripcion());
+        imagenRE.setImage(restaurant.getImageView().getImage());
+        comidas.setText(restaurant.getCocinasOfrecidasString());
+        pagos.setText(restaurant.getTipoDePagoListString());
         stage.show();
     }
 
@@ -389,13 +395,44 @@ public class Principal {
 
     @FXML
     void reservas(ActionEvent event) {
-        //Ver reservas de cada usuario
+        try {
+            if(reservaService.getReservasByCliente(cliente).size() == 0){
+                throw new ClienteSinReservas("Aun no tienes ninguna reserva!");
+            };
+            FXMLLoader loader = new FXMLLoader();
+            loader.setControllerFactory(AppApplication.getContext()::getBean);
+            Parent root = null;
+            try {
+                root = loader.load(VerReservas.class.getResourceAsStream("verReservas.fxml"));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            Stage stage = new Stage();
+            stage.setTitle("Tus reservas");
+            stage.getIcons().add(new Image("grupo1/labtic/ui/Imagenes/yendoIcono.png"));
+            double w = ((Stage) ((Node) event.getSource()).getScene().getWindow()).getWidth();
+            double h = ((Stage) ((Node) event.getSource()).getScene().getWindow()).getHeight();
+            stage.setScene(new Scene(root));
+            stage.setHeight(h);
+            stage.setWidth(w);
+            stage.show();
+
+            VerReservas verReservas = loader.<VerReservas>getController();
+            verReservas.setCliente(cliente);
+        }catch(ClienteSinReservas e){
+            showAlert("Reservas", e.getMessage());
+        }
     }
     @FXML
     void solicitarMesa(ActionEvent event) {
         Mesa mesa = mesas.getSelectionModel().getSelectedItem();
-        reservaService.solicitarReserva(cliente, rowData, mesa.getNroReferencia());
-        showAlert("Solicitado","Se ha enviado una solicitud de reserva al restaurante.");
+
+        try {
+            reservaService.solicitarReserva(cliente, restaurant, mesa.getNroReferencia());
+            showAlert("Solicitado", "Se ha enviado una solicitud de reserva al restaurante.");
+        }catch (ReservaYaSolicitada e){
+            showAlert("Error", e.getMessage());
+        }
 
     }
 
