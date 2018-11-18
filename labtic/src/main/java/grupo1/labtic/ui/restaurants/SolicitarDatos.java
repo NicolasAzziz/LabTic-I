@@ -141,12 +141,9 @@ public class SolicitarDatos {
         imagePortada.setImage(img);
         Image iL = new Image("file:src/main/resources/grupo1/labtic/ui/Imagenes/yendoIcono.png");
         logo.setImage(iL);
-    }
-
-    @FXML
-    void initialize() {
         mesaList = FXCollections.<Mesa>observableArrayList();
     }
+
     @FXML
     public void agregarMesa(ActionEvent actionEvent) {
 
