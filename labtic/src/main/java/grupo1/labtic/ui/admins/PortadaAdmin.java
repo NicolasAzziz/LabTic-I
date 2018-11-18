@@ -1,9 +1,13 @@
 package grupo1.labtic.ui.admins;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXTextField;
 import grupo1.labtic.AppApplication;
+import grupo1.labtic.persistence.AdminRepository;
 import grupo1.labtic.persistence.ReservaRepository;
 import grupo1.labtic.persistence.RestaurantRepository;
+import grupo1.labtic.services.AdminService;
+import grupo1.labtic.services.entities.Admin;
 import grupo1.labtic.services.entities.Reserva;
 import grupo1.labtic.services.entities.Restaurant;
 import grupo1.labtic.ui.LoginController;
@@ -29,17 +33,17 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
 import javafx.stage.Stage;
+import javafx.util.converter.IntegerStringConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.*;
+import java.util.List;
 
 import static grupo1.labtic.ui.Alert.showAlert;
 
@@ -70,6 +74,9 @@ public class PortadaAdmin {
     @Autowired
     private RestaurantRepository restaurantRepository;
 
+    @Autowired
+    private AdminService adminService;
+
     @FXML
     private Text nombre;
     @FXML
@@ -96,11 +103,17 @@ public class PortadaAdmin {
     private DatePicker fechaDesde;
     @FXML
     private Text importe;
+    @FXML
+    private JFXTextField monto;
+    @FXML
+    private JFXButton guardar;
 
     @Autowired
     private ReservaRepository reservaRepository;
 
     private Restaurant rowData;
+
+    private Admin admin;
 
     @FXML
     private JFXButton cerrarSesion;
@@ -108,6 +121,12 @@ public class PortadaAdmin {
     private JFXButton agregarRestaurant;
     @FXML
     private JFXButton actualizar;
+    @FXML
+    private JFXButton precioReserva;
+
+    public void setAdmin(Admin admin){
+        this.admin = admin;
+    }
 
     @FXML
     void initialize() {
@@ -138,24 +157,29 @@ public class PortadaAdmin {
                 if (event1.getClickCount() == 2 && (!row.isEmpty())) {
                     rowData = row.getItem();
                     try {
-                        FXMLLoader loader = new FXMLLoader();
-                        loader.setControllerFactory(AppApplication.getContext()::getBean);
-                        Parent root = loader.load(PortadaAdmin.class.getResourceAsStream("restauranteEspecifico.fxml"));
-                        Stage stage = new Stage();
-                        stage.setTitle("Restaurant específico");
-                        stage.getIcons().add(new Image("grupo1/labtic/ui/Imagenes/yendoIcono.png"));
-                        stage.setScene(new Scene(root));
-                        nombre.setText(rowData.getNombreRestaurant());
-                        description.setText(rowData.getDescripcion());
-                        barrioPM.setText(rowData.getBarrio() + " - " + rowData.getPrecioMedio());
-                        tel.setText(rowData.getTelefono());
-                        direccion.setText(rowData.getDireccion());
-                        horario.setText(rowData.getHorarioApertura() + " - " + rowData.getHorarioCierre());
-                        logo.setImage(rowData.getImageView().getImage());
-                        comidas.setText(rowData.getCocinasOfrecidasString());
-                        pagos.setText(rowData.getTipoDePagoListString());
-                        stage.show();
-                    } catch (IOException e) {
+                        if(rowData.getNombreRestaurant() != null){
+                            FXMLLoader loader = new FXMLLoader();
+                            loader.setControllerFactory(AppApplication.getContext()::getBean);
+                            Parent root = loader.load(PortadaAdmin.class.getResourceAsStream("restauranteEspecifico.fxml"));
+                            Stage stage = new Stage();
+                            stage.setTitle("Restaurant específico");
+                            stage.getIcons().add(new Image("grupo1/labtic/ui/Imagenes/yendoIcono.png"));
+                            stage.setScene(new Scene(root));
+                            nombre.setText(rowData.getNombreRestaurant());
+                            description.setText(rowData.getDescripcion());
+                            barrioPM.setText(rowData.getBarrio() + " - " + rowData.getPrecioMedio());
+                            tel.setText(rowData.getTelefono());
+                            direccion.setText(rowData.getDireccion());
+                            horario.setText(rowData.getHorarioApertura() + " - " + rowData.getHorarioCierre());
+                            logo.setImage(rowData.getImageView().getImage());
+                            comidas.setText(rowData.getCocinasOfrecidasString());
+                            pagos.setText(rowData.getTipoDePagoListString());
+                            stage.show();
+                        }else{
+                            showAlert("SELECCION INVALIDA!", "Los datos del Restaurante aun no han sido cargados");
+                        }
+
+                    }catch (IOException e) {
                         e.printStackTrace();
                     }
                 }
@@ -174,6 +198,8 @@ public class PortadaAdmin {
         Iterable<Restaurant> listaRestaurantes = restaurantRepository.findAll();
         ObservableList<Restaurant> data = FXCollections.observableList((List) listaRestaurantes);
         table.setItems(data);
+
+
     }
 
     @FXML
@@ -242,7 +268,15 @@ public class PortadaAdmin {
                     }
                 }
 
-                long importeAPagar = reservasFiltradas.size() * precioPorReserva;
+                long importeAPagar = 0L;
+
+                for(int i = 0 ; i < reservasFiltradas.size(); i++){
+
+                    importeAPagar = importeAPagar + reservasFiltradas.get(i).getImporte();
+
+                }
+
+//                long importeAPagar = reservasFiltradas.size() * precioPorReserva;
 
                 importe.setText("$ " + importeAPagar);
 
@@ -273,6 +307,53 @@ public class PortadaAdmin {
         stage.setWidth(w);
         stage.show();
         ((Stage) ((Node) event.getSource()).getScene().getWindow()).close();
+    }
+
+    @FXML
+    void agregarPrecioReserva(ActionEvent event){
+
+        FXMLLoader loader = new FXMLLoader();
+        loader.setControllerFactory(AppApplication.getContext()::getBean);
+        Parent root = null;
+        try {
+            root = loader.load(PortadaAdmin.class.getResourceAsStream("importeReserva.fxml"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Stage stage = new Stage();
+        stage.setTitle("Importe por Reservas");
+        stage.getIcons().add(new Image("grupo1/labtic/ui/Imagenes/yendoIcono.png"));
+        stage.setScene(new Scene(root));
+
+//IMPRIMIR IMPORTE
+
+        monto.setText(admin.getImporteActual().toString());
+
+        stage.show();
+
+    }
+
+    @FXML
+    void guardar(ActionEvent event){
+
+        if(monto != null){
+            String input = monto.getText();
+            if( input.matches("[0-9]*") ){
+                new TextFormatter<Integer>(new IntegerStringConverter());
+                Long montoInput = Long.parseLong(input);
+
+                adminService.setNuevoImporte(admin, montoInput);
+                admin.setNuevoImporte(montoInput);
+
+                ((Stage) ((Node) event.getSource()).getScene().getWindow()).close();
+            }else{
+                showAlert("IMPORTE INCORRECTO!", "Por favor ingrese un importe Numerico");
+            }
+        }else{
+            showAlert("IMPORTE INCORRECTO!", "Por favor ingrese un importe");
+        }
+
+
     }
 
 }

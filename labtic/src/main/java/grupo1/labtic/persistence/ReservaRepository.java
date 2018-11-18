@@ -25,5 +25,4 @@ public interface ReservaRepository extends CrudRepository<Reserva, String> {
 
     Iterable<Reserva> getReservasByEstadoIsAndRestaurant(String estado , Restaurant resto);
 
-
 }

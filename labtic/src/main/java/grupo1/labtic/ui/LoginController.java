@@ -88,11 +88,7 @@ public class LoginController {
                         Stage stage = new Stage();
                         stage.setTitle("Donde quiere comer?");
                         stage.getIcons().add(new Image("grupo1/labtic/ui/Imagenes/yendoIcono.png"));
-                        double w = ((Stage) ((Node) actionEvent.getSource()).getScene().getWindow()).getWidth();
-                        double h = ((Stage) ((Node) actionEvent.getSource()).getScene().getWindow()).getHeight();
                         stage.setScene(new Scene(root));
-                        stage.setHeight(h);
-                        stage.setWidth(w);
                         stage.show();
                         ((Stage) ((Node) actionEvent.getSource()).getScene().getWindow()).close();
                         Principal controler = loader.<Principal>getController();
@@ -123,11 +119,7 @@ public class LoginController {
                             Stage stage = new Stage();
                             stage.setTitle("Ingrese los datos de su restaurante");
                             stage.getIcons().add(new Image("grupo1/labtic/ui/Imagenes/yendoIcono.png"));
-                            double w = ((Stage) ((Node) actionEvent.getSource()).getScene().getWindow()).getWidth();
-                            double h = ((Stage) ((Node) actionEvent.getSource()).getScene().getWindow()).getHeight();
                             stage.setScene(new Scene(root));
-                            stage.setHeight(h);
-                            stage.setWidth(w);
                             stage.show();
                             ((Stage) ((Node) actionEvent.getSource()).getScene().getWindow()).close();
                             SolicitarDatos controler = loader.<SolicitarDatos>getController();
@@ -145,11 +137,7 @@ public class LoginController {
                             Stage stage = new Stage();
                             stage.setTitle("¡Bienvenido!");
                             stage.getIcons().add(new Image("grupo1/labtic/ui/Imagenes/yendoIcono.png"));
-                            double w = ((Stage) ((Node) actionEvent.getSource()).getScene().getWindow()).getWidth();
-                            double h = ((Stage) ((Node) actionEvent.getSource()).getScene().getWindow()).getHeight();
                             stage.setScene(new Scene(root));
-                            stage.setHeight(h);
-                            stage.setWidth(w);
                             stage.show();
                             ((Stage) ((Node) actionEvent.getSource()).getScene().getWindow()).close();
                             RestaurantePrincipal restaurantePrincipal = loader.<RestaurantePrincipal>getController();
@@ -167,6 +155,7 @@ public class LoginController {
                 //handleAdminLogin();
 
                 Admin admin = adminRepository.getByEmail(email.getText());
+
                 if (admin.getPassword().equals(password.getText())) {
                     try {
                         FXMLLoader loader = new FXMLLoader();
@@ -175,13 +164,11 @@ public class LoginController {
                         Stage stage = new Stage();
                         stage.setTitle("Yendo");
                         stage.getIcons().add(new Image("grupo1/labtic/ui/Imagenes/yendoIcono.png"));
-                        double w = ((Stage) ((Node) actionEvent.getSource()).getScene().getWindow()).getWidth();
-                        double h = ((Stage) ((Node) actionEvent.getSource()).getScene().getWindow()).getHeight();
                         stage.setScene(new Scene(root));
-                        stage.setHeight(h);
-                        stage.setWidth(w);
                         stage.show();
                         ((Stage) ((Node) actionEvent.getSource()).getScene().getWindow()).close();
+                        PortadaAdmin controler = loader.<PortadaAdmin>getController();
+                        controler.setAdmin(admin);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
