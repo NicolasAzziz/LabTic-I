@@ -254,11 +254,7 @@ public class SolicitarDatos {
                     Stage stage = new Stage();
                     stage.setTitle("¡Bienvenido!");
                     stage.getIcons().add(new Image("grupo1/labtic/ui/Imagenes/yendoIcono.png"));
-                    double w = ((Stage) ((Node) event.getSource()).getScene().getWindow()).getWidth();
-                    double h = ((Stage) ((Node) event.getSource()).getScene().getWindow()).getHeight();
                     stage.setScene(new Scene(root));
-                    stage.setHeight(h);
-                    stage.setWidth(w);
                     ((Stage) ((Node) event.getSource()).getScene().getWindow()).close();
                     stage.show();
                     RestaurantePrincipal restaurantePrincipal = loader.<RestaurantePrincipal>getController();

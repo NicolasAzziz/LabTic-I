@@ -39,8 +39,10 @@ public class Reserva {
     @Column
     private String estado;
 
-    public Reserva() {
-    }
+    @Column
+    private Long importe = 0L;
+
+    public Reserva(){}
 
     public Reserva(Cliente cliente, Restaurant restaurant, int nroReferencia) {
         this.cliente = cliente;
@@ -164,6 +166,14 @@ public class Reserva {
 
     public void setNroReferencia(int nroReferencia) {
         this.nroReferencia = nroReferencia;
+    }
+
+    public Long getImporte() {
+        return importe;
+    }
+
+    public void setImporte(Long importe) {
+        this.importe = importe;
     }
 }
 

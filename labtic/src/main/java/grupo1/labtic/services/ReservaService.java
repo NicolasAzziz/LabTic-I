@@ -1,6 +1,8 @@
 package grupo1.labtic.services;
 
+import grupo1.labtic.persistence.AdminRepository;
 import grupo1.labtic.persistence.ReservaRepository;
+import grupo1.labtic.services.entities.Admin;
 import grupo1.labtic.services.entities.Cliente;
 import grupo1.labtic.services.entities.Reserva;
 import grupo1.labtic.services.entities.Restaurant;
@@ -19,7 +21,10 @@ public class ReservaService {
     private ReservaRepository reservaRepository;
     @Autowired
     private RestaurantService restaurantService;
+    @Autowired
+    private AdminRepository adminRepository;
 
+    private Admin admin;
 
     public List<Reserva> reservasPendientes(Restaurant restaurant) {
         return (List) reservaRepository.getReservasByEstadoIsAndRestaurant("Solicitado", restaurant);
@@ -42,9 +47,13 @@ public class ReservaService {
         reservaRepository.save(reserva);
     }
 
-    public void aceptarReserva(Reserva reserva) throws MesaOcupada {
+
+    public void aceptarReserva(Reserva reserva) throws  MesaOcupada{
+
+        Long importePorReserva = adminRepository.getByEmail(admin.getEmail()).getImporteActual();;
         Reserva reserva1 = reservaRepository.getById(reserva.getId());
         reserva1.setEstadoAceptado();
+        reserva1.setImporte(importePorReserva);
         reservaRepository.save(reserva1);
         Restaurant restaurant = restaurantService.getByEmail(reserva.getRestaurant().getEmail());
         if (restaurant.getMesa(reserva.getNroReferencia()).isMesaLibre() == false)
@@ -85,6 +94,10 @@ public class ReservaService {
 
     public List<Reserva> getReservasByClienteAndEstadoSolicitado(Cliente cliente) {
         return (List) reservaRepository.getReservaByCliente_EmailAndEstado(cliente.getEmail(), "Solicitado");
+    }
+
+    public void setAdmin(Admin admin) {
+        this.admin = admin;
     }
 
     public List<Reserva> getReservasByClienteAndEstadoAceptado(Cliente cliente) {

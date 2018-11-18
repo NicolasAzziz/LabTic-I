@@ -268,30 +268,17 @@ public class RestaurantePrincipal {
     }
 
     @FXML
-    void facturacion(ActionEvent event) {
+    void facturacion(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader();
         loader.setControllerFactory(AppApplication.getContext()::getBean);
         loader.setLocation(RestaurantePrincipal.class.getResource("facturacion.fxml"));
-
-        try {
-            loader.load();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
+        loader.load();
         importe.setText("");
         Parent root = loader.getRoot();
-
         Stage stage = new Stage();
-
         stage.setTitle("Facturacion");
-
         stage.getIcons().add(new Image("grupo1/labtic/ui/Imagenes/yendoIcono.png"));
-        double w = ((Stage) ((Node) event.getSource()).getScene().getWindow()).getWidth();
-        double h = ((Stage) ((Node) event.getSource()).getScene().getWindow()).getHeight();
         stage.setScene(new Scene(root));
-        stage.setHeight(h);
-        stage.setWidth(w);
         stage.show();
     }
 
@@ -322,11 +309,8 @@ public class RestaurantePrincipal {
                 reservasAceptadas.forEach(reserva -> reservas.add(reserva));
                 reservasFinzalizadas.forEach(reserva -> reservas.add(reserva));
 
-                if((new java.sql.Date(reservas.get(0).getFechaYhora().getTime()).toLocalDate()).isAfter(fechaDesde.getValue())){
-                    System.out.println("HELLO NICO");
-                }
 
-                for (int i = 0; i < reservas.size(); i++) {
+                for(int i = 0 ; i < reservas.size(); i++){
 
                     if((new java.sql.Date(reservas.get(i).getFechaYhora().getTime()).toLocalDate()).isAfter(fechaDesde.getValue()) ||
                             (new java.sql.Date(reservas.get(i).getFechaYhora().getTime()).toLocalDate()).isEqual(fechaDesde.getValue())){
@@ -339,8 +323,13 @@ public class RestaurantePrincipal {
                     }
                 }
 
-//CARGAR PRECIO
-                long importeAPagar = reservasFiltradas.size() * 10L;
+                long importeAPagar = 0L;
+
+                for(int i = 0 ; i < reservasFiltradas.size(); i++){
+
+                    importeAPagar = importeAPagar + reservasFiltradas.get(i).getImporte();
+
+                }
 
                 importe.setText("EL MONTO CORRESPONDIENTE A LA FECHA INDICADA  ES DE $ " + importeAPagar);
 

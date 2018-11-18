@@ -6,69 +6,61 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-            prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171"
-            fx:controller="grupo1.labtic.ui.admins.PortadaAdmin">
-    <children>
-        <GridPane prefHeight="400.0" prefWidth="600.0">
-            <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="294.0" minWidth="10.0" prefWidth="110.66665649414062"/>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="511.3333435058594" minWidth="10.0"
-                                   prefWidth="489.3333435058594"/>
-            </columnConstraints>
-            <rowConstraints>
-                <RowConstraints maxHeight="129.33334350585938" minHeight="0.0" prefHeight="47.33332824707031"
-                                vgrow="SOMETIMES"/>
-                <RowConstraints maxHeight="349.6666717529297" minHeight="10.0" prefHeight="349.6666717529297"
-                                vgrow="SOMETIMES"/>
-            </rowConstraints>
-            <children>
-                <Label alignment="CENTER" prefHeight="79.0" prefWidth="131.0" style="-fx-background-color: #493928;"
-                       text="YENDO" textFill="WHITE">
-                    <font>
-                        <Font name="Yu Gothic Regular" size="22.0"/>
-                    </font>
-                </Label>
-                <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #857B6F;" GridPane.rowIndex="1">
-                    <children>
-                        <JFXButton fx:id="cerrarSesion" alignment="TOP_CENTER" contentDisplay="TOP" layoutX="9.0"
-                                   layoutY="35.0" onAction="#cerrarSesion" prefHeight="39.0" prefWidth="92.0"
-                                   style="-fx-background-color: #493928;" text="Cerrar sesion" textFill="WHITE">
-                            <graphic>
-                                <FontAwesomeIconView fill="WHITE" glyphName="POWER_OFF" size="25.0"
-                                                     wrappingWidth="21.619057655334473"/>
-                            </graphic>
-                        </JFXButton>
-                        <JFXButton fx:id="agregarRestaurant" alignment="TOP_CENTER" contentDisplay="TOP" layoutX="9.0"
-                                   layoutY="140.0" onAction="#agregarRestaurant" prefHeight="55.0" prefWidth="92.0"
-                                   style="-fx-background-color: #493928;" text="Agregar resto" textFill="WHITE">
-                            <graphic>
-                                <FontAwesomeIconView fill="WHITE" glyphName="PLUS" size="25.0"/>
-                            </graphic>
-                        </JFXButton>
-                        <JFXButton fx:id="actualizar" alignment="TOP_CENTER" contentDisplay="TOP" layoutX="9.0"
-                                   layoutY="245.0" onAction="#actualizarTabla" prefHeight="27.0" prefWidth="92.0"
-                                   style="-fx-background-color: #493928;" text="Actualizar" textFill="WHITE">
-                            <graphic>
-                                <FontAwesomeIconView fill="WHITE" glyphName="REFRESH" size="25.0"/>
-                            </graphic>
-                        </JFXButton>
-                    </children>
-                </Pane>
-                <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #857B6F;"
-                      GridPane.columnIndex="1"/>
-                <TableView fx:id="table" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1"
-                           GridPane.rowIndex="1">
-                    <columns>
-                        <TableColumn fx:id="col_nombre" prefWidth="66.33331298828125" text="Nombre"/>
-                        <TableColumn fx:id="col_email" prefWidth="90.66668701171875" text="Email"/>
-                        <TableColumn fx:id="col_rut" prefWidth="77.66668701171875" text="RUT"/>
-                        <TableColumn fx:id="col_barrio" prefWidth="75.66668701171875" text=" Barrio"/>
-                        <TableColumn fx:id="col_telefono" prefWidth="84.33331298828125" text="Telefono"/>
-                        <TableColumn fx:id="col_direccion" prefWidth="96.0" text="Direccion"/>
-                    </columns>
-                </TableView>
-            </children>
-        </GridPane>
-    </children>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="grupo1.labtic.ui.admins.PortadaAdmin">
+   <children>
+      <GridPane prefHeight="400.0" prefWidth="600.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="294.0" minWidth="10.0" prefWidth="110.66665649414062" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="511.3333435058594" minWidth="10.0" prefWidth="489.3333435058594" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="129.33334350585938" minHeight="0.0" prefHeight="47.33332824707031" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="349.6666717529297" minHeight="10.0" prefHeight="349.6666717529297" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label alignment="CENTER" prefHeight="79.0" prefWidth="131.0" style="-fx-background-color: #493928;" text="YENDO" textFill="WHITE">
+               <font>
+                  <Font name="Yu Gothic Regular" size="22.0" />
+               </font>
+            </Label>
+            <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #857B6F;" GridPane.rowIndex="1">
+               <children>
+                  <JFXButton fx:id="cerrarSesion" alignment="TOP_CENTER" contentDisplay="TOP" layoutX="9.0" layoutY="43.0" onAction="#cerrarSesion" prefHeight="39.0" prefWidth="92.0" style="-fx-background-color: #493928;" text="Cerrar sesion" textFill="WHITE">
+                     <graphic>
+                        <FontAwesomeIconView fill="WHITE" glyphName="POWER_OFF" size="25.0" wrappingWidth="21.619057655334473" />
+                     </graphic>
+                  </JFXButton>
+                  <JFXButton fx:id="agregarRestaurant" alignment="TOP_CENTER" contentDisplay="TOP" layoutX="9.0" layoutY="110.0" onAction="#agregarRestaurant" prefHeight="55.0" prefWidth="92.0" style="-fx-background-color: #493928;" text="Agregar resto" textFill="WHITE">
+                     <graphic>
+                        <FontAwesomeIconView fill="WHITE" glyphName="PLUS" size="25.0" />
+                     </graphic>
+                  </JFXButton>
+                  <JFXButton fx:id="actualizar" alignment="TOP_CENTER" contentDisplay="TOP" layoutX="9.0" layoutY="252.0" onAction="#actualizarTabla" prefHeight="27.0" prefWidth="92.0" style="-fx-background-color: #493928;" text="Actualizar" textFill="WHITE">
+                     <graphic>
+                        <FontAwesomeIconView fill="WHITE" glyphName="REFRESH" size="25.0" />
+                     </graphic>
+                  </JFXButton>
+                  <JFXButton fx:id="precioReserva" alignment="TOP_CENTER" contentDisplay="TOP" layoutX="9.0" layoutY="181.0" onAction="#agregarPrecioReserva" prefHeight="55.0" prefWidth="92.0" style="-fx-background-color: #493928;" text="Reserva" textFill="WHITE">
+                     <graphic>
+                        <FontAwesomeIconView fill="WHITE" glyphName="DOLLAR" size="25.0" />
+                     </graphic>
+                  </JFXButton>
+               </children>
+            </Pane>
+            <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #857B6F;" GridPane.columnIndex="1" />
+            <TableView fx:id="table" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+              <columns>
+                <TableColumn fx:id="col_nombre" prefWidth="66.33331298828125" text="Nombre" />
+                <TableColumn fx:id="col_email" prefWidth="90.66668701171875" text="Email" />
+                  <TableColumn fx:id="col_rut" prefWidth="77.66668701171875" text="RUT" />
+                  <TableColumn fx:id="col_barrio" prefWidth="75.66668701171875" text=" Barrio" />
+                  <TableColumn fx:id="col_telefono" prefWidth="84.33331298828125" text="Telefono" />
+                  <TableColumn fx:id="col_direccion" prefWidth="96.0" text="Direccion" />
+              </columns>
+            </TableView>
+         </children>
+      </GridPane>
+   </children>
 </AnchorPane>
