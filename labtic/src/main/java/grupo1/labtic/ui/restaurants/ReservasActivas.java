@@ -34,7 +34,7 @@ public class ReservasActivas {
     private Text sillas;
 
     @FXML
-    private Text fechaYhora;
+    private Text hora;
 
     @FXML
     private Text estadoMesa;
@@ -60,7 +60,7 @@ public class ReservasActivas {
         sillas.setText(reserva.getMesa().getCantLugares().toString());
         estadoMesa.setText(reserva.getMesa().getEstado());
         estadoReserva.setText(reserva.getEstado());
-        fechaYhora.setText(reserva.getFechaYhora().toString());
+        hora.setText(reserva.getHoraString());
     }
 
     @FXML

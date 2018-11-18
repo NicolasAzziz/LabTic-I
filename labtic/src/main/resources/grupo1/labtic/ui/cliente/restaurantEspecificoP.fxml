@@ -2,354 +2,426 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Separator?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="grupo1.labtic.ui.cliente.Principal">
-   <children>
-      <Separator layoutY="52.0" prefHeight="0.0" prefWidth="600.0" />
-      <Separator layoutX="102.0" orientation="VERTICAL" prefHeight="400.0" prefWidth="0.0" />
-      <GridPane prefHeight="400.0" prefWidth="600.0">
-        <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="190.66668701171875" minWidth="10.0" prefWidth="112.66668701171875" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="497.3333435058594" minWidth="10.0" prefWidth="487.33331298828125" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints maxHeight="196.0" minHeight="10.0" prefHeight="53.66667175292969" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="346.3333282470703" minHeight="10.0" prefHeight="346.3333282470703" vgrow="SOMETIMES" />
-        </rowConstraints>
-         <children>
-            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="265.0" prefWidth="280.0" style="-fx-background-color: #493928;" text="YENDO" textFill="WHITE">
-               <font>
-                  <Font name="Yu Gothic Regular" size="22.0" />
-               </font>
-            </Label>
-            <AnchorPane prefHeight="53.0" prefWidth="511.0" style="-fx-background-color: #857B6F;" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
-               <children>
-                  <GridPane prefHeight="53.0" prefWidth="488.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                    <columnConstraints>
-                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="389.77777099609375" minWidth="10.0" prefWidth="379.5555419921875" />
-                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="234.66668701171875" minWidth="10.0" prefWidth="108.4444580078125" />
-                    </columnConstraints>
-                    <rowConstraints>
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                    </rowConstraints>
-                     <children>
-                        <HBox prefHeight="100.0" prefWidth="488.0" GridPane.columnIndex="1">
-                           <children>
-                              <GridPane>
-                                <columnConstraints>
-                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                </columnConstraints>
-                                <rowConstraints>
-                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                </rowConstraints>
-                                 <children>
-                                    <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
-                                       <children>
-                                          <Text fx:id="raiting" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
-                                             <font>
-                                                <Font name="Arial" size="13.0" />
-                                             </font>
-                                          </Text>
-                                       </children>
-                                    </VBox>
-                                    <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1">
-                                       <children>
-                                          <Text fx:id="horario" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
-                                             <font>
-                                                <Font name="Arial" size="13.0" />
-                                             </font>
-                                          </Text>
-                                       </children>
-                                    </VBox>
-                                 </children>
-                              </GridPane>
-                           </children>
-                        </HBox>
-                        <HBox alignment="CENTER" prefHeight="53.0" prefWidth="488.0">
-                           <children>
-                              <Text fx:id="nombre" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre del Restaurant" textAlignment="CENTER" HBox.hgrow="ALWAYS">
-                                 <font>
-                                    <Font size="32.0" />
-                                 </font>
-                              </Text>
-                           </children>
-                        </HBox>
-                     </children>
-                  </GridPane>
-               </children>
-            </AnchorPane>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
-               <children>
-                  <GridPane prefHeight="347.0" prefWidth="488.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                    <columnConstraints>
-                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                    </columnConstraints>
-                    <rowConstraints>
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                    </rowConstraints>
-                     <children>
-                        <GridPane prefHeight="347.0" prefWidth="488.0">
-                          <columnConstraints>
-                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="290.111083984375" minWidth="10.0" prefWidth="246.0" />
-                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="158.11114501953125" minWidth="0.0" prefWidth="0.0" />
-                          </columnConstraints>
-                          <rowConstraints>
-                            <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="138.4444580078125" valignment="CENTER" />
-                            <RowConstraints maxHeight="139.88888549804688" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
-                            <RowConstraints maxHeight="198.0" minHeight="10.0" prefHeight="102.0" vgrow="SOMETIMES" />
-                              <RowConstraints maxHeight="81.66665649414062" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
-                              <RowConstraints maxHeight="117.0" minHeight="10.0" prefHeight="117.0" vgrow="SOMETIMES" />
-                          </rowConstraints>
-                           <children>
-                              <GridPane alignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
-                                <columnConstraints>
-                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                </columnConstraints>
-                                <rowConstraints>
-                                  <RowConstraints maxHeight="78.44442749023438" minHeight="10.0" prefHeight="63.333343505859375" valignment="CENTER" vgrow="SOMETIMES" />
-                                  <RowConstraints maxHeight="53.111114501953125" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
-                                    <RowConstraints maxHeight="70.0" minHeight="10.0" prefHeight="70.0" vgrow="SOMETIMES" />
-                                </rowConstraints>
-                                 <children>
-                                    <GridPane>
-                                       <columnConstraints>
-                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="117.11114501953125" minWidth="10.0" prefWidth="63.33331298828125" />
-                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="180.66668701171875" minWidth="10.0" prefWidth="180.66668701171875" />
-                                       </columnConstraints>
-                                       <rowConstraints>
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                       </rowConstraints>
-                                       <children>
-                                          <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0">
-                                             <children>
-                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Descripción" textAlignment="CENTER" wrappingWidth="51.44952392578125">
-                                                   <font>
-                                                      <Font size="10.0" />
-                                                   </font>
-                                                </Text>
-                                             </children>
-                                          </HBox>
-                                          <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
-                                             <children>
-                                                <Text fx:id="description" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER">
-                                                   <font>
-                                                      <Font name="Arial" size="11.0" />
-                                                   </font>
-                                                </Text>
-                                             </children>
-                                          </HBox>
-                                       </children>
-                                    </GridPane>
-                                    <GridPane GridPane.rowIndex="2">
-                                      <columnConstraints>
-                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="117.11114501953125" minWidth="10.0" prefWidth="63.33331298828125" />
-                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="180.66668701171875" minWidth="10.0" prefWidth="180.66668701171875" />
-                                      </columnConstraints>
-                                      <rowConstraints>
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                      </rowConstraints>
-                                       <children>
-                                          <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
-                                             <children>
-                                                <Text fx:id="comidas" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER">
-                                                   <font>
-                                                      <Font name="Arial" size="11.0" />
-                                                   </font>
-                                                </Text>
-                                             </children>
-                                          </HBox>
-                                          <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0">
-                                             <children>
-                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Comidas" textAlignment="CENTER" wrappingWidth="39.44952392578125">
-                                                   <font>
-                                                      <Font size="10.0" />
-                                                   </font>
-                                                </Text>
-                                             </children>
-                                          </HBox>
-                                       </children>
-                                    </GridPane>
-                                    <Separator prefWidth="200.0" GridPane.rowIndex="1" />
-                                 </children>
-                              </GridPane>
-                              <GridPane alignment="CENTER" GridPane.rowIndex="4">
-                                 <columnConstraints>
-                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="115.3333740234375" minWidth="10.0" prefWidth="62.0" />
-                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="196.6666259765625" minWidth="10.0" prefWidth="182.0" />
-                                 </columnConstraints>
-                                 <rowConstraints>
-                                    <RowConstraints maxHeight="78.44442749023438" minHeight="10.0" prefHeight="69.0" valignment="CENTER" vgrow="SOMETIMES" />
-                                    <RowConstraints maxHeight="56.111083984375" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
-                                    <RowConstraints maxHeight="76.0" minHeight="10.0" prefHeight="47.888916015625" vgrow="SOMETIMES" />
-                                 </rowConstraints>
-                                 <children>
-                                    <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
-                                       <children>
-                                          <Text fx:id="pagos" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER">
-                                             <font>
-                                                <Font name="Arial" size="11.0" />
-                                             </font>
-                                             <HBox.margin>
-                                                <Insets />
-                                             </HBox.margin>
-                                          </Text>
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="-">
-                                             <HBox.margin>
-                                                <Insets left="10.0" right="10.0" />
-                                             </HBox.margin>
-                                             <font>
-                                                <Font size="13.0" />
-                                             </font>
-                                          </Text>
-                                          <Text fx:id="precioMedio" layoutX="119.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER">
-                                             <font>
-                                                <Font name="Arial" size="11.0" />
-                                             </font>
-                                          </Text>
-                                       </children>
-                                    </HBox>
-                                    <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                                       <children>
-                                          <Text fx:id="barrioRE" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER">
-                                             <font>
-                                                <Font name="Arial" size="11.0" />
-                                             </font>
-                                             <HBox.margin>
-                                                <Insets />
-                                             </HBox.margin>
-                                          </Text>
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="-">
-                                             <font>
-                                                <Font size="13.0" />
-                                             </font>
-                                             <HBox.margin>
-                                                <Insets left="10.0" right="10.0" />
-                                             </HBox.margin>
-                                          </Text>
-                                          <Text fx:id="direccion" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
-                                             <font>
-                                                <Font name="Arial" size="11.0" />
-                                             </font>
-                                             <HBox.margin>
-                                                <Insets />
-                                             </HBox.margin>
-                                          </Text>
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="-">
-                                             <font>
-                                                <Font size="13.0" />
-                                             </font>
-                                             <HBox.margin>
-                                                <Insets left="10.0" right="10.0" />
-                                             </HBox.margin>
-                                          </Text>
-                                          <Text fx:id="tel" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
-                                             <font>
-                                                <Font name="Arial" size="11.0" />
-                                             </font>
-                                          </Text>
-                                       </children>
-                                    </HBox>
-                                    <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0">
-                                       <children>
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Pagos - Precio medio" textAlignment="CENTER" wrappingWidth="75.00506591796875">
-                                             <font>
-                                                <Font size="10.0" />
-                                             </font>
-                                          </Text>
-                                       </children>
-                                    </HBox>
-                                    <Separator prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                    <Separator prefWidth="200.0" GridPane.rowIndex="1" />
-                                 </children>
-                              </GridPane>
-                              <Separator prefWidth="200.0" GridPane.rowIndex="3" />
-                              <HBox fx:id="imagenContainer" alignment="CENTER" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
-                                 <children>
-                                    <ImageView fx:id="imagenRE" fitHeight="130.0" fitWidth="239.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS" />
-                                 </children>
-                              </HBox>
-                              <Separator orientation="VERTICAL" prefHeight="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                              <Separator orientation="VERTICAL" prefHeight="200.0" GridPane.columnIndex="1" />
-                              <Separator orientation="VERTICAL" prefHeight="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                              <Separator prefWidth="200.0" GridPane.rowIndex="1" />
-                           </children>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+            prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.172-ea"
+            fx:controller="grupo1.labtic.ui.cliente.Principal">
+    <children>
+        <Separator layoutY="52.0" prefHeight="0.0" prefWidth="600.0"/>
+        <Separator layoutX="102.0" orientation="VERTICAL" prefHeight="400.0" prefWidth="0.0"/>
+        <GridPane prefHeight="400.0" prefWidth="600.0">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="190.66668701171875" minWidth="10.0"
+                                   prefWidth="112.66668701171875"/>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="497.3333435058594" minWidth="10.0"
+                                   prefWidth="487.33331298828125"/>
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints maxHeight="196.0" minHeight="10.0" prefHeight="53.66667175292969" vgrow="SOMETIMES"/>
+                <RowConstraints maxHeight="346.3333282470703" minHeight="10.0" prefHeight="346.3333282470703"
+                                vgrow="SOMETIMES"/>
+            </rowConstraints>
+            <children>
+                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="265.0" prefWidth="280.0"
+                       style="-fx-background-color: #493928;" text="YENDO" textFill="WHITE">
+                    <font>
+                        <Font name="Yu Gothic Regular" size="22.0"/>
+                    </font>
+                </Label>
+                <AnchorPane prefHeight="53.0" prefWidth="511.0" style="-fx-background-color: #857B6F;"
+                            GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                    <children>
+                        <GridPane prefHeight="53.0" prefWidth="488.0" AnchorPane.bottomAnchor="0.0"
+                                  AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                            <columnConstraints>
+                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="389.77777099609375" minWidth="10.0"
+                                                   prefWidth="379.5555419921875"/>
+                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="234.66668701171875" minWidth="10.0"
+                                                   prefWidth="108.4444580078125"/>
+                            </columnConstraints>
+                            <rowConstraints>
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                            </rowConstraints>
+                            <children>
+                                <HBox prefHeight="100.0" prefWidth="488.0" GridPane.columnIndex="1">
+                                    <children>
+                                        <GridPane>
+                                            <columnConstraints>
+                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                                            </columnConstraints>
+                                            <rowConstraints>
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                            </rowConstraints>
+                                            <children>
+                                                <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                                                    <children>
+                                                        <Text fx:id="raiting" fill="WHITE" strokeType="OUTSIDE"
+                                                              strokeWidth="0.0" text="Text">
+                                                            <font>
+                                                                <Font name="Arial" size="13.0"/>
+                                                            </font>
+                                                        </Text>
+                                                    </children>
+                                                </VBox>
+                                                <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0"
+                                                      GridPane.rowIndex="1">
+                                                    <children>
+                                                        <Text fx:id="horario" fill="WHITE" strokeType="OUTSIDE"
+                                                              strokeWidth="0.0" text="Text">
+                                                            <font>
+                                                                <Font name="Arial" size="13.0"/>
+                                                            </font>
+                                                        </Text>
+                                                    </children>
+                                                </VBox>
+                                            </children>
+                                        </GridPane>
+                                    </children>
+                                </HBox>
+                                <HBox alignment="CENTER" prefHeight="53.0" prefWidth="488.0">
+                                    <children>
+                                        <Text fx:id="nombre" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0"
+                                              text="Nombre del Restaurant" textAlignment="CENTER" HBox.hgrow="ALWAYS">
+                                            <font>
+                                                <Font size="32.0"/>
+                                            </font>
+                                        </Text>
+                                    </children>
+                                </HBox>
+                            </children>
                         </GridPane>
-                        <GridPane GridPane.columnIndex="1">
-                          <columnConstraints>
-                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                          </columnConstraints>
-                          <rowConstraints>
-                            <RowConstraints maxHeight="109.77777099609375" minHeight="10.0" prefHeight="82.0" vgrow="SOMETIMES" />
-                            <RowConstraints maxHeight="287.0" minHeight="10.0" prefHeight="204.0" vgrow="SOMETIMES" />
-                              <RowConstraints maxHeight="214.22222900390625" minHeight="10.0" prefHeight="66.0" vgrow="SOMETIMES" />
-                          </rowConstraints>
-                           <children>
-                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
-                                 <children>
-                                    <Text fill="#000000c5" strokeType="OUTSIDE" strokeWidth="0.0" text="Mesas" textAlignment="CENTER">
-                                       <font>
-                                          <Font name="Arial Alternative Symbol" size="29.0" />
-                                       </font>
-                                       <VBox.margin>
-                                          <Insets top="23.0" />
-                                       </VBox.margin>
-                                    </Text>
-                                 </children>
-                              </VBox>
-                              <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1">
-                                 <children>
-                                    <TableView fx:id="mesas" prefHeight="200.0" prefWidth="200.0">
-                                      <columns>
-                                        <TableColumn fx:id="numeroMesa" prefWidth="120.0" text="#" />
-                                        <TableColumn fx:id="sillas" prefWidth="122.0" text="Sillas" />
-                                      </columns>
-                                       <VBox.margin>
-                                          <Insets left="1.0" />
-                                       </VBox.margin>
-                                    </TableView>
-                                 </children>
-                              </VBox>
-                              <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="2">
-                                 <children>
-                                    <JFXButton alignment="CENTER" contentDisplay="TOP" onAction="#solicitarMesa" prefHeight="30.0" prefWidth="79.0" ripplerFill="#7a5b3a" style="-fx-background-color: #493928;" text="Solicitar" textAlignment="CENTER" textFill="WHITE">
-                                       <HBox.margin>
-                                          <Insets right="30.0" />
-                                       </HBox.margin>
-                                    </JFXButton>
-                                 </children>
-                              </HBox>
-                           </children>
+                    </children>
+                </AnchorPane>
+                <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                    <children>
+                        <GridPane prefHeight="347.0" prefWidth="488.0" AnchorPane.bottomAnchor="0.0"
+                                  AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                            <columnConstraints>
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                            </columnConstraints>
+                            <rowConstraints>
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                            </rowConstraints>
+                            <children>
+                                <GridPane prefHeight="347.0" prefWidth="488.0">
+                                    <columnConstraints>
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="290.111083984375" minWidth="10.0"
+                                                           prefWidth="246.0"/>
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="158.11114501953125"
+                                                           minWidth="0.0" prefWidth="0.0"/>
+                                    </columnConstraints>
+                                    <rowConstraints>
+                                        <RowConstraints maxHeight="-Infinity" minHeight="10.0"
+                                                        prefHeight="138.4444580078125" valignment="CENTER"/>
+                                        <RowConstraints maxHeight="139.88888549804688" minHeight="0.0" prefHeight="0.0"
+                                                        vgrow="SOMETIMES"/>
+                                        <RowConstraints maxHeight="198.0" minHeight="10.0" prefHeight="102.0"
+                                                        vgrow="SOMETIMES"/>
+                                        <RowConstraints maxHeight="81.66665649414062" minHeight="0.0" prefHeight="0.0"
+                                                        vgrow="SOMETIMES"/>
+                                        <RowConstraints maxHeight="117.0" minHeight="10.0" prefHeight="117.0"
+                                                        vgrow="SOMETIMES"/>
+                                    </rowConstraints>
+                                    <children>
+                                        <GridPane alignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="2"
+                                                  GridPane.valignment="CENTER">
+                                            <columnConstraints>
+                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                                            </columnConstraints>
+                                            <rowConstraints>
+                                                <RowConstraints maxHeight="78.44442749023438" minHeight="10.0"
+                                                                prefHeight="63.333343505859375" valignment="CENTER"
+                                                                vgrow="SOMETIMES"/>
+                                                <RowConstraints maxHeight="53.111114501953125" minHeight="0.0"
+                                                                prefHeight="0.0" vgrow="SOMETIMES"/>
+                                                <RowConstraints maxHeight="70.0" minHeight="10.0" prefHeight="70.0"
+                                                                vgrow="SOMETIMES"/>
+                                            </rowConstraints>
+                                            <children>
+                                                <GridPane>
+                                                    <columnConstraints>
+                                                        <ColumnConstraints hgrow="SOMETIMES"
+                                                                           maxWidth="117.11114501953125" minWidth="10.0"
+                                                                           prefWidth="63.33331298828125"/>
+                                                        <ColumnConstraints hgrow="SOMETIMES"
+                                                                           maxWidth="180.66668701171875" minWidth="10.0"
+                                                                           prefWidth="180.66668701171875"/>
+                                                    </columnConstraints>
+                                                    <rowConstraints>
+                                                        <RowConstraints minHeight="10.0" prefHeight="30.0"
+                                                                        vgrow="SOMETIMES"/>
+                                                    </rowConstraints>
+                                                    <children>
+                                                        <HBox alignment="TOP_CENTER" prefHeight="100.0"
+                                                              prefWidth="200.0">
+                                                            <children>
+                                                                <Text strokeType="OUTSIDE" strokeWidth="0.0"
+                                                                      text="Descripción" textAlignment="CENTER"
+                                                                      wrappingWidth="51.44952392578125">
+                                                                    <font>
+                                                                        <Font size="10.0"/>
+                                                                    </font>
+                                                                </Text>
+                                                            </children>
+                                                        </HBox>
+                                                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0"
+                                                              GridPane.columnIndex="1">
+                                                            <children>
+                                                                <Text fx:id="description" strokeType="OUTSIDE"
+                                                                      strokeWidth="0.0" text="Text"
+                                                                      textAlignment="CENTER">
+                                                                    <font>
+                                                                        <Font name="Arial" size="11.0"/>
+                                                                    </font>
+                                                                </Text>
+                                                            </children>
+                                                        </HBox>
+                                                    </children>
+                                                </GridPane>
+                                                <GridPane GridPane.rowIndex="2">
+                                                    <columnConstraints>
+                                                        <ColumnConstraints hgrow="SOMETIMES"
+                                                                           maxWidth="117.11114501953125" minWidth="10.0"
+                                                                           prefWidth="63.33331298828125"/>
+                                                        <ColumnConstraints hgrow="SOMETIMES"
+                                                                           maxWidth="180.66668701171875" minWidth="10.0"
+                                                                           prefWidth="180.66668701171875"/>
+                                                    </columnConstraints>
+                                                    <rowConstraints>
+                                                        <RowConstraints minHeight="10.0" prefHeight="30.0"
+                                                                        vgrow="SOMETIMES"/>
+                                                    </rowConstraints>
+                                                    <children>
+                                                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0"
+                                                              GridPane.columnIndex="1">
+                                                            <children>
+                                                                <Text fx:id="comidas" strokeType="OUTSIDE"
+                                                                      strokeWidth="0.0" text="Text"
+                                                                      textAlignment="CENTER">
+                                                                    <font>
+                                                                        <Font name="Arial" size="11.0"/>
+                                                                    </font>
+                                                                </Text>
+                                                            </children>
+                                                        </HBox>
+                                                        <HBox alignment="TOP_CENTER" prefHeight="100.0"
+                                                              prefWidth="200.0">
+                                                            <children>
+                                                                <Text strokeType="OUTSIDE" strokeWidth="0.0"
+                                                                      text="Comidas" textAlignment="CENTER"
+                                                                      wrappingWidth="39.44952392578125">
+                                                                    <font>
+                                                                        <Font size="10.0"/>
+                                                                    </font>
+                                                                </Text>
+                                                            </children>
+                                                        </HBox>
+                                                    </children>
+                                                </GridPane>
+                                                <Separator prefWidth="200.0" GridPane.rowIndex="1"/>
+                                            </children>
+                                        </GridPane>
+                                        <GridPane alignment="CENTER" GridPane.rowIndex="4">
+                                            <columnConstraints>
+                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="115.3333740234375"
+                                                                   minWidth="10.0" prefWidth="62.0"/>
+                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="196.6666259765625"
+                                                                   minWidth="10.0" prefWidth="182.0"/>
+                                            </columnConstraints>
+                                            <rowConstraints>
+                                                <RowConstraints maxHeight="78.44442749023438" minHeight="10.0"
+                                                                prefHeight="69.0" valignment="CENTER"
+                                                                vgrow="SOMETIMES"/>
+                                                <RowConstraints maxHeight="56.111083984375" minHeight="0.0"
+                                                                prefHeight="0.0" vgrow="SOMETIMES"/>
+                                                <RowConstraints maxHeight="76.0" minHeight="10.0"
+                                                                prefHeight="47.888916015625" vgrow="SOMETIMES"/>
+                                            </rowConstraints>
+                                            <children>
+                                                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0"
+                                                      GridPane.columnIndex="1">
+                                                    <children>
+                                                        <Text fx:id="pagos" strokeType="OUTSIDE" strokeWidth="0.0"
+                                                              text="Text" textAlignment="CENTER">
+                                                            <font>
+                                                                <Font name="Arial" size="11.0"/>
+                                                            </font>
+                                                            <HBox.margin>
+                                                                <Insets/>
+                                                            </HBox.margin>
+                                                        </Text>
+                                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="-">
+                                                            <HBox.margin>
+                                                                <Insets left="10.0" right="10.0"/>
+                                                            </HBox.margin>
+                                                            <font>
+                                                                <Font size="13.0"/>
+                                                            </font>
+                                                        </Text>
+                                                        <Text fx:id="precioMedio" layoutX="119.0" layoutY="44.0"
+                                                              strokeType="OUTSIDE" strokeWidth="0.0" text="Text"
+                                                              textAlignment="CENTER">
+                                                            <font>
+                                                                <Font name="Arial" size="11.0"/>
+                                                            </font>
+                                                        </Text>
+                                                    </children>
+                                                </HBox>
+                                                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0"
+                                                      GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                                    <children>
+                                                        <Text fx:id="barrioRE" strokeType="OUTSIDE" strokeWidth="0.0"
+                                                              text="Text" textAlignment="CENTER">
+                                                            <font>
+                                                                <Font name="Arial" size="11.0"/>
+                                                            </font>
+                                                            <HBox.margin>
+                                                                <Insets/>
+                                                            </HBox.margin>
+                                                        </Text>
+                                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="-">
+                                                            <font>
+                                                                <Font size="13.0"/>
+                                                            </font>
+                                                            <HBox.margin>
+                                                                <Insets left="10.0" right="10.0"/>
+                                                            </HBox.margin>
+                                                        </Text>
+                                                        <Text fx:id="direccion" strokeType="OUTSIDE" strokeWidth="0.0"
+                                                              text="Text">
+                                                            <font>
+                                                                <Font name="Arial" size="11.0"/>
+                                                            </font>
+                                                            <HBox.margin>
+                                                                <Insets/>
+                                                            </HBox.margin>
+                                                        </Text>
+                                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="-">
+                                                            <font>
+                                                                <Font size="13.0"/>
+                                                            </font>
+                                                            <HBox.margin>
+                                                                <Insets left="10.0" right="10.0"/>
+                                                            </HBox.margin>
+                                                        </Text>
+                                                        <Text fx:id="tel" strokeType="OUTSIDE" strokeWidth="0.0"
+                                                              text="Text">
+                                                            <font>
+                                                                <Font name="Arial" size="11.0"/>
+                                                            </font>
+                                                        </Text>
+                                                    </children>
+                                                </HBox>
+                                                <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0">
+                                                    <children>
+                                                        <Text strokeType="OUTSIDE" strokeWidth="0.0"
+                                                              text="Pagos - Precio medio" textAlignment="CENTER"
+                                                              wrappingWidth="75.00506591796875">
+                                                            <font>
+                                                                <Font size="10.0"/>
+                                                            </font>
+                                                        </Text>
+                                                    </children>
+                                                </HBox>
+                                                <Separator prefWidth="200.0" GridPane.columnIndex="1"
+                                                           GridPane.rowIndex="1"/>
+                                                <Separator prefWidth="200.0" GridPane.rowIndex="1"/>
+                                            </children>
+                                        </GridPane>
+                                        <Separator prefWidth="200.0" GridPane.rowIndex="3"/>
+                                        <HBox fx:id="imagenContainer" alignment="CENTER" GridPane.halignment="CENTER"
+                                              GridPane.valignment="CENTER">
+                                            <children>
+                                                <ImageView fx:id="imagenRE" fitHeight="130.0" fitWidth="239.0"
+                                                           pickOnBounds="true" preserveRatio="true"
+                                                           HBox.hgrow="ALWAYS"/>
+                                            </children>
+                                        </HBox>
+                                        <Separator orientation="VERTICAL" prefHeight="200.0" GridPane.columnIndex="1"
+                                                   GridPane.rowIndex="2"/>
+                                        <Separator orientation="VERTICAL" prefHeight="200.0" GridPane.columnIndex="1"/>
+                                        <Separator orientation="VERTICAL" prefHeight="200.0" GridPane.columnIndex="1"
+                                                   GridPane.rowIndex="4"/>
+                                        <Separator prefWidth="200.0" GridPane.rowIndex="1"/>
+                                    </children>
+                                </GridPane>
+                                <GridPane GridPane.columnIndex="1">
+                                    <columnConstraints>
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                                    </columnConstraints>
+                                    <rowConstraints>
+                                        <RowConstraints maxHeight="109.77777099609375" minHeight="10.0"
+                                                        prefHeight="82.0" vgrow="SOMETIMES"/>
+                                        <RowConstraints maxHeight="287.0" minHeight="10.0" prefHeight="204.0"
+                                                        vgrow="SOMETIMES"/>
+                                        <RowConstraints maxHeight="214.22222900390625" minHeight="10.0"
+                                                        prefHeight="66.0" vgrow="SOMETIMES"/>
+                                    </rowConstraints>
+                                    <children>
+                                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                                            <children>
+                                                <Text fill="#000000c5" strokeType="OUTSIDE" strokeWidth="0.0"
+                                                      text="Mesas" textAlignment="CENTER">
+                                                    <font>
+                                                        <Font name="Arial Alternative Symbol" size="29.0"/>
+                                                    </font>
+                                                    <VBox.margin>
+                                                        <Insets top="23.0"/>
+                                                    </VBox.margin>
+                                                </Text>
+                                            </children>
+                                        </VBox>
+                                        <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1">
+                                            <children>
+                                                <TableView fx:id="mesas" prefHeight="200.0" prefWidth="200.0">
+                                                    <columns>
+                                                        <TableColumn fx:id="numeroMesa" prefWidth="120.0" text="#"/>
+                                                        <TableColumn fx:id="sillas" prefWidth="122.0" text="Sillas"/>
+                                                    </columns>
+                                                    <VBox.margin>
+                                                        <Insets left="1.0"/>
+                                                    </VBox.margin>
+                                                </TableView>
+                                            </children>
+                                        </VBox>
+                                        <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0"
+                                              GridPane.rowIndex="2">
+                                            <children>
+                                                <JFXButton alignment="CENTER" contentDisplay="TOP"
+                                                           onAction="#solicitarMesa" prefHeight="30.0" prefWidth="79.0"
+                                                           ripplerFill="#7a5b3a" style="-fx-background-color: #493928;"
+                                                           text="Solicitar" textAlignment="CENTER" textFill="WHITE">
+                                                    <HBox.margin>
+                                                        <Insets right="30.0"/>
+                                                    </HBox.margin>
+                                                </JFXButton>
+                                            </children>
+                                        </HBox>
+                                    </children>
+                                </GridPane>
+                            </children>
                         </GridPane>
-                     </children>
-                  </GridPane>
-               </children>
-            </AnchorPane>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #857B6F;" GridPane.rowIndex="1">
-               <children>
-                  <JFXButton alignment="TOP_CENTER" contentDisplay="TOP" layoutX="10.0" layoutY="39.0" onAction="#atras" prefHeight="39.0" prefWidth="92.0" style="-fx-background-color: #493928;" text="Atras" textFill="WHITE">
-                     <graphic>
-                        <FontAwesomeIconView fill="WHITE" glyphName="ARROW_CIRCLE_LEFT" size="25" />
-                     </graphic>
-                  </JFXButton>
-               </children>
-            </AnchorPane>
-         </children>
-      </GridPane>
-   </children>
+                    </children>
+                </AnchorPane>
+                <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #857B6F;"
+                            GridPane.rowIndex="1">
+                    <children>
+                        <JFXButton alignment="TOP_CENTER" contentDisplay="TOP" layoutX="10.0" layoutY="39.0"
+                                   onAction="#atras" prefHeight="39.0" prefWidth="92.0"
+                                   style="-fx-background-color: #493928;" text="Atras" textFill="WHITE">
+                            <graphic>
+                                <FontAwesomeIconView fill="WHITE" glyphName="ARROW_CIRCLE_LEFT" size="25"/>
+                            </graphic>
+                        </JFXButton>
+                    </children>
+                </AnchorPane>
+            </children>
+        </GridPane>
+    </children>
 </AnchorPane>

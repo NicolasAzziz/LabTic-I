@@ -244,9 +244,9 @@ public class RestaurantService {
         Restaurant restaurant1 = restaurantRepository.getRestaurantByEmail(restaurant.getEmail());
         List<Mesa> mesas = restaurant1.getMesas();
         List<Mesa> mesasLibres = new ArrayList<>();
-        for (Mesa mesa:mesas
-             ) {
-            if(mesa.isMesaLibre())
+        for (Mesa mesa : mesas
+        ) {
+            if (mesa.isMesaLibre())
                 mesasLibres.add(mesa);
         }
         return mesasLibres;
@@ -256,11 +256,27 @@ public class RestaurantService {
         Restaurant restaurant1 = restaurantRepository.getRestaurantByEmail(restaurant.getEmail());
         List<Mesa> mesas = restaurant1.getMesas();
         List<Mesa> mesasOcupadas = new ArrayList<>();
-        for (Mesa mesa:mesas
+        for (Mesa mesa : mesas
         ) {
-            if(mesa.isMesaLibre() == false)
+            if (mesa.isMesaLibre() == false)
                 mesasOcupadas.add(mesa);
         }
         return mesasOcupadas;
+    }
+
+    public Iterable<Restaurant> findAll() {
+        return restaurantRepository.findAll();
+    }
+
+    public Iterable<Restaurant> findAllByGrupoDeComidaList(List<GrupoDeComida> grupoDeComidaByGrupo) {
+        return restaurantRepository.findAllByGrupoDeComidaList(grupoDeComidaByGrupo);
+    }
+
+    public Iterable<Restaurant> findAllByBarrio(List<String> selectedBarrios) {
+        return restaurantRepository.findAllByBarrio(selectedBarrios);
+    }
+
+    public Restaurant findByNombreRestaurant(String restaurantNombre) {
+        return restaurantRepository.findByNombreRestaurant(restaurantNombre);
     }
 }

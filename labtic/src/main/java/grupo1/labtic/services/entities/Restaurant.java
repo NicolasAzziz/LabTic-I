@@ -40,6 +40,9 @@ public class Restaurant extends Usuario {
     @ManyToMany
     @LazyCollection(LazyCollectionOption.FALSE)
     protected List<TipoDePago> tipoDePagoList;
+    @ManyToMany
+    @LazyCollection(LazyCollectionOption.FALSE)
+    protected List<Reserva> reservas;
     @Column(name = "RUT", unique = true)
     private long rut;
     @Column(name = "NombreRestaurant")
@@ -51,16 +54,10 @@ public class Restaurant extends Usuario {
     @Column
     @Lob
     private byte[] imagen;
-
     @ElementCollection
     @CollectionTable(name = "Mesas", joinColumns = @JoinColumn(name = "Restaurant_id"), uniqueConstraints = @UniqueConstraint(columnNames = {"restaurant_id", "nroReferencia"}))
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<Mesa> mesas;
-
-    @ManyToMany
-    @LazyCollection(LazyCollectionOption.FALSE)
-    protected List<Reserva> reservas;
-
 
 
     public Restaurant(String email, String password, long rut, String direccion, String horarioApertura, String horarioCierre, String barrio, String telefono, String descripcion) {
@@ -132,21 +129,21 @@ public class Restaurant extends Usuario {
         return mesas;
     }
 
-    public boolean setMesa(Mesa mesa){
+    public void setMesas(List<Mesa> mesas) {
+        this.mesas = mesas;
+    }
+
+    public boolean setMesa(Mesa mesa) {
         boolean bExit = false;
-        for(int i = 0; i<mesas.size(); i++){
-            if(mesa.getNroReferencia() == mesas.get(i).getNroReferencia()){
+        for (int i = 0; i < mesas.size(); i++) {
+            if (mesa.getNroReferencia() == mesas.get(i).getNroReferencia()) {
                 bExit = true;
             }
         }
-        if(bExit) {
+        if (bExit) {
             mesas.add(mesa);
         }
         return bExit;
-    }
-
-    public void setMesas(List<Mesa> mesas) {
-        this.mesas = mesas;
     }
 
     public String getDireccion() {
@@ -308,9 +305,9 @@ public class Restaurant extends Usuario {
 
     public Mesa getMesa(int nroReferencia) {
         Mesa oMesa = null;
-        for (Mesa mesa:mesas
-             ) {
-            if(mesa.getNroReferencia() == nroReferencia)
+        for (Mesa mesa : mesas
+        ) {
+            if (mesa.getNroReferencia() == nroReferencia)
                 oMesa = mesa;
         }
         return oMesa;

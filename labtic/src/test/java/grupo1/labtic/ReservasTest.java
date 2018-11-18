@@ -13,9 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = AppApplication.class)
 public class ReservasTest {
@@ -28,21 +25,21 @@ public class ReservasTest {
     private ClienteRepository clienteRepository;
 
     @Test
-    public void agregarReserva(){
-        Restaurant restaurant = new Restaurant("restaurant@reserva","1234", 12345L, "direccion", "08:00", "23:00", "Malvin", "12345123", "Desc");
+    public void agregarReserva() {
+        Restaurant restaurant = new Restaurant("restaurant@reserva", "1234", 12345L, "direccion", "08:00", "23:00", "Malvin", "12345123", "Desc");
         Mesa mesa = new Mesa();
         mesa.setCantLugares(4);
         mesa.setNroReferencia(1);
         restaurant.setMesa(mesa);
         Restaurant r = restaurantRepository.getOneByEmail(restaurant.getEmail());
-        if(r == null) {
+        if (r == null) {
             restaurantRepository.save(restaurant);
         }
-        Cliente cliente = new Cliente("Federico Abdo Sosa","fede@abdo","43331539");
+        Cliente cliente = new Cliente("Federico Abdo Sosa", "fede@abdo", "43331539");
 
         Cliente c = clienteRepository.findByEmail(cliente.getEmail());
 
-        if(c == null){
+        if (c == null) {
             clienteRepository.save(cliente);
         }
 

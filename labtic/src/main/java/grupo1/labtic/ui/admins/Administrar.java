@@ -3,7 +3,6 @@ package grupo1.labtic.ui.admins;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
-import grupo1.labtic.AppApplication;
 import grupo1.labtic.services.RestaurantService;
 import grupo1.labtic.services.UsuarioService;
 import grupo1.labtic.services.exceptions.EmailInvalido;
@@ -11,19 +10,13 @@ import grupo1.labtic.services.exceptions.InvalidRestaurantInformation;
 import grupo1.labtic.services.exceptions.RestaurantAlreadyExists;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import java.io.IOException;
 
 import static grupo1.labtic.ui.Alert.showAlert;
 
@@ -98,6 +91,6 @@ public class Administrar {
     }
 
     public void backBtn(ActionEvent actionEvent) {
-        ((Stage)((Node)actionEvent.getSource()).getScene().getWindow()).close();
+        ((Stage) ((Node) actionEvent.getSource()).getScene().getWindow()).close();
     }
 }

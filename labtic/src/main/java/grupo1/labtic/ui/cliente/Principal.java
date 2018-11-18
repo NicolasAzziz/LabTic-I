@@ -2,17 +2,15 @@ package grupo1.labtic.ui.cliente;
 
 import com.jfoenix.controls.JFXButton;
 import grupo1.labtic.AppApplication;
-import grupo1.labtic.persistence.GrupoDeComidaRepository;
-import grupo1.labtic.persistence.RestaurantRepository;
+import grupo1.labtic.services.GrupoDeComidaService;
 import grupo1.labtic.services.ReservaService;
 import grupo1.labtic.services.RestaurantService;
 import grupo1.labtic.services.entities.Cliente;
 import grupo1.labtic.services.entities.Restaurant;
+import grupo1.labtic.services.entities.restaurant.Mesa;
 import grupo1.labtic.services.exceptions.ClienteSinReservas;
 import grupo1.labtic.services.exceptions.ReservaYaSolicitada;
 import grupo1.labtic.ui.LoginController;
-import grupo1.labtic.services.entities.restaurant.Mesa;
-import grupo1.labtic.ui.restaurants.RestaurantePrincipal;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -22,9 +20,6 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.control.Button;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -45,11 +40,9 @@ import static grupo1.labtic.ui.Alert.showAlert;
 @Component
 public class Principal {
 
-    @Autowired
-    private RestaurantRepository repository;
 
     @Autowired
-    private GrupoDeComidaRepository grupoDeComidaRepository;
+    private GrupoDeComidaService grupoDeComidaService;
 
     @Autowired
     private ReservaService reservaService;
@@ -147,7 +140,7 @@ public class Principal {
 
     private Parent root;
 
-    public void setCliente(Cliente cliente){
+    public void setCliente(Cliente cliente) {
         this.cliente = cliente;
     }
 
@@ -160,7 +153,7 @@ public class Principal {
         imagen.setCellValueFactory(new PropertyValueFactory<Restaurant, ImageView>("imageView"));
         cocinas.setCellValueFactory(new PropertyValueFactory<Restaurant, String>("cocinasOfrecidasString"));
 
-        List<Restaurant> restaurantes = (List) repository.findAll();
+        List<Restaurant> restaurantes = (List) restaurantService.findAll();
         tableViewRestaurantes.setItems(FXCollections.observableList(restaurantes));
 
 
@@ -201,7 +194,7 @@ public class Principal {
                 List<Restaurant> restaurantes = new ArrayList<>();
 
                 if (selectedItemsComidas.size() == 1) {
-                    Iterable<Restaurant> restos = repository.findAllByGrupoDeComidaList(grupoDeComidaRepository.getGrupoDeComidaByGrupo(selectedItemsComidas));
+                    Iterable<Restaurant> restos = restaurantService.findAllByGrupoDeComidaList(grupoDeComidaService.getGrupoDeComidaByGrupo(selectedItemsComidas));
                     restos.forEach(resto -> restaurantes.add(resto));
                 } else {
 
@@ -209,11 +202,11 @@ public class Principal {
 
                     for (int i = 0; i < selectedItemsComidas.size(); i++) {
 
-                        List<String> restoIndex = new ArrayList<>();
+                        List<String> comidas = new ArrayList<>();
 
-                        restoIndex.add(selectedItemsComidas.get(i));
+                        comidas.add(selectedItemsComidas.get(i));
 
-                        Iterable<Restaurant> restos = repository.findAllByGrupoDeComidaList(grupoDeComidaRepository.getGrupoDeComidaByGrupo(restoIndex));
+                        Iterable<Restaurant> restos = restaurantService.findAllByGrupoDeComidaList(grupoDeComidaService.getGrupoDeComidaByGrupo(comidas));
 
                         restos.forEach(resto -> restaurantes.add(resto));
 
@@ -228,16 +221,16 @@ public class Principal {
                 List<Restaurant> restaurantes = new ArrayList<>();
 
                 if (selectedBarrios.size() == 1) {
-                    Iterable<Restaurant> restos = repository.findAllByBarrio(selectedBarrios);
+                    Iterable<Restaurant> restos = restaurantService.findAllByBarrio(selectedBarrios);
                     restos.forEach(resto -> restaurantes.add(resto));
                 } else {
                     for (int i = 0; i < selectedBarrios.size(); i++) {
 
-                        List<String> restoIndex = new ArrayList<>();
+                        List<String> barrios = new ArrayList<>();
 
-                        restoIndex.add(selectedBarrios.get(i));
+                        barrios.add(selectedBarrios.get(i));
 
-                        Iterable<Restaurant> restos = repository.findAllByBarrio(restoIndex);
+                        Iterable<Restaurant> restos = restaurantService.findAllByBarrio(barrios);
 
                         restos.forEach(resto -> restaurantes.add(resto));
 
@@ -257,7 +250,7 @@ public class Principal {
 
                     restoIndex.add(selectedItemsComidas.get(i));
 
-                    Iterable<Restaurant> restos = repository.findAllByGrupoDeComidaList(grupoDeComidaRepository.getGrupoDeComidaByGrupo(restoIndex));
+                    Iterable<Restaurant> restos = restaurantService.findAllByGrupoDeComidaList(grupoDeComidaService.getGrupoDeComidaByGrupo(restoIndex));
 
                     restos.forEach(resto -> byComida.add(resto));
 
@@ -277,7 +270,7 @@ public class Principal {
             }
 
         } else {
-            Restaurant resto = repository.findByNombreRestaurant(restaurantToFind.getText());
+            Restaurant resto = restaurantService.findByNombreRestaurant(restaurantToFind.getText());
             if (resto != null) {
 
                 ArrayList<Restaurant> restoFound = new ArrayList();
@@ -331,18 +324,18 @@ public class Principal {
         Stage stage = new Stage();
         stage.setTitle("Restaurant específico");
         stage.getIcons().add(new Image("grupo1/labtic/ui/Imagenes/yendoIcono.png"));
-        double w = ((Stage)((Node)event1.getSource()).getScene().getWindow()).getWidth();
-        double h = ((Stage)((Node)event1.getSource()).getScene().getWindow()).getHeight();
+        double w = ((Stage) ((Node) event1.getSource()).getScene().getWindow()).getWidth();
+        double h = ((Stage) ((Node) event1.getSource()).getScene().getWindow()).getHeight();
         stage.setScene(new Scene(root));
         stage.setHeight(h);
         stage.setWidth(w);
 
 
-        numeroMesa.setCellValueFactory((new PropertyValueFactory<Mesa,String>("nroReferencia")));
-        sillas.setCellValueFactory(new PropertyValueFactory<Mesa,String>("cantLugares"));
+        numeroMesa.setCellValueFactory((new PropertyValueFactory<Mesa, String>("nroReferencia")));
+        sillas.setCellValueFactory(new PropertyValueFactory<Mesa, String>("cantLugares"));
 
-        List<Mesa> mesasList = (List) restaurantService.getByEmail(restaurant.getEmail()).getMesas();
-        mesas.setItems(FXCollections.observableList(mesasList));
+        List<Mesa> mesasLibresList = (List) restaurantService.mesasLibres(restaurant);
+        mesas.setItems(FXCollections.observableList(mesasLibresList));
 
         nombre.setText(restaurant.getNombreRestaurant());
         description.setText(restaurant.getDescripcion());
@@ -388,9 +381,10 @@ public class Principal {
     @FXML
     void reservas(ActionEvent event) {
         try {
-            if(reservaService.getReservasByCliente(cliente).size() == 0){
+            if (reservaService.getReservasByCliente(cliente).size() == 0) {
                 throw new ClienteSinReservas("Aun no tienes ninguna reserva!");
-            };
+            }
+            ;
             FXMLLoader loader = new FXMLLoader();
             loader.setControllerFactory(AppApplication.getContext()::getBean);
             Parent root = null;
@@ -411,10 +405,11 @@ public class Principal {
 
             VerReservas verReservas = loader.<VerReservas>getController();
             verReservas.setCliente(cliente);
-        }catch(ClienteSinReservas e){
+        } catch (ClienteSinReservas e) {
             showAlert("Reservas", e.getMessage());
         }
     }
+
     @FXML
     void solicitarMesa(ActionEvent event) {
         Mesa mesa = mesas.getSelectionModel().getSelectedItem();
@@ -422,7 +417,7 @@ public class Principal {
         try {
             reservaService.solicitarReserva(cliente, restaurant, mesa.getNroReferencia());
             showAlert("Solicitado", "Se ha enviado una solicitud de reserva al restaurante.");
-        }catch (ReservaYaSolicitada e){
+        } catch (ReservaYaSolicitada e) {
             showAlert("Error", e.getMessage());
         }
 

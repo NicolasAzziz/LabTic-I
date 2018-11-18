@@ -2,7 +2,6 @@ package grupo1.labtic.ui.restaurants;
 
 import com.jfoenix.controls.JFXButton;
 import grupo1.labtic.AppApplication;
-import grupo1.labtic.persistence.ReservaRepository;
 import grupo1.labtic.services.ReservaService;
 import grupo1.labtic.services.RestaurantService;
 import grupo1.labtic.services.entities.Reserva;
@@ -16,7 +15,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.chart.Axis;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
@@ -27,7 +25,6 @@ import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -43,8 +40,6 @@ public class RestaurantePrincipal {
     private ReservaService reservaService;
     @Autowired
     private RestaurantService restaurantService;
-    @Autowired
-    private ReservaRepository reservaRepository;
 
     @FXML
     private JFXButton ajustes;
@@ -69,7 +64,7 @@ public class RestaurantePrincipal {
     private TableColumn<Reserva, Mesa> mesaRP;
 
     @FXML
-    private TableColumn<Reserva, Date> horaRP;
+    private TableColumn<Reserva, String> horaRP;
 
     @FXML
     private TableView<Reserva> reservasActivas;
@@ -87,7 +82,7 @@ public class RestaurantePrincipal {
     private TableColumn<Mesa, Integer> lugarMesaRA;
 
     @FXML
-    private TableColumn<Reserva, Date> horaRA;
+    private TableColumn<Reserva, String> horaRA;
 
     @FXML
     private TableColumn<Mesa, Integer> nroMesaRP;
@@ -179,6 +174,7 @@ public class RestaurantePrincipal {
                     Parent root = loader.getRoot();
                     ReservasPendientes reservaPendientesController = loader.<ReservasPendientes>getController();
                     reservaPendientesController.setReserva(reserva);
+                    reservaPendientesController.setRestaurantePrincipal(this);
                     Stage stage = new Stage();
                     stage.setTitle("Reserva");
                     stage.getIcons().add(new Image("grupo1/labtic/ui/Imagenes/yendoIcono.png"));
@@ -215,7 +211,7 @@ public class RestaurantePrincipal {
         mesaRP.setCellValueFactory(new PropertyValueFactory<Reserva, Mesa>("mesa"));
         lugarMesaRP.setCellValueFactory(new PropertyValueFactory<Mesa, Integer>("cantLugares"));
         nroMesaRP.setCellValueFactory(new PropertyValueFactory<Mesa, Integer>("nroReferencia"));
-        horaRP.setCellValueFactory(new PropertyValueFactory<Reserva, Date>("fechaYhora"));
+        horaRP.setCellValueFactory(new PropertyValueFactory<Reserva, String>("horaString"));
         reservasPendientes.setItems(FXCollections.observableList(reservaService.reservasPendientes()));
     }
 
@@ -224,7 +220,7 @@ public class RestaurantePrincipal {
         mesaRA.setCellValueFactory(new PropertyValueFactory<Reserva, Mesa>("mesa"));
         lugarMesaRA.setCellValueFactory(new PropertyValueFactory<Mesa, Integer>("cantLugares"));
         nroMesaRA.setCellValueFactory(new PropertyValueFactory<Mesa, Integer>("nroReferencia"));
-        horaRA.setCellValueFactory(new PropertyValueFactory<Reserva, Date>("fechaYhora"));
+        horaRA.setCellValueFactory(new PropertyValueFactory<Reserva, String>("horaString"));
         reservasActivas.setItems(FXCollections.observableList(reservaService.reservasActivas()));
     }
 
@@ -233,8 +229,7 @@ public class RestaurantePrincipal {
         nroMesaML.setCellValueFactory(new PropertyValueFactory<Mesa, Integer>("nroReferencia"));
         lugarML.setCellValueFactory(new PropertyValueFactory<Mesa, Integer>("cantLugares"));
         List<Mesa> mesasLibresRest = restaurantService.mesasLibres(restaurant);
-//        if (mesasLibresRest.size() != 0)
-            mesasLibres.setItems(FXCollections.observableList(mesasLibresRest));
+        mesasLibres.setItems(FXCollections.observableList(mesasLibresRest));
     }
 
     private void mesasOcupadas() {
@@ -242,8 +237,9 @@ public class RestaurantePrincipal {
         lugarMO.setCellValueFactory(new PropertyValueFactory<Mesa, Integer>("cantLugares"));
         List<Mesa> mesasOcupadasRest = restaurantService.mesasOcupadas(restaurant);
 //        if (mesasOcupadasRest.size() != 0)
-            mesasOcupadas.setItems(FXCollections.observableList(mesasOcupadasRest));
+        mesasOcupadas.setItems(FXCollections.observableList(mesasOcupadasRest));
     }
+
     @FXML
     void cerrarSesion(ActionEvent event) {
         FXMLLoader loader = new FXMLLoader();
@@ -287,28 +283,28 @@ public class RestaurantePrincipal {
     }
 
     @FXML
-    void facturar(ActionEvent event){
+    void facturar(ActionEvent event) {
 
-        if(fechaDesde.getValue() == null || fechaHasta.getValue() == null){
+        if (fechaDesde.getValue() == null || fechaHasta.getValue() == null) {
 
             showAlert("Fechas invalidas!", "No se registraron fechas correctas para realizar la facturacion");
 
-        }else {
+        } else {
 
             LocalDate dateDesde = fechaDesde.getValue();
             LocalDate dateHasta = fechaHasta.getValue();
 
-            if (dateDesde.isAfter(LocalDate.now()) || dateHasta.isAfter(LocalDate.now()) || dateDesde.isAfter(dateHasta)){
+            if (dateDesde.isAfter(LocalDate.now()) || dateHasta.isAfter(LocalDate.now()) || dateDesde.isAfter(dateHasta)) {
 
                 showAlert("Fechas invalidas!", "Las fechas registradas no son correctas");
 
-            }else {
+            } else {
 
                 List<Reserva> reservas = new ArrayList<>();
                 List<Reserva> reservasFiltradas = new ArrayList<>();
 
-                Iterable<Reserva> reservasAceptadas = reservaRepository.getReservasByEstadoIsAndRestaurant("Aceptado", restaurant);
-                Iterable<Reserva> reservasFinzalizadas = reservaRepository.getReservasByEstadoIsAndRestaurant("Finalizado", restaurant);
+                Iterable<Reserva> reservasAceptadas = reservaService.getReservasByRestaurantAndEstadoAceptado(restaurant);
+                Iterable<Reserva> reservasFinzalizadas = reservaService.getReservasByRestaurantAndEstadoFinalizado(restaurant);
 
                 reservasAceptadas.forEach(reserva -> reservas.add(reserva));
                 reservasFinzalizadas.forEach(reserva -> reservas.add(reserva));

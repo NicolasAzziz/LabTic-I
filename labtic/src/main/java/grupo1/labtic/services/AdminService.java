@@ -15,10 +15,10 @@ public class AdminService {
     @Autowired
     private ReservaService reservaService;
 
-    public void admin(){
-        Admin admin = new Admin("admin@yendo","admin");
+    public void admin() {
+        Admin admin = new Admin("admin@yendo", "admin");
         boolean exist = adminRepository.existsByEmail("admin@yendo");
-        if(!exist)
+        if (!exist)
             adminRepository.save(admin);
             reservaService.setAdmin(admin);
     }

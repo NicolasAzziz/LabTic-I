@@ -4,7 +4,6 @@ import grupo1.labtic.services.entities.Restaurant;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
-import javax.validation.constraints.NotNull;
 import java.util.Objects;
 
 @Embeddable
@@ -84,9 +83,9 @@ public class Mesa {
 
     public String getEstado() {
         String estado = "";
-        if(isMesaLibre()){
+        if (isMesaLibre()) {
             estado = "Libre";
-        } else if(isMesaLibre() == false){
+        } else if (isMesaLibre() == false) {
             estado = "Ocupada";
         }
         return estado;

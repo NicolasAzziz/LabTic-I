@@ -3,11 +3,11 @@ package grupo1.labtic.ui.admins;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import grupo1.labtic.AppApplication;
-import grupo1.labtic.persistence.AdminRepository;
 import grupo1.labtic.persistence.ReservaRepository;
-import grupo1.labtic.persistence.RestaurantRepository;
 import grupo1.labtic.services.AdminService;
 import grupo1.labtic.services.entities.Admin;
+import grupo1.labtic.services.ReservaService;
+import grupo1.labtic.services.RestaurantService;
 import grupo1.labtic.services.entities.Reserva;
 import grupo1.labtic.services.entities.Restaurant;
 import grupo1.labtic.ui.LoginController;
@@ -19,31 +19,25 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
-
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-
 import javafx.stage.Stage;
 import javafx.util.converter.IntegerStringConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.util.*;
 import java.util.List;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.ResourceBundle;
 
 import static grupo1.labtic.ui.Alert.showAlert;
 
@@ -72,8 +66,7 @@ public class PortadaAdmin {
     private TableColumn<Restaurant, String> col_direccion;
 
     @Autowired
-    private RestaurantRepository restaurantRepository;
-
+    private RestaurantService restaurantService;
     @Autowired
     private AdminService adminService;
 
@@ -109,9 +102,9 @@ public class PortadaAdmin {
     private JFXButton guardar;
 
     @Autowired
-    private ReservaRepository reservaRepository;
+    private ReservaService reservaService;
 
-    private Restaurant rowData;
+    private Restaurant restaurant;
 
     private Admin admin;
 
@@ -146,7 +139,7 @@ public class PortadaAdmin {
         col_telefono.setCellValueFactory(new PropertyValueFactory<Restaurant, String>("telefono"));
         col_direccion.setCellValueFactory(new PropertyValueFactory<Restaurant, String>("direccion"));
 
-        Iterable<Restaurant> listaRestaurantes = restaurantRepository.findAll();
+        Iterable<Restaurant> listaRestaurantes = restaurantService.findAll();
         ObservableList<Restaurant> data = FXCollections.observableList((List) listaRestaurantes);
 
         table.setItems(data);
@@ -155,9 +148,9 @@ public class PortadaAdmin {
             TableRow<Restaurant> row = new TableRow<>();
             row.setOnMouseClicked((event1) -> {
                 if (event1.getClickCount() == 2 && (!row.isEmpty())) {
-                    rowData = row.getItem();
+                    restaurant = row.getItem();
                     try {
-                        if(rowData.getNombreRestaurant() != null){
+                        if(restaurant.getNombreRestaurant() != null){
                             FXMLLoader loader = new FXMLLoader();
                             loader.setControllerFactory(AppApplication.getContext()::getBean);
                             Parent root = loader.load(PortadaAdmin.class.getResourceAsStream("restauranteEspecifico.fxml"));
@@ -165,20 +158,19 @@ public class PortadaAdmin {
                             stage.setTitle("Restaurant específico");
                             stage.getIcons().add(new Image("grupo1/labtic/ui/Imagenes/yendoIcono.png"));
                             stage.setScene(new Scene(root));
-                            nombre.setText(rowData.getNombreRestaurant());
-                            description.setText(rowData.getDescripcion());
-                            barrioPM.setText(rowData.getBarrio() + " - " + rowData.getPrecioMedio());
-                            tel.setText(rowData.getTelefono());
-                            direccion.setText(rowData.getDireccion());
-                            horario.setText(rowData.getHorarioApertura() + " - " + rowData.getHorarioCierre());
-                            logo.setImage(rowData.getImageView().getImage());
-                            comidas.setText(rowData.getCocinasOfrecidasString());
-                            pagos.setText(rowData.getTipoDePagoListString());
+                            nombre.setText(restaurant.getNombreRestaurant());
+                            description.setText(restaurant.getDescripcion());
+                            barrioPM.setText(restaurant.getBarrio() + " - " + restaurant.getPrecioMedio());
+                            tel.setText(restaurant.getTelefono());
+                            direccion.setText(restaurant.getDireccion());
+                            horario.setText(restaurant.getHorarioApertura() + " - " + restaurant.getHorarioCierre());
+                            logo.setImage(restaurant.getImageView().getImage());
+                            comidas.setText(restaurant.getCocinasOfrecidasString());
+                            pagos.setText(restaurant.getTipoDePagoListString());
                             stage.show();
                         }else{
                             showAlert("SELECCION INVALIDA!", "Los datos del Restaurante aun no han sido cargados");
                         }
-
                     }catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -195,10 +187,9 @@ public class PortadaAdmin {
 
     @FXML
     void actualizarTabla(ActionEvent event) {
-        Iterable<Restaurant> listaRestaurantes = restaurantRepository.findAll();
+        Iterable<Restaurant> listaRestaurantes = restaurantService.findAll();
         ObservableList<Restaurant> data = FXCollections.observableList((List) listaRestaurantes);
         table.setItems(data);
-
 
     }
 
@@ -212,8 +203,8 @@ public class PortadaAdmin {
             Stage stage = new Stage();
             stage.setTitle("Nuevo Restaurant");
             stage.getIcons().add(new Image("grupo1/labtic/ui/Imagenes/yendoIcono.png"));
-            double w = ((Stage)((Node)actionEvent.getSource()).getScene().getWindow()).getWidth();
-            double h = ((Stage)((Node)actionEvent.getSource()).getScene().getWindow()).getHeight();
+            double w = ((Stage) ((Node) actionEvent.getSource()).getScene().getWindow()).getWidth();
+            double h = ((Stage) ((Node) actionEvent.getSource()).getScene().getWindow()).getHeight();
             stage.setScene(new Scene(root));
             stage.setHeight(h);
             stage.setWidth(w);
@@ -227,20 +218,20 @@ public class PortadaAdmin {
     @FXML
     void facturar(ActionEvent event) {
 
-        if(fechaDesde.getValue() == null || fechaHasta.getValue() == null){
+        if (fechaDesde.getValue() == null || fechaHasta.getValue() == null) {
 
             showAlert("Fechas invalidas!", "No se registraron fechas correctas para realizar la facturacion");
 
-        }else {
+        } else {
 
             LocalDate dateDesde = fechaDesde.getValue();
             LocalDate dateHasta = fechaHasta.getValue();
 
-            if (dateDesde.isAfter(LocalDate.now()) || dateHasta.isAfter(LocalDate.now()) || dateDesde.isAfter(dateHasta)){
+            if (dateDesde.isAfter(LocalDate.now()) || dateHasta.isAfter(LocalDate.now()) || dateDesde.isAfter(dateHasta)) {
 
                 showAlert("Fechas invalidas!", "Las fechas registradas no son correctas");
 
-            }else {
+            } else {
 
                 List<Reserva> reservas = new ArrayList<>();
                 List<Reserva> reservasFiltradas = new ArrayList<>();
@@ -248,14 +239,14 @@ public class PortadaAdmin {
                 Date formatDesde = Date.from(dateDesde.atStartOfDay(ZoneId.systemDefault()).toInstant());
                 Date formatHasta = Date.from(dateHasta.atStartOfDay(ZoneId.systemDefault()).toInstant());
 
-                Iterable<Reserva> reservasAceptadas = reservaRepository.getReservasByEstadoIsAndRestaurant("Aceptado", rowData);
-                Iterable<Reserva> reservasFinzalizadas = reservaRepository.getReservasByEstadoIsAndRestaurant("Finalizado", rowData);
+                Iterable<Reserva> reservasAceptadas = reservaService.getReservasByRestaurantAndEstadoAceptado(restaurant);
+                Iterable<Reserva> reservasFinzalizadas = reservaService.getReservasByRestaurantAndEstadoFinalizado(restaurant);
 
                 reservasAceptadas.forEach(reserva -> reservas.add(reserva));
                 reservasFinzalizadas.forEach(reserva -> reservas.add(reserva));
 
 
-                for(int i = 0 ; i < reservas.size(); i++){
+                for (int i = 0; i < reservas.size(); i++) {
 
                     if((new java.sql.Date(reservas.get(i).getFechaYhora().getTime()).toLocalDate()).isAfter(fechaDesde.getValue()) ||
                             (new java.sql.Date(reservas.get(i).getFechaYhora().getTime()).toLocalDate()).isEqual(fechaDesde.getValue())){
@@ -276,12 +267,9 @@ public class PortadaAdmin {
 
                 }
 
-//                long importeAPagar = reservasFiltradas.size() * precioPorReserva;
-
                 importe.setText("$ " + importeAPagar);
 
             }
-
 
         }
 
@@ -324,8 +312,6 @@ public class PortadaAdmin {
         stage.setTitle("Importe por Reservas");
         stage.getIcons().add(new Image("grupo1/labtic/ui/Imagenes/yendoIcono.png"));
         stage.setScene(new Scene(root));
-
-//IMPRIMIR IMPORTE
 
         monto.setText(admin.getImporteActual().toString());
 

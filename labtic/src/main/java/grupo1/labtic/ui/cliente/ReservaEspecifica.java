@@ -1,8 +1,6 @@
 package grupo1.labtic.ui.cliente;
 
-import java.net.URL;
-import java.util.ResourceBundle;
-
+import com.jfoenix.controls.JFXButton;
 import grupo1.labtic.services.ReservaService;
 import grupo1.labtic.services.entities.Reserva;
 import javafx.event.ActionEvent;
@@ -12,6 +10,9 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import java.net.URL;
+import java.util.ResourceBundle;
 
 import static grupo1.labtic.ui.Alert.showAlert;
 
@@ -52,9 +53,12 @@ public class ReservaEspecifica {
     @Autowired
     private ReservaService reservaService;
 
+    @FXML
+    private JFXButton cancelarReservaButton;
+
     private VerReservas verReservas;
 
-    public void setReserva(Reserva reserva){
+    public void setReserva(Reserva reserva) {
         this.reserva = reserva;
         restaurantNombre.setText(reserva.getNombreRestaurant());
         mesaNumero.setText(reserva.getMesa().getNroReferencia().toString());
@@ -63,14 +67,19 @@ public class ReservaEspecifica {
         estadoReserva.setText(reserva.getEstado());
         emailRestaurant.setText(reserva.getRestaurant().getEmail());
         telefono.setText(reserva.getRestaurant().getTelefono());
-        fechaYhora.setText(reserva.getFechaYhora().toString());
+        fechaYhora.setText(reserva.getFechaYhoraString());
+        if (!reserva.getEstado().equals("Solicitado")) {
+            cancelarReservaButton.setDisable(true);
+        } else {
+            cancelarReservaButton.setDisable(false);
+        }
     }
 
     @FXML
     void cancelarReserva(ActionEvent event) {
         reservaService.cancelarReserva(reserva);
-        showAlert("Reserva","Se ha cancelado la reserva.");
-        verReservas.refreshTabla();
+        showAlert("Reserva", "Se ha cancelado la reserva.");
+        verReservas.refreshTabla(event);
         ((Stage) ((Node) event.getSource()).getScene().getWindow()).close();
     }
 
@@ -87,7 +96,7 @@ public class ReservaEspecifica {
 
     }
 
-    public void actualizarReserva(ActionEvent event){
+    public void actualizarReserva(ActionEvent event) {
         setReserva(reservaService.getReservaByReserva(reserva));
     }
 

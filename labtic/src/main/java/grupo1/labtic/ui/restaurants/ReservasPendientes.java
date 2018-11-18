@@ -1,8 +1,5 @@
 package grupo1.labtic.ui.restaurants;
 
-import java.net.URL;
-import java.util.ResourceBundle;
-
 import grupo1.labtic.services.ReservaService;
 import grupo1.labtic.services.entities.Reserva;
 import grupo1.labtic.services.exceptions.MesaOcupada;
@@ -13,6 +10,9 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import java.net.URL;
+import java.util.ResourceBundle;
 
 import static grupo1.labtic.ui.Alert.showAlert;
 
@@ -46,18 +46,22 @@ public class ReservasPendientes {
     @FXML
     private Text estadoReserva;
 
+
     private Reserva reserva;
 
     private RestaurantePrincipal restaurantePrincipal;
-
-    void restaurantePrincipal(RestaurantePrincipal restaurantePrincipal){
-        this.restaurantePrincipal = restaurantePrincipal;
-    }
     @Autowired
     private ReservaService reservaService;
 
+    void restaurantePrincipal(RestaurantePrincipal restaurantePrincipal) {
+        this.restaurantePrincipal = restaurantePrincipal;
+    }
 
-    public void setReserva(Reserva reserva){
+    public void setRestaurantePrincipal(RestaurantePrincipal restaurantePrincipal) {
+        this.restaurantePrincipal = restaurantePrincipal;
+    }
+
+    public void setReserva(Reserva reserva) {
         this.reserva = reserva;
         nombreCliente.setText(reserva.getCliente().getNombre());
         emailCliente.setText(reserva.getCliente().getEmail());
@@ -75,7 +79,7 @@ public class ReservasPendientes {
             showAlert("Reserva", "Se ha aceptado la reserva con exito.");
             ((Stage) ((Node) event.getSource()).getScene().getWindow()).close();
             restaurantePrincipal.actualizarTablas();
-        }catch(MesaOcupada e){
+        } catch (MesaOcupada e) {
             showAlert("Error", e.getMessage());
         }
     }

@@ -3,18 +3,13 @@ package grupo1.labtic.ui.admins;
 import grupo1.labtic.services.entities.Restaurant;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
-import static grupo1.labtic.ui.Alert.showAlert;
 
 @Component
 public class RestauranteEspecifico {
@@ -75,10 +70,9 @@ public class RestauranteEspecifico {
 
     }
 
-    public void sendResto(Restaurant resto){
+    public void sendResto(Restaurant resto) {
         this.resto = resto;
     }
-
 
 
 }
