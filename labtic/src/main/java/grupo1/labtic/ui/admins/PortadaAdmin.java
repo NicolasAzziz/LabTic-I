@@ -135,23 +135,28 @@ public class PortadaAdmin {
                 if (event1.getClickCount() == 2 && (!row.isEmpty())) {
                     restaurant = row.getItem();
                     try {
-                        FXMLLoader loader = new FXMLLoader();
-                        loader.setControllerFactory(AppApplication.getContext()::getBean);
-                        Parent root = loader.load(PortadaAdmin.class.getResourceAsStream("restauranteEspecifico.fxml"));
-                        Stage stage = new Stage();
-                        stage.setTitle("Restaurant específico");
-                        stage.getIcons().add(new Image("grupo1/labtic/ui/Imagenes/yendoIcono.png"));
-                        stage.setScene(new Scene(root));
-                        nombre.setText(restaurant.getNombreRestaurant());
-                        description.setText(restaurant.getDescripcion());
-                        barrioPM.setText(restaurant.getBarrio() + " - " + restaurant.getPrecioMedio());
-                        tel.setText(restaurant.getTelefono());
-                        direccion.setText(restaurant.getDireccion());
-                        horario.setText(restaurant.getHorarioApertura() + " - " + restaurant.getHorarioCierre());
-                        logo.setImage(restaurant.getImageView().getImage());
-                        comidas.setText(restaurant.getCocinasOfrecidasString());
-                        pagos.setText(restaurant.getTipoDePagoListString());
-                        stage.show();
+                        if (restaurant.getNombreRestaurant().equals("") || restaurant.getNombreRestaurant() == null) {
+                            showAlert("Restaurant no completado", "Este restaurant no se ha completado.");
+                        } else {
+                            FXMLLoader loader = new FXMLLoader();
+                            loader.setControllerFactory(AppApplication.getContext()::getBean);
+                            Parent root = loader.load(PortadaAdmin.class.getResourceAsStream("restauranteEspecifico.fxml"));
+                            Stage stage = new Stage();
+                            stage.setTitle("Restaurant específico");
+                            stage.getIcons().add(new Image("grupo1/labtic/ui/Imagenes/yendoIcono.png"));
+                            stage.setScene(new Scene(root));
+                            nombre.setText(restaurant.getNombreRestaurant());
+                            description.setText(restaurant.getDescripcion());
+                            barrioPM.setText(restaurant.getBarrio() + " - " + restaurant.getPrecioMedio());
+                            tel.setText(restaurant.getTelefono());
+                            direccion.setText(restaurant.getDireccion());
+                            horario.setText(restaurant.getHorarioApertura() + " - " + restaurant.getHorarioCierre());
+                            if (restaurant.getImagen() != null)
+                                logo.setImage(restaurant.getImageView().getImage());
+                            comidas.setText(restaurant.getCocinasOfrecidasString());
+                            pagos.setText(restaurant.getTipoDePagoListString());
+                            stage.show();
+                        }
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -230,11 +235,11 @@ public class PortadaAdmin {
 
                 for (int i = 0; i < reservas.size(); i++) {
 
-                    if((new java.sql.Date(reservas.get(i).getFechaYhora().getTime()).toLocalDate()).isAfter(fechaDesde.getValue()) ||
-                            (new java.sql.Date(reservas.get(i).getFechaYhora().getTime()).toLocalDate()).isEqual(fechaDesde.getValue())){
+                    if ((new java.sql.Date(reservas.get(i).getFechaYhora().getTime()).toLocalDate()).isAfter(fechaDesde.getValue()) ||
+                            (new java.sql.Date(reservas.get(i).getFechaYhora().getTime()).toLocalDate()).isEqual(fechaDesde.getValue())) {
 
-                        if((new java.sql.Date(reservas.get(i).getFechaYhora().getTime()).toLocalDate()).isBefore(fechaHasta.getValue()) ||
-                                (new java.sql.Date(reservas.get(i).getFechaYhora().getTime()).toLocalDate()).isEqual(fechaHasta.getValue())){
+                        if ((new java.sql.Date(reservas.get(i).getFechaYhora().getTime()).toLocalDate()).isBefore(fechaHasta.getValue()) ||
+                                (new java.sql.Date(reservas.get(i).getFechaYhora().getTime()).toLocalDate()).isEqual(fechaHasta.getValue())) {
 
                             reservasFiltradas.add(reservas.get(i));
                         }
