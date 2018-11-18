@@ -32,6 +32,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import static com.sun.org.apache.xerces.internal.util.PropertyState.is;
 import static grupo1.labtic.ui.Alert.showAlert;
 
 @Component
@@ -318,28 +319,32 @@ public class RestaurantePrincipal {
                 List<Reserva> reservas = new ArrayList<>();
                 List<Reserva> reservasFiltradas = new ArrayList<>();
 
-                Date formatDesde = java.sql.Date.valueOf(dateDesde);
-                Date formatHasta = java.sql.Date.valueOf(dateHasta);
-
                 Iterable<Reserva> reservasAceptadas = reservaRepository.getReservasByEstadoIsAndRestaurant("Aceptado", restaurant);
                 Iterable<Reserva> reservasFinzalizadas = reservaRepository.getReservasByEstadoIsAndRestaurant("Finalizado", restaurant);
 
                 reservasAceptadas.forEach(reserva -> reservas.add(reserva));
                 reservasFinzalizadas.forEach(reserva -> reservas.add(reserva));
 
+                if((new java.sql.Date(reservas.get(0).getFechaYhora().getTime()).toLocalDate()).isAfter(fechaDesde.getValue())){
+                    System.out.println("HELLO NICO");
+                }
 
 
                 for(int i = 0 ; i < reservas.size(); i++){
 
-//  No esta comparando las fechas
+                    if((new java.sql.Date(reservas.get(i).getFechaYhora().getTime()).toLocalDate()).isAfter(fechaDesde.getValue()) ||
+                            (new java.sql.Date(reservas.get(i).getFechaYhora().getTime()).toLocalDate()).isEqual(fechaDesde.getValue())){
 
-                    if(reservas.get(i).getFechaYhora().after(formatDesde) && reservas.get(i).getFechaYhora().before(formatHasta)){
-                        reservasFiltradas.add(reservas.get(i));
+                        if((new java.sql.Date(reservas.get(i).getFechaYhora().getTime()).toLocalDate()).isBefore(fechaHasta.getValue()) ||
+                                (new java.sql.Date(reservas.get(i).getFechaYhora().getTime()).toLocalDate()).isEqual(fechaHasta.getValue())){
+
+                            reservasFiltradas.add(reservas.get(i));
+                        }
                     }
                 }
+
 //CARGAR PRECIO
                 long importeAPagar = reservasFiltradas.size() * 10L;
-                System.out.println(importeAPagar);
 
                 importe.setText("EL MONTO CORRESPONDIENTE A LA FECHA INDICADA  ES DE $ " + importeAPagar);
 

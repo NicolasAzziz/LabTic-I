@@ -1,11 +1,15 @@
 package grupo1.labtic.services.entities;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+
+
 
 @Entity(name = "ADMIN")
 public class Admin extends Usuario {
 
     public Admin(String email, String password) {
+
         super(email, password);
     }
 

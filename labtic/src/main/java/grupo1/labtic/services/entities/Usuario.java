@@ -10,7 +10,6 @@ import java.util.Objects;
 @Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Usuario {
 
-
     @Id
     @GeneratedValue(generator = "usuario_id")
     @GenericGenerator(name = "usuario_id", strategy = "increment")
