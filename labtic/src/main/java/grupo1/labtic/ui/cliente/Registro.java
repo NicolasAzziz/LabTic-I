@@ -3,27 +3,19 @@ package grupo1.labtic.ui.cliente;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
-import grupo1.labtic.AppApplication;
-import grupo1.labtic.persistence.ClienteRepository;
 import grupo1.labtic.services.ClienteService;
 import grupo1.labtic.services.UsuarioService;
 import grupo1.labtic.services.entities.Cliente;
 import grupo1.labtic.services.exceptions.EmailInvalido;
-import grupo1.labtic.ui.LoginController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import java.io.IOException;
 
 import static grupo1.labtic.ui.Alert.showAlert;
 
@@ -48,8 +40,6 @@ public class Registro {
     private AnchorPane imagePortadaContainer;
 
 
-    @Autowired
-    private ClienteRepository clienteRepository;
     @Autowired
     private ClienteService clienteService;
     @Autowired
@@ -87,7 +77,7 @@ public class Registro {
 
                 usuarioService.isValidEmailAddress(emailCliente.getText());
 
-                Cliente cliente = clienteRepository.findByEmail(emailCliente.getText());
+                Cliente cliente = clienteService.findByEmail(emailCliente.getText());
                 if (cliente != null) {
                     showAlert("Email registrado", "Existe otro usuario con ese email.");
                 } else {
@@ -125,7 +115,7 @@ public class Registro {
 
     @FXML
     void back(ActionEvent event) {
-        ((Stage)((Node)event.getSource()).getScene().getWindow()).close();
+        ((Stage) ((Node) event.getSource()).getScene().getWindow()).close();
     }
 
 }

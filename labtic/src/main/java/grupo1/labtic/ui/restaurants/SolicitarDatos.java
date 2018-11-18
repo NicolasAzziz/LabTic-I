@@ -2,7 +2,6 @@ package grupo1.labtic.ui.restaurants;
 
 
 import grupo1.labtic.AppApplication;
-import grupo1.labtic.persistence.RestaurantRepository;
 import grupo1.labtic.services.RestaurantService;
 import grupo1.labtic.services.entities.Restaurant;
 import grupo1.labtic.services.entities.restaurant.Mesa;
@@ -27,7 +26,6 @@ import org.springframework.stereotype.Component;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -37,9 +35,8 @@ import static grupo1.labtic.ui.Alert.showAlert;
 public class SolicitarDatos {
 
     @Autowired
-    RestaurantService serviceRestaurant;
-    @Autowired
-    private RestaurantRepository restaurantRepository;
+    RestaurantService restaurantService;
+    ObservableList<Mesa> mesaList;
     @FXML
     private TextField nombreRestaurante;
     @FXML
@@ -105,36 +102,6 @@ public class SolicitarDatos {
     @FXML
     private CheckMenuItem ensaladas;
     @FXML
-    private CheckMenuItem cafeteria;
-    @FXML
-    private CheckMenuItem parrilla;
-    @FXML
-    private CheckMenuItem celiacos;
-    @FXML
-    private CheckMenuItem chivitos;
-    @FXML
-    private CheckMenuItem comidaChina;
-    @FXML
-    private CheckMenuItem comidaMexicana;
-    @FXML
-    private CheckMenuItem comidaVegetariana;
-    @FXML
-    private CheckMenuItem comidaVegana;
-    @FXML
-    private CheckMenuItem milanesas;
-    @FXML
-    private CheckMenuItem pescadoMariscos;
-    @FXML
-    private CheckMenuItem pizza;
-    @FXML
-    private CheckMenuItem sandwiches;
-    @FXML
-    private CheckMenuItem tartas;
-    @FXML
-    private CheckMenuItem wrap;
-    @FXML
-    private CheckMenuItem wok;
-    @FXML
     private TextField telefonoRestaurante;
     @FXML
     private TextArea descR;
@@ -154,7 +121,6 @@ public class SolicitarDatos {
     private GridPane imgContainer;
     private File imgFile;
     private Restaurant restaurant;
-    ObservableList<Mesa> mesaList;
 
     @FXML
     public void agregarMesa(ActionEvent actionEvent) {
@@ -245,16 +211,16 @@ public class SolicitarDatos {
                     String barrio = selectedBarrio.get(0);
 
 
-                    serviceRestaurant.registrarDatosRestaurant(restaurant, nombre, telefono, direccion, barrio, habre, hcierra, descripcion, web, nuevaPass);
-                    serviceRestaurant.setGrupoDeComidaList(restaurant, selectedItemsComidas);
-                    serviceRestaurant.setTipoDePagoList(restaurant, selectedItemsTipoDePagoMenu);
-                    serviceRestaurant.setListaMesasRestaurante(restaurant, mesaList);
+                    restaurantService.registrarDatosRestaurant(restaurant, nombre, telefono, direccion, barrio, habre, hcierra, descripcion, web, nuevaPass);
+                    restaurantService.setGrupoDeComidaList(restaurant, selectedItemsComidas);
+                    restaurantService.setTipoDePagoList(restaurant, selectedItemsTipoDePagoMenu);
+                    restaurantService.setListaMesasRestaurante(restaurant, mesaList);
                     if (imgFile != null) {
-                        serviceRestaurant.guardarImagen(restaurant, imgFile);
+                        restaurantService.guardarImagen(restaurant, imgFile);
                     }
                     if (precioMedio == null || precioMedio.getText().equals("")) {
                     } else {
-                        serviceRestaurant.setPrecioMedio(restaurant, precioMedio.getText());
+                        restaurantService.setPrecioMedio(restaurant, precioMedio.getText());
                     }
 
                     showAlert("Datos guardados", "Se guardaron con éxito los datos de su restaurante");

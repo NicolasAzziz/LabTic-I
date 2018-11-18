@@ -5,6 +5,8 @@ import org.hibernate.annotations.GenericGenerator;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Objects;
 
@@ -48,8 +50,13 @@ public class Reserva {
         setEstadoSolicitado();
     }
 
-    public String getNombreRestaurant(){
+    public String getNombreRestaurant() {
         return restaurant.getNombreRestaurant();
+    }
+
+    public String getHoraString() {
+        DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
+        return dateFormat.format(fechaYhora);
     }
 
     @Override
@@ -68,12 +75,9 @@ public class Reserva {
         return Objects.hash(fechaYhora, cliente.getEmail(), restaurant.getEmail(), nroReferencia);
     }
 
-    public Date getFechaYhora() {
-        return fechaYhora;
-    }
-
-    public void setFechaYhora(Date fechaYhora) {
-        this.fechaYhora = fechaYhora;
+    public String getFechaYhoraString() {
+        DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss dd/MM/yyyy");
+        return dateFormat.format(fechaYhora);
     }
 
     public Cliente getCliente() {
@@ -84,16 +88,25 @@ public class Reserva {
         this.cliente = cliente;
     }
 
-    public Mesa getMesa(){
+    public Date getFechaYhora() {
+        return fechaYhora;
+    }
+
+    public void setFechaYhora(Date fechaYhora) {
+        this.fechaYhora = fechaYhora;
+    }
+
+    public Mesa getMesa() {
         Mesa eMesa = null;
-        for (Mesa mesa:restaurant.getMesas()
-             ) {
-            if(nroReferencia == mesa.getNroReferencia()){
+        for (Mesa mesa : restaurant.getMesas()
+        ) {
+            if (nroReferencia == mesa.getNroReferencia()) {
                 eMesa = mesa;
             }
         }
         return eMesa;
     }
+
     public long getId() {
         return id;
     }
@@ -106,33 +119,33 @@ public class Reserva {
         return estado;
     }
 
-    public Integer getCantLugares(){
+    public Integer getCantLugares() {
         return getMesa().getCantLugares();
     }
 
-    public void setEstadoSolicitado(){
+    public void setEstadoSolicitado() {
         estado = "Solicitado";
     }
 
-    public String getNombreCliente(){
+    public String getNombreCliente() {
         return cliente.getNombre();
     }
 
-    public void setEstadoAceptado(){
+    public void setEstadoAceptado() {
         estado = "Aceptado";
         restaurant.getMesa(nroReferencia).setMesaLibre(false);
     }
 
-    public void setEstadoRechazado(){
+    public void setEstadoRechazado() {
         estado = "Rechazado";
     }
 
-    public void setEstadoFinalizado(){
+    public void setEstadoFinalizado() {
         estado = "Finalizado";
         restaurant.getMesa(nroReferencia).setMesaLibre(true);
     }
 
-    public void setEstadoCancelado(){
+    public void setEstadoCancelado() {
         estado = "Cancelado";
     }
 

@@ -11,10 +11,10 @@ public class AdminService {
     @Autowired
     private AdminRepository adminRepository;
 
-    public void admin(){
-        Admin admin = new Admin("admin@yendo","admin");
+    public void admin() {
+        Admin admin = new Admin("admin@yendo", "admin");
         boolean exist = adminRepository.existsByEmail("admin@yendo");
-        if(!exist)
+        if (!exist)
             adminRepository.save(admin);
     }
 }

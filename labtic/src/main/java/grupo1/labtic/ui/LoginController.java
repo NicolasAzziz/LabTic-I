@@ -196,6 +196,7 @@ public class LoginController {
             }
         }
     }
+
     @FXML
     void registrate(ActionEvent actionEvent) {
         try {

@@ -1,6 +1,5 @@
 package grupo1.labtic;
 
-import grupo1.labtic.services.RestaurantService;
 import grupo1.labtic.ui.admins.Administrar;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

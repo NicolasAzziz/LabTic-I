@@ -2,118 +2,131 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
-<?import javafx.scene.control.CheckMenuItem?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.MenuButton?>
-<?import javafx.scene.control.Separator?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="grupo1.labtic.ui.cliente.Principal">
-   <children>
-      <Separator layoutY="52.0" prefHeight="0.0" prefWidth="600.0" />
-      <Separator layoutX="102.0" orientation="VERTICAL" prefHeight="400.0" prefWidth="0.0" />
-      <GridPane prefHeight="400.0" prefWidth="600.0">
-        <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="190.66668701171875" minWidth="10.0" prefWidth="112.66668701171875" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="497.3333435058594" minWidth="10.0" prefWidth="487.33331298828125" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints maxHeight="196.0" minHeight="10.0" prefHeight="53.66667175292969" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="346.3333282470703" minHeight="10.0" prefHeight="346.3333282470703" vgrow="SOMETIMES" />
-        </rowConstraints>
-         <children>
-            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="265.0" prefWidth="280.0" style="-fx-background-color: #493928;" text="YENDO" textFill="WHITE">
-               <font>
-                  <Font name="Yu Gothic Regular" size="22.0" />
-               </font>
-            </Label>
-            <AnchorPane prefHeight="53.0" prefWidth="511.0" style="-fx-background-color: #857B6F;" GridPane.columnIndex="1">
-               <children>
-                  <TextField fx:id="restaurantToFind" layoutX="227.0" layoutY="14.0" promptText="Restaurant" />
-                  <JFXButton fx:id="buscar" layoutX="396.0" layoutY="14.0" onAction="#findTable" prefHeight="25.0" prefWidth="78.0" style="-fx-background-color: #493928;" text="Buscar" textFill="WHITE" />
-                  <MenuButton fx:id="zonasToFindTable" alignment="CENTER" layoutX="22.0" layoutY="14.0" maxWidth="150.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="92.0" text="Zonas" textAlignment="CENTER">
-                     <items>
-                        <CheckMenuItem fx:id="ciudadVieja" mnemonicParsing="false" text="Ciudad Vieja" />
-                        <CheckMenuItem fx:id="centro" mnemonicParsing="false" text="Centro" />
-                        <CheckMenuItem fx:id="barrioSur" mnemonicParsing="false" text="Barrio Sur" />
-                        <CheckMenuItem fx:id="cordon" mnemonicParsing="false" text="Cordón" />
-                        <CheckMenuItem fx:id="palermo" mnemonicParsing="false" text="Palermo" />
-                        <CheckMenuItem fx:id="parqueRodo" mnemonicParsing="false" text="Parque Rodó" />
-                        <CheckMenuItem fx:id="puntaCarretas" mnemonicParsing="false" text="Punta Carretas" />
-                        <CheckMenuItem fx:id="pocitos" mnemonicParsing="false" text="Pocitos" />
-                        <CheckMenuItem fx:id="buceo" mnemonicParsing="false" text="Buceo" />
-                        <CheckMenuItem fx:id="parqueBatlle" mnemonicParsing="false" text="Parque Batlle" />
-                        <CheckMenuItem fx:id="malvin" mnemonicParsing="false" text="Malvín" />
-                        <CheckMenuItem fx:id="puntaGorda" mnemonicParsing="false" text="Punta Gorda" />
-                        <CheckMenuItem fx:id="carrasco" mnemonicParsing="false" text="Carrasco" />
-                        <CheckMenuItem fx:id="maronias" mnemonicParsing="false" text="Maroñas" />
-                     </items>
-                  </MenuButton>
-                  <MenuButton fx:id="comidasToFindTable" alignment="CENTER" layoutX="132.0" layoutY="14.0" maxWidth="150.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="78.0" text="Comidas">
-                     <items>
-                        <CheckMenuItem fx:id="sushi" mnemonicParsing="false" text="Sushi" />
-                        <CheckMenuItem fx:id="hamburgesas" mnemonicParsing="false" text="Hamburguesas" />
-                        <CheckMenuItem fx:id="ensaladas" mnemonicParsing="false" text="Ensaladas" />
-                        <CheckMenuItem fx:id="cafeteria" mnemonicParsing="false" text="Cafetería" />
-                        <CheckMenuItem fx:id="parrilla" mnemonicParsing="false" text="Parrilla" />
-                        <CheckMenuItem fx:id="celiacos" mnemonicParsing="false" text="Celíacos" />
-                        <CheckMenuItem fx:id="chivitos" mnemonicParsing="false" text="Chivitos" />
-                        <CheckMenuItem fx:id="comidaChina" mnemonicParsing="false" text="Comida China" />
-                        <CheckMenuItem fx:id="comidaMexicana" mnemonicParsing="false" text="Comida Mexicana" />
-                        <CheckMenuItem fx:id="comidaVegetariana" mnemonicParsing="false" text="Comida Vegetariana" />
-                        <CheckMenuItem fx:id="comidaVegana" mnemonicParsing="false" text="Comida Vegana" />
-                        <CheckMenuItem fx:id="milanesas" mnemonicParsing="false" text="Milanesas" />
-                        <CheckMenuItem fx:id="pescadoMariscos" mnemonicParsing="false" text="Pescado y Mariscos" />
-                        <CheckMenuItem fx:id="pizza" mnemonicParsing="false" text="Pizza" />
-                        <CheckMenuItem fx:id="sandwiches" mnemonicParsing="false" text="Sandwiches" />
-                        <CheckMenuItem fx:id="tartas" mnemonicParsing="false" text="Tartas" />
-                        <CheckMenuItem fx:id="wrap" mnemonicParsing="false" text="Wraps" />
-                        <CheckMenuItem fx:id="wok" mnemonicParsing="false" text="Wok" />
-                     </items>
-                  </MenuButton>
-               </children>
-            </AnchorPane>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
-               <children>
-                  <TableView fx:id="tableViewRestaurantes" prefHeight="347.0" prefWidth="488.0">
-                    <columns>
-                      <TableColumn fx:id="imagen" prefWidth="85.6666259765625" text="Foto" />
-                      <TableColumn fx:id="nombreRestaurante" prefWidth="87.0" text="Restaurante" />
-                        <TableColumn fx:id="rating" prefWidth="53.0" text="Rating" />
-                        <TableColumn fx:id="descripcion" prefWidth="111.6666259765625" text="Descripcion" />
-                        <TableColumn fx:id="barrio" prefWidth="77.0" text="Barrio" />
-                        <TableColumn fx:id="cocinas" prefWidth="82.0" text="Cocinas" />
-                    </columns>
-                  </TableView>
-               </children>
-            </AnchorPane>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #857B6F;" GridPane.rowIndex="1">
-               <children>
-                  <JFXButton fx:id="cerrarSesion" alignment="TOP_CENTER" contentDisplay="TOP" layoutX="10.0" layoutY="39.0" onAction="#cerrarSesion" prefHeight="39.0" prefWidth="92.0" style="-fx-background-color: #493928;" text="Cerrar sesion" textFill="WHITE">
-                     <graphic>
-                        <FontAwesomeIconView fill="WHITE" glyphName="POWER_OFF" size="25.0" wrappingWidth="21.619057655334473" />
-                     </graphic>
-                  </JFXButton>
-                  <JFXButton fx:id="reservas" alignment="TOP_CENTER" contentDisplay="TOP" layoutX="10.0" layoutY="239.0" onAction="#reservas" prefHeight="55.0" prefWidth="92.0" style="-fx-background-color: #493928;" text="Ver reservas" textFill="WHITE">
-                     <graphic>
-                        <FontAwesomeIconView fill="WHITE" glyphName="BOOKMARK_ALT" size="25.0" />
-                     </graphic>
-                  </JFXButton>
-                  <JFXButton fx:id="ajustes" alignment="TOP_CENTER" contentDisplay="TOP" layoutX="10.0" layoutY="139.0" onAction="#ajustes" prefHeight="27.0" prefWidth="92.0" style="-fx-background-color: #493928;" text="Ajustes" textFill="WHITE">
-                     <graphic>
-                        <FontAwesomeIconView fill="WHITE" glyphName="GEAR" size="25.0" />
-                     </graphic>
-                  </JFXButton>
-               </children>
-            </AnchorPane>
-         </children>
-      </GridPane>
-   </children>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+            prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171"
+            fx:controller="grupo1.labtic.ui.cliente.Principal">
+    <children>
+        <Separator layoutY="52.0" prefHeight="0.0" prefWidth="600.0"/>
+        <Separator layoutX="102.0" orientation="VERTICAL" prefHeight="400.0" prefWidth="0.0"/>
+        <GridPane prefHeight="400.0" prefWidth="600.0">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="190.66668701171875" minWidth="10.0"
+                                   prefWidth="112.66668701171875"/>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="497.3333435058594" minWidth="10.0"
+                                   prefWidth="487.33331298828125"/>
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints maxHeight="196.0" minHeight="10.0" prefHeight="53.66667175292969" vgrow="SOMETIMES"/>
+                <RowConstraints maxHeight="346.3333282470703" minHeight="10.0" prefHeight="346.3333282470703"
+                                vgrow="SOMETIMES"/>
+            </rowConstraints>
+            <children>
+                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="265.0" prefWidth="280.0"
+                       style="-fx-background-color: #493928;" text="YENDO" textFill="WHITE">
+                    <font>
+                        <Font name="Yu Gothic Regular" size="22.0"/>
+                    </font>
+                </Label>
+                <AnchorPane prefHeight="53.0" prefWidth="511.0" style="-fx-background-color: #857B6F;"
+                            GridPane.columnIndex="1">
+                    <children>
+                        <TextField fx:id="restaurantToFind" layoutX="227.0" layoutY="14.0" promptText="Restaurant"/>
+                        <JFXButton fx:id="buscar" layoutX="396.0" layoutY="14.0" onAction="#findTable" prefHeight="25.0"
+                                   prefWidth="78.0" style="-fx-background-color: #493928;" text="Buscar"
+                                   textFill="WHITE"/>
+                        <MenuButton fx:id="zonasToFindTable" alignment="CENTER" layoutX="22.0" layoutY="14.0"
+                                    maxWidth="150.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="92.0"
+                                    text="Zonas" textAlignment="CENTER">
+                            <items>
+                                <CheckMenuItem fx:id="ciudadVieja" mnemonicParsing="false" text="Ciudad Vieja"/>
+                                <CheckMenuItem fx:id="centro" mnemonicParsing="false" text="Centro"/>
+                                <CheckMenuItem fx:id="barrioSur" mnemonicParsing="false" text="Barrio Sur"/>
+                                <CheckMenuItem fx:id="cordon" mnemonicParsing="false" text="Cordón"/>
+                                <CheckMenuItem fx:id="palermo" mnemonicParsing="false" text="Palermo"/>
+                                <CheckMenuItem fx:id="parqueRodo" mnemonicParsing="false" text="Parque Rodó"/>
+                                <CheckMenuItem fx:id="puntaCarretas" mnemonicParsing="false" text="Punta Carretas"/>
+                                <CheckMenuItem fx:id="pocitos" mnemonicParsing="false" text="Pocitos"/>
+                                <CheckMenuItem fx:id="buceo" mnemonicParsing="false" text="Buceo"/>
+                                <CheckMenuItem fx:id="parqueBatlle" mnemonicParsing="false" text="Parque Batlle"/>
+                                <CheckMenuItem fx:id="malvin" mnemonicParsing="false" text="Malvín"/>
+                                <CheckMenuItem fx:id="puntaGorda" mnemonicParsing="false" text="Punta Gorda"/>
+                                <CheckMenuItem fx:id="carrasco" mnemonicParsing="false" text="Carrasco"/>
+                                <CheckMenuItem fx:id="maronias" mnemonicParsing="false" text="Maroñas"/>
+                            </items>
+                        </MenuButton>
+                        <MenuButton fx:id="comidasToFindTable" alignment="CENTER" layoutX="132.0" layoutY="14.0"
+                                    maxWidth="150.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="78.0"
+                                    text="Comidas">
+                            <items>
+                                <CheckMenuItem fx:id="sushi" mnemonicParsing="false" text="Sushi"/>
+                                <CheckMenuItem fx:id="hamburgesas" mnemonicParsing="false" text="Hamburguesas"/>
+                                <CheckMenuItem fx:id="ensaladas" mnemonicParsing="false" text="Ensaladas"/>
+                                <CheckMenuItem fx:id="cafeteria" mnemonicParsing="false" text="Cafetería"/>
+                                <CheckMenuItem fx:id="parrilla" mnemonicParsing="false" text="Parrilla"/>
+                                <CheckMenuItem fx:id="celiacos" mnemonicParsing="false" text="Celíacos"/>
+                                <CheckMenuItem fx:id="chivitos" mnemonicParsing="false" text="Chivitos"/>
+                                <CheckMenuItem fx:id="comidaChina" mnemonicParsing="false" text="Comida China"/>
+                                <CheckMenuItem fx:id="comidaMexicana" mnemonicParsing="false" text="Comida Mexicana"/>
+                                <CheckMenuItem fx:id="comidaVegetariana" mnemonicParsing="false"
+                                               text="Comida Vegetariana"/>
+                                <CheckMenuItem fx:id="comidaVegana" mnemonicParsing="false" text="Comida Vegana"/>
+                                <CheckMenuItem fx:id="milanesas" mnemonicParsing="false" text="Milanesas"/>
+                                <CheckMenuItem fx:id="pescadoMariscos" mnemonicParsing="false"
+                                               text="Pescado y Mariscos"/>
+                                <CheckMenuItem fx:id="pizza" mnemonicParsing="false" text="Pizza"/>
+                                <CheckMenuItem fx:id="sandwiches" mnemonicParsing="false" text="Sandwiches"/>
+                                <CheckMenuItem fx:id="tartas" mnemonicParsing="false" text="Tartas"/>
+                                <CheckMenuItem fx:id="wrap" mnemonicParsing="false" text="Wraps"/>
+                                <CheckMenuItem fx:id="wok" mnemonicParsing="false" text="Wok"/>
+                            </items>
+                        </MenuButton>
+                    </children>
+                </AnchorPane>
+                <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                    <children>
+                        <TableView fx:id="tableViewRestaurantes" prefHeight="347.0" prefWidth="488.0">
+                            <columns>
+                                <TableColumn fx:id="imagen" prefWidth="85.6666259765625" text="Foto"/>
+                                <TableColumn fx:id="nombreRestaurante" prefWidth="87.0" text="Restaurante"/>
+                                <TableColumn fx:id="rating" prefWidth="53.0" text="Rating"/>
+                                <TableColumn fx:id="descripcion" prefWidth="111.6666259765625" text="Descripcion"/>
+                                <TableColumn fx:id="barrio" prefWidth="77.0" text="Barrio"/>
+                                <TableColumn fx:id="cocinas" prefWidth="82.0" text="Cocinas"/>
+                            </columns>
+                        </TableView>
+                    </children>
+                </AnchorPane>
+                <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #857B6F;"
+                            GridPane.rowIndex="1">
+                    <children>
+                        <JFXButton fx:id="cerrarSesion" alignment="TOP_CENTER" contentDisplay="TOP" layoutX="10.0"
+                                   layoutY="39.0" onAction="#cerrarSesion" prefHeight="39.0" prefWidth="92.0"
+                                   style="-fx-background-color: #493928;" text="Cerrar sesion" textFill="WHITE">
+                            <graphic>
+                                <FontAwesomeIconView fill="WHITE" glyphName="POWER_OFF" size="25.0"
+                                                     wrappingWidth="21.619057655334473"/>
+                            </graphic>
+                        </JFXButton>
+                        <JFXButton fx:id="reservas" alignment="TOP_CENTER" contentDisplay="TOP" layoutX="10.0"
+                                   layoutY="239.0" onAction="#reservas" prefHeight="55.0" prefWidth="92.0"
+                                   style="-fx-background-color: #493928;" text="Ver reservas" textFill="WHITE">
+                            <graphic>
+                                <FontAwesomeIconView fill="WHITE" glyphName="BOOKMARK_ALT" size="25.0"/>
+                            </graphic>
+                        </JFXButton>
+                        <JFXButton fx:id="ajustes" alignment="TOP_CENTER" contentDisplay="TOP" layoutX="10.0"
+                                   layoutY="139.0" onAction="#ajustes" prefHeight="27.0" prefWidth="92.0"
+                                   style="-fx-background-color: #493928;" text="Ajustes" textFill="WHITE">
+                            <graphic>
+                                <FontAwesomeIconView fill="WHITE" glyphName="GEAR" size="25.0"/>
+                            </graphic>
+                        </JFXButton>
+                    </children>
+                </AnchorPane>
+            </children>
+        </GridPane>
+    </children>
 </AnchorPane>
