@@ -118,7 +118,7 @@ public class LoginController {
                             FXMLLoader loader = new FXMLLoader();
                             loader.setControllerFactory(AppApplication.getContext()::getBean);
 
-                            Parent root = loader.load(SolicitarDatos.class.getResourceAsStream("SolicitarDatos.fxml"));
+                            Parent root = loader.load(SolicitarDatos.class.getResourceAsStream("solicitarDatos.fxml"));
 
                             Stage stage = new Stage();
                             stage.setTitle("Ingrese los datos de su restaurante");
