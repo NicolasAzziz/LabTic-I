@@ -227,12 +227,14 @@ public class PortadaAdmin {
 
                 for (int i = 0; i < reservas.size(); i++) {
 
-                    System.out.println(reservas.get(i).getFechaYhora());
-                    System.out.println(formatDesde);
-                    System.out.println(formatHasta);
+                    if((new java.sql.Date(reservas.get(i).getFechaYhora().getTime()).toLocalDate()).isAfter(fechaDesde.getValue()) ||
+                            (new java.sql.Date(reservas.get(i).getFechaYhora().getTime()).toLocalDate()).isEqual(fechaDesde.getValue())){
 
-                    if (reservas.get(i).getFechaYhora().after(formatDesde) && reservas.get(i).getFechaYhora().before(formatHasta)) {
-                        reservasFiltradas.add(reservas.get(i));
+                        if((new java.sql.Date(reservas.get(i).getFechaYhora().getTime()).toLocalDate()).isBefore(fechaHasta.getValue()) ||
+                                (new java.sql.Date(reservas.get(i).getFechaYhora().getTime()).toLocalDate()).isEqual(fechaHasta.getValue())){
+
+                            reservasFiltradas.add(reservas.get(i));
+                        }
                     }
                 }
 
