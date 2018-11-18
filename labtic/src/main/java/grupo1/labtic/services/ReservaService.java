@@ -21,8 +21,8 @@ public class ReservaService {
     private RestaurantService restaurantService;
 
 
-    public List<Reserva> reservasPendientes() {
-        return (List) reservaRepository.getReservasByEstadoIs("Solicitado");
+    public List<Reserva> reservasPendientes(Restaurant restaurant) {
+        return (List) reservaRepository.getReservasByEstadoIsAndRestaurant("Solicitado", restaurant);
     }
 
     public void solicitarReserva(Cliente c, Restaurant r, int nroMesa) throws ReservaYaSolicitada {
@@ -69,8 +69,8 @@ public class ReservaService {
         restaurantService.save(restaurant);
     }
 
-    public List<Reserva> reservasActivas() {
-        return (List) reservaRepository.getReservasByEstadoIs("Aceptado");
+    public List<Reserva> reservasActivas(Restaurant restaurant) {
+        return (List) reservaRepository.getReservasByEstadoIsAndRestaurant("Aceptado", restaurant);
     }
 
     public Reserva getReservaByReserva(Reserva reserva) {

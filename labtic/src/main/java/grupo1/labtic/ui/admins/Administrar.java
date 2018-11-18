@@ -46,6 +46,12 @@ public class Administrar {
     @FXML
     private ImageView imgBack;
 
+    private PortadaAdmin portadaAdmin;
+
+    public void setPortadaAdmin(PortadaAdmin portadaAdmin){
+        this.portadaAdmin = portadaAdmin;
+    }
+
     public void initialize() {
         imagePortada.setPreserveRatio(false);
         imagePortada.fitHeightProperty().bind(imagePortadaContainer.heightProperty());
@@ -72,6 +78,7 @@ public class Administrar {
             showAlert("Restaurante agregado.", "Se agrego con exito el restaurante.");
             clean();
             ((Stage) ((Node) actionEvent.getSource()).getScene().getWindow()).close();
+            portadaAdmin.actualizarTabla(actionEvent);
         } catch (InvalidRestaurantInformation e) {
             showAlert("Informacion invalida!", "Se encontro un error en los datos ingresados.");
         } catch (RestaurantAlreadyExists e) {
@@ -89,6 +96,8 @@ public class Administrar {
         password.setText(null);
         rut.setText(null);
     }
+
+
 
     public void backBtn(ActionEvent actionEvent) {
         ((Stage) ((Node) actionEvent.getSource()).getScene().getWindow()).close();

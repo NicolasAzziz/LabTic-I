@@ -105,6 +105,7 @@ public class PortadaAdmin {
     @FXML
     private JFXButton actualizar;
 
+
     @FXML
     void initialize() {
         assert table != null : "fx:id=\"table\" was not injected: check your FXML file 'adminPortada.fxml'.";
@@ -166,7 +167,7 @@ public class PortadaAdmin {
     }
 
     @FXML
-    void actualizarTabla(ActionEvent event) {
+    public void actualizarTabla(ActionEvent event) {
         Iterable<Restaurant> listaRestaurantes = restaurantService.findAll();
         ObservableList<Restaurant> data = FXCollections.observableList((List) listaRestaurantes);
         table.setItems(data);
@@ -188,6 +189,8 @@ public class PortadaAdmin {
             stage.setHeight(h);
             stage.setWidth(w);
             stage.show();
+            Administrar administrar = loader.<Administrar>getController();
+            administrar.setPortadaAdmin(this);
         } catch (IOException e) {
             e.printStackTrace();
         }

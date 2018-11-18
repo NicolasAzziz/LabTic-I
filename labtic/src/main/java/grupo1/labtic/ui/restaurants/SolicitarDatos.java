@@ -123,6 +123,10 @@ public class SolicitarDatos {
     private Restaurant restaurant;
 
     @FXML
+    void initialize() {
+        mesaList = FXCollections.<Mesa>observableArrayList();
+    }
+    @FXML
     public void agregarMesa(ActionEvent actionEvent) {
 
         if (!(nMesas.getText() == null || nMesas.getText().equals("") || nSillas.getText() == null && nSillas.getText().equals(""))) {
@@ -239,6 +243,8 @@ public class SolicitarDatos {
                     stage.setWidth(w);
                     ((Stage) ((Node) event.getSource()).getScene().getWindow()).close();
                     stage.show();
+                    RestaurantePrincipal restaurantePrincipal = loader.<RestaurantePrincipal>getController();
+                    restaurantePrincipal.setRestaurant(restaurantService.getByEmail(restaurant.getEmail()));
                 } catch (NumberFormatException e) {
                     showAlert("Informacion Invalida", "Se encontró un error en los datos ingresados");
                 } catch (IOException e) {
