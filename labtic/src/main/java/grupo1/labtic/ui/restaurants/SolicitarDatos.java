@@ -1,6 +1,10 @@
 package grupo1.labtic.ui.restaurants;
 
 
+import com.jfoenix.controls.JFXListView;
+import com.jfoenix.controls.JFXPasswordField;
+import com.jfoenix.controls.JFXTextArea;
+import com.jfoenix.controls.JFXTextField;
 import grupo1.labtic.AppApplication;
 import grupo1.labtic.services.RestaurantService;
 import grupo1.labtic.services.entities.Restaurant;
@@ -18,6 +22,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -38,13 +43,13 @@ public class SolicitarDatos {
     RestaurantService restaurantService;
     ObservableList<Mesa> mesaList;
     @FXML
-    private TextField nombreRestaurante;
+    private JFXTextField nombreRestaurante;
     @FXML
-    private PasswordField passNueva;
+    private JFXPasswordField passNueva;
     @FXML
-    private PasswordField passNuevaRepeat;
+    private JFXPasswordField passNuevaRepeat;
     @FXML
-    private TextField direccionRestaurante;
+    private JFXTextField direccionRestaurante;
     @FXML
     private MenuButton barriosMenu;
     @FXML
@@ -74,13 +79,13 @@ public class SolicitarDatos {
     @FXML
     private RadioMenuItem carrasco;
     @FXML
-    private TextField hAperturaRestaurante;
+    private JFXTextField hAperturaRestaurante;
     @FXML
-    private TextField mAperturaRestaurante;
+    private JFXTextField mAperturaRestaurante;
     @FXML
-    private TextField hCierreRestaurante;
+    private JFXTextField hCierreRestaurante;
     @FXML
-    private TextField mCierreRestaurante;
+    private JFXTextField mCierreRestaurante;
     @FXML
     private MenuButton metodosPagoMenu;
     @FXML
@@ -102,25 +107,41 @@ public class SolicitarDatos {
     @FXML
     private CheckMenuItem ensaladas;
     @FXML
-    private TextField telefonoRestaurante;
+    private JFXTextField telefonoRestaurante;
     @FXML
-    private TextArea descR;
+    private JFXTextArea descR;
     @FXML
-    private ListView<Mesa> listMesas;
+    private JFXListView<Mesa> listMesas;
     @FXML
-    private TextField webRestaurante;
+    private JFXTextField webRestaurante;
     @FXML
-    private TextField precioMedio;
+    private JFXTextField precioMedio;
     @FXML
     private ImageView imagenVistaPrevia;
     @FXML
-    private TextField nMesas;
+    private JFXTextField nMesas;
     @FXML
-    private TextField nSillas;
+    private JFXTextField nSillas;
     @FXML
     private GridPane imgContainer;
+    @FXML
+    private ImageView imagePortada;
+    @FXML
+    private AnchorPane imagePortadaContainer;
+    @FXML
+    private ImageView logo;
     private File imgFile;
     private Restaurant restaurant;
+
+    public void initialize() {
+        imagePortada.setPreserveRatio(false);
+        imagePortada.fitHeightProperty().bind(imagePortadaContainer.heightProperty());
+        imagePortada.fitWidthProperty().bind(imagePortadaContainer.widthProperty());
+        Image img = new Image("file:src/main/resources/grupo1/labtic/ui/restaurants/imgRestaurante/arreglo.jpg");
+        imagePortada.setImage(img);
+        Image iL = new Image("file:src/main/resources/grupo1/labtic/ui/Imagenes/yendoIcono.png");
+        logo.setImage(iL);
+    }
 
     @FXML
     public void agregarMesa(ActionEvent actionEvent) {
