@@ -218,6 +218,7 @@ public class PortadaAdmin {
                             comidas.setText(restaurant.getCocinasOfrecidasString());
                             pagos.setText(restaurant.getTipoDePagoListString());
                             stage.show();
+                            ((Stage) ((Node) event1.getSource()).getScene().getWindow()).close();
 
                         }else{
                             showAlert("SELECCION INVALIDA!", "Los datos del Restaurante aun no han sido cargados");
@@ -270,7 +271,20 @@ public class PortadaAdmin {
 
     @FXML
     void atras(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setControllerFactory(AppApplication.getContext()::getBean);
+        Parent root = loader.load(PortadaAdmin.class.getResourceAsStream("principalAdmin.fxml"));
+        Stage stage = new Stage();
+        stage.setTitle("Portada");
+        stage.getIcons().add(new Image("grupo1/labtic/ui/Imagenes/yendoIcono.png"));
+        double w = ((Stage) ((Node) event.getSource()).getScene().getWindow()).getWidth();
+        double h = ((Stage) ((Node) event.getSource()).getScene().getWindow()).getHeight();
+        stage.setScene(new Scene(root));
+        stage.setHeight(h);
+        stage.setWidth(w);
+        stage.show();
         ((Stage) ((Node) event.getSource()).getScene().getWindow()).close();
+
     }
 
     @FXML
