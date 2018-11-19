@@ -182,8 +182,15 @@ public class PortadaAdmin {
                             numeroMesa.setCellValueFactory((new PropertyValueFactory<Mesa, String>("nroReferencia")));
                             sillas.setCellValueFactory(new PropertyValueFactory<Mesa, String>("cantLugares"));
 
-                            List<Mesa> mesasLibresList = (List) restaurantService.mesasLibres(restaurant);
-                            mesas.setItems(FXCollections.observableList(mesasLibresList));
+                            List<Mesa> mesasResto = new ArrayList<>();
+
+                            List<Mesa> mesasLibres = (List) restaurantService.mesasLibres(restaurant);
+                            mesasLibres.forEach(mesa -> mesasResto.add(mesa));
+
+                            List<Mesa> mesasOcupadas = (List) restaurantService.mesasOcupadas(restaurant);
+                            mesasOcupadas.forEach(mesa -> mesasResto.add(mesa));
+
+                            mesas.setItems(FXCollections.observableList(mesasResto));
 
                             nombre.setText(restaurant.getNombreRestaurant());
                             description.setText(restaurant.getDescripcion());
