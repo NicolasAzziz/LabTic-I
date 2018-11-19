@@ -27,7 +27,6 @@ repositories {
 
 dependencies {
     compile('org.springframework.boot:spring-boot-starter-data-jpa')
-    compile('org.springframework.boot:spring-boot-starter-web')
     runtime('mysql:mysql-connector-java:8.0.12')
     compile group: 'mysql', name: 'mysql-connector-java', version: '8.0.12'
     //compile ('org.hibernate:hibernate-core:5.3.6.Final')

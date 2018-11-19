@@ -3,7 +3,6 @@ package grupo1.labtic.services.entities;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
 import java.util.Objects;
 
 @Entity(name = "USUARIO")
@@ -17,7 +16,6 @@ public abstract class Usuario {
     private long id;
 
     @Column(name = "email", unique = true)
-    @Email
     private String email;
 
     @Column(name = "password")
