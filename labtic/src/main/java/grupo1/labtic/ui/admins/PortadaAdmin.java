@@ -136,6 +136,7 @@ public class PortadaAdmin {
         this.admin = admin;
     }
 
+
     @FXML
     void initialize() {
         assert table != null : "fx:id=\"table\" was not injected: check your FXML file 'adminPortada.fxml'.";
@@ -165,7 +166,7 @@ public class PortadaAdmin {
                 if (event1.getClickCount() == 2 && (!row.isEmpty())) {
                     restaurant = row.getItem();
                     try {
-                        if(restaurant.getNombreRestaurant() != null){
+                        if(restaurant.getNombreRestaurant() != null) {
                             FXMLLoader loader = new FXMLLoader();
                             loader.setControllerFactory(AppApplication.getContext()::getBean);
                             Parent root = loader.load(PortadaAdmin.class.getResourceAsStream("restaurantEspecificoP.fxml"));
@@ -191,8 +192,12 @@ public class PortadaAdmin {
                             tel.setText(restaurant.getTelefono());
                             direccion.setText(restaurant.getDireccion());
                             horario.setText(restaurant.getHorarioApertura() + " - " + restaurant.getHorarioCierre());
+
                             description.setText(restaurant.getDescripcion());
-                            imagenRE.setImage(restaurant.getImageView().getImage());
+
+                            if (restaurant.getImagen() != null){
+                                imagenRE.setImage(restaurant.getImageView().getImage());
+                            }
                             comidas.setText(restaurant.getCocinasOfrecidasString());
                             pagos.setText(restaurant.getTipoDePagoListString());
                             stage.show();
@@ -215,7 +220,7 @@ public class PortadaAdmin {
     }
 
     @FXML
-    void actualizarTabla(ActionEvent event) {
+    public void actualizarTabla(ActionEvent event) {
         Iterable<Restaurant> listaRestaurantes = restaurantService.findAll();
         ObservableList<Restaurant> data = FXCollections.observableList((List) listaRestaurantes);
         table.setItems(data);
@@ -238,6 +243,8 @@ public class PortadaAdmin {
             stage.setHeight(h);
             stage.setWidth(w);
             stage.show();
+            Administrar administrar = loader.<Administrar>getController();
+            administrar.setPortadaAdmin(this);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -282,11 +289,11 @@ public class PortadaAdmin {
 
                 for (int i = 0; i < reservas.size(); i++) {
 
-                    if((new java.sql.Date(reservas.get(i).getFechaYhora().getTime()).toLocalDate()).isAfter(fechaDesde.getValue()) ||
-                            (new java.sql.Date(reservas.get(i).getFechaYhora().getTime()).toLocalDate()).isEqual(fechaDesde.getValue())){
+                    if ((new java.sql.Date(reservas.get(i).getFechaYhora().getTime()).toLocalDate()).isAfter(fechaDesde.getValue()) ||
+                            (new java.sql.Date(reservas.get(i).getFechaYhora().getTime()).toLocalDate()).isEqual(fechaDesde.getValue())) {
 
-                        if((new java.sql.Date(reservas.get(i).getFechaYhora().getTime()).toLocalDate()).isBefore(fechaHasta.getValue()) ||
-                                (new java.sql.Date(reservas.get(i).getFechaYhora().getTime()).toLocalDate()).isEqual(fechaHasta.getValue())){
+                        if ((new java.sql.Date(reservas.get(i).getFechaYhora().getTime()).toLocalDate()).isBefore(fechaHasta.getValue()) ||
+                                (new java.sql.Date(reservas.get(i).getFechaYhora().getTime()).toLocalDate()).isEqual(fechaHasta.getValue())) {
 
                             reservasFiltradas.add(reservas.get(i));
                         }

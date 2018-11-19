@@ -197,8 +197,8 @@ public class RestaurantePrincipal {
     }
 
     public void actualizarTablas() {
-        reservasPendientes.setItems(FXCollections.observableList(reservaService.reservasPendientes()));
-        reservasActivas.setItems(FXCollections.observableList(reservaService.reservasActivas()));
+        reservasPendientes.setItems(FXCollections.observableList(reservaService.reservasPendientes(restaurant)));
+        reservasActivas.setItems(FXCollections.observableList(reservaService.reservasActivas(restaurant)));
         List<Mesa> mesasLibresRest = restaurantService.mesasLibres(restaurant);
         mesasLibres.setItems(FXCollections.observableList(mesasLibresRest));
         List<Mesa> mesasOcupadasRest = restaurantService.mesasOcupadas(restaurant);
@@ -212,7 +212,7 @@ public class RestaurantePrincipal {
         lugarMesaRP.setCellValueFactory(new PropertyValueFactory<Mesa, Integer>("cantLugares"));
         nroMesaRP.setCellValueFactory(new PropertyValueFactory<Mesa, Integer>("nroReferencia"));
         horaRP.setCellValueFactory(new PropertyValueFactory<Reserva, String>("horaString"));
-        reservasPendientes.setItems(FXCollections.observableList(reservaService.reservasPendientes()));
+        reservasPendientes.setItems(FXCollections.observableList(reservaService.reservasPendientes(restaurant)));
     }
 
     private void reservasActivas() {
@@ -221,7 +221,7 @@ public class RestaurantePrincipal {
         lugarMesaRA.setCellValueFactory(new PropertyValueFactory<Mesa, Integer>("cantLugares"));
         nroMesaRA.setCellValueFactory(new PropertyValueFactory<Mesa, Integer>("nroReferencia"));
         horaRA.setCellValueFactory(new PropertyValueFactory<Reserva, String>("horaString"));
-        reservasActivas.setItems(FXCollections.observableList(reservaService.reservasActivas()));
+        reservasActivas.setItems(FXCollections.observableList(reservaService.reservasActivas(restaurant)));
     }
 
 

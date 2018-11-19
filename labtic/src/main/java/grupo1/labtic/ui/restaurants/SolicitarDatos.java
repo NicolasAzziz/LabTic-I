@@ -141,6 +141,7 @@ public class SolicitarDatos {
         imagePortada.setImage(img);
         Image iL = new Image("file:src/main/resources/grupo1/labtic/ui/Imagenes/yendoIcono.png");
         logo.setImage(iL);
+        mesaList = FXCollections.<Mesa>observableArrayList();
     }
 
     @FXML
@@ -256,6 +257,8 @@ public class SolicitarDatos {
                     stage.setScene(new Scene(root));
                     ((Stage) ((Node) event.getSource()).getScene().getWindow()).close();
                     stage.show();
+                    RestaurantePrincipal restaurantePrincipal = loader.<RestaurantePrincipal>getController();
+                    restaurantePrincipal.setRestaurant(restaurantService.getByEmail(restaurant.getEmail()));
                 } catch (NumberFormatException e) {
                     showAlert("Informacion Invalida", "Se encontró un error en los datos ingresados");
                 } catch (IOException e) {
