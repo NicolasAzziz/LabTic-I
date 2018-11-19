@@ -32,7 +32,6 @@ dependencies {
     //compile ('org.hibernate:hibernate-core:5.3.6.Final')
     testCompile('org.springframework.boot:spring-boot-starter-test')
     // https://mvnrepository.com/artifact/mysql/mysql-connector-java
-    runtime('com.h2database:h2')
     runtime group: 'mysql', name: 'mysql-connector-java', version: '8.0.12'
 
     compile group: 'com.jfoenix', name: 'jfoenix', version: '8.0.7'
