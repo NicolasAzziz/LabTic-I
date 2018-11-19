@@ -10,7 +10,9 @@ import grupo1.labtic.services.ReservaService;
 import grupo1.labtic.services.RestaurantService;
 import grupo1.labtic.services.entities.Reserva;
 import grupo1.labtic.services.entities.Restaurant;
+import grupo1.labtic.services.entities.restaurant.Mesa;
 import grupo1.labtic.ui.LoginController;
+import grupo1.labtic.ui.cliente.Principal;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -50,6 +52,17 @@ public class PortadaAdmin {
     private ResourceBundle resources;
     @FXML
     private URL location;
+
+    @FXML
+    private TableColumn numeroMesa;
+    @FXML
+    private TableColumn sillas;
+    @FXML
+    private TableView<Mesa> mesas;
+    @FXML
+    private ImageView imagenRE;
+
+
     @FXML
     private TableView<Restaurant> table;
     @FXML
@@ -75,7 +88,7 @@ public class PortadaAdmin {
     @FXML
     private Text description;
     @FXML
-    private Text barrioPM;
+    private Text barrioRE;
     @FXML
     private Text direccion;
     @FXML
@@ -88,6 +101,8 @@ public class PortadaAdmin {
     private ImageView logo;
     @FXML
     private Text comidas;
+    @FXML
+    private Text precioMedio;
     @FXML
     private Text pagos;
     @FXML
@@ -153,21 +168,35 @@ public class PortadaAdmin {
                         if(restaurant.getNombreRestaurant() != null){
                             FXMLLoader loader = new FXMLLoader();
                             loader.setControllerFactory(AppApplication.getContext()::getBean);
-                            Parent root = loader.load(PortadaAdmin.class.getResourceAsStream("restauranteEspecifico.fxml"));
+                            Parent root = loader.load(PortadaAdmin.class.getResourceAsStream("restaurantEspecificoP.fxml"));
                             Stage stage = new Stage();
                             stage.setTitle("Restaurant específico");
                             stage.getIcons().add(new Image("grupo1/labtic/ui/Imagenes/yendoIcono.png"));
+                            double w = ((Stage) ((Node) event1.getSource()).getScene().getWindow()).getWidth();
+                            double h = ((Stage) ((Node) event1.getSource()).getScene().getWindow()).getHeight();
                             stage.setScene(new Scene(root));
+                            stage.setHeight(h);
+                            stage.setWidth(w);
+
+                            numeroMesa.setCellValueFactory((new PropertyValueFactory<Mesa, String>("nroReferencia")));
+                            sillas.setCellValueFactory(new PropertyValueFactory<Mesa, String>("cantLugares"));
+
+                            List<Mesa> mesasLibresList = (List) restaurantService.mesasLibres(restaurant);
+                            mesas.setItems(FXCollections.observableList(mesasLibresList));
+
                             nombre.setText(restaurant.getNombreRestaurant());
                             description.setText(restaurant.getDescripcion());
-                            barrioPM.setText(restaurant.getBarrio() + " - " + restaurant.getPrecioMedio());
+                            barrioRE.setText(restaurant.getBarrio());
+                            precioMedio.setText(restaurant.getPrecioMedio());
                             tel.setText(restaurant.getTelefono());
                             direccion.setText(restaurant.getDireccion());
                             horario.setText(restaurant.getHorarioApertura() + " - " + restaurant.getHorarioCierre());
-                            logo.setImage(restaurant.getImageView().getImage());
+                            description.setText(restaurant.getDescripcion());
+                            imagenRE.setImage(restaurant.getImageView().getImage());
                             comidas.setText(restaurant.getCocinasOfrecidasString());
                             pagos.setText(restaurant.getTipoDePagoListString());
                             stage.show();
+
                         }else{
                             showAlert("SELECCION INVALIDA!", "Los datos del Restaurante aun no han sido cargados");
                         }
@@ -213,6 +242,11 @@ public class PortadaAdmin {
             e.printStackTrace();
         }
 
+    }
+
+    @FXML
+    void atras(ActionEvent event) throws IOException {
+        ((Stage) ((Node) event.getSource()).getScene().getWindow()).close();
     }
 
     @FXML

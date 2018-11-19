@@ -423,8 +423,5 @@ public class Principal {
 
     }
 
-    @FXML
-    void atras(ActionEvent event) throws IOException {
-        ((Stage) ((Node) event.getSource()).getScene().getWindow()).close();
-    }
+    yend
 }
