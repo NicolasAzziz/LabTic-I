@@ -25,6 +25,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -62,7 +63,10 @@ public class PortadaAdmin {
     @FXML
     private ImageView imagenRE;
 
-
+    @FXML
+    private ImageView imagePortada;
+    @FXML
+    private AnchorPane imagePortadaContainer;
     @FXML
     private TableView<Restaurant> table;
     @FXML
@@ -139,6 +143,12 @@ public class PortadaAdmin {
 
     @FXML
     void initialize() {
+//        imagePortada.setPreserveRatio(false);
+//        imagePortada.fitHeightProperty().bind(imagePortadaContainer.heightProperty());
+//        imagePortada.fitWidthProperty().bind(imagePortadaContainer.widthProperty());
+//        Image img = new Image("file:src/main/resources/grupo1/labtic/ui/restaurants/imgAdmin/arreglo.jpg");
+//        imagePortada.setImage(img);
+
         assert table != null : "fx:id=\"table\" was not injected: check your FXML file 'adminPortada.fxml'.";
         assert col_nombre != null : "fx:id=\"col_nombre\" was not injected: check your FXML file 'adminPortada.fxml'.";
         assert col_email != null : "fx:id=\"col_email\" was not injected: check your FXML file 'adminPortada.fxml'.";

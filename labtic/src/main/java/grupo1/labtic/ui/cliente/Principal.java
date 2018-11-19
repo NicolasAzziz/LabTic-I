@@ -353,7 +353,7 @@ public class Principal {
 
     @FXML
     void ajustes(ActionEvent event) {
-        //Modificar datos
+        
     }
 
     @FXML

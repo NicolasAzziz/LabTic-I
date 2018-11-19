@@ -3,14 +3,21 @@ package grupo1.labtic.ui.cliente;
 import com.jfoenix.controls.JFXButton;
 import grupo1.labtic.services.ReservaService;
 import grupo1.labtic.services.entities.Reserva;
+import grupo1.labtic.services.entities.Restaurant;
+import grupo1.labtic.services.entities.restaurant.Mesa;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -57,6 +64,26 @@ public class ReservaEspecifica {
     private JFXButton cancelarReservaButton;
 
     private VerReservas verReservas;
+    @FXML
+    private ImageView imagePortada;
+    @FXML
+    private AnchorPane imagePortadaContainer;
+
+    public void initialize() {
+            assert restaurantNombre != null : "fx:id=\"restaurantNombre\" was not injected: check your FXML file 'ReservaEspecifica.fxml'.";
+            assert mesaNumero != null : "fx:id=\"mesaNumero\" was not injected: check your FXML file 'ReservaEspecifica.fxml'.";
+            assert sillas != null : "fx:id=\"sillas\" was not injected: check your FXML file 'ReservaEspecifica.fxml'.";
+            assert direccion != null : "fx:id=\"direccion\" was not injected: check your FXML file 'ReservaEspecifica.fxml'.";
+            assert estadoReserva != null : "fx:id=\"estadoReserva\" was not injected: check your FXML file 'ReservaEspecifica.fxml'.";
+            assert emailRestaurant != null : "fx:id=\"emailRestaurant\" was not injected: check your FXML file 'ReservaEspecifica.fxml'.";
+            assert telefono != null : "fx:id=\"telefono\" was not injected: check your FXML file 'ReservaEspecifica.fxml'.";
+            assert fechaYhora != null : "fx:id=\"fechaYhora\" was not injected: check your FXML file 'ReservaEspecifica.fxml'.";
+        imagePortada.setPreserveRatio(false);
+        imagePortada.fitHeightProperty().bind(imagePortadaContainer.heightProperty());
+        imagePortada.fitWidthProperty().bind(imagePortadaContainer.widthProperty());
+        Image img = new Image("file:src/main/resources/grupo1/labtic/ui/restaurants/imgRestaurante/arreglo.jpg");
+        imagePortada.setImage(img);
+    }
 
     public void setReserva(Reserva reserva) {
         this.reserva = reserva;
@@ -81,19 +108,6 @@ public class ReservaEspecifica {
         showAlert("Reserva", "Se ha cancelado la reserva.");
         verReservas.refreshTabla(event);
         ((Stage) ((Node) event.getSource()).getScene().getWindow()).close();
-    }
-
-    @FXML
-    void initialize() {
-        assert restaurantNombre != null : "fx:id=\"restaurantNombre\" was not injected: check your FXML file 'ReservaEspecifica.fxml'.";
-        assert mesaNumero != null : "fx:id=\"mesaNumero\" was not injected: check your FXML file 'ReservaEspecifica.fxml'.";
-        assert sillas != null : "fx:id=\"sillas\" was not injected: check your FXML file 'ReservaEspecifica.fxml'.";
-        assert direccion != null : "fx:id=\"direccion\" was not injected: check your FXML file 'ReservaEspecifica.fxml'.";
-        assert estadoReserva != null : "fx:id=\"estadoReserva\" was not injected: check your FXML file 'ReservaEspecifica.fxml'.";
-        assert emailRestaurant != null : "fx:id=\"emailRestaurant\" was not injected: check your FXML file 'ReservaEspecifica.fxml'.";
-        assert telefono != null : "fx:id=\"telefono\" was not injected: check your FXML file 'ReservaEspecifica.fxml'.";
-        assert fechaYhora != null : "fx:id=\"fechaYhora\" was not injected: check your FXML file 'ReservaEspecifica.fxml'.";
-
     }
 
     public void actualizarReserva(ActionEvent event) {

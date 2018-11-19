@@ -2,9 +2,14 @@ package grupo1.labtic.ui.restaurants;
 
 import grupo1.labtic.services.ReservaService;
 import grupo1.labtic.services.entities.Reserva;
+import grupo1.labtic.services.entities.restaurant.Mesa;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,9 +53,22 @@ public class ReservasActivas {
     private Reserva reserva;
 
     private RestaurantePrincipal restaurantePrincipal;
+    @FXML
+    private ImageView imagePortada;
+    @FXML
+    private AnchorPane imagePortadaContainer;
 
     @Autowired
     private ReservaService reservaService;
+
+    public void initialize() {
+        imagePortada.setPreserveRatio(false);
+        imagePortada.fitHeightProperty().bind(imagePortadaContainer.heightProperty());
+        imagePortada.fitWidthProperty().bind(imagePortadaContainer.widthProperty());
+        Image img = new Image("file:src/main/resources/grupo1/labtic/ui/restaurants/imgRestaurante/arreglo.jpg");
+        imagePortada.setImage(img);
+    }
+
 
     public void setReserva(Reserva reserva) {
         this.reserva = reserva;

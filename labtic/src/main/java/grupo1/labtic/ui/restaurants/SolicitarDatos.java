@@ -197,7 +197,9 @@ public class SolicitarDatos {
                 CheckMenuItem.class.isInstance(item) && CheckMenuItem.class.cast(item).isSelected())
                 .map(MenuItem::getText).collect(Collectors.toList()).size() == 0 || metodosPagoMenu.getItems().stream().filter(item ->
                 CheckMenuItem.class.isInstance(item) && CheckMenuItem.class.cast(item).isSelected())
-                .map(MenuItem::getText).collect(Collectors.toList()).size() == 0) {
+                .map(MenuItem::getText).collect(Collectors.toList()).size() == 0||webRestaurante.getText().equals("")||
+                webRestaurante.getText()== null||descR.getText().equals("")||descR.getText()==null||precioMedio.getText().equals("")||
+                precioMedio.getText()==null) {
 
             showAlert("Datos faltantes!", "No se ingresaron los datos necesarios para completar el ingreso.");
         } else {

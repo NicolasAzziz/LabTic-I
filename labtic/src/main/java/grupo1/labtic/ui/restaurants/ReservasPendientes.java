@@ -6,6 +6,9 @@ import grupo1.labtic.services.exceptions.MesaOcupada;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,6 +49,10 @@ public class ReservasPendientes {
     @FXML
     private Text estadoReserva;
 
+    @FXML
+    private ImageView imagePortada;
+    @FXML
+    private AnchorPane imagePortadaContainer;
 
     private Reserva reserva;
 
@@ -101,6 +108,11 @@ public class ReservasPendientes {
         assert estadoMesa != null : "fx:id=\"estadoMesa\" was not injected: check your FXML file 'reservasPendientes.fxml'.";
         assert mesaNumero != null : "fx:id=\"mesaNumero\" was not injected: check your FXML file 'reservasPendientes.fxml'.";
         assert estadoReserva != null : "fx:id=\"estadoReserva\" was not injected: check your FXML file 'reservasPendientes.fxml'.";
+        imagePortada.setPreserveRatio(false);
+        imagePortada.fitHeightProperty().bind(imagePortadaContainer.heightProperty());
+        imagePortada.fitWidthProperty().bind(imagePortadaContainer.widthProperty());
+        Image img = new Image("file:src/main/resources/grupo1/labtic/ui/restaurants/imgRestaurante/arreglo.jpg");
+        imagePortada.setImage(img);
 
     }
 }

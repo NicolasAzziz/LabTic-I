@@ -18,6 +18,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -114,6 +116,10 @@ public class RestaurantePrincipal {
     private Reserva reserva;
 
     private Restaurant restaurant;
+    @FXML
+    private ImageView imagePortada;
+    @FXML
+    private AnchorPane imagePortadaContainer;
 
     public void setRestaurant(Restaurant restaurant) {
         this.restaurant = restaurant;
@@ -126,6 +132,11 @@ public class RestaurantePrincipal {
 
     @FXML
     void initialize() {
+//        imagePortada.setPreserveRatio(false);
+//        imagePortada.fitHeightProperty().bind(imagePortadaContainer.heightProperty());
+//        imagePortada.fitWidthProperty().bind(imagePortadaContainer.widthProperty());
+//        Image img = new Image("file:src/main/resources/grupo1/labtic/ui/restaurants/imgRestaurante/arreglo.jpg");
+//        imagePortada.setImage(img);
         reservasActivas.setRowFactory(tv -> {
             TableRow<Reserva> row = new TableRow<>();
             row.setOnMouseClicked((event1) -> {
@@ -264,7 +275,23 @@ public class RestaurantePrincipal {
 
     @FXML
     void ajustes(ActionEvent event) {
-        //Cambiar datos
+        FXMLLoader loader = new FXMLLoader();
+        loader.setControllerFactory(AppApplication.getContext()::getBean);
+        Parent root = null;
+        try {
+            root = loader.load(SolicitarDatos.class.getResourceAsStream("solicitarDatos.fxml"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Stage stage = new Stage();
+        stage.setTitle("Actualizar información");
+        stage.getIcons().add(new Image("grupo1/labtic/ui/Imagenes/yendoIcono.png"));
+        double w = ((Stage) ((Node) event.getSource()).getScene().getWindow()).getWidth();
+        double h = ((Stage) ((Node) event.getSource()).getScene().getWindow()).getHeight();
+        stage.setScene(new Scene(root));
+        stage.setHeight(h);
+        stage.setWidth(w);
+        stage.show();
     }
 
     @FXML

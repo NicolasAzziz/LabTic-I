@@ -15,9 +15,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="grupo1.labtic.ui.restaurants.RestaurantePrincipal">
+<AnchorPane fx:id="imagePortadaContainer" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="grupo1.labtic.ui.restaurants.RestaurantePrincipal">
     <children>
-        <ImageView fitHeight="417.0" fitWidth="685.0" opacity="0.39" pickOnBounds="true" preserveRatio="true">
+        <ImageView fx:id="imagePortada" fitHeight="417.0" fitWidth="685.0" opacity="0.35" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@/grupo1/labtic/ui/Imagenes/arreglo.jpg" />
             </image>

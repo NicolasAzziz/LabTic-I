@@ -203,4 +203,8 @@ public class LoginController {
             e.printStackTrace();
         }
     }
+
+    public void contacto(ActionEvent actionEvent) {
+        showAlert("Sé parte de Yendo", "Enviá un correo a admin@yendo y nos pondremos en contacto contigo.");
+    }
 }

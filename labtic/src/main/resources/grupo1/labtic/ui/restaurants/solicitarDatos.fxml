@@ -1,16 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.shape.*?>
-<?import com.jfoenix.controls.*?>
-<?import java.lang.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXListView?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.CheckMenuItem?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.RadioMenuItem?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="imagePortadaContainer" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="529.0" prefWidth="733.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="grupo1.labtic.ui.restaurants.SolicitarDatos">
+<AnchorPane fx:id="imagePortadaContainer" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="529.0" prefWidth="733.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="grupo1.labtic.ui.restaurants.SolicitarDatos">
     <children>
       <ImageView fx:id="imagePortada" fitHeight="150.0" fitWidth="200.0" opacity="0.28" pickOnBounds="true" preserveRatio="true" />
       <GridPane prefHeight="529.0" prefWidth="733.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -29,12 +41,12 @@
                <content>
                   <VBox prefHeight="393.0" prefWidth="394.0" spacing="15.0">
                      <children>
-                        <JFXTextField fx:id="nombreRestaurante" focusColor="#493928" promptText="Nombre" unFocusColor="WHITE" />
-                        <JFXPasswordField fx:id="passNueva" focusColor="#493928" promptText="Contraseña nueva" unFocusColor="WHITE" />
-                        <JFXPasswordField fx:id="passNuevaRepeat" focusColor="#493928" promptText="Repita la contraseña" unFocusColor="WHITE" />
+                        <JFXTextField fx:id="nombreRestaurante" focusColor="#493928" labelFloat="true" promptText="Nombre" unFocusColor="WHITE" />
+                        <JFXPasswordField fx:id="passNueva" focusColor="#493928" labelFloat="true" promptText="Contraseña nueva" unFocusColor="WHITE" />
+                        <JFXPasswordField fx:id="passNuevaRepeat" focusColor="#493928" labelFloat="true" promptText="Repita la contraseña" unFocusColor="WHITE" />
                         <HBox prefHeight="100.0" prefWidth="200.0" spacing="20.0">
                            <children>
-                              <JFXTextField fx:id="direccionRestaurante" focusColor="#493928" promptText="Dirección" unFocusColor="WHITE" />
+                              <JFXTextField fx:id="direccionRestaurante" focusColor="#493928" labelFloat="true" promptText="Dirección" unFocusColor="WHITE" />
                                       <MenuButton fx:id="barriosMenu" alignment="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="157.0" text="Barrio">
                                           <items>
                                               <RadioMenuItem fx:id="ciudadVieja" mnemonicParsing="false" onAction="#selectedBarrio" text="Ciudad Vieja" />
@@ -89,28 +101,28 @@
                                       </MenuButton>
                            </children>
                         </HBox>
-                        <JFXTextField fx:id="telefonoRestaurante" focusColor="#493928" promptText="Teléfono" unFocusColor="WHITE" />
-                        <JFXTextField fx:id="webRestaurante" focusColor="#493928" promptText="Sitio web" unFocusColor="WHITE" />
-                        <JFXTextArea fx:id="descR" focusColor="#493928" minHeight="50.0" prefHeight="50.0" promptText="Descripción" unFocusColor="WHITE" />
+                        <JFXTextField fx:id="telefonoRestaurante" focusColor="#493928" labelFloat="true" promptText="Teléfono" unFocusColor="WHITE" />
+                        <JFXTextField fx:id="webRestaurante" focusColor="#493928" labelFloat="true" promptText="Sitio web" unFocusColor="WHITE" />
+                        <JFXTextArea fx:id="descR" focusColor="#493928" labelFloat="true" minHeight="50.0" prefHeight="50.0" promptText="Descripción" unFocusColor="WHITE" />
                         <HBox prefHeight="100.0" prefWidth="200.0" spacing="15.0">
                            <children>
-                              <JFXTextField fx:id="hAperturaRestaurante" focusColor="#493928" promptText="Horario de apertura" unFocusColor="WHITE" />
+                              <JFXTextField fx:id="hAperturaRestaurante" focusColor="#493928" labelFloat="true" promptText="Horario de apertura" unFocusColor="WHITE" />
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text=":" />
                               <JFXTextField fx:id="mAperturaRestaurante" focusColor="#493928" unFocusColor="WHITE" />
                            </children>
                         </HBox>
                         <HBox prefHeight="100.0" prefWidth="200.0" spacing="15.0">
                            <children>
-                              <JFXTextField fx:id="hCierreRestaurante" focusColor="#493928" promptText="Horario de cierre" unFocusColor="WHITE" />
+                              <JFXTextField fx:id="hCierreRestaurante" focusColor="#493928" labelFloat="true" promptText="Horario de cierre" unFocusColor="WHITE" />
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text=":" />
                               <JFXTextField fx:id="mCierreRestaurante" focusColor="#493928" unFocusColor="WHITE" />
                            </children>
                         </HBox>
-                        <JFXTextField fx:id="precioMedio" focusColor="#493928" promptText="Precio promedio" unFocusColor="WHITE" />
+                        <JFXTextField fx:id="precioMedio" focusColor="#493928" labelFloat="true" promptText="Precio promedio" unFocusColor="WHITE" />
                         <HBox minHeight="100.0" prefHeight="100.0" prefWidth="200.0" spacing="15.0">
                            <children>
-                              <JFXTextField fx:id="nMesas" focusColor="#493928" promptText="n° de mesa" unFocusColor="WHITE" />
-                              <JFXTextField fx:id="nSillas" focusColor="#493928" promptText="Lugares" unFocusColor="WHITE" />
+                              <JFXTextField fx:id="nMesas" focusColor="#493928" labelFloat="true" promptText="n° de mesa" unFocusColor="WHITE" />
+                              <JFXTextField fx:id="nSillas" focusColor="#493928" labelFloat="true" promptText="Lugares" unFocusColor="WHITE" />
                               <JFXButton onAction="#agregarMesa" style="-fx-background-color: #493928;" text="+" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold" size="15.0" />
@@ -138,12 +150,12 @@
                         <JFXButton onAction="#registrar" style="-fx-background-color: #493928;" text="Guardar" textFill="WHITE" />
                      </children>
                      <padding>
-                        <Insets left="30.0" right="30.0" />
+                        <Insets left="30.0" right="30.0" top="20.0" />
                      </padding>
                   </VBox>
                </content>
             </ScrollPane>
-            <Label text="Yendo" textFill="#493928" GridPane.halignment="RIGHT" GridPane.valignment="CENTER">
+            <Label prefHeight="64.0" prefWidth="239.0" text="Yendo" textFill="#493928" GridPane.halignment="RIGHT" GridPane.valignment="BOTTOM">
                <font>
                   <Font name="Yu Gothic Regular" size="55.0" />
                </font>
